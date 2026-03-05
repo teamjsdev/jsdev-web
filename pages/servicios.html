@@ -35,15 +35,15 @@ color:#333;
 line-height:1.6;
 }
 
-/* TOPBAR */
-
-.topbar{
-display:flex;
-align-items:center;
-gap:12px;
-padding:10px 14px;
-background:linear-gradient(135deg,#1e3c72,#2a5298);
-color:white;
+/* HEADER */
+.topbar {
+display: flex;
+align-items: center;
+gap: 12px;
+padding: 10px 14px;
+background: linear-gradient(135deg, #1e3c72, #2a5298);
+color: white;
+z-index: 300;
 }
 
 .menu-btn{
@@ -71,27 +71,27 @@ opacity:0.9;
 }
 
 /* SIDE MENU */
-
-.side-menu{
-display:none;
-position:absolute;
-top:52px;
-left:0;
-background:white;
-width:220px;
-box-shadow:0 4px 10px rgba(0,0,0,0.15);
+.side-menu {
+display: none;
+position: absolute;
+top: 52px;
+left: 0;
+background: white;
+width: 220px;
+box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+z-index: 500;
 }
 
-.side-menu a{
-display:block;
-padding:14px 18px;
-text-decoration:none;
-color:#1e3c72;
-font-weight:500;
+.side-menu a {
+display: block;
+padding: 14px 18px;
+text-decoration: none;
+color: #1e3c72;
+font-weight: 500;
 }
 
-.side-menu a:hover{
-background:#f0f4ff;
+.side-menu a:hover {
+background: #f0f4ff;
 }
 
 /* NAV */
@@ -268,7 +268,7 @@ margin-top:60px;
 
 <header class="topbar">
 
-<button class="menu-btn" onclick="toggleMenu()">
+<button class="menu-btn" onclick="toggleMenu()" aria-label="Abrir menú">
 <i class="fas fa-bars"></i>
 </button>
 
@@ -281,10 +281,12 @@ margin-top:60px;
 
 </header>
 
+<!-- SIDE MENU -->
 <div id="sideMenu" class="side-menu">
-<a href="../index.html#apps">Apps Android</a>
-<a href="../pages/videos.html">Edición de Videos</a>
-<a href="../pages/web.html">Diseño Web</a>
+  <a href="#apps">Apps Android</a>
+  <a href="pages/web.html">Diseño Web</a>
+  <a href="pages/servicios.html">Tu web en 24 hs</a>
+  <a href="pages/videos.html">Edición de Videos</a>
 </div>
 
 <nav class="main-nav">
@@ -303,7 +305,6 @@ margin-top:60px;
 
 </div>
 
-<a href="servicios.html">Servicios</a>
 <a href="../index.html#contacto">Contacto</a>
 
 </nav>
@@ -400,5 +401,3 @@ menu.style.display=menu.style.display==="block"?"none":"block";
 
 </body>
 </html>
-```
-
