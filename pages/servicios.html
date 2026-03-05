@@ -1,334 +1,404 @@
+```html
 <!DOCTYPE html>
 <html lang="es-AR">
 <head>
-  <meta charset="UTF-8">
-  <title>JSDev | Servicios Digitales</title>
-  <link rel="canonical" href="https://jsdevmobile.com/pages/servicios.html" />
+<meta charset="UTF-8">
+<title>JSDev | Creación de páginas web</title>
 
+<link rel="canonical" href="https://jsdevmobile.com/pages/servicios.html" />
 
-  <!-- SEO -->
-  <meta name="description" content="Servicios digitales de JSDev: desarrollo de apps Android, diseño web y producción multimedia. Soluciones funcionales y profesionales.">
-  <meta name="author" content="Joaquin Sanchez">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Creación de páginas web profesionales para negocios y profesionales. Landing pages y sitios institucionales rápidos, claros y optimizados.">
+<meta name="author" content="Joaquin Sanchez">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8FVHCZT452"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-8FVHCZT452');
-  </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8FVHCZT452"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-8FVHCZT452');
+</script>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, sans-serif;
-    }
+<style>
 
-    body {
-      background-color: #f4f6f8;
-      color: #333;
-      line-height: 1.6;
-    }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',Tahoma,sans-serif;
+}
 
-    /* TOP BAR */
-    .topbar {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 14px;
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: white;
-      z-index: 300;
-    }
+body{
+background:#f4f6f8;
+color:#333;
+line-height:1.6;
+}
 
-    .menu-btn {
-      background: none;
-      border: none;
-      color: white;
-      font-size: 1.4rem;
-      cursor: pointer;
-    }
+/* TOPBAR */
 
-    .logo {
-      width: 42px;
-      height: 42px;
-      object-fit: contain;
-    }
+.topbar{
+display:flex;
+align-items:center;
+gap:12px;
+padding:10px 14px;
+background:linear-gradient(135deg,#1e3c72,#2a5298);
+color:white;
+}
 
-    .brand-title {
-      font-size: 1.2rem;
-      font-weight: 700;
-      line-height: 1.1;
-    }
+.menu-btn{
+background:none;
+border:none;
+color:white;
+font-size:1.4rem;
+cursor:pointer;
+}
 
-    .brand p {
-      font-size: 0.85rem;
-      opacity: 0.9;
-    }
+.logo{
+width:42px;
+height:42px;
+object-fit:contain;
+}
 
-    /* SIDE MENU */
-    .side-menu {
-      display: none;
-      position: absolute;
-      top: 52px;
-      left: 0;
-      background: white;
-      width: 220px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-      z-index: 300;
-    }
+.brand-title{
+font-size:1.2rem;
+font-weight:700;
+}
 
-    .side-menu a {
-      display: block;
-      padding: 14px 18px;
-      text-decoration: none;
-      color: #1e3c72;
-      font-weight: 500;
-    }
+.brand p{
+font-size:0.85rem;
+opacity:0.9;
+}
 
-    .side-menu a:hover {
-      background: #f0f4ff;
-    }
+/* SIDE MENU */
 
-    /* MAIN NAV */
-    .main-nav {
-      position: sticky;
-      top: 0;
-      z-index: 400;
-      background: white;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      padding: 12px;
-      flex-wrap: wrap;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-    }
+.side-menu{
+display:none;
+position:absolute;
+top:52px;
+left:0;
+background:white;
+width:220px;
+box-shadow:0 4px 10px rgba(0,0,0,0.15);
+}
 
-    .main-nav a,
-    .dropdown span {
-      text-decoration: none;
-      color: #2a5298;
-      font-weight: 600;
-      cursor: pointer;
-    }
+.side-menu a{
+display:block;
+padding:14px 18px;
+text-decoration:none;
+color:#1e3c72;
+font-weight:500;
+}
 
-    /* DROPDOWN */
-    .dropdown {
-      position: relative;
-    }
+.side-menu a:hover{
+background:#f0f4ff;
+}
 
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      top: 30px;
-      left: 0;
-      background: white;
-      min-width: 180px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-      z-index: 500;
-    }
+/* NAV */
 
-    .dropdown-content a {
-      display: block;
-      padding: 12px 16px;
-      color: #1e3c72;
-    }
+.main-nav{
+position:sticky;
+top:0;
+z-index:400;
+background:white;
+display:flex;
+justify-content:center;
+gap:20px;
+padding:12px;
+flex-wrap:wrap;
+box-shadow:0 2px 5px rgba(0,0,0,0.08);
+}
 
-    .dropdown-content a:hover {
-      background: #f0f4ff;
-    }
+.main-nav a,
+.dropdown span{
+text-decoration:none;
+color:#2a5298;
+font-weight:600;
+cursor:pointer;
+}
 
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
+.dropdown{
+position:relative;
+}
 
-    /* HERO */
-    .hero {
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: white;
-      padding: 40px 20px;
-      text-align: center;
-    }
+.dropdown-content{
+display:none;
+position:absolute;
+top:30px;
+left:0;
+background:white;
+min-width:180px;
+box-shadow:0 4px 10px rgba(0,0,0,0.15);
+}
 
-    .hero h1 {
-      font-size: 2.2rem;
-      margin-bottom: 10px;
-    }
+.dropdown-content a{
+display:block;
+padding:12px 16px;
+color:#1e3c72;
+}
 
-    .hero p {
-      max-width: 850px;
-      margin: auto;
-      font-size: 1.05rem;
-    }
+.dropdown-content a:hover{
+background:#f0f4ff;
+}
 
-    section {
-      max-width: 1000px;
-      margin: 60px auto;
-      padding: 0 20px;
-    }
+.dropdown:hover .dropdown-content{
+display:block;
+}
 
-    section h2 {
-      color: #1e3c72;
-      margin-bottom: 25px;
-      font-size: 2rem;
-      text-align: center;
-    }
+/* HERO */
 
-    .ideas {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-    }
+.hero{
+background:#111827;
+color:white;
+padding:60px 20px;
+text-align:center;
+}
 
-    .card {
-      background: white;
-      border-radius: 12px;
-      padding: 22px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      transition: transform 0.3s ease;
-    }
+.hero h1{
+font-size:2.2rem;
+margin-bottom:10px;
+}
 
-    .card:hover {
-      transform: translateY(-5px);
-    }
+.hero p{
+max-width:850px;
+margin:auto;
+font-size:1.05rem;
+}
 
-    .card h3 {
-      color: #1e3c72;
-      margin-bottom: 10px;
-      font-size: 1.3rem;
-    }
+section{
+max-width:1000px;
+margin:60px auto;
+padding:0 20px;
+}
 
-    .card ul {
-      text-align: left;
-      margin-top: 10px;
-      padding-left: 18px;
-      font-size: 0.95rem;
-    }
+section h2{
+color:#1e3c72;
+margin-bottom:25px;
+font-size:2rem;
+text-align:center;
+}
 
-    footer {
-      background-color: #1e3c72;
-      color: white;
-      text-align: center;
-      padding: 25px 15px;
-      margin-top: 60px;
-    }
-  </style>
+.ideas{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
+}
+
+/* CARDS */
+
+.card{
+background:white;
+border-radius:12px;
+padding:25px;
+box-shadow:0 6px 12px rgba(0,0,0,0.08);
+text-align:center;
+transition:0.3s;
+border-top:5px solid #2a5298;
+}
+
+.card:hover{
+transform:translateY(-6px);
+}
+
+.card h3{
+color:#1e3c72;
+margin-bottom:10px;
+font-size:1.4rem;
+}
+
+.card ul{
+text-align:left;
+margin-top:10px;
+padding-left:18px;
+font-size:0.95rem;
+}
+
+.price{
+margin-top:14px;
+font-size:2rem;
+font-weight:bold;
+margin:15px 0;
+}
+
+.maintenance{
+font-size:0.9rem;
+opacity:0.85;
+}
+
+.note{
+font-size:0.85rem;
+text-align:center;
+margin-top:25px;
+opacity:0.7;
+}
+
+/* BOTON PLAN */
+
+.plan-btn{
+display:inline-block;
+margin-top:16px;
+padding:10px 18px;
+background:#2a5298;
+color:white;
+text-decoration:none;
+border-radius:6px;
+font-size:0.9rem;
+font-weight:600;
+transition:0.25s;
+}
+
+.plan-btn:hover{
+background:#1e3c72;
+}
+
+/* FOOTER */
+
+footer{
+background:#1e3c72;
+color:white;
+text-align:center;
+padding:25px 15px;
+margin-top:60px;
+}
+
+</style>
 </head>
 
 <body>
 
-<!-- TOP BAR -->
 <header class="topbar">
-  <button class="menu-btn" onclick="toggleMenu()" aria-label="Abrir menú">
-    <i class="fas fa-bars"></i>
-  </button>
 
-  <img src="../assets/img/web2.png" alt="Logo JSDev" class="logo">
+<button class="menu-btn" onclick="toggleMenu()">
+<i class="fas fa-bars"></i>
+</button>
 
-  <div class="brand">
-    <span class="brand-title">JSDev</span>
-    <p>Servicios digitales</p>
-  </div>
-</header>
+<img src="../assets/img/web2.png" alt="Logo JSDev" class="logo">
 
-<!-- SIDE MENU -->
-<div id="sideMenu" class="side-menu">
-  <a href="../index.html#apps">Apps Android</a>
-  <a href="../pages/videos.html">Edición de Videos</a>
-  <a href="../pages/web.html">Diseño Web</a>
+<div class="brand">
+<span class="brand-title">JSDev</span>
+<p>Servicios digitales</p>
 </div>
 
-<!-- MAIN NAV -->
+</header>
+
+<div id="sideMenu" class="side-menu">
+<a href="../index.html#apps">Apps Android</a>
+<a href="../pages/videos.html">Edición de Videos</a>
+<a href="../pages/web.html">Diseño Web</a>
+</div>
+
 <nav class="main-nav">
-  <a href="../index.html">Inicio</a>
-  <a href="../index.html#sobre">Sobre mí</a>
 
-  <div class="dropdown">
-    <span>Proyectos ▾</span>
-    <div class="dropdown-content">
-      <a href="../index.html#apps">Apps Android</a>
-      <a href="videos.html">Edición de Videos</a>
-      <a href="web.html">Diseño Web</a>
-    </div>
-  </div>
+<a href="../index.html">Inicio</a>
+<a href="../index.html#sobre">Sobre mí</a>
 
-  <a href="servicios.html">Servicios</a>
-  <a href="../index.html#contacto">Contacto</a>
+<div class="dropdown">
+<span>Proyectos ▾</span>
+
+<div class="dropdown-content">
+<a href="../index.html#apps">Apps Android</a>
+<a href="videos.html">Edición de Videos</a>
+<a href="web.html">Diseño Web</a>
+</div>
+
+</div>
+
+<a href="servicios.html">Servicios</a>
+<a href="../index.html#contacto">Contacto</a>
+
 </nav>
 
-<!-- HERO -->
-<section>
-  <h1>Servicios digitales</h1>
-  <p>
-    Desarrollo soluciones digitales enfocadas en funcionalidad real, diseño claro
-     y buena experiencia de usuario. Trabajo proyectos de forma
-     personalizada, priorizando calidad y resultados.
-  </p>
+<section class="hero">
+
+<h1>Páginas web rápidas para tu negocio</h1>
+
+<p>
+Landing pages profesionales listas en 24-48 horas. Sitios rápidos, claros y optimizados para celulares.
+</p>
+
 </section>
 
-<!-- SERVICIOS -->
 <section>
-  <h2>Qué puedo ofrecer</h2>
 
-  <div class="ideas">
+<h2>Planes de desarrollo web</h2>
 
-    <div class="card">
-      <h3>📱 Desarrollo de Apps Android</h3>
-      <p>Aplicaciones nativas orientadas a estabilidad y uso real.</p>
-      <ul>
-        <li>Apps de salud y bienestar</li>
-        <li>Herramientas de productividad</li>
-        <li>Interfaces simples y claras</li>
-        <li>Mantenimiento y mejoras</li>
-      </ul>
-    </div>
+<div class="ideas">
 
-    <div class="card">
-      <h3>🌐 Diseño y Desarrollo Web</h3>
-      <p>Sitios web rápidos, modernos y adaptables.</p>
-      <ul>
-        <li>Webs estáticas profesionales</li>
-        <li>Diseño responsive</li>
-        <li>Optimización SEO básica</li>
-        <li>Buena experiencia de usuario</li>
-      </ul>
-    </div>
+<div class="card">
 
-    <div class="card">
-      <h3>🎬 Producción y Edición de Video</h3>
-      <p>Contenido audiovisual claro y adaptable.</p>
-      <ul>
-        <li>Videos cortos para redes</li>
-        <li>Spots para eventos</li>
-        <li>Formatos vertical y horizontal</li>
-        <li>Optimización para plataformas</li>
-      </ul>
-    </div>
+<h3>🌐 Landing Page</h3>
 
-  </div>
+<p>Ideal para profesionales o pequeños negocios que necesitan presencia online simple.</p>
+
+<div class="price">USD 250</div>
+
+<ul>
+<li>1 página</li>
+<li>Diseño moderno</li>
+<li>Optimizada para celular</li>
+<li>Botón de WhatsApp</li>
+<li>Formulario de contacto</li>
+<li>Entrega estimada en 24-48 horas</li>
+</ul>
+
+<p><strong>Mantenimiento opcional:</strong> USD 15 / mes</p>
+
+<a class="plan-btn" href="../index.html#contacto">
+Solicitar esta web
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>🏢 Web Institucional</h3>
+
+<p>Ideal para empresas o negocios que necesitan más contenido.</p>
+
+<div class="price">USD 500</div>
+
+<ul>
+<li>Hasta 5 páginas</li>
+<li>Inicio + secciones internas</li>
+<li>Diseño profesional</li>
+<li>Optimizada para celular</li>
+<li>Formulario de contacto</li>
+<li>Entrega estimada en 3-5 días</li>
+</ul>
+
+<p><strong>Mantenimiento opcional:</strong> USD 30 / mes</p>
+
+<a class="plan-btn" href="../index.html#contacto">
+Solicitar esta web
+</a>
+
+</div>
+
+</div>
+
+<p class="note">
+Los tiempos de entrega comienzan una vez recibido el contenido del sitio y confirmado el dominio adquirido por el cliente.
+Las condiciones completas del servicio serán enviadas al cliente antes de iniciar el proyecto.
+</p>
+
 </section>
 
 <footer>
-  <p>© 2026 JSDev - Servicios Digitales</p>
+
+<p>© 2026 JSDev - Desarrollo Web</p>
+
 </footer>
 
 <script>
-  function toggleMenu() {
-    const menu = document.getElementById("sideMenu");
-    menu.style.display = menu.style.display === "block" ? "none" : "block";
-  }
+
+function toggleMenu(){
+const menu=document.getElementById("sideMenu");
+menu.style.display=menu.style.display==="block"?"none":"block";
+}
+
 </script>
 
 </body>
 </html>
-
-
-
+```
