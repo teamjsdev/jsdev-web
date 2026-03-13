@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es-AR">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <title>JSDev | Desarrollo de Apps Android y Producción Multimedia</title>
@@ -10,6 +10,13 @@
   <meta name="keywords" content="desarrollo apps Android, programador Android Argentina, apps de salud, productividad, desarrollo mobile">
   <meta name="author" content="Joaquin Sanchez">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- language -->
+
+  <link rel="alternate" hreflang="es" href="https://jsdevmobile.com/" />
+  <link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/" />
+  <link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/" />
+  <link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/" />
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -46,6 +53,24 @@
       background: linear-gradient(135deg, #1e3c72, #2a5298);
       color: white;
       z-index: 300;
+    }
+
+    .lang-switch{
+      margin-left:auto;
+      display:flex;
+      gap:10px;
+    }
+
+    .lang-switch a{
+      color:white;
+      text-decoration:none;
+      font-weight:600;
+      font-size:0.9rem;
+      opacity:0.9;
+    }
+
+    .lang-switch a:hover{
+      opacity:1;
     }
 
 
@@ -300,6 +325,34 @@
     }
 
   </style>
+
+  <script>
+  (function() {
+
+    if(localStorage.getItem("langSelected")){
+      return;
+    }
+
+    const lang = navigator.language || navigator.userLanguage;
+    const shortLang = lang.slice(0,2);
+
+    // evitar redirección si ya está en subcarpeta
+    const path = window.location.pathname;
+
+    if (path.startsWith("/en/") || path.startsWith("/pt/")) {
+      return;
+    }
+
+    if (shortLang === "en") {
+      window.location.replace("en/index.html");
+    } 
+    else if (shortLang === "pt") {
+      window.location.replace("pt/index.html");
+    }
+
+  })();
+  </script>
+
 </head>
 
 <body>
@@ -315,6 +368,12 @@
   <div class="brand">
     <span class="brand-title">JSDev</span>
     <p>Apps Android · Salud · Productividad · Producción multimedia</p>
+  </div>
+
+  <div class="lang-switch">
+    <a href="index.html" onclick="setLang()">ES</a>
+    <a href="en/index.html" onclick="setLang()">EN</a>
+    <a href="pt/index.html" onclick="setLang()">PT</a>
   </div>
 
 </header>
@@ -361,14 +420,14 @@
 <section id="apps">
   <h2>Apps Android</h2>
   <div class="ideas">
-    <a href="/pages/salud.html" style="text-decoration: none; color: inherit;">
+    <a href="pages/salud.html" style="text-decoration: none; color: inherit;">
         <div class="card">
           <img src="assets/img/salud.png" alt="Salud y bienestar" />
           <h3>Salud y bienestar</h3>
           <p>Herramientas móviles para gestión de síntomas, cuidado, prevención y soporte en salud.</p>
         </div>
       </a>
-    <a href="/pages/productividad.html" style="text-decoration: none; color: inherit;">
+    <a href="pages/productividad.html" style="text-decoration: none; color: inherit;">
         <div class="card">
           <img src="assets/img/productividad.png" alt="Productividad" />
           <h3>Productividad</h3>
@@ -455,6 +514,12 @@
   function toggleMenu() {
     const menu = document.getElementById("sideMenu");
     menu.style.display = menu.style.display === "block" ? "none" : "block";
+  }
+</script>
+
+<script>
+function setLang(){
+  localStorage.setItem("langSelected", "true");
   }
 </script>
 
