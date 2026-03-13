@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JSDev | Android App Development and Multimedia Production</title>
+  <link rel="canonical" href="https://jsdevmobile.com/en/" />
+
+  <!-- SEO -->
+  <meta name="description" content="JSDev develops Android applications, productivity tools, health apps and digital solutions with a professional and human approach.">
+  <meta name="keywords" content="Android app development, Android developer Argentina, health apps, productivity apps, mobile development">
+  <meta name="author" content="Joaquin Sanchez">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- language -->
+
+  <link rel="alternate" hreflang="es" href="https://jsdevmobile.com/" />
+  <link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/" />
+  <link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/" />
+  <link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8FVHCZT452"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8FVHCZT452');
+  </script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+    }
+
+    body {
+      background-color: #f4f6f8;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* HEADER */
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      z-index: 300;
+    }
+
+    .lang-switch{
+      margin-left:auto;
+      display:flex;
+      gap:10px;
+    }
+
+    .lang-switch a{
+      color:white;
+      text-decoration:none;
+      font-weight:600;
+      font-size:0.9rem;
+      opacity:0.9;
+    }
+
+    .lang-switch a:hover{
+      opacity:1;
+    }
+
+
+    .menu-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+    }
+
+    .brand h1 {
+      font-size: 1.2rem;
+      margin: 0;
+      line-height: 1.1;
+    }
+
+    .brand p {
+      font-size: 0.85rem;
+      margin: 0;
+      opacity: 0.9;
+    }
+
+    .brand-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    /* SIDE MENU */
+    .side-menu {
+      display: none;
+      position: absolute;
+      top: 52px;
+      left: 0;
+      background: white;
+      width: 220px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      z-index: 500;
+    }
+
+    .side-menu a {
+      display: block;
+      padding: 14px 18px;
+      text-decoration: none;
+      color: #1e3c72;
+      font-weight: 500;
+    }
+
+    .side-menu a:hover {
+      background: #f0f4ff;
+    }
+
+    /* MAIN NAV */
+    .main-nav {
+      position: sticky;
+      top: 0;
+      z-index: 400;
+      background: white;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 12px;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    }
+
+
+    .main-nav a,
+    .dropdown span {
+      text-decoration: none;
+      color: #2a5298;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* DROPDOWN */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 30px;
+      left: 0;
+      background: white;
+      min-width: 180px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      z-index: 300;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 12px 16px;
+      color: #1e3c72;
+    }
+
+    .dropdown-content a:hover {
+      background: #f0f4ff;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* HEADER TEXTO */
+    .hero {
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      padding: 35px 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      max-width: 850px;
+      margin: auto;
+      font-size: 1.05rem;
+    }
+
+    section {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    section h2 {
+      color: #1e3c72;
+      margin-bottom: 25px;
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    .card {
+      transition: transform 0.3s ease;
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .card img {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      margin-bottom: 15px;
+      border-radius: 20px;
+    }
+
+    .card h3 {
+      font-size: 1.3em;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 0.95em;
+    }
+
+    .ideas {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .ideas a,
+    .ideas a:visited {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .ideas h3 {
+      color: #1e3c72;
+      margin-bottom: 10px;
+    }
+
+    /* SOPORTE */
+    .support-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .support-btn {
+      padding: 14px 22px;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s ease;
+    }
+
+    .support-btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .cafecito {
+      background-color: #ffb703;
+      color: #000;
+    }
+
+    .paypal {
+      background-color: #0070ba;
+      color: #fff;
+    }
+
+    footer {
+      background-color: #1e3c72;
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+      margin-top: 60px;
+    }
+
+    footer a {
+      color: #a9c9ff;
+      text-decoration: none;
+    }
+    
+    .team {
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    .team img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid #e5e7eb;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      background-color: #e5e7eb;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 768px) {
+      section {
+        scroll-margin-top: 110px;
+      }
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<header class="topbar">
+
+<button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">
+<i class="fas fa-bars"></i>
+</button>
+
+<img src="../assets/img/web2.png" alt="JSDev logo" class="logo">
+
+<div class="brand">
+<span class="brand-title">JSDev</span>
+<p>Android Apps · Health · Productivity · Multimedia Production</p>
+</div>
+
+<div class="lang-switch">
+<a href="../index.html" onclick="setLang()">ES</a>
+<a href="index.html" onclick="setLang()">EN</a>
+<a href="../pt/index.html" onclick="setLang()">PT</a>
+</div>
+
+</header>
+
+<div id="sideMenu" class="side-menu">
+<a href="#apps">Android Apps</a>
+<a href="pages/web.html">Web Design</a>
+<a href="pages/services.html">Your website in 24h</a>
+<a href="pages/videos.html">Video Editing</a>
+</div>
+
+<nav class="main-nav">
+<a href="#inicio">Home</a>
+<a href="#sobre">About me</a>
+
+<div class="dropdown">
+<span>Projects ▾</span>
+<div class="dropdown-content">
+<a href="#apps">Android Apps</a>
+<a href="pages/web.html">Web Design</a>
+<a href="pages/videos.html">Video Editing</a>
+</div>
+</div>
+
+<a href="pages/services.html">Your website in 24h</a>
+<a href="#contacto">Contact</a>
+</nav>
+
+<section id="inicio" class="card">
+<div class="hero-content">
+
+<h1>Android App Development and Digital Solutions</h1>
+
+<p>
+JSDev is a project where I combine my pharmaceutical background
+with Android app development, web design and multimedia production
+to create useful, functional tools focused on real-world use.
+</p>
+
+</div>
+</section>
+
+<section id="apps">
+
+<h2>Android Apps</h2>
+
+<div class="ideas">
+
+<a href="pages/health.html">
+<div class="card">
+<img src="../assets/img/salud.png" alt="Health and wellness" />
+<h3>Health and wellness</h3>
+<p>Mobile tools for symptom tracking, health care, prevention and support.</p>
+</div>
+</a>
+
+<a href="pages/productivity.html">
+<div class="card">
+<img src="../assets/img/productividad.png" alt="Productivity" />
+<h3>Productivity</h3>
+<p>Apps designed to help you focus, organize ideas and work better.</p>
+</div>
+</a>
+
+<a href="pages/web_under_construction.html">
+<div class="card">
+<img src="../assets/img/herramientas.png" alt="Tools and utilities" />
+<h3>Tools and utilities</h3>
+<p>Practical apps for measurement, diagnostics, organization and daily use.</p>
+</div>
+</a>
+
+<a href="pages/web_under_construction.html">
+<div class="card">
+<img src="../assets/img/comida.png" alt="Food and recipes" />
+<h3>Food and recipes</h3>
+<p>Apps to organize meals, discover recipes and improve the cooking experience.</p>
+</div>
+</a>
+
+<a href="pages/web_under_construction.html">
+<div class="card">
+<img src="../assets/img/juegos.png" alt="Games" />
+<h3>Games</h3>
+<p>Casual games and interactive experiences with educational elements.</p>
+</div>
+</a>
+
+<a href="pages/web_under_construction.html">
+<div class="card">
+<img src="../assets/img/social.png" alt="Social apps" />
+<h3>Social and dating</h3>
+<p>Applications to connect people, build relationships and explore affinities.</p>
+</div>
+</a>
+
+</div>
+</section>
+
+<section id="sobre">
+
+<h2>About me</h2>
+
+<div class="team">
+<img src="../assets/img/imagen1.png" alt="Joaquin Sanchez">
+<p>Joaquin Sanchez, pharmacist and programmer. I enjoy combining technical knowledge with human sensitivity to create tools with real impact.</p>
+</div>
+
+</section>
+
+<section id="apoyo">
+
+<h2>If any of my apps helped you</h2>
+
+<div class="card">
+
+<p>Your support helps me continue developing free and accessible tools.</p>
+
+<div class="support-buttons">
+
+<a href="https://cafecito.app/JSDev" target="_blank" class="support-btn cafecito">
+☕ Buy me a coffee
+</a>
+
+<a href="https://www.paypal.me/TeamJSDev" target="_blank" class="support-btn paypal">
+💙 Support via PayPal
+</a>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- CONTACTO -->
+<section id="contacto">
+<h2>Contact</h2>
+<div class="card">
+    <p>📧 <a href="mailto:teamjsdev@gmail.com">teamjsdev@gmail.com</a></p>
+    <p>
+      <a href="https://x.com/DevTeamjsdev" target="_blank" rel="noopener" style="margin-right: 15px; color: #000; font-weight: 700; font-size: 1.5rem; text-decoration: none;">X</a>
+      <a href="https://instagram.com/teamjsdev" target="_blank" rel="noopener" style="margin-right: 15px; color: #E4405F; font-size: 1.5rem; text-decoration: none;"><i class="fab fa-instagram"></i></a>
+      <a href="https://tiktok.com/@teamjsdev" target="_blank" rel="noopener" style="color: #000; font-size: 1.5rem; text-decoration: none;"><i class="fab fa-tiktok"></i></a>
+    </p>
+  </div>
+</section>
+
+<footer>
+<p>© 2026 JSDev - Android App Development</p>
+</footer>
+
+<script>
+function toggleMenu() {
+const menu = document.getElementById("sideMenu");
+menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+</script>
+
+<script>
+function setLang(){
+localStorage.setItem("langSelected", "true");
+}
+</script>
+
+</body>
+</html>

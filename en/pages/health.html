@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <title>JSDev | Apps Android de Salud y Bienestar</title>
+  <link rel="canonical" href="https://jsdevmobile.com/pages/salud.html" />
+
+  <!-- SEO -->
+  <meta name="description" content="JSDev desarrolla aplicaciones Android centradas en salud, bienestar y productividad. Tecnología aplicada a soluciones reales.">
+  <meta name="author" content="Joaquin Sanchez">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8FVHCZT452"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8FVHCZT452');
+  </script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+    }
+
+    body {
+      background-color: #f4f6f8;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* TOP BAR */
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      z-index: 300;
+    }
+
+    .menu-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+    }
+
+    .brand-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    .brand p {
+      font-size: 0.85rem;
+      opacity: 0.9;
+    }
+
+    /* SIDE MENU */
+    .side-menu {
+      display: none;
+      position: absolute;
+      top: 52px;
+      left: 0;
+      background: white;
+      width: 230px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      z-index: 500;
+    }
+
+    .side-menu a {
+      display: block;
+      padding: 14px 18px;
+      text-decoration: none;
+      color: #1e3c72;
+      font-weight: 500;
+    }
+
+    .side-menu a:hover {
+      background: #f0f4ff;
+    }
+
+    /* MAIN NAV */
+    .main-nav {
+      position: sticky;
+      top: 0;
+      z-index: 400;
+      background: white;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 12px;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    }
+
+    .main-nav a,
+    .dropdown span {
+      text-decoration: none;
+      color: #2a5298;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* DROPDOWN */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 30px;
+      left: 0;
+      background: white;
+      min-width: 180px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      z-index: 300;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 12px 16px;
+      color: #1e3c72;
+    }
+
+    .dropdown-content a:hover {
+      background: #f0f4ff;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      max-width: 900px;
+      margin: auto;
+      font-size: 1.05rem;
+    }
+
+    section {
+      max-width: 1100px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    section h2 {
+      color: #1e3c72;
+      margin-bottom: 30px;
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 22px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      margin-bottom: 15px;
+      border-radius: 20px;
+    }
+
+    .card h3 {
+      color: #1e3c72;
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 10px 16px;
+      background-color: #2a5298;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .button:hover {
+      background-color: #1e3c72;
+    }
+
+    .team {
+      text-align: center;
+    }
+
+    .team img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    footer {
+      background-color: #1e3c72;
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+      margin-top: 60px;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <button class="menu-btn" onclick="toggleMenu()" aria-label="Abrir menú">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <img src="../../assets/img/web2.png" alt="Logo JSDev" class="logo">
+
+  <div class="brand">
+    <span class="brand-title">JSDev</span>
+    <p>Apps Android</p>
+  </div>
+</header>
+
+<!-- SIDE MENU -->
+<div id="sideMenu" class="side-menu">
+  <a href="../index.html#apps">Apps Android</a>
+  <a href="videos.html">Edición de Videos</a>
+  <a href="web.html">Diseño Web</a>
+</div>
+
+<!-- MAIN NAV -->
+<nav class="main-nav">
+  <a href="../index.html">Inicio</a>
+  <a href="../index.html#sobre">Sobre mí</a>
+
+  <div class="dropdown">
+    <span>Proyectos ▾</span>
+    <div class="dropdown-content">
+      <a href="../index.html#apps">Apps Android</a>
+      <a href="videos.html">Edición de Videos</a>
+      <a href="web.html">Diseño Web</a>
+    </div>
+  </div>
+
+  <a href="services.html">Servicios</a>
+  <a href="#contacto">Contacto</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Apps Android de salud y bienestar</h1>
+  <p>
+    Desarrollo aplicaciones Android enfocadas en educación, prevención
+    y hábitos saludables, combinando farmacia y tecnología.
+  </p>
+</section>
+
+<!-- APPS -->
+<section>
+  <h2>Apps publicadas</h2>
+
+  <div class="projects">
+
+    <div class="card">
+      <img src="https://play-lh.googleusercontent.com/heJ-rfmepYOrdmhTkSEI6Ig3T6OusFu3XoUdNggs5i0vgiXurgoQSEXmZA2SPoGM8w=w240-h480-rw" alt="InfoDengue">
+      <h3>InfoDengue</h3>
+      <p>
+        App educativa sobre dengue: prevención, síntomas y transmisión.
+      </p>
+      <a href="https://play.google.com/store/apps/details?id=com.jsdev.infodengue" target="_blank" class="button">Google Play</a><br>
+      <a href="info-dengue-en.html" class="button">Más detalles</a>
+    </div>
+
+    <div class="card">
+      <img src="https://play-lh.googleusercontent.com/Ss_pk1aXWFrQ2A_x3jE6OfW-5yXgGtLtl-mnBLmlOEWrqc0Q45jr8ED0vih8tptJJdMS21qKC4WOS8X5AlA7Qg=w480-h960-rw" alt="Toilet Timer">
+      <h3>Toilet Timer</h3>
+      <p>
+        Temporizador para mejorar hábitos en el baño con seguimiento semanal.
+      </p>
+      <a href="https://play.google.com/store/apps/details?id=com.jsdev.hemorrhoidinfo" target="_blank" class="button">Google Play</a><br>
+      <a href="toilet-timer.html" class="button">Más detalles</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="team" id="sobre">
+  <h2>Quién soy</h2>
+  <img src="../../assets/img/imagen1.png" alt="Joaquín Sánchez">
+  <p>
+    Joaquín Sánchez, farmacéutico y desarrollador Android.
+    Creo herramientas digitales con impacto real en la salud.
+  </p>
+</section>
+
+<footer id="contacto">
+  <p>© 2026 JSDev</p>
+  <p>
+    <a href="mailto:teamjsdev@gmail.com" style="color:#38bdf8; text-decoration:none;">
+      teamjsdev@gmail.com
+    </a>
+  </p>
+</footer>
+
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById("sideMenu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+  }
+</script>
+
+</body>
+</html>

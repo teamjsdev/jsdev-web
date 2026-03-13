@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>InfoDengue – Aprende sobre el Dengue Jugando | App Educativa Android | JSDev</title>
+  <link rel="canonical" href="https://jsdevmobile.com/pages/info-dengue.html" />
+
+  <!-- SEO -->
+  <meta name="description" content="Descubre InfoDengue, la app educativa interactiva para aprender sobre el dengue, sus síntomas, prevención y transmisión. Juegos y actividades para todas las edades.">
+  <meta name="keywords" content="InfoDengue, dengue, educación sobre dengue, app educativa, prevención del dengue, síntomas del dengue, juegos educativos, salud, Android">
+  <meta name="author" content="JSDev">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://play.google.com/store/apps/details?id=com.jsdev.infodengue">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="InfoDengue - Aprende sobre el dengue jugando">
+  <meta property="og:description" content="App educativa para Android que enseña sobre el dengue con juegos y trivias interactivas.">
+  <meta property="og:image" content="https://play-lh.googleusercontent.com/heJ-rfmepYOrdmhTkSEI6Ig3T6OusFu3XoUdNggs5i0vgiXurgoQSEXmZA2SPoGM8w=w480-h800-rw">
+  <meta property="og:url" content="https://play.google.com/store/apps/details?id=com.jsdev.infodengue">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="InfoDengue - App educativa sobre el dengue">
+  <meta name="twitter:description" content="Aprende sobre el dengue con juegos educativos, trivias y actividades interactivas.">
+  <meta name="twitter:image" content="https://play-lh.googleusercontent.com/heJ-rfmepYOrdmhTkSEI6Ig3T6OusFu3XoUdNggs5i0vgiXurgoQSEXmZA2SPoGM8w=w480-h800-rw">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8FVHCZT452"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8FVHCZT452');
+  </script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+    }
+
+    body {
+      background-color: #f4f6f8;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* TOPBAR */
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+    }
+
+    .brand-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    /* MAIN NAV */
+    .main-nav {
+      background: white;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 12px;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 400;
+    }
+
+    .main-nav a {
+      text-decoration: none;
+      color: #2a5298;
+      font-weight: 600;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background-color: white;
+      padding: 28px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+      color: #1e3c72;
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    h2, h3 {
+      color: #1e3c72;
+      margin-top: 25px;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+
+    .app-image {
+      max-width: 260px;
+      display: block;
+      margin: 20px auto;
+      border-radius: 20px;
+    }
+
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 12px;
+      margin: 25px 0;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 14px 22px;
+      background-color: #1e3c72;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <img src="../../assets/img/web2.png" alt="Logo JSDev" class="logo">
+  <span class="brand-title">JSDev</span>
+</header>
+
+<nav class="main-nav" aria-label="Navegación principal">
+  <a href="../index.html">Inicio</a>
+  <a href="../index.html#apps">Proyectos</a>
+  <a href="services.html">Servicios</a>
+  <a href="../index.html#contacto">Contacto</a>
+</nav>
+
+<main>
+  <article class="card">
+    <h1>InfoDengue – Aprende sobre el dengue jugando</h1>
+
+    <img
+      src="https://play-lh.googleusercontent.com/heJ-rfmepYOrdmhTkSEI6Ig3T6OusFu3XoUdNggs5i0vgiXurgoQSEXmZA2SPoGM8w=w480-h800-rw"
+      alt="Captura de pantalla de la aplicación InfoDengue para Android"
+      class="app-image"
+      loading="lazy"
+    >
+
+    <div class="video-container">
+      <iframe
+        src="https://www.youtube.com/embed/suElwbrTsC0"
+        title="Video presentación de InfoDengue"
+        allowfullscreen
+        loading="lazy">
+      </iframe>
+    </div>
+
+    <h2>¿Qué es InfoDengue?</h2>
+    <p>
+      <strong>InfoDengue</strong> es una aplicación educativa gratuita para Android
+      que enseña sobre el dengue de forma clara, visual y divertida mediante juegos
+      interactivos.
+    </p>
+
+    <h3>Aprender</h3>
+    <ul>
+      <li>Primera y segunda infección</li>
+      <li>Formas de transmisión</li>
+      <li>Estrategias efectivas de prevención</li>
+    </ul>
+
+    <h3>Jugar</h3>
+    <ul>
+      <li>Trivias educativas</li>
+      <li>Mitos y verdades</li>
+      <li>Rompecabezas interactivo</li>
+      <li>Juego “Atrapa al mosquito”</li>
+    </ul>
+
+    <h3>Más contenido</h3>
+    <ul>
+      <li>Insignias de logros</li>
+      <li>Información de contacto</li>
+    </ul>
+
+    <a
+      href="https://play.google.com/store/apps/details?id=com.jsdev.infodengue"
+      target="_blank"
+      rel="noopener"
+      class="button">
+      Descargar InfoDengue Gratis
+    </a>
+  </article>
+</main>
+
+<!-- Rich Snippet -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "InfoDengue",
+  "operatingSystem": "ANDROID",
+  "applicationCategory": "HealthApplication",
+  "url": "https://play.google.com/store/apps/details?id=com.jsdev.infodengue",
+  "offers": {
+    "@type": "Offer",
+    "price": "0.00",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "JSDev"
+  }
+}
+</script>
+
+</body>
+</html>

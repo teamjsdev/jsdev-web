@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <title>JSDev | Desarrollo de Apps Android y Producción Multimedia</title>
+  <link rel="canonical" href="https://jsdevmobile.com/" />
+
+  <!-- SEO -->
+  <meta name="description" content="JSDev desarrolla aplicaciones Android, herramientas de productividad, apps de salud y soluciones digitales con enfoque profesional y humano.">
+  <meta name="keywords" content="desarrollo apps Android, programador Android Argentina, apps de salud, productividad, desarrollo mobile">
+  <meta name="author" content="Joaquin Sanchez">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8FVHCZT452"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8FVHCZT452');
+  </script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+    }
+
+    body {
+      background-color: #f4f6f8;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* HEADER */
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      z-index: 300;
+    }
+
+
+    .menu-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+    }
+
+    .brand h1 {
+      font-size: 1.2rem;
+      margin: 0;
+      line-height: 1.1;
+    }
+
+    .brand p {
+      font-size: 0.85rem;
+      margin: 0;
+      opacity: 0.9;
+    }
+
+    .brand-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    /* SIDE MENU */
+    .side-menu {
+      display: none;
+      position: absolute;
+      top: 52px;
+      left: 0;
+      background: white;
+      width: 220px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      z-index: 500;
+    }
+
+    .side-menu a {
+      display: block;
+      padding: 14px 18px;
+      text-decoration: none;
+      color: #1e3c72;
+      font-weight: 500;
+    }
+
+    .side-menu a:hover {
+      background: #f0f4ff;
+    }
+
+    /* MAIN NAV */
+    .main-nav {
+      position: sticky;
+      top: 0;
+      z-index: 400;
+      background: white;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 12px;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    }
+
+
+    .main-nav a,
+    .dropdown span {
+      text-decoration: none;
+      color: #2a5298;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* DROPDOWN */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 30px;
+      left: 0;
+      background: white;
+      min-width: 180px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      z-index: 300;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 12px 16px;
+      color: #1e3c72;
+    }
+
+    .dropdown-content a:hover {
+      background: #f0f4ff;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* HEADER TEXTO */
+    .hero {
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      padding: 35px 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      max-width: 850px;
+      margin: auto;
+      font-size: 1.05rem;
+    }
+
+    section {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    section h2 {
+      color: #1e3c72;
+      margin-bottom: 25px;
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    .card {
+      transition: transform 0.3s ease;
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .card img {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      margin-bottom: 15px;
+      border-radius: 20px;
+    }
+
+    .card h3 {
+      font-size: 1.3em;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 0.95em;
+    }
+
+    .ideas {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .ideas a,
+    .ideas a:visited {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .ideas h3 {
+      color: #1e3c72;
+      margin-bottom: 10px;
+    }
+
+    /* SOPORTE */
+    .support-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .support-btn {
+      padding: 14px 22px;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s ease;
+    }
+
+    .support-btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .cafecito {
+      background-color: #ffb703;
+      color: #000;
+    }
+
+    .paypal {
+      background-color: #0070ba;
+      color: #fff;
+    }
+
+    footer {
+      background-color: #1e3c72;
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+      margin-top: 60px;
+    }
+
+    footer a {
+      color: #a9c9ff;
+      text-decoration: none;
+    }
+    
+    .team {
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    .team img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid #e5e7eb;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      background-color: #e5e7eb;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 768px) {
+      section {
+        scroll-margin-top: 110px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <button class="menu-btn" onclick="toggleMenu()" aria-label="Abrir menú">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <img src="../../assets/img/web2.png" alt="Logo JSDev" class="logo">
+
+  <div class="brand">
+    <span class="brand-title">JSDev</span>
+    <p>Apps Android · Salud · Productividad · Producción multimedia</p>
+  </div>
+
+</header>
+
+<!-- SIDE MENU -->
+<div id="sideMenu" class="side-menu">
+  <a href="../index.html#apps">Apps Android</a>
+  <a href="web.html">Diseño Web</a>
+  <a href="services.html">Tu web en 24 hs</a>
+  <a href="videos.html">Edición de Videos</a>
+</div>
+
+<!-- MAIN NAV -->
+<nav class="main-nav">
+  <a href="../index.html#inicio">Inicio</a>
+  <a href="#sobre">Sobre mí</a>
+
+  <div class="dropdown">
+    <span>Proyectos ▾</span>
+    <div class="dropdown-content">
+      <a href="../index.html#apps">Apps Android</a>
+      <a href="web.html">Diseño Web</a>
+      <a href="videos.html">Edición de Videos</a>
+    </div>
+  </div>
+
+  <a href="services.html">Tu web en 24 hs</a>
+</nav>
+
+<section id="contacto">
+  <h2>Contacto</h2>
+  <div class="card" style="position:relative;">
+    <form id="contactForm" action="https://formsubmit.co/teamjsdev@gmail.com" method="POST">
+      <input type="hidden" name="_captcha" value="true">
+
+      <input type="text" name="name" placeholder="Tu nombre" required>
+      <input type="email" name="email" placeholder="Tu correo" required>
+      <textarea name="message" placeholder="Mensaje" required></textarea>
+
+      <button type="submit">Enviar</button>
+    </form>
+
+    <div id="thankYouMessage" style="
+      display:none;
+      position:absolute;
+      top:0; left:0; right:0; bottom:0;
+      background:rgba(30,60,114,0.95);
+      color:white;
+      align-items:center;
+      justify-content:center;
+      border-radius:12px;
+      font-size:1.2rem;
+      font-weight:600;
+      text-align:center;
+      padding:20px;
+      opacity:0;
+      transition: opacity 0.5s;
+    ">
+      ¡Gracias! Tu mensaje fue enviado.
+    </div>
+
+    <p style="margin-top:15px; font-size:0.9rem; color:#555;">
+      También podés escribirme directamente a 📧 
+      <a href="mailto:teamjsdev@gmail.com" style="color:#1e3c72; text-decoration:underline;">teamjsdev@gmail.com</a>
+    </p>
+
+    <p>
+      <a href="https://x.com/DevTeamjsdev" target="_blank" rel="noopener" style="margin-right: 15px; color: #000; font-weight: 700; font-size: 1.5rem; text-decoration: none;">X</a>
+      <a href="https://instagram.com/teamjsdev" target="_blank" style="margin-right: 15px; color:#E4405F; font-size:1.5rem;"><i class="fab fa-instagram"></i></a>
+      <a href="https://tiktok.com/@teamjsdev" target="_blank" style="color:#000; font-size:1.5rem;"><i class="fab fa-tiktok"></i></a>
+    </p>
+  </div>
+</section>
+
+<style>
+  #contacto input,
+  #contacto textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+  }
+
+  #contacto button {
+    background:#1e3c72;
+    color:white;
+    padding:12px 25px;
+    border:none;
+    border-radius:8px;
+    font-weight:600;
+    cursor:pointer;
+    font-size:1rem;
+    transition: transform 0.2s;
+  }
+
+  #contacto button:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Responsive */
+  @media (max-width:768px) {
+    #contacto button {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('contactForm');
+  const thankYou = document.getElementById('thankYouMessage');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const data = new FormData(form);
+
+    fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(response => {
+      if (response.ok) {
+        form.reset();
+        thankYou.style.display = 'flex';
+        setTimeout(() => { thankYou.style.opacity = '1'; }, 10);
+        setTimeout(() => {
+          thankYou.style.opacity = '0';
+          setTimeout(() => { thankYou.style.display = 'none'; }, 500);
+        }, 2500);
+      } else {
+        alert('Hubo un error, intenta de nuevo.');
+      }
+    })
+    .catch(() => alert('Hubo un error, intenta de nuevo.'));
+  });
+</script>
+
+<!-- SOBRE MI-->
+<section id="sobre">
+  <section class="container team">
+    <h2>Quién soy</h2>
+    <img src="../../assets/img/imagen1.png" alt="Joaquin Sanchez">
+    <p>Joaquin Sanchez, Farmacéutico y programador. Me apasiona combinar conocimiento técnico y sensibilidad humana para crear herramientas con impacto real.</p>
+  </section>
+</section>
+
+<footer>
+  <p>© 2026 JSDev - Desarrollo de Apps Android</p>
+</footer>
+
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById("sideMenu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+  }
+</script>
+
+</body>
+
+</html>
+
