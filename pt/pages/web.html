@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <title>JSDev | Diseño Web</title>
+  <link rel="canonical" href="https://jsdevmobile.com/pages/web.html" />
+
+  <!-- SEO -->
+  <meta name="description" content="Diseño web profesional por JSDev. Sitios modernos, rápidos y accesibles con foco en UX y rendimiento.">
+  <meta name="keywords" content="diseño web, sitios web modernos, desarrollo web, SEO, UX">
+  <meta name="author" content="Joaquin Sanchez">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8FVHCZT452"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8FVHCZT452');
+  </script>
+
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', Tahoma, sans-serif; }
+    body { background-color:#f4f6f8; color:#333; line-height:1.6; }
+
+    /* TOP BAR */
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap:12px;
+      padding:10px 14px;
+      background: linear-gradient(135deg,#1e3c72,#2a5298);
+      color:white;
+      z-index:300;
+    }
+    .menu-btn { background:none; border:none; color:white; font-size:1.4rem; cursor:pointer; }
+    .logo { width:42px; height:42px; object-fit:contain; }
+    .brand { display:flex; flex-direction:column; }
+    .brand-title { font-size:1.2rem; font-weight:700; line-height:1.1; }
+    .brand p { font-size:0.85rem; opacity:0.9; }
+
+    /* SIDE MENU */
+    .side-menu { display:none; position:absolute; top:52px; left:0; background:white; width:220px; box-shadow:0 4px 10px rgba(0,0,0,0.15); z-index:500; }
+    .side-menu a { display:block; padding:14px 18px; text-decoration:none; color:#1e3c72; font-weight:500; }
+    .side-menu a:hover { background:#f0f4ff; }
+
+    /* MAIN NAV */
+    .main-nav {
+      position:sticky; top:0; z-index:400;
+      background:white; display:flex; justify-content:center; gap:20px;
+      padding:12px; flex-wrap:wrap; box-shadow:0 2px 5px rgba(0,0,0,0.08);
+    }
+    .main-nav a, .dropdown span { text-decoration:none; color:#2a5298; font-weight:600; cursor:pointer; }
+
+    /* DROPDOWN */
+    .dropdown { position:relative; }
+    .dropdown-content {
+      display:none; position:absolute; top:30px; left:0; background:white; min-width:180px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.15); z-index:300;
+    }
+    .dropdown-content a { display:block; padding:12px 16px; color:#1e3c72; text-decoration:none; }
+    .dropdown-content a:hover { background:#f0f4ff; }
+    .dropdown:hover .dropdown-content { display:block; }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg,#1e3c72,#2a5298);
+      color:white; padding:35px 20px; text-align:center; border-radius:12px;
+    }
+    .hero h1 { font-size:2rem; margin-bottom:12px; }
+    .hero p { max-width:850px; margin:auto; font-size:1rem; }
+
+    section { max-width:1000px; margin:60px auto; padding:0 20px; }
+    section h2 { color:#1e3c72; margin-bottom:25px; font-size:2rem; text-align:center; }
+
+    /* CARD */
+    .projects { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:25px; }
+    .card {
+      background:white; border-radius:12px; padding:20px; text-align:center;
+      box-shadow:0 4px 6px rgba(0,0,0,0.1); transition:transform 0.3s ease;
+    }
+    .card:hover { transform:translateY(-3px); }
+    .card img { width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:12px; margin-bottom:15px; background:#e5e7eb; }
+    .card h3 { font-size:1.3rem; margin-bottom:10px; color:#1e3c72; }
+    .card p { font-size:0.95rem; color:#333; }
+
+    .button {
+      display:inline-block; margin-top:12px; padding:10px 16px;
+      background:#2a5298; color:white; border-radius:8px; text-decoration:none; font-weight:600;
+      transition:background 0.3s ease;
+    }
+    .button:hover { background:#1e3c72; }
+
+    footer { background:#1e3c72; color:white; text-align:center; padding:25px 15px; margin-top:60px; }
+    footer a { color:#a9c9ff; text-decoration:none; }
+
+    @media (max-width:768px){ section{scroll-margin-top:110px;} }
+  </style>
+</head>
+
+<body>
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <button class="menu-btn" onclick="toggleMenu()" aria-label="Abrir menú">
+    <i class="fas fa-bars"></i>
+  </button>
+  <img src="../../assets/img/web2.png" alt="Logo JSDev" class="logo">
+  <div class="brand">
+    <span class="brand-title">JSDev</span>
+    <p>Diseño Web Profesional</p>
+  </div>
+</header>
+
+<!-- SIDE MENU -->
+<div id="sideMenu" class="side-menu">
+  <a href="../index.html#apps">Apps Android</a>
+  <a href="videos.html">Edición de Videos</a>
+  <a href="web.html">Diseño Web</a>
+</div>
+
+<!-- MAIN NAV -->
+<nav class="main-nav">
+  <a href="../index.html#inicio">Inicio</a>
+  <a href="../index.html#sobre">Sobre mí</a>
+  <div class="dropdown">
+    <span>Proyectos ▾</span>
+    <div class="dropdown-content">
+      <a href="../index.html#apps">Apps Android</a>
+      <a href="videos.html">Edición de Videos</a>
+      <a href="web.html">Diseño Web</a>
+    </div>
+  </div>
+  <a href="servicos.html">Servicios</a>
+  <a href="../index.html#contacto">Contacto</a>
+</nav>
+
+<!-- HERO -->
+<section>
+  <h1>Diseño Web Profesional</h1>
+  <p>
+    Desarrollo sitios web modernos, accesibles y rápidos,
+    optimizados para UX, SEO y dispositivos móviles.
+  </p>
+</section>
+
+<!-- PROYECTOS WEB -->
+<section>
+  <h2>Proyectos Web</h2>
+  <div class="projects">
+
+    <div class="card">
+      <img src="https://s0.wp.com/mshots/v1/https://teamjsdev.github.io/iluminacion-mp/?w=600" alt="iluminacion MP">
+      <h3>Web Institucional Empresa</h3>
+      <p>Sitio corporativo con diseño limpio, navegación clara y estructura optimizada para UX.</p>
+      <a href="https://teamjsdev.github.io/iluminacion-mp/" class="button" target="_blank" rel="noopener">Ver sitio</a>
+    </div>
+
+    <div class="card">
+      <img src="https://s0.wp.com/mshots/v1/https://teamjsdev.github.io/contador-nicolas-moyano/?w=600" alt="Contador Moyano">
+      <h3>Landing Page Contador</h3>
+      <p>Web responsive, rápida y accesible, enfocada en rendimiento y dispositivos móviles.</p>
+      <a href="https://teamjsdev.github.io/contador-nicolas-moyano/" class="button" target="_blank" rel="noopener">Ver sitio</a>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 JSDev · Diseño Web Profesional</p>
+</footer>
+
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById("sideMenu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+  }
+</script>
+
+</body>
+</html>

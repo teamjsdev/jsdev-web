@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <title>NoteMover – Aplicación de notas y tareas para Android | JSDev</title>
+  <link rel="canonical" href="https://jsdevmobile.com/pages/notemover.html" />
+
+  <!-- SEO -->
+  <meta name="description" content="NoteMover es una aplicación Android para crear notas, organizar tareas y recordatorios de forma simple y eficiente. Desarrollada por JSDev.">
+  <meta name="author" content="JSDev">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8FVHCZT452"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8FVHCZT452');
+  </script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+    }
+
+    body {
+      background-color: #f4f6f8;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* TOPBAR (NO sticky) */
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+    }
+
+    .menu-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+    }
+
+    .brand-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    /* MAIN NAV (sticky real) */
+    .main-nav {
+      background: white;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 12px;
+      flex-wrap: wrap;
+
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 400;
+    }
+
+    .main-nav a {
+      text-decoration: none;
+      color: #2a5298;
+      font-weight: 600;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background-color: white;
+      padding: 28px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      color: #1e3c72;
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    h2, h3 {
+      color: #1e3c72;
+      margin-top: 25px;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+
+    .app-image {
+      max-width: 260px;
+      display: block;
+      margin: 20px auto;
+      border-radius: 12px;
+    }
+
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 12px;
+      margin: 25px 0;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 14px 22px;
+      background-color: #1e3c72;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+    footer {
+      background-color: #1e3c72;
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+      margin-top: 60px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <img src="../../assets/img/web2.png" alt="Logo JSDev" class="logo">
+  <span class="brand-title">JSDev</span>
+</header>
+
+<nav class="main-nav" aria-label="Navegación principal">
+  <a href="../index.html">Inicio</a>
+  <a href="../index.html#sobre">Sobre mí</a>
+  <a href="../index.html#apps">Proyectos</a>
+  <a href="servicos.html">Servicios</a>
+  <a href="../index.html#contacto">Contacto</a>
+</nav>
+
+<main>
+  <article class="card">
+    <h1>NoteMover – Aplicación de notas y organizador de tareas</h1>
+
+    <img
+      src="https://play-lh.googleusercontent.com/XNqH4ZgkUvytJMXkWwJudfG6dM-OfwsIPq6hN7wrg5Y_QOj2LO4v5vf63VWQlD2scMk=w240-h480-rw"
+      alt="Captura de la aplicación NoteMover en Android"
+      class="app-image"
+    >
+
+    <div class="video-container">
+      <iframe
+        src="https://www.youtube.com/embed/JwRHb79M4so"
+        title="Video demostración de NoteMover"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <p>
+      NoteMover es una aplicación Android diseñada para crear notas,
+      organizar tareas y gestionar recordatorios de forma simple y eficiente.
+    </p>
+
+    <h3>Principales funcionalidades</h3>
+    <ul>
+      <li>Creación y edición rápida de notas</li>
+      <li>Movimiento manual de notas mediante flechas</li>
+      <li>Listas de tareas y recordatorios</li>
+      <li>Interfaz clara y personalizable</li>
+    </ul>
+
+    <h3>¿Por qué elegir NoteMover?</h3>
+    <p>
+      Permite reorganizar notas manualmente, algo poco común en apps de notas,
+      ofreciendo una experiencia flexible y práctica para el uso diario.
+    </p>
+
+    <a
+      href="https://play.google.com/store/apps/details?id=com.jsdev.newnotes"
+      target="_blank"
+      rel="noopener"
+      class="button">
+      Descargar en Google Play
+    </a>
+  </article>
+</main>
+
+<footer>
+  <p>© 2026 JSDev – Desarrollo de Apps Android</p>
+</footer>
+
+</body>
+</html>
