@@ -1,326 +1,296 @@
 <!DOCTYPE html>
-<html lang="es-AR">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>JSDev | Producción Multimedia y Edición de Video</title>
-  <link rel="canonical" href="https://jsdevmobile.com/pt/pages/videos.html" />
+<meta charset="UTF-8">
+<title>JSDev | Produção Multimídia e Edição de Vídeo</title>
+<link rel="canonical" href="https://jsdevmobile.com/pt/pages/videos.html" />
 
-  <link rel="alternate" hreflang="es-AR" href="https://jsdevmobile.com/pages/videos.html" />
-  <link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/videos.html" />
-  <link rel="alternate" hreflang="pt-BR" href="https://jsdevmobile.com/pt/pages/videos.html" />
-  <link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/videos.html" />
+<link rel="alternate" hreflang="es-AR" href="https://jsdevmobile.com/pages/videos.html" />
+<link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/videos.html" />
+<link rel="alternate" hreflang="pt-BR" href="https://jsdevmobile.com/pt/pages/videos.html" />
+<link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/videos.html" />
 
+<!-- SEO -->
+<meta name="description" content="Produção multimídia e edição de vídeo por JSDev. Vídeos curtos para redes sociais, spots para eventos e conteúdo audiovisual profissional.">
+<meta name="author" content="Joaquin Sanchez">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- SEO -->
-  <meta name="description" content="Producción multimedia y edición de video por JSDev. Videos cortos para redes sociales, spots para eventos y contenido audiovisual profesional.">
-  <meta name="author" content="Joaquin Sanchez">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8FVHCZT452"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-8FVHCZT452');
+</script>
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8FVHCZT452"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-8FVHCZT452');
-  </script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,sans-serif;}
+body{background-color:#f4f6f8;color:#333;line-height:1.6;}
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, sans-serif;
-    }
+.topbar{
+display:flex;
+align-items:center;
+gap:12px;
+padding:10px 14px;
+background:linear-gradient(135deg,#1e3c72,#2a5298);
+color:white;
+z-index:300;
+}
 
-    body {
-      background-color: #f4f6f8;
-      color: #333;
-      line-height: 1.6;
-    }
+.menu-btn{
+background:none;
+border:none;
+color:white;
+font-size:1.4rem;
+cursor:pointer;
+}
 
-    /* TOP BAR */
-    .topbar {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 14px;
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: white;
-      z-index: 300;
-    }
+.logo{
+width:42px;
+height:42px;
+object-fit:contain;
+}
 
-    .menu-btn {
-      background: none;
-      border: none;
-      color: white;
-      font-size: 1.4rem;
-      cursor: pointer;
-    }
+.brand-title{
+font-size:1.2rem;
+font-weight:700;
+line-height:1.1;
+}
 
-    .logo {
-      width: 42px;
-      height: 42px;
-      object-fit: contain;
-    }
+.brand p{
+font-size:0.85rem;
+margin:0;
+opacity:0.9;
+}
 
-    .brand-title {
-      font-size: 1.2rem;
-      font-weight: 700;
-      line-height: 1.1;
-    }
+.side-menu{
+display:none;
+position:absolute;
+top:52px;
+left:0;
+background:white;
+width:220px;
+box-shadow:0 4px 10px rgba(0,0,0,0.15);
+z-index:500;
+}
 
-    .brand p {
-      font-size: 0.85rem;
-      margin: 0;
-      opacity: 0.9;
-    }
+.side-menu a{
+display:block;
+padding:14px 18px;
+text-decoration:none;
+color:#1e3c72;
+font-weight:500;
+}
 
-    /* SIDE MENU */
-    .side-menu {
-      display: none;
-      position: absolute;
-      top: 52px;
-      left: 0;
-      background: white;
-      width: 220px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-      z-index: 500;
-    }
+.side-menu a:hover{
+background:#f0f4ff;
+}
 
-    .side-menu a {
-      display: block;
-      padding: 14px 18px;
-      text-decoration: none;
-      color: #1e3c72;
-      font-weight: 500;
-    }
+.main-nav{
+position:sticky;
+top:0;
+z-index:400;
+background:white;
+display:flex;
+justify-content:center;
+gap:20px;
+padding:12px;
+flex-wrap:wrap;
+box-shadow:0 2px 5px rgba(0,0,0,0.08);
+}
 
-    .side-menu a:hover {
-      background: #f0f4ff;
-    }
+.main-nav a,
+.dropdown span{
+text-decoration:none;
+color:#2a5298;
+font-weight:600;
+cursor:pointer;
+}
 
-    /* MAIN NAV */
-    .main-nav {
-      position: sticky;
-      top: 0;
-      z-index: 400;
-      background: white;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      padding: 12px;
-      flex-wrap: wrap;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-    }
+.dropdown{position:relative;}
 
-    .main-nav a,
-    .dropdown span {
-      text-decoration: none;
-      color: #2a5298;
-      font-weight: 600;
-      cursor: pointer;
-    }
+.dropdown-content{
+display:none;
+position:absolute;
+top:30px;
+left:0;
+background:white;
+min-width:180px;
+box-shadow:0 4px 10px rgba(0,0,0,0.15);
+z-index:300;
+}
 
-    /* DROPDOWN */
-    .dropdown {
-      position: relative;
-    }
+.dropdown-content a{
+display:block;
+padding:12px 16px;
+color:#1e3c72;
+}
 
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      top: 30px;
-      left: 0;
-      background: white;
-      min-width: 180px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-      z-index: 300;
-    }
+.dropdown-content a:hover{
+background:#f0f4ff;
+}
 
-    .dropdown-content a {
-      display: block;
-      padding: 12px 16px;
-      color: #1e3c72;
-    }
+.dropdown:hover .dropdown-content{
+display:block;
+}
 
-    .dropdown-content a:hover {
-      background: #f0f4ff;
-    }
+.hero{
+background:linear-gradient(135deg,#1e3c72,#2a5298);
+color:white;
+padding:35px 20px;
+text-align:center;
+}
 
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
+.hero h1{
+font-size:2.2rem;
+margin-bottom:10px;
+}
 
-    /* HERO */
-    .hero {
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: white;
-      padding: 35px 20px;
-      text-align: center;
-    }
+.hero p{
+max-width:850px;
+margin:auto;
+font-size:1.05rem;
+}
 
-    .hero h1 {
-      font-size: 2.2rem;
-      margin-bottom: 10px;
-    }
+section{
+max-width:1000px;
+margin:60px auto;
+padding:0 20px;
+}
 
-    .hero p {
-      max-width: 850px;
-      margin: auto;
-      font-size: 1.05rem;
-    }
+h2{
+color:#1e3c72;
+margin-bottom:25px;
+font-size:2rem;
+text-align:center;
+}
 
-    section {
-      max-width: 1000px;
-      margin: 60px auto;
-      padding: 0 20px;
-    }
+.video-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
+}
 
-    h2 {
-      color: #1e3c72;
-      margin-bottom: 25px;
-      font-size: 2rem;
-      text-align: center;
-    }
+iframe{
+width:100%;
+height:200px;
+border-radius:12px;
+border:none;
+}
 
-    /* VIDEOS */
-    .video-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-    }
+.shorts iframe{
+height:360px;
+aspect-ratio:9 / 16;
+}
 
-    iframe {
-      width: 100%;
-      height: 200px;
-      border-radius: 12px;
-      border: none;
-    }
+footer{
+background-color:#1e3c72;
+color:white;
+text-align:center;
+padding:25px 15px;
+margin-top:60px;
+}
 
-    .shorts iframe {
-      height: 360px;
-      aspect-ratio: 9 / 16;
-    }
+footer a{
+color:#a9c9ff;
+text-decoration:none;
+}
 
-    footer {
-      background-color: #1e3c72;
-      color: white;
-      text-align: center;
-      padding: 25px 15px;
-      margin-top: 60px;
-    }
-
-    footer a {
-      color: #a9c9ff;
-      text-decoration: none;
-    }
-
-    @media (max-width: 768px) {
-      section {
-        scroll-margin-top: 110px;
-      }
-    }
-  </style>
+@media (max-width:768px){
+section{scroll-margin-top:110px;}
+}
+</style>
 </head>
 
 <body>
 
-<!-- TOP BAR -->
 <header class="topbar">
-  <button class="menu-btn" onclick="toggleMenu()" aria-label="Abrir menú">
-    <i class="fas fa-bars"></i>
-  </button>
+<button class="menu-btn" onclick="toggleMenu()" aria-label="Abrir menu">
+<i class="fas fa-bars"></i>
+</button>
 
-  <img src="../../assets/img/web2.png" alt="Logo JSDev" class="logo">
+<img src="../../assets/img/web2.png" alt="Logo JSDev" class="logo">
 
-  <div class="brand">
-    <span class="brand-title">JSDev</span>
-    <p>Apps Android · Producción multimedia</p>
-  </div>
+<div class="brand">
+<span class="brand-title">JSDev</span>
+<p>Apps Android · Produção multimídia</p>
+</div>
 </header>
 
-<!-- SIDE MENU -->
 <div id="sideMenu" class="side-menu">
-  <a href="../index.html#apps">Apps Android</a>
-  <a href="videos.html">Edición de Videos</a>
-  <a href="web.html">Diseño Web</a>
+<a href="../index.html#apps">Apps Android</a>
+<a href="videos.html">Edição de Vídeos</a>
+<a href="web.html">Design Web</a>
 </div>
 
-<!-- MAIN NAV -->
 <nav class="main-nav">
-  <a href="../index.html">Inicio</a>
-  <a href="../index.html#sobre">Sobre mí</a>
+<a href="../index.html">Início</a>
+<a href="../index.html#sobre">Sobre mim</a>
 
-  <div class="dropdown">
-    <span>Proyectos ▾</span>
-    <div class="dropdown-content">
-      <a href="../index.html#apps">Apps Android</a>
-      <a href="videos.html">Edición de Videos</a>
-      <a href="web.html">Diseño Web</a>
-    </div>
-  </div>
+<div class="dropdown">
+<span>Projetos ▾</span>
+<div class="dropdown-content">
+<a href="../index.html#apps">Apps Android</a>
+<a href="videos.html">Edição de Vídeos</a>
+<a href="web.html">Design Web</a>
+</div>
+</div>
 
-  <a href="servicos.html">Servicios</a>
-  <a href="../index.html#contacto">Contacto</a>
+<a href="servicos.html">Serviços</a>
+<a href="../index.html#contacto">Contato</a>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
-  <h1>Producción multimedia y edición de video</h1>
-  <p>
-    Desarrollo contenido audiovisual para redes sociales, eventos y proyectos digitales,
-    con enfoque en claridad, impacto visual y coherencia estética.
-  </p>
-</section>
-
-<!-- VIDEOS -->
-<section>
-  <h2>Videos cortos para redes</h2>
-
-  <div class="video-grid">
-    <iframe src="https://www.youtube.com/embed/JwRHb79M4so" loading="lazy" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/suElwbrTsC0" loading="lazy" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/vtKhIcwWQBk" loading="lazy" allowfullscreen></iframe>
-  </div>
+<h1>Produção multimídia e edição de vídeo</h1>
+<p>
+Desenvolvo conteúdo audiovisual para redes sociais, eventos e projetos digitais,
+com foco em clareza, impacto visual e coerência estética.
+</p>
 </section>
 
 <section>
-  <h2>YouTube Shorts / Reels</h2>
+<h2>Vídeos curtos para redes sociais</h2>
 
-  <div class="video-grid shorts">
-    <iframe src="https://www.youtube.com/embed/kL66uixkUpo" loading="lazy" allowfullscreen></iframe>
-    <iframe src="https://www.instagram.com/reel/DVJSGeZAM6A/embed" loading="lazy"></iframe>
-    <iframe src="https://www.instagram.com/reel/DIhofbZvvm_/embed" loading="lazy"></iframe>
-  </div>
+<div class="video-grid">
+<iframe src="https://www.youtube.com/embed/JwRHb79M4so" loading="lazy" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/suElwbrTsC0" loading="lazy" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/vtKhIcwWQBk" loading="lazy" allowfullscreen></iframe>
+</div>
 </section>
 
 <section>
-  <h2>Spots y proyecciones en eventos</h2>
+<h2>YouTube Shorts / Reels</h2>
 
-  <div class="video-grid">
-    <iframe src="https://www.youtube.com/embed/YUx_7JU1kWc" loading="lazy" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/mFnf-XqCxS8" loading="lazy" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/99dzAKrCQa4" loading="lazy" allowfullscreen></iframe>
-  </div>
-  <p>Spots proyectados durante la Fiesta de la Cultura y el Deporte del Fortín - Córdoba - Argentina.</p>
+<div class="video-grid shorts">
+<iframe src="https://www.youtube.com/embed/kL66uixkUpo" loading="lazy" allowfullscreen></iframe>
+<iframe src="https://www.instagram.com/reel/DVJSGeZAM6A/embed" loading="lazy"></iframe>
+<iframe src="https://www.instagram.com/reel/DIhofbZvvm_/embed" loading="lazy"></iframe>
+</div>
+</section>
+
+<section>
+<h2>Spots e projeções em eventos</h2>
+
+<div class="video-grid">
+<iframe src="https://www.youtube.com/embed/YUx_7JU1kWc" loading="lazy" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/mFnf-XqCxS8" loading="lazy" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/99dzAKrCQa4" loading="lazy" allowfullscreen></iframe>
+</div>
+<p>Spots projetados durante a Festa da Cultura e do Esporte do Fortín - Córdoba - Argentina.</p>
 </section>
 
 <footer>
-  <p>© 2026 JSDev – Desarrollo de Apps Android y Producción Multimedia</p>
+<p>© 2026 JSDev – Desenvolvimento de Apps Android e Produção Multimídia</p>
 </footer>
 
 <script>
-  function toggleMenu() {
-    const menu = document.getElementById("sideMenu");
-    menu.style.display = menu.style.display === "block" ? "none" : "block";
-  }
+function toggleMenu(){
+const menu=document.getElementById("sideMenu");
+menu.style.display=menu.style.display==="block"?"none":"block";
+}
 </script>
 
 </body>
 </html>
-
-
