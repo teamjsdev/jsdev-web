@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es-AR">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>JSDev | Apps Android de Salud y Bienestar</title>
-  <link rel="canonical" href="https://jsdevmobile.com/pt/pages/salud.html" />
+  <title>JSDev | Apps Android de Saúde e Bem-Estar</title>
+  <link rel="canonical" href="https://jsdevmobile.com/pt/pages/saude.html" />
 
   <link rel="alternate" hreflang="es-AR" href="https://jsdevmobile.com/pages/salud.html" />
   <link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/health.html" />
@@ -11,7 +11,7 @@
   <link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/health.html" />
 
   <!-- SEO -->
-  <meta name="description" content="JSDev desarrolla aplicaciones Android centradas en salud, bienestar y productividad. Tecnología aplicada a soluciones reales.">
+  <meta name="description" content="JSDev desenvolve aplicativos Android focados em saúde, bem-estar e produtividade. Tecnologia aplicada a soluções reais.">
   <meta name="author" content="Joaquin Sanchez">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -41,7 +41,6 @@
       line-height: 1.6;
     }
 
-    /* TOP BAR */
     .topbar {
       display: flex;
       align-items: center;
@@ -77,7 +76,6 @@
       opacity: 0.9;
     }
 
-    /* SIDE MENU */
     .side-menu {
       display: none;
       position: absolute;
@@ -101,7 +99,6 @@
       background: #f0f4ff;
     }
 
-    /* MAIN NAV */
     .main-nav {
       position: sticky;
       top: 0;
@@ -123,7 +120,6 @@
       cursor: pointer;
     }
 
-    /* DROPDOWN */
     .dropdown {
       position: relative;
     }
@@ -153,7 +149,6 @@
       display: block;
     }
 
-    /* HERO */
     .hero {
       background: linear-gradient(135deg, #1e3c72, #2a5298);
       color: white;
@@ -257,9 +252,8 @@
 
 <body>
 
-<!-- TOP BAR -->
 <header class="topbar">
-  <button class="menu-btn" onclick="toggleMenu()" aria-label="Abrir menú">
+  <button class="menu-btn" onclick="toggleMenu()" aria-label="Abrir menu">
     <i class="fas fa-bars"></i>
   </button>
 
@@ -271,43 +265,39 @@
   </div>
 </header>
 
-<!-- SIDE MENU -->
 <div id="sideMenu" class="side-menu">
   <a href="../index.html#apps">Apps Android</a>
-  <a href="videos.html">Edición de Videos</a>
-  <a href="web.html">Diseño Web</a>
+  <a href="videos.html">Edição de Vídeos</a>
+  <a href="web.html">Design Web</a>
 </div>
 
-<!-- MAIN NAV -->
 <nav class="main-nav">
-  <a href="../index.html">Inicio</a>
-  <a href="../index.html#sobre">Sobre mí</a>
+  <a href="../index.html">Início</a>
+  <a href="../index.html#sobre">Sobre mim</a>
 
   <div class="dropdown">
-    <span>Proyectos ▾</span>
+    <span>Projetos ▾</span>
     <div class="dropdown-content">
       <a href="../index.html#apps">Apps Android</a>
-      <a href="videos.html">Edición de Videos</a>
-      <a href="web.html">Diseño Web</a>
+      <a href="videos.html">Edição de Vídeos</a>
+      <a href="web.html">Design Web</a>
     </div>
   </div>
 
-  <a href="servicos.html">Servicios</a>
-  <a href="#contacto">Contacto</a>
+  <a href="servicos.html">Serviços</a>
+  <a href="#contacto">Contato</a>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
-  <h1>Apps Android de salud y bienestar</h1>
+  <h1>Apps Android de saúde e bem-estar</h1>
   <p>
-    Desarrollo aplicaciones Android enfocadas en educación, prevención
-    y hábitos saludables, combinando farmacia y tecnología.
+    Desenvolvo aplicativos Android focados em educação, prevenção
+    e hábitos saudáveis, combinando farmácia e tecnologia.
   </p>
 </section>
 
-<!-- APPS -->
 <section>
-  <h2>Apps publicadas</h2>
+  <h2>Apps publicados</h2>
 
   <div class="projects">
 
@@ -315,32 +305,31 @@
       <img src="https://play-lh.googleusercontent.com/heJ-rfmepYOrdmhTkSEI6Ig3T6OusFu3XoUdNggs5i0vgiXurgoQSEXmZA2SPoGM8w=w240-h480-rw" alt="InfoDengue">
       <h3>InfoDengue</h3>
       <p>
-        App educativa sobre dengue: prevención, síntomas y transmisión.
+        App educativo sobre dengue: prevenção, sintomas e transmissão.
       </p>
       <a href="https://play.google.com/store/apps/details?id=com.jsdev.infodengue" target="_blank" class="button">Google Play</a><br>
-      <a href="info-dengue-pt.html" class="button">Más detalles</a>
+      <a href="info-dengue-pt.html" class="button">Mais detalhes</a>
     </div>
 
     <div class="card">
       <img src="https://play-lh.googleusercontent.com/Ss_pk1aXWFrQ2A_x3jE6OfW-5yXgGtLtl-mnBLmlOEWrqc0Q45jr8ED0vih8tptJJdMS21qKC4WOS8X5AlA7Qg=w480-h960-rw" alt="Toilet Timer">
       <h3>Toilet Timer</h3>
       <p>
-        Temporizador para mejorar hábitos en el baño con seguimiento semanal.
+        Temporizador para melhorar hábitos no banheiro com acompanhamento semanal.
       </p>
       <a href="https://play.google.com/store/apps/details?id=com.jsdev.hemorrhoidinfo" target="_blank" class="button">Google Play</a><br>
-      <a href="toilet-timer-pt.html" class="button">Más detalles</a>
+      <a href="toilet-timer-pt.html" class="button">Mais detalhes</a>
     </div>
 
   </div>
 </section>
 
-<!-- SOBRE -->
 <section class="team" id="sobre">
-  <h2>Quién soy</h2>
+  <h2>Quem sou</h2>
   <img src="../../assets/img/imagen1.png" alt="Joaquín Sánchez">
   <p>
-    Joaquín Sánchez, farmacéutico y desarrollador Android.
-    Creo herramientas digitales con impacto real en la salud.
+    Joaquín Sánchez, farmacêutico e desenvolvedor Android.
+    Crio ferramentas digitais com impacto real na saúde.
   </p>
 </section>
 
