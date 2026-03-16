@@ -1,326 +1,182 @@
 <!DOCTYPE html>
-<html lang="es-AR">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Toilet Timer – Temporizador de Baño y Hábitos Saludables | JSDev</title>
+<title>Toilet Timer – Temporizador de Banheiro e Hábitos Saudáveis | JSDev</title>
 
-  <!-- SEO -->
-  <meta name="description" content="Toilet Timer es una app Android con temporizador de 5 minutos para el baño, seguimiento de hábitos saludables, puntos diarios, gráficos semanales y consejos educativos.">
-  <meta name="keywords" content="Toilet Timer, temporizador baño, salud intestinal, hábitos saludables, app baño, temporizador 5 minutos, Android">
-  <meta name="author" content="JSDev">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://jsdevmobile.com/pt/pages/toilet-timer-pt.html">
+<!-- SEO -->
+<meta name="description" content="Toilet Timer é um aplicativo Android com temporizador de 5 minutos para o banheiro, acompanhamento de hábitos saudáveis, pontos diários, gráficos semanais e dicas educativas.">
+<meta name="keywords" content="Toilet Timer, temporizador banheiro, saúde intestinal, hábitos saudáveis, app banheiro, temporizador 5 minutos, Android">
+<meta name="author" content="JSDev">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://jsdevmobile.com/pt/pages/toilet-timer-pt.html">
 
-  <link rel="alternate" hreflang="es-AR" href="https://jsdevmobile.com/pages/toilet-timer.html">
-  <link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/toilet-timer.html">
-  <link rel="alternate" hreflang="pt-BR" href="https://jsdevmobile.com/pt/pages/toilet-timer-pt.html">
-  <link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/toilet-timer.html">
+<link rel="alternate" hreflang="es-AR" href="https://jsdevmobile.com/pages/toilet-timer.html">
+<link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/toilet-timer.html">
+<link rel="alternate" hreflang="pt-BR" href="https://jsdevmobile.com/pt/pages/toilet-timer-pt.html">
+<link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/toilet-timer.html">
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Toilet Timer - Rutina rápida y saludable en el baño">
-  <meta property="og:description" content="Controla tu tiempo en el baño, sigue hábitos saludables y mejora tu rutina diaria con gráficos y consejos educativos.">
-  <meta property="og:image" content="https://play-lh.googleusercontent.com/Ss_pk1aXWFrQ2A_x3jE6OfW-5yXgGtLtl-mnBLmlOEWrqc0Q45jr8ED0vih8tptJJdMS21qKC4WOS8X5AlA7Qg=w480-h800-rw">
-  <meta property="og:url" content="https://play.google.com/store/apps/details?id=com.jsdev.hemorrhoidinfo">
-  <meta property="og:type" content="website">
+<!-- Open Graph -->
+<meta property="og:title" content="Toilet Timer - Rotina rápida e saudável no banheiro">
+<meta property="og:description" content="Controle seu tempo no banheiro, acompanhe hábitos saudáveis e melhore sua rotina diária com gráficos e dicas educativas.">
+<meta property="og:image" content="https://play-lh.googleusercontent.com/Ss_pk1aXWFrQ2A_x3jE6OfW-5yXgGtLtl-mnBLmlOEWrqc0Q45jr8ED0vih8tptJJdMS21qKC4WOS8X5AlA7Qg=w480-h800-rw">
+<meta property="og:url" content="https://play.google.com/store/apps/details?id=com.jsdev.hemorrhoidinfo">
+<meta property="og:type" content="website">
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Toilet Timer - Temporizador de baño y hábitos saludables">
-  <meta name="twitter:description" content="Temporizador de 5 minutos, seguimiento de hábitos, puntos diarios y gráficos semanales.">
-  <meta name="twitter:image" content="https://play-lh.googleusercontent.com/Ss_pk1aXWFrQ2A_x3jE6OfW-5yXgGtLtl-mnBLmlOEWrqc0Q45jr8ED0vih8tptJJdMS21qKC4WOS8X5AlA7Qg=w480-h800-rw">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Toilet Timer - Temporizador de banheiro e hábitos saudáveis">
+<meta name="twitter:description" content="Temporizador de 5 minutos, acompanhamento de hábitos, pontos diários e gráficos semanais.">
+<meta name="twitter:image" content="https://play-lh.googleusercontent.com/Ss_pk1aXWFrQ2A_x3jE6OfW-5yXgGtLtl-mnBLmlOEWrqc0Q45jr8ED0vih8tptJJdMS21qKC4WOS8X5AlA7Qg=w480-h800-rw">
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8FVHCZT452"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-8FVHCZT452');
-  </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8FVHCZT452"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-8FVHCZT452');
+</script>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, sans-serif;
-    }
-
-    body {
-      background-color: #f4f6f8;
-      color: #333;
-      line-height: 1.6;
-    }
-
-    /* TOPBAR */
-    .topbar {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 14px;
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: white;
-    }
-
-    .logo {
-      width: 42px;
-      height: 42px;
-    }
-
-    .brand-title {
-      font-size: 1.2rem;
-      font-weight: 700;
-    }
-
-    /* MAIN NAV */
-    .main-nav {
-      background: white;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      padding: 12px;
-      flex-wrap: wrap;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-      position: sticky;
-      top: 0;
-      z-index: 400;
-    }
-
-    .main-nav a {
-      text-decoration: none;
-      color: #2a5298;
-      font-weight: 600;
-    }
-
-    main {
-      max-width: 1000px;
-      margin: 60px auto;
-      padding: 0 20px;
-    }
-
-    .card {
-      background-color: white;
-      padding: 28px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-    }
-
-    h1 {
-      color: #1e3c72;
-      font-size: clamp(1.6rem, 3vw, 2rem);
-      text-align: center;
-      margin-bottom: 15px;
-    }
-
-    h2, h3 {
-      color: #1e3c72;
-      margin-top: 25px;
-    }
-
-    ul {
-      padding-left: 20px;
-      margin-top: 10px;
-    }
-
-    .app-image {
-      max-width: 260px;
-      display: block;
-      margin: 20px auto;
-      border-radius: 20px;
-    }
-
-    .button {
-      display: inline-block;
-      margin-top: 25px;
-      padding: 14px 22px;
-      background-color: #1e3c72;
-      color: white;
-      text-decoration: none;
-      border-radius: 10px;
-      font-weight: 600;
-    }
-  </style>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,sans-serif;}
+body{background-color:#f4f6f8;color:#333;line-height:1.6;}
+.topbar{display:flex;align-items:center;gap:12px;padding:10px 14px;background:linear-gradient(135deg,#1e3c72,#2a5298);color:white;}
+.logo{width:42px;height:42px;}
+.brand-title{font-size:1.2rem;font-weight:700;}
+.main-nav{background:white;display:flex;justify-content:center;gap:20px;padding:12px;flex-wrap:wrap;box-shadow:0 2px 5px rgba(0,0,0,0.08);position:sticky;top:0;z-index:400;}
+.main-nav a{text-decoration:none;color:#2a5298;font-weight:600;}
+main{max-width:1000px;margin:60px auto;padding:0 20px;}
+.card{background-color:white;padding:28px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.08);}
+h1{color:#1e3c72;font-size:clamp(1.6rem,3vw,2rem);text-align:center;margin-bottom:15px;}
+h2,h3{color:#1e3c72;margin-top:25px;}
+ul{padding-left:20px;margin-top:10px;}
+.app-image{max-width:260px;display:block;margin:20px auto;border-radius:20px;}
+.button{display:inline-block;margin-top:25px;padding:14px 22px;background-color:#1e3c72;color:white;text-decoration:none;border-radius:10px;font-weight:600;}
+</style>
 </head>
 
 <body>
 
 <header class="topbar">
-  <img src="../assets/img/web2.png" alt="Logo JSDev" class="logo">
-  <span class="brand-title">JSDev</span>
+<img src="../assets/img/web2.png" alt="Logo JSDev" class="logo">
+<span class="brand-title">JSDev</span>
 </header>
 
 <nav class="main-nav">
-  <a href="../index.html">Inicio</a>
-  <a href="../index.html#apps">Proyectos</a>
-  <a href="servicios.html">Servicios</a>
-  <a href="../index.html#contacto">Contacto</a>
+<a href="../index.html">Início</a>
+<a href="../index.html#apps">Projetos</a>
+<a href="servicos.html">Serviços</a>
+<a href="../index.html#contacto">Contato</a>
 </nav>
 
 <main>
-  <article class="card">
-    <h1>Toilet Timer – Temporizador de 5 minutos para el baño</h1>
+<article class="card">
 
-    <img
-      src="https://play-lh.googleusercontent.com/Ss_pk1aXWFrQ2A_x3jE6OfW-5yXgGtLtl-mnBLmlOEWrqc0Q45jr8ED0vih8tptJJdMS21qKC4WOS8X5AlA7Qg=w480-h800-rw"
-      alt="Icono de la aplicación Toilet Timer para Android"
-      class="app-image"
-      loading="lazy"
-    >
+<h1>Toilet Timer – Temporizador de 5 minutos para o banheiro</h1>
 
-    <h2>¿Qué es Toilet Timer?</h2>
-    <p>
-      <strong>Toilet Timer</strong> es una aplicación Android simple y práctica
-      diseñada para ayudarte a no pasar demasiado tiempo en el baño.
-      Incluye un temporizador de 5 minutos, seguimiento de hábitos y consejos
-      educativos para mejorar tu bienestar diario.
-    </p>
+<img
+src="https://play-lh.googleusercontent.com/Ss_pk1aXWFrQ2A_x3jE6OfW-5yXgGtLtl-mnBLmlOEWrqc0Q45jr8ED0vih8tptJJdMS21qKC4WOS8X5AlA7Qg=w480-h800-rw"
+alt="Ícone do aplicativo Toilet Timer para Android"
+class="app-image"
+loading="lazy"
+>
 
-    <h3>Funciones principales</h3>
-    <ul>
-      <li>Temporizador de 5 minutos con alertas</li>
-      <li>Registro de hábitos saludables</li>
-      <li>Sistema de puntos diarios</li>
-      <li>Gráficos semanales de progreso</li>
-      <li>Consejos educativos de bienestar</li>
-    </ul>
-
-    <p>
-      Ideal para quienes buscan mejorar su salud intestinal,
-      organizar su rutina diaria y evitar pasar demasiado tiempo sentados.
-    </p>
-
-    <a
-      href="https://play.google.com/store/apps/details?id=com.jsdev.hemorrhoidinfo"
-      target="_blank"
-      rel="noopener"
-      class="button">
-      Descargar Toilet Timer Gratis
-    </a>
-
-<section>
-
-<h2>¿Cuánto tiempo es recomendable estar en el baño?</h2>
+<h2>O que é o Toilet Timer?</h2>
 
 <p>
-Muchos profesionales de la salud recomiendan evitar permanecer demasiado tiempo
-sentado en el inodoro. Pasar largos períodos puede aumentar la presión en las
-venas rectales y contribuir a problemas como las hemorroides.
+<strong>Toilet Timer</strong> é um aplicativo Android simples e prático
+desenvolvido para ajudar você a não passar tempo demais no banheiro.
+Inclui um temporizador de 5 minutos, acompanhamento de hábitos e dicas
+educativas para melhorar seu bem-estar diário.
 </p>
 
-<p>
-Varios especialistas sugieren limitar el tiempo en el baño a unos
-<strong>5 minutos</strong>. Una rutina corta y relajada ayuda a mantener
-hábitos intestinales saludables.
-</p>
-
-<p>
-<strong>Toilet Timer</strong> fue diseñada para ayudarte a mantener una rutina
-saludable utilizando un temporizador simple de 5 minutos y un sistema de
-seguimiento de hábitos.
-</p>
-
-<h2>¿Por qué evitar pasar demasiado tiempo sentado en el inodoro?</h2>
+<h3>Principais funções</h3>
 
 <ul>
-<li>Mayor presión en las venas rectales</li>
-<li>Mayor riesgo de hemorroides</li>
-<li>Hábitos intestinales poco saludables</li>
-<li>Postura incorrecta durante mucho tiempo</li>
+<li>Temporizador de 5 minutos com alertas</li>
+<li>Registro de hábitos saudáveis</li>
+<li>Sistema de pontos diários</li>
+<li>Gráficos semanais de progresso</li>
+<li>Dicas educativas de bem-estar</li>
 </ul>
 
 <p>
-Usar un temporizador puede ayudarte a mantener una rutina más saludable
-y evitar esfuerzos innecesarios.
+Ideal para quem deseja melhorar a saúde intestinal,
+organizar sua rotina diária e evitar ficar muito tempo sentado.
+</p>
+
+<a href="https://play.google.com/store/apps/details?id=com.jsdev.hemorrhoidinfo"
+target="_blank"
+rel="noopener"
+class="button">
+Baixar Toilet Timer Grátis
+</a>
+
+<section>
+
+<h2>Quanto tempo é recomendado ficar no banheiro?</h2>
+
+<p>
+Muitos profissionais de saúde recomendam evitar permanecer muito tempo
+sentado no vaso sanitário. Passar longos períodos pode aumentar a pressão
+nas veias retais e contribuir para problemas como hemorroidas.
+</p>
+
+<p>
+Vários especialistas sugerem limitar o tempo no banheiro a cerca de
+<strong>5 minutos</strong>. Uma rotina curta e relaxada ajuda a manter
+hábitos intestinais saudáveis.
+</p>
+
+<p>
+<strong>Toilet Timer</strong> foi desenvolvido para ajudar você a manter uma rotina
+saudável utilizando um temporizador simples de 5 minutos e um sistema
+de acompanhamento de hábitos.
+</p>
+
+<h2>Por que evitar ficar muito tempo sentado no vaso sanitário?</h2>
+
+<ul>
+<li>Maior pressão nas veias retais</li>
+<li>Maior risco de hemorroidas</li>
+<li>Hábitos intestinais pouco saudáveis</li>
+<li>Postura inadequada por muito tempo</li>
+</ul>
+
+<p>
+Usar um temporizador pode ajudar você a manter uma rotina mais saudável
+e evitar esforços desnecessários.
 </p>
 
 </section>
 
 <section>
 
-<h2>Preguntas frecuentes</h2>
+<h2>Perguntas frequentes</h2>
 
-<h3>¿Cuánto tiempo se recomienda estar en el baño?</h3>
+<h3>Quanto tempo é recomendado ficar no banheiro?</h3>
 <p>
-Muchos profesionales de la salud recomiendan limitar el tiempo en el baño
-a aproximadamente 5 minutos para evitar una presión excesiva en las venas
-rectales.
+Muitos profissionais de saúde recomendam limitar o tempo no banheiro
+a aproximadamente 5 minutos para evitar pressão excessiva nas veias retais.
 </p>
 
-<h3>¿Es malo estar demasiado tiempo sentado en el inodoro?</h3>
+<h3>É ruim ficar muito tempo sentado no vaso sanitário?</h3>
 <p>
-Sí. Permanecer mucho tiempo sentado puede aumentar la presión en la zona
-rectal y contribuir a problemas como las hemorroides.
+Sim. Permanecer muito tempo sentado pode aumentar a pressão na região
+retal e contribuir para problemas como hemorroidas.
 </p>
 
-<h3>¿Un temporizador puede ayudar a mejorar los hábitos?</h3>
+<h3>Um temporizador pode ajudar a melhorar os hábitos?</h3>
 <p>
-Sí. Usar un temporizador corto puede ayudarte a mantener una rutina saludable
-y evitar pasar demasiado tiempo sentado.
+Sim. Usar um temporizador curto pode ajudar a manter uma rotina saudável
+e evitar ficar muito tempo sentado.
 </p>
 
 </section>
 
-  </article>
+</article>
 </main>
-
-<!-- Rich Snippet -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "MobileApplication",
-  "name": "Toilet Timer",
-  "operatingSystem": "ANDROID",
-  "applicationCategory": "HealthApplication",
-  "url": "https://play.google.com/store/apps/details?id=com.jsdev.hemorrhoidinfo",
-  "offers": {
-    "@type": "Offer",
-    "price": "0.00",
-    "priceCurrency": "USD"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "JSDev"
-  }
-}
-</script>
-
-<script type="application/ld+json">
-{
- "@context": "https://schema.org",
- "@type": "FAQPage",
- "mainEntity": [
-   {
-     "@type": "Question",
-     "name": "¿Cuánto tiempo se recomienda estar en el baño?",
-     "acceptedAnswer": {
-       "@type": "Answer",
-       "text": "Muchos profesionales recomiendan limitar el tiempo en el baño a unos cinco minutos para evitar presión excesiva en las venas rectales."
-     }
-   },
-   {
-     "@type": "Question",
-     "name": "¿Es malo estar demasiado tiempo sentado en el inodoro?",
-     "acceptedAnswer": {
-       "@type": "Answer",
-       "text": "Sí. Permanecer mucho tiempo sentado puede aumentar la presión en la zona rectal y contribuir a problemas como las hemorroides."
-     }
-   },
-   {
-     "@type": "Question",
-     "name": "¿Un temporizador puede ayudar a mejorar los hábitos?",
-     "acceptedAnswer": {
-       "@type": "Answer",
-       "text": "Usar un temporizador corto puede ayudar a mantener una rutina saludable y evitar pasar demasiado tiempo sentado."
-     }
-   }
- ]
-}
-</script>
-
-</body>
-</html>
