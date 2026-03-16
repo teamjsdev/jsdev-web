@@ -326,33 +326,6 @@
 
   </style>
 
-  <script>
-  (function() {
-
-    if(localStorage.getItem("langSelected")){
-      return;
-    }
-
-    const lang = navigator.language || navigator.userLanguage;
-    const shortLang = lang.slice(0,2);
-
-    // evitar redirección si ya está en subcarpeta
-    const path = window.location.pathname;
-
-    if (path.startsWith("/en/") || path.startsWith("/pt/")) {
-      return;
-    }
-
-    if (shortLang === "en") {
-      window.location.replace("en/index.html");
-    } 
-    else if (shortLang === "pt") {
-      window.location.replace("pt/index.html");
-    }
-
-  })();
-  </script>
-
 </head>
 
 <body>
