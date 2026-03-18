@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index,follow">
+<title>Privacy Policy | JSDev</title>
+
+<link rel="canonical" href="https://jsdevmobile.com/en/pages/privacy.html" />
+
+<link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/politica.html">
+<link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/privacy.html">
+<link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/privacidade.html">
+<link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/privacy.html">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8FVHCZT452"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-8FVHCZT452');
+</script>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',Tahoma,sans-serif;
+}
+
+body{
+background:#f4f6f8;
+color:#333;
+line-height:1.6;
+}
+
+/* HEADER */
+.topbar {
+display: flex;
+align-items: center;
+gap: 12px;
+padding: 10px 14px;
+background: linear-gradient(135deg, #1e3c72, #2a5298);
+color: white;
+z-index: 300;
+}
+
+.menu-btn{
+background:none;
+border:none;
+color:white;
+font-size:1.4rem;
+cursor:pointer;
+}
+
+.logo{
+width:42px;
+height:42px;
+object-fit:contain;
+}
+
+.brand-title{
+font-size:1.2rem;
+font-weight:700;
+}
+
+.brand p{
+font-size:0.85rem;
+opacity:0.9;
+}
+
+/* SIDE MENU */
+.side-menu {
+display: none;
+position: absolute;
+top: 52px;
+left: 0;
+background: white;
+width: 220px;
+box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+z-index: 500;
+}
+
+.side-menu a {
+display: block;
+padding: 14px 18px;
+text-decoration: none;
+color: #1e3c72;
+font-weight: 500;
+}
+
+.side-menu a:hover {
+background: #f0f4ff;
+}
+
+/* NAV */
+
+.main-nav{
+position:sticky;
+top:0;
+z-index:400;
+background:white;
+display:flex;
+justify-content:center;
+gap:20px;
+padding:12px;
+flex-wrap:wrap;
+box-shadow:0 2px 5px rgba(0,0,0,0.08);
+}
+
+.main-nav a,
+.dropdown span{
+text-decoration:none;
+color:#2a5298;
+font-weight:600;
+cursor:pointer;
+}
+
+.dropdown{
+position:relative;
+}
+
+.dropdown-content{
+display:none;
+position:absolute;
+top:30px;
+left:0;
+background:white;
+min-width:180px;
+box-shadow:0 4px 10px rgba(0,0,0,0.15);
+}
+
+.dropdown-content a{
+display:block;
+padding:12px 16px;
+color:#1e3c72;
+}
+
+.dropdown-content a:hover{
+background:#f0f4ff;
+}
+
+.dropdown:hover .dropdown-content{
+display:block;
+}
+
+/* HERO */
+
+.hero{
+background:#111827;
+color:white;
+padding:60px 20px;
+text-align:center;
+}
+
+.hero h1{
+font-size:2.2rem;
+margin-bottom:10px;
+}
+
+.hero p{
+max-width:850px;
+margin:auto;
+font-size:1.05rem;
+}
+
+section{
+max-width:750px;
+margin:60px auto;
+padding:0 20px;
+}
+
+section h2{
+color:#1e3c72;
+margin-bottom:15px;
+font-size:1.4rem;
+text-align:left;
+margin-top:30px;
+}
+
+.ideas{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
+}
+
+/* CARDS */
+
+.card{
+background:white;
+border-radius:12px;
+padding:25px;
+box-shadow:0 6px 12px rgba(0,0,0,0.08);
+text-align:center;
+transition:0.3s;
+border-top:5px solid #2a5298;
+}
+
+.card:hover{
+transform:translateY(-6px);
+}
+
+.card h3{
+color:#1e3c72;
+margin-bottom:10px;
+font-size:1.4rem;
+}
+
+.card ul{
+text-align:left;
+margin-top:10px;
+padding-left:18px;
+font-size:0.95rem;
+}
+
+.price{
+margin-top:14px;
+font-size:2rem;
+font-weight:bold;
+margin:15px 0;
+}
+
+.maintenance{
+font-size:0.9rem;
+opacity:0.85;
+}
+
+.note{
+font-size:0.85rem;
+text-align:center;
+margin-top:25px;
+opacity:0.7;
+}
+
+.note-left{
+font-size:0.85rem;
+text-align:left;
+margin-top:25px;
+opacity:0.7;
+}
+
+/* BOTON PLAN */
+
+.plan-btn{
+display:inline-block;
+margin-top:16px;
+padding:10px 18px;
+background:#2a5298;
+color:white;
+text-decoration:none;
+border-radius:6px;
+font-size:0.9rem;
+font-weight:600;
+transition:0.25s;
+}
+
+.plan-btn:hover{
+background:#1e3c72;
+}
+
+/* FOOTER */
+
+footer{
+background:#1e3c72;
+color:white;
+text-align:center;
+padding:25px 15px;
+margin-top:60px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+
+<button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">
+<i class="fas fa-bars"></i>
+</button>
+
+<img src="../assets/img/web2.png" alt="Logo JSDev" class="logo">
+
+<div class="brand">
+<span class="brand-title">JSDev</span>
+<p>Digital Services</p>
+</div>
+
+</header>
+
+<!-- SIDE MENU -->
+<div id="sideMenu" class="side-menu">
+  <a href="#apps">Android Apps</a>
+  <a href="web.html">Web Design</a>
+  <a href="services.html">Your Website in 24 Hours</a>
+  <a href="videos.html">Video Editing</a>
+</div>
+
+<nav class="main-nav">
+
+<a href="../index.html">Home</a>
+<a href="../index.html#sobre">About Me</a>
+
+<div class="dropdown">
+<span>Projects ▾</span>
+
+<div class="dropdown-content">
+<a href="../index.html#apps">Android Apps</a>
+<a href="videos.html">Video Editing</a>
+<a href="web.html">Web Design</a>
+</div>
+
+</div>
+
+<a href="../index.html#contacto">Contact</a>
+
+</nav>
+
+<main>
+
+<section>
+
+<h1>Privacy Policy</h1>
+
+<p class="note-left">Last updated: March 18, 2026</p>
+
+<p>
+This Privacy Policy explains how information may be collected and used when you interact with this website.
+</p>
+
+<h2>Information We Collect</h2>
+
+<p>
+When you contact us through the website forms, we may receive the information that you choose to provide, such as:
+</p>
+
+
+<p>Name</p>
+<p>Email address</p>
+<p>Any information included in your message</p>
+
+
+<p>
+This information is only used to respond to your inquiry.
+</p>
+
+<h2>Form Processing</h2>
+
+<p>
+Forms on this website are processed using FormSubmit, a third-party service that delivers form submissions via email. No database is stored on this website.
+</p>
+
+<h2>Analytics</h2>
+
+<p>
+This website uses Google Analytics, a web analytics service provided by Google LLC. Google Analytics may collect anonymized information such as pages visited, approximate geographic location, device type, and browser information. This data is used solely to understand how visitors interact with the website and to improve the site.
+</p>
+
+<p>
+You can learn more about how Google uses data collected from sites that use its services here:
+<strong>https://policies.google.com/privacy</strong>
+</p>
+
+<h2>Cookies</h2>
+
+<p>
+Google Analytics may use cookies or similar technologies to collect usage information. You can disable cookies in your browser settings if you prefer not to allow this.
+</p>
+
+<h2>Data Sharing</h2>
+
+<p>
+We do not sell, trade, or rent your personal information. Information may only be processed by the services necessary for the operation of this website (such as Google Analytics or FormSubmit).
+</p>
+
+<h2>Your Choices</h2>
+
+<p>
+If you prefer not to be tracked by Google Analytics, you may disable cookies or use browser extensions that block analytics tracking.
+</p>
+
+<h2>Your Rights</h2>
+
+<p>
+As a user, you have the right to know what information we may have about you. At any time, you may request:
+</p>
+
+
+<p><strong>Access:</strong> To know what information we have received through your form submissions.</p>
+<p><strong>Correction:</strong> To correct inaccurate or incomplete information.</p>
+<p><strong>Deletion:</strong> To request that we delete your emails from our inbox.</p>
+
+
+<p>
+To exercise these rights, simply send us an email at <strong>teamjsdev@gmail.com</strong>.
+</p>
+
+<h2>Information Retention</h2>
+
+<p>
+We retain personal information submitted through forms only for as long as necessary to respond to your inquiry or to provide the requested services. If no business relationship is established, email conversations may be periodically deleted to protect your privacy.
+</p>
+
+<h2>Data Security</h2>
+
+<p>
+We take reasonable measures to protect the information you provide through this website. However, no method of transmission over the Internet or electronic storage is completely secure, and we cannot guarantee absolute security.
+</p>
+
+<h2>External Links</h2>
+
+<p>
+Our website may contain links to other websites of interest. Once you use these links to leave our site, we no longer have control over the destination website. Therefore, we are not responsible for the protection and privacy of any information you provide while visiting those sites.
+</p>
+
+<h2>Children's Privacy</h2>
+
+<p>
+Our services are not directed to children under the age of 13 (or the minimum legal age in your jurisdiction). We do not knowingly collect personally identifiable information from children. If you are a parent or guardian and believe that your child has provided us with personal information, please contact us so that we can remove it.
+</p>
+
+<h2>Changes to This Privacy Policy</h2>
+
+<p>
+We may update this Privacy Policy from time to time to reflect changes in our services, legal requirements, or privacy practices. When updates are made, the "Last updated" date at the top of this page will be revised.
+</p>
+
+<p>
+We encourage users to review this page periodically to stay informed about how we protect their information.
+</p>
+
+<h2>Contact</h2>
+
+<p>
+If you have any questions about this Privacy Policy, you may contact us:
+</p>
+
+<p>
+Email: teamjsdev@gmail.com
+</p>
+
+<p>
+Website: https://jsdevmobile.com/
+</p>
+
+</section>
+
+</main>
+
+
+<footer>
+
+<p>© 2026 JSDev - Web Development</p>
+
+</footer>
+
+<script>
+
+function toggleMenu(){
+const menu=document.getElementById("sideMenu");
+menu.style.display=menu.style.display==="block"?"none":"block";
+}
+
+</script>
+
+</body>
+</html>
