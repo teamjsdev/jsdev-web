@@ -299,7 +299,7 @@
   </div>
 
   <a href="servicios.html">Servicios</a>
-  <a href="index.html#contacto">Contacto</a>
+  <a href="../index.html#contacto">Contacto</a>
 </nav>
 
 <!-- HERO -->
@@ -352,12 +352,15 @@
   </p>
 </section>
 
-<footer id="contacto">
-  <p>© 2026 JSDev</p>
+<footer>
+  <p>© <span id="year"></span> JSDev – Desarrollo de Apps Android y Sitios Web</p>
   <p>
     <a href="politica.html">Política de Privacidad</a>
   </p>
 </footer>
+
+<script>    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
 <script>
   function toggleMenu() {
