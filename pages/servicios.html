@@ -461,13 +461,14 @@ Las condiciones completas del servicio serán enviadas antes de iniciar el proye
 </section>
 
 <footer>
-
-<p>© 2026 JSDev - Desarrollo Web</p>
+  <p>© <span id="year"></span> JSDev – Desarrollo de Apps Android y Sitios Web</p>
   <p>
     <a href="politica.html">Política de Privacidad</a>
   </p>
-
 </footer>
+
+<script>    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
 <script>
 
