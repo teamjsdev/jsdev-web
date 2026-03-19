@@ -480,11 +480,15 @@
 </section>
 
 <footer>
-  <p>© 2026 JSDev - Desarrollo de Apps Android</p>
+  <p>© <span id="year"></span> JSDev – Desarrollo de Apps Android y Sitios Web</p>
   <p>
     <a href="pages/politica.html">Política de Privacidad</a>
   </p>
 </footer>
+
+<script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 
 <script>
   function toggleMenu() {
