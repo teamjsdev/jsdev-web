@@ -338,14 +338,15 @@
   </p>
 </section>
 
-<footer id="contacto">
-  <p>© 2026 JSDev</p>
+<footer>
+  <p>© <span id="year"></span> JSDev – Desenvolvimento de Apps Android e Sites Web</p>
   <p>
-    <a href="mailto:teamjsdev@gmail.com" style="color:#38bdf8; text-decoration:none;">
-      teamjsdev@gmail.com
-    </a>
-  </p>
+<a href="privacidade.html">Política de Privacidade</a>
+</p>
 </footer>
+
+<script>    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
 <script>
   function toggleMenu() {
