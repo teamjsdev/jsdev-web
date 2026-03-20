@@ -350,13 +350,15 @@ I create digital tools with real impact on health.
   </p>
 </section>
 
-<footer id="contacto">
-  <p>© 2026 JSDev</p>
-<p>
+<footer>
+  <p>© <span id="year"></span> JSDev – Android App & Web Development</p>
+  <p>
   <a href="privacy.html">Privacy Policy</a>
 </p>
- 
 </footer>
+
+<script>    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
 <script>
   function toggleMenu() {
