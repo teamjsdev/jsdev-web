@@ -451,12 +451,12 @@ Website: https://jsdevmobile.com/
 
 </main>
 
-
 <footer>
-
-<p>© 2026 JSDev - Web Development</p>
-
+  <p>© <span id="year"></span> JSDev – Android App & Web Development</p>
 </footer>
+
+<script>    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
 <script>
 
