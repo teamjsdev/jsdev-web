@@ -495,11 +495,15 @@ to create useful, functional tools focused on real-world use.
 </section>
 
 <footer>
-<p>© 2026 JSDev - Android App Development</p>
-<p>
-  <a href="pages/privacy.html">Privacy Policy</a>
-</p>
+  <p>© <span id="year"></span> JSDev – Android App & Web Development</p>
+  <p>
+     <a href="pages/privacy.html">Privacy Policy</a>
+  </p>
 </footer>
+
+<script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
 <script>
 function toggleMenu() {
