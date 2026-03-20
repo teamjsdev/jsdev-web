@@ -30,150 +30,98 @@
     * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', Tahoma, sans-serif; }
     body { background-color:#f4f6f8; color:#333; line-height:1.6; }
 
+    /* TOP BAR */
     .topbar {
-      display:flex;
-      align-items:center;
+      display: flex;
+      align-items: center;
       gap:12px;
       padding:10px 14px;
-      background:linear-gradient(135deg,#1e3c72,#2a5298);
+      background: linear-gradient(135deg,#1e3c72,#2a5298);
       color:white;
       z-index:300;
     }
-
     .menu-btn { background:none; border:none; color:white; font-size:1.4rem; cursor:pointer; }
     .logo { width:42px; height:42px; object-fit:contain; }
-
     .brand { display:flex; flex-direction:column; }
     .brand-title { font-size:1.2rem; font-weight:700; line-height:1.1; }
     .brand p { font-size:0.85rem; opacity:0.9; }
 
-    .side-menu {
-      display:none;
-      position:absolute;
-      top:52px;
-      left:0;
-      background:white;
-      width:220px;
-      box-shadow:0 4px 10px rgba(0,0,0,0.15);
-      z-index:500;
-    }
-
-    .side-menu a {
-      display:block;
-      padding:14px 18px;
-      text-decoration:none;
-      color:#1e3c72;
-      font-weight:500;
-    }
-
+    /* SIDE MENU */
+    .side-menu { display:none; position:absolute; top:52px; left:0; background:white; width:220px; box-shadow:0 4px 10px rgba(0,0,0,0.15); z-index:500; }
+    .side-menu a { display:block; padding:14px 18px; text-decoration:none; color:#1e3c72; font-weight:500; }
     .side-menu a:hover { background:#f0f4ff; }
 
+    /* MAIN NAV */
     .main-nav {
-      position:sticky;
-      top:0;
-      z-index:400;
-      background:white;
-      display:flex;
-      justify-content:center;
-      gap:20px;
-      padding:12px;
-      flex-wrap:wrap;
-      box-shadow:0 2px 5px rgba(0,0,0,0.08);
+      position:sticky; top:0; z-index:400;
+      background:white; display:flex; justify-content:center; gap:20px;
+      padding:12px; flex-wrap:wrap; box-shadow:0 2px 5px rgba(0,0,0,0.08);
     }
+    .main-nav a, .dropdown span { text-decoration:none; color:#2a5298; font-weight:600; cursor:pointer; }
 
-    .main-nav a,
-    .dropdown span {
-      text-decoration:none;
-      color:#2a5298;
-      font-weight:600;
-      cursor:pointer;
-    }
-
+    /* DROPDOWN */
     .dropdown { position:relative; }
-
     .dropdown-content {
-      display:none;
-      position:absolute;
-      top:30px;
-      left:0;
-      background:white;
-      min-width:180px;
-      box-shadow:0 4px 10px rgba(0,0,0,0.15);
-      z-index:300;
+      display:none; position:absolute; top:30px; left:0; background:white; min-width:180px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.15); z-index:300;
     }
-
-    .dropdown-content a {
-      display:block;
-      padding:12px 16px;
-      color:#1e3c72;
-      text-decoration:none;
-    }
-
+    .dropdown-content a { display:block; padding:12px 16px; color:#1e3c72; text-decoration:none; }
     .dropdown-content a:hover { background:#f0f4ff; }
-
     .dropdown:hover .dropdown-content { display:block; }
 
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg,#1e3c72,#2a5298);
+      color:white; padding:35px 20px; text-align:center; border-radius:12px;
+    }
+    .hero h1 { font-size:2rem; margin-bottom:12px; }
+    .hero p { max-width:850px; margin:auto; font-size:1rem; }
+
     section { max-width:1000px; margin:60px auto; padding:0 20px; }
+    section h2 { color:#1e3c72; margin-bottom:25px; font-size:2rem; text-align:center; }
 
-    h1 { text-align:center; color:#1e3c72; margin-bottom:15px; font-size:2rem; }
-    h2 { color:#1e3c72; margin-bottom:25px; font-size:2rem; text-align:center; }
-
+    /* CARD */
     .projects {
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 320px));
       gap:25px;
+      justify-content:center;
     }
-
     .card {
-      background:white;
-      border-radius:12px;
-      padding:20px;
-      text-align:center;
-      box-shadow:0 4px 6px rgba(0,0,0,0.1);
-      transition:transform 0.3s ease;
+      background:white; border-radius:12px; padding:20px; text-align:center;
+      box-shadow:0 4px 6px rgba(0,0,0,0.1); transition:transform 0.3s ease;
     }
-
     .card:hover { transform:translateY(-3px); }
-
-    .card img {
-      width:100%;
-      aspect-ratio:16/9;
-      object-fit:cover;
-      border-radius:12px;
-      margin-bottom:15px;
-      background:#e5e7eb;
-    }
-
+    .card img { width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:12px; margin-bottom:15px; background:#e5e7eb; }
     .card h3 { font-size:1.3rem; margin-bottom:10px; color:#1e3c72; }
-
     .card p { font-size:0.95rem; color:#333; }
 
-    .button {
+    .tag {
       display:inline-block;
-      margin-top:12px;
-      padding:10px 16px;
-      background:#2a5298;
-      color:white;
-      border-radius:8px;
-      text-decoration:none;
+      margin-bottom:8px;
+      font-size:0.8rem;
+      background:#e8f0ff;
+      color:#2a5298;
+      padding:4px 10px;
+      border-radius:20px;
       font-weight:600;
+    }
+  
+
+    .button {
+      display:inline-block; margin-top:12px; padding:10px 16px;
+      background:#2a5298; color:white; border-radius:8px; text-decoration:none; font-weight:600;
       transition:background 0.3s ease;
     }
-
     .button:hover { background:#1e3c72; }
 
-    footer {
-      background:#1e3c72;
-      color:white;
-      text-align:center;
-      padding:25px 15px;
-      margin-top:60px;
-    }
-
+    footer { background:#1e3c72; color:white; text-align:center; padding:25px 15px; margin-top:60px; }
     footer a { color:#a9c9ff; text-decoration:none; }
+
+    @media (max-width:768px){ section{scroll-margin-top:110px;} }
   </style>
 </head>
-
+  
 <body>
 
 <header class="topbar">
@@ -219,26 +167,42 @@
 </section>
 
 <section>
-  <h2>Projetos Web</h2>
+  <h1>Design de Sites Profissional</h1>
+  <p>
+    Desenvolvo sites modernos, rápidos e adaptados para dispositivos móveis,
+    com navegação clara, excelente experiência do usuário (UX)
+    e otimizados para SEO e geração de clientes.
+  </p>
+</section>
+
+<section>
+  <h2>Landing Pages</h2>
   <div class="projects">
 
     <div class="card">
-      <img src="https://s0.wp.com/mshots/v1/https://teamjsdev.github.io/iluminacion-mp/?w=600" alt="Iluminacion MP">
-      <h3>Site Institucional Empresarial</h3>
-      <p>Site corporativo com design limpo, navegação clara e estrutura otimizada para UX.</p>
-      <a href="https://teamjsdev.github.io/iluminacion-mp/" class="button" target="_blank" rel="noopener">Ver site</a>
-    </div>
-
-    <div class="card">
-      <img src="https://s0.wp.com/mshots/v1/https://teamjsdev.github.io/contador-nicolas-moyano/?w=600" alt="Contador Moyano">
-      <h3>Landing Page para Contador</h3>
-      <p>Site responsivo, rápido e acessível, focado em desempenho e dispositivos móveis.</p>
+      <img src="https://s0.wp.com/mshots/v1/https://teamjsdev.github.io/contador-nicolas-moyano/?w=600" alt="Escritório Contábil">
+      <h3>Escritório Contábil</h3>
+      <p class="tag">Nicolás Moyano</p>
       <a href="https://teamjsdev.github.io/contador-nicolas-moyano/" class="button" target="_blank" rel="noopener">Ver site</a>
     </div>
 
   </div>
 </section>
 
+<section>
+  <h2>Sites Institucionais</h2>
+  <div class="projects">
+
+    <div class="card">
+      <img src="https://s0.wp.com/mshots/v1/https://teamjsdev.github.io/iluminacion-mp/?w=600" alt="Empresa de Iluminação">
+      <h3>Empresa de Iluminação</h3>
+      <p class="tag">Iluminación MP</p>
+      <a href="https://teamjsdev.github.io/iluminacion-mp/" class="button" target="_blank" rel="noopener">Ver site</a>
+    </div>
+
+  </div>
+</section>
+  
 <footer>
   <p>© <span id="year"></span> JSDev – Desenvolvimento de Apps Android e Sites Web</p>
   <p>
