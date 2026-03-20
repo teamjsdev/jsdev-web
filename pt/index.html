@@ -494,11 +494,14 @@ para criar ferramentas úteis, funcionais e voltadas para uso real.
 </section>
 
 <footer>
-<p>© 2026 JSDev - Desenvolvimento de Apps Android</p>
-  <p>
-<a href="/pt/pages/privacidade.html">Política de Privacidade</a>
-</p>
+  <p>© <span id="year"></span> JSDev – Desenvolvimento de Apps Android e Sites Web</p>
+  <p> 
+     <a href="/pt/pages/privacidade.html">Política de Privacidade</a>
+  </p>
 </footer>
+
+<script>    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
 <script>
 function toggleMenu() {
