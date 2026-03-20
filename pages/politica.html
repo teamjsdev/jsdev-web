@@ -448,10 +448,11 @@ Sitio web: https://jsdevmobile.com/
 </main>
 
 <footer>
-
-<p>© 2026 JSDev - Desarrollo Web</p>
-
+  <p>© <span id="year"></span> JSDev – Desarrollo de Apps Android y Sitios Web</p>
 </footer>
+
+<script>    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
 <script>
 
