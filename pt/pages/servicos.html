@@ -263,6 +263,47 @@ transition:0.25s;
 background:#1e3c72;
 }
 
+/* CLIENTS BANNER */
+
+.clients-banner {
+  text-align:center;
+  margin:60px auto;
+  padding:0 20px;
+}
+
+.clients-banner h2 {
+  font-size:1.6rem;
+  margin-bottom:25px;
+  color:#1e3c72;
+}
+
+.clients-logos {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:30px;
+}
+
+.clients-logos a {
+  display:inline-block;
+}
+
+.clients-logos img {
+  height:45px;
+  max-width:140px;
+  object-fit:contain;
+  filter: grayscale(100%);
+  opacity:0.7;
+  transition:all 0.3s ease;
+}
+
+.clients-logos img:hover {
+  filter: grayscale(0%);
+  opacity:1;
+  transform:scale(1.08);
+}
+
 /* FOOTER */
 
     footer {
@@ -455,6 +496,28 @@ Funcionalidades mais avançadas (sistemas de usuários, automações, painel adm
 Os prazos de entrega começam após o recebimento de todo o conteúdo do site e a confirmação do domínio pelo cliente. 
 As condições completas do serviço serão enviadas antes do início do projeto.
 </p>
+
+</section>
+
+<section class="clients-banner">
+
+  <h2>Projetos realizados</h2>
+
+  <div class="clients-logos">
+
+    <a href="web.html#contador" target="_blank">
+      <img src="../assets/logos/moyano.png" alt="Contador">
+    </a>
+
+    <a href="web.html#iluminacion" target="_blank">
+      <img src="../assets/logos/iluminacion.png" alt="Empresa de iluminação">
+    </a>
+
+    <!-- DUPLICÁS PARA MÁS CLIENTES -->
+
+  </div>
+
+</section>
   
 <footer>
   <p>© <span id="year"></span> JSDev – Desenvolvimento de Apps Android e Sites Web</p>
