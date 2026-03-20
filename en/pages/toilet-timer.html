@@ -280,11 +280,14 @@ spending too much time sitting.
 </main>
 
 <footer>
-  <p>© 2026 JSDev – Android App Development</p>
-<p>
+  <p>© <span id="year"></span> JSDev – Android App & Web Development</p>
+  <p>
   <a href="privacy.html">Privacy Policy</a>
 </p>
 </footer>
+
+<script>    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
 <!-- Rich Snippet -->
 <script type="application/ld+json">
