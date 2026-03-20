@@ -78,7 +78,12 @@
     section h2 { color:#1e3c72; margin-bottom:25px; font-size:2rem; text-align:center; }
 
     /* CARD */
-    .projects { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:25px; }
+    .projects {
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 320px));
+      gap:25px;
+      justify-content:center;
+    }
     .card {
       background:white; border-radius:12px; padding:20px; text-align:center;
       box-shadow:0 4px 6px rgba(0,0,0,0.1); transition:transform 0.3s ease;
@@ -87,6 +92,18 @@
     .card img { width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:12px; margin-bottom:15px; background:#e5e7eb; }
     .card h3 { font-size:1.3rem; margin-bottom:10px; color:#1e3c72; }
     .card p { font-size:0.95rem; color:#333; }
+
+    .tag {
+      display:inline-block;
+      margin-bottom:8px;
+      font-size:0.8rem;
+      background:#e8f0ff;
+      color:#2a5298;
+      padding:4px 10px;
+      border-radius:20px;
+      font-weight:600;
+    }
+  
 
     .button {
       display:inline-block; margin-top:12px; padding:10px 16px;
@@ -141,30 +158,37 @@
 
 <!-- HERO -->
 <section>
-  <h1>Web Design and Development</h1>
+  <h1>Professional Web Design</h1>
   <p>
-    I develop modern, fast and accessible websites,
-    optimized for UX, SEO and mobile devices.
+    I develop modern, fast and mobile-friendly websites,
+    designed to provide clear navigation, an excellent user experience (UX),
+    and optimized for SEO and client acquisition.
   </p>
 </section>
 
-<!-- PROYECTOS WEB -->
 <section>
-  <h2>Web Projects</h2>
+  <h2>Landing Pages</h2>
   <div class="projects">
 
     <div class="card">
-      <img src="https://s0.wp.com/mshots/v1/https://teamjsdev.github.io/iluminacion-mp/?w=600" alt="iluminacion MP">
-      <h3>Corporate Website</h3>
-      <p>Business website with clean design, clear navigation and UX-optimized structure.</p>
-      <a href="https://teamjsdev.github.io/iluminacion-mp/" class="button" target="_blank" rel="noopener">View site</a>
+      <img src="https://s0.wp.com/mshots/v1/https://teamjsdev.github.io/contador-nicolas-moyano/?w=600" alt="Accounting Studio">
+      <h3>Accounting Studio</h3>
+      <p class="tag">Nicolás Moyano</p>
+      <a href="https://teamjsdev.github.io/contador-nicolas-moyano/" class="button" target="_blank" rel="noopener">View site</a>
     </div>
 
+  </div>
+</section>
+
+<section>
+  <h2>Corporate Websites</h2>
+  <div class="projects">
+
     <div class="card">
-      <img src="https://s0.wp.com/mshots/v1/https://teamjsdev.github.io/contador-nicolas-moyano/?w=600" alt="Contador Moyano">
-      <h3>Accountant Landing Page</h3>
-       <p>Responsive, fast and accessible website focused on performance and mobile devices.</p>
-      <a href="https://teamjsdev.github.io/contador-nicolas-moyano/" class="button" target="_blank" rel="noopener">View site</a>
+      <img src="https://s0.wp.com/mshots/v1/https://teamjsdev.github.io/iluminacion-mp/?w=600" alt="Lighting Company">
+      <h3>Lighting Company</h3>
+      <p class="tag">Iluminación MP</p>
+      <a href="https://teamjsdev.github.io/iluminacion-mp/" class="button" target="_blank" rel="noopener">View site</a>
     </div>
 
   </div>
