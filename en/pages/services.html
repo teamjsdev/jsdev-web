@@ -263,20 +263,61 @@ transition:0.25s;
 background:#1e3c72;
 }
 
+/* CLIENTS BANNER */
+
+.clients-banner {
+  text-align:center;
+  margin:60px auto;
+  padding:0 20px;
+}
+
+.clients-banner h2 {
+  font-size:1.6rem;
+  margin-bottom:25px;
+  color:#1e3c72;
+}
+
+.clients-logos {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:30px;
+}
+
+.clients-logos a {
+  display:inline-block;
+}
+
+.clients-logos img {
+  height:45px;
+  max-width:140px;
+  object-fit:contain;
+  filter: grayscale(100%);
+  opacity:0.7;
+  transition:all 0.3s ease;
+}
+
+.clients-logos img:hover {
+  filter: grayscale(0%);
+  opacity:1;
+  transform:scale(1.08);
+}
+
 /* FOOTER */
 
-footer{
-background:#1e3c72;
-color:white;
-text-align:center;
-padding:25px 15px;
-margin-top:60px;
-}
+    footer {
+      background-color: #1e3c72;
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+      margin-top: 60px;
+    }
 
-footer a {
-color: #a9c9ff;
-text-decoration: none;
-}
+    footer a {
+      color: #a9c9ff;
+      text-decoration: none;
+    }
 
 </style>
 </head>
@@ -457,6 +498,24 @@ Advanced features (user systems, automation, admin panels, etc.) are quoted sepa
 Delivery times begin once all website content has been received and the domain has been confirmed by the client. 
 Full service terms and conditions will be provided before starting the project.
 </p>
+
+<section class="clients-banner">
+
+  <h2>Selected projects</h2>
+
+  <div class="clients-logos">
+
+    <a href="web.html#contador" target="_blank">
+      <img src="../assets/logos/moyano.png" alt="Accountant">
+    </a>
+
+    <a href="web.html#iluminacion" target="_blank">
+      <img src="../assets/logos/iluminacion.png" alt="Lighting company">
+    </a>
+
+  </div>
+
+</section>
 
 <footer>
   <p>© <span id="year"></span> JSDev – Android App & Web Development</p>
