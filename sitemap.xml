@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- HOME -->
+  <url><loc>https://jsdevmobile.com/</loc></url>
+  <url><loc>https://jsdevmobile.com/en/</loc></url>
+  <url><loc>https://jsdevmobile.com/pt/</loc></url>
+
+  <!-- ESPAÑOL -->
+  <url><loc>https://jsdevmobile.com/pages/contacto.html</loc></url>
+  <url><loc>https://jsdevmobile.com/pages/info-dengue.html</loc></url>
+  <url><loc>https://jsdevmobile.com/pages/notemover.html</loc></url>
+  <url><loc>https://jsdevmobile.com/pages/politica.html</loc></url>
+  <url><loc>https://jsdevmobile.com/pages/productividad.html</loc></url>
+  <url><loc>https://jsdevmobile.com/pages/salud.html</loc></url>
+  <url><loc>https://jsdevmobile.com/pages/servicios.html</loc></url>
+  <url><loc>https://jsdevmobile.com/pages/toilet-timer.html</loc></url>
+  <url><loc>https://jsdevmobile.com/pages/videos.html</loc></url>
+  <url><loc>https://jsdevmobile.com/pages/web.html</loc></url>
+  <url><loc>https://jsdevmobile.com/pages/web_construccion.html</loc></url>
+
+  <!-- INGLÉS -->
+  <url><loc>https://jsdevmobile.com/en/pages/contact.html</loc></url>
+  <url><loc>https://jsdevmobile.com/en/pages/health.html</loc></url>
+  <url><loc>https://jsdevmobile.com/en/pages/info-dengue-en.html</loc></url>
+  <url><loc>https://jsdevmobile.com/en/pages/notemover-en.html</loc></url>
+  <url><loc>https://jsdevmobile.com/en/pages/privacy.html</loc></url>
+  <url><loc>https://jsdevmobile.com/en/pages/productivity.html</loc></url>
+  <url><loc>https://jsdevmobile.com/en/pages/services.html</loc></url>
+  <url><loc>https://jsdevmobile.com/en/pages/toilet-timer.html</loc></url>
+  <url><loc>https://jsdevmobile.com/en/pages/videos.html</loc></url>
+  <url><loc>https://jsdevmobile.com/en/pages/web.html</loc></url>
+  <url><loc>https://jsdevmobile.com/en/pages/web_under_construction.html</loc></url>
+
+  <!-- PORTUGUÉS -->
+  <url><loc>https://jsdevmobile.com/pt/pages/contato.html</loc></url>
+  <url><loc>https://jsdevmobile.com/pt/pages/info-dengue-pt.html</loc></url>
+  <url><loc>https://jsdevmobile.com/pt/pages/notemover-pt.html</loc></url>
+  <url><loc>https://jsdevmobile.com/pt/pages/privacidade.html</loc></url>
+  <url><loc>https://jsdevmobile.com/pt/pages/produtividade.html</loc></url>
+  <url><loc>https://jsdevmobile.com/pt/pages/saude.html</loc></url>
+  <url><loc>https://jsdevmobile.com/pt/pages/servicos.html</loc></url>
+  <url><loc>https://jsdevmobile.com/pt/pages/toilet-timer-pt.html</loc></url>
+  <url><loc>https://jsdevmobile.com/pt/pages/videos.html</loc></url>
+  <url><loc>https://jsdevmobile.com/pt/pages/web.html</loc></url>
+  <url><loc>https://jsdevmobile.com/pt/pages/web_em_construcao.html</loc></url>
+
+</urlset>
