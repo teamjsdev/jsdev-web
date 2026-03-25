@@ -225,6 +225,25 @@ font-weight:bold;
 margin:15px 0;
 }
 
+.old-price{
+  text-decoration: line-through;
+  color: #999;
+  font-size: 1.2rem;
+}
+
+.new-price{
+  color: #16a34a; /* verde confianza */
+  font-size: 2.2rem;
+  font-weight: bold;
+}
+
+.promo{
+  color: #dc2626;
+  font-size: 0.9rem;
+  margin-top: 5px;
+  font-weight: 600;
+}
+
 .maintenance{
 font-size:0.9rem;
 opacity:0.85;
@@ -386,7 +405,12 @@ Landing pages profesionales listas en 24-48 horas. Sitios rápidos, claros y opt
 
 <p>Ideal para profesionales y pequeños negocios que quieren conseguir clientes online de forma simple.</p>
 
-<div class="price">USD 250</div>
+<div class="price">
+  <span class="old-price">USD 250</span><br>
+  <span class="new-price">USD 150</span>
+</div>
+
+<p class="promo">🔥 Promoción limitada</p>
 
 <ul>
 <li>1 página (tipo landing)</li>
