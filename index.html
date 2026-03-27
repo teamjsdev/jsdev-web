@@ -318,6 +318,86 @@
       margin-bottom: 10px;
     }
 
+.tool-card {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* CARD BASE */
+.card-bg-instagram {
+  background-image: url('assets/img/bg_instagram_grid.jpg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 14px;
+  padding: 30px 20px;
+  min-height: 180px;
+
+  position: relative;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  transition: all 0.35s ease;
+}
+
+/* OVERLAY OSCURO */
+.card-bg-instagram::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.75),
+    rgba(0,0,0,0.3),
+    rgba(0,0,0,0.1)
+  );
+  z-index: 1;
+}
+
+/* TEXTO */
+.card-bg-instagram h3,
+.card-bg-instagram p {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+}
+
+.card-bg-instagram h3 {
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+}
+
+.card-bg-instagram p {
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+/* HOVER EFECTO PRO */
+.tool-card:hover .card-bg-instagram {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+}
+
+/* EFECTO BRILLO SUTIL */
+.card-bg-instagram::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.tool-card:hover .card-bg-instagram::after {
+  opacity: 1;
+}
+
     @media (max-width: 768px) {
       section {
         scroll-margin-top: 110px;
@@ -357,12 +437,19 @@
   <a href="pages/web.html">Diseño Web</a>
   <a href="pages/servicios.html">Tu web en 24 hs</a>
   <a href="pages/videos.html">Edición de Videos</a>
+  <div class="dropdown">
+    <span>Herramientas ▾</span>
+    <div class="dropdown-content">
+      <a href="pages/dividir-imagen-instagram.html">Grilla Instagram</a>
+    </div>
+  </div>
 </div>
 
 <!-- MAIN NAV -->
 <nav class="main-nav">
   <a href="#inicio">Inicio</a>
   <a href="#sobre">Sobre mí</a>
+  <a href="pages/servicios.html">Tu web en 24 hs</a>
 
   <div class="dropdown">
     <span>Proyectos ▾</span>
@@ -373,7 +460,13 @@
     </div>
   </div>
 
-  <a href="pages/servicios.html">Tu web en 24 hs</a>
+  <div class="dropdown">
+    <span>Herramientas ▾</span>
+    <div class="dropdown-content">
+      <a href="pages/dividir-imagen-instagram.html">Grilla Instagram</a>
+    </div>
+  </div>
+
   <a href="#contacto">Contacto</a>
 </nav>
 
@@ -438,11 +531,24 @@
   </div>
 </section>
 
+<section id="herramientas">
+  <h2>Herramientas online</h2>
+
+  <div class="ideas">
+    <a href="pages/dividir-imagen-instagram.html" class="tool-card">
+  <div class="card card-bg-instagram">
+    <h3>Grilla para Instagram</h3>
+    <p>Divide tus imágenes automáticamente para crear un feed profesional en Instagram.</p>
+  </div>
+   </a>
+  </div>
+</section>
+
 <!-- SOBRE MI-->
 <section id="sobre">
   <section class="container team">
     <h2>Quién soy</h2>
-    <img src="assets/img/imagen1.png" alt="Joaquín Sánchez">
+    <img src="/assets/img/imagen1.png" alt="Joaquín Sánchez">
     <p>Joaquin Sanchez, Farmacéutico y programador. Me apasiona combinar conocimiento técnico y sensibilidad humana para crear herramientas con impacto real.</p>
   </section>
 </section>
