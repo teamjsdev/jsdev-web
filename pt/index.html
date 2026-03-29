@@ -318,6 +318,86 @@
       margin-bottom: 10px;
     }
 
+.tool-card {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* CARD BASE */
+.card-bg-instagram {
+  background-image: url('assets/img/bg_instagram_grid.jpg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 14px;
+  padding: 30px 20px;
+  min-height: 180px;
+
+  position: relative;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  transition: all 0.35s ease;
+}
+
+/* OVERLAY OSCURO */
+.card-bg-instagram::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.75),
+    rgba(0,0,0,0.3),
+    rgba(0,0,0,0.1)
+  );
+  z-index: 1;
+}
+
+/* TEXTO */
+.card-bg-instagram h3,
+.card-bg-instagram p {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+}
+
+.card-bg-instagram h3 {
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+}
+
+.card-bg-instagram p {
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+/* HOVER EFECTO PRO */
+.tool-card:hover .card-bg-instagram {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+}
+
+/* EFECTO BRILLO SUTIL */
+.card-bg-instagram::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.tool-card:hover .card-bg-instagram::after {
+  opacity: 1;
+}
+
     @media (max-width: 768px) {
       section {
         scroll-margin-top: 110px;
