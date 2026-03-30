@@ -398,6 +398,18 @@
   opacity: 1;
 }
 
+/* FIX SIDE MENU DROPDOWN */
+.side-menu .dropdown-content {
+  position: static;     /* evita que se vaya a la izquierda */
+  display: none;
+  box-shadow: none;
+  padding-left: 15px;   /* indentación tipo submenú */
+}
+
+.side-menu .dropdown:hover .dropdown-content {
+  display: block;
+}
+
     @media (max-width: 768px) {
       section {
         scroll-margin-top: 110px;
