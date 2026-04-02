@@ -118,15 +118,26 @@
     .button:hover { background:#1e3c72; }
 
     .whatsapp {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #25d366;
-      color: white;
-      padding: 16px;
-      border-radius: 50%;
-      font-size: 22px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #25d366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 28px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
+ 
+    .whatsapp:hover {
+      transform: scale(1.1);
+      transition: 0.2s;
+    }
+
 
     footer { background:#1e3c72; color:white; text-align:center; padding:25px 15px; margin-top:60px; }
     footer a { color:#a9c9ff; text-decoration:none; }
@@ -250,7 +261,7 @@
    href="https://wa.me/5493512334330?text=Hola%2C%20vi%20tus%20trabajos%20web%20y%20quiero%20consultar"
    target="_blank"
    rel="noopener">
-   💬
+   <i class="fab fa-whatsapp"></i>
 </a>
 
 <footer>
