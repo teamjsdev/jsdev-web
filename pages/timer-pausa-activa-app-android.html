@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Timer Pausa Activa – Temporizador para Estudiar y Trabajar | JSDev</title>
+
+  <link rel="alternate" hreflang="es-AR" href="https://jsdevmobile.com/pages/timer-pausa-activa-app-android.html">
+
+  <!-- SEO -->
+  <meta name="description" content="Timer Pausa Activa es una app Android para recordatorios de pausas, hidratación y movimiento durante estudio o trabajo. Reduce el sedentarismo y mejora tus hábitos diarios.">
+  <meta name="keywords" content="timer pausa activa, pausas activas, recordatorio agua, temporizador trabajo, app productividad, evitar sedentarismo, app salud Android">
+  <meta name="author" content="JSDev">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://jsdevmobile.com/pages/timer-pausa-activa-app-android.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Timer Pausa Activa – Recordatorios para moverte y beber agua">
+  <meta property="og:description" content="Temporizador de pausas activas para estudiar o trabajar. Recordatorios de agua, movimiento y bienestar diario.">
+  <meta property="og:image" content="PEGA_ACA_TU_IMAGEN_PLAYSTORE">
+  <meta property="og:url" content="https://play.google.com/store/apps/details?id=com.jsdev.timer.activebreak">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Timer Pausa Activa – Bienestar y productividad">
+  <meta name="twitter:description" content="App Android para pausas activas, hidratación y evitar el sedentarismo.">
+  <meta name="twitter:image" content="PEGA_ACA_TU_IMAGEN_PLAYSTORE">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8FVHCZT452"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8FVHCZT452');
+  </script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+    }
+
+    body {
+      background-color: #f4f6f8;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* TOPBAR */
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+    }
+
+    .brand-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    /* MAIN NAV */
+    .main-nav {
+      background: white;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 12px;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 400;
+    }
+
+    .main-nav a {
+      text-decoration: none;
+      color: #2a5298;
+      font-weight: 600;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background-color: white;
+      padding: 28px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+      color: #1e3c72;
+      font-size: clamp(1.6rem, 3vw, 2rem);
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    h2, h3 {
+      color: #1e3c72;
+      margin-top: 25px;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+
+    .app-image {
+      max-width: 260px;
+      display: block;
+      margin: 20px auto;
+      border-radius: 20px;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 14px 22px;
+      background-color: #1e3c72;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+    footer {
+      background-color: #1e3c72;
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+      margin-top: 60px;
+    }
+
+    footer a {
+      color: #a9c9ff;
+      text-decoration: none;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <img src="../assets/img/web2.png" alt="Logo JSDev" class="logo">
+  <span class="brand-title">JSDev</span>
+</header>
+
+<nav class="main-nav">
+  <a href="../index.html">Inicio</a>
+  <a href="../index.html#apps">Proyectos</a>
+  <a href="servicios.html">Servicios</a>
+  <a href="../index.html#contacto">Contacto</a>
+</nav>
+
+<main>
+  <article class="card">
+    <h1>Timer Pausa Activa – Temporizador para evitar el sedentarismo</h1>
+
+    <img
+      src="PEGA_ACA_TU_IMAGEN_PLAYSTORE"
+      alt="Icono de la aplicación Timer Pausa Activa para Android"
+      class="app-image"
+      loading="lazy"
+    >
+
+    <h2>¿Qué es Timer Pausa Activa?</h2>
+    <p>
+      <strong>Timer Pausa Activa</strong> es una aplicación Android diseñada para ayudarte
+      a reducir el sedentarismo durante el estudio, trabajo remoto o jornadas prolongadas frente a la pantalla.
+      Utiliza recordatorios periódicos para beber agua, moverte y realizar pausas saludables.
+    </p>
+
+    <h3>Funciones principales</h3>
+    <ul>
+      <li>Temporizadores de pausas automáticas</li>
+      <li>Recordatorios para beber agua</li>
+      <li>Recordatorios para levantarte y moverte</li>
+      <li>Temporizador personalizado</li>
+      <li>Modo oscuro</li>
+      <li>Notificaciones simples y confiables</li>
+    </ul>
+
+    <p>
+      Ideal para estudiantes, personas que trabajan desde casa y cualquier persona
+      que quiera incorporar hábitos saludables durante largas sesiones sentado.
+    </p>
+
+    <a
+      href="https://play.google.com/store/apps/details?id=com.jsdev.timer.activebreak"
+      target="_blank"
+      rel="noopener"
+      class="button">
+      Descargar Timer Pausa Activa Gratis
+    </a>
+
+<section>
+
+<h2>¿Por qué hacer pausas activas durante el día?</h2>
+
+<p>
+Pasar muchas horas sentado puede afectar la postura, aumentar el cansancio
+y reducir la concentración. Las pausas activas ayudan a mantener el cuerpo
+en movimiento y mejorar el bienestar general.
+</p>
+
+<p>
+Tomar pequeños descansos durante el estudio o trabajo también puede mejorar
+la productividad y disminuir molestias físicas relacionadas con el sedentarismo.
+</p>
+
+<p>
+<strong>Timer Pausa Activa</strong> te ayuda a crear una rutina saludable
+mediante recordatorios automáticos de movimiento e hidratación.
+</p>
+
+<h2>Beneficios de realizar pausas activas</h2>
+
+<ul>
+<li>Reduce el sedentarismo</li>
+<li>Mejora la postura</li>
+<li>Favorece la hidratación</li>
+<li>Ayuda a reducir la fatiga mental</li>
+<li>Mejora la productividad</li>
+</ul>
+
+</section>
+
+<section>
+
+<h2>Preguntas frecuentes</h2>
+
+<h3>¿Cada cuánto conviene hacer una pausa activa?</h3>
+<p>
+Muchos especialistas recomiendan hacer pausas breves cada 30 a 60 minutos
+cuando se permanece sentado durante períodos prolongados.
+</p>
+
+<h3>¿Las pausas activas mejoran la productividad?</h3>
+<p>
+Sí. Realizar pequeñas pausas ayuda a mantener la concentración y reducir el cansancio.
+</p>
+
+<h3>¿La app sirve para estudiar y trabajar?</h3>
+<p>
+Sí. Timer Pausa Activa fue diseñada para acompañarte durante sesiones largas
+de estudio, home office o trabajo de escritorio.
+</p>
+
+</section>
+
+  </article>
+</main>
+
+<footer>
+  <p>© <span id="year"></span> JSDev – Desarrollo de Apps Android y Sitios Web</p>
+  <p>
+    <a href="politica.html">Política de Privacidad</a>
+  </p>
+</footer>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "Timer Pausa Activa",
+  "operatingSystem": "ANDROID",
+  "applicationCategory": "HealthApplication",
+  "url": "https://play.google.com/store/apps/details?id=com.jsdev.timer.activebreak",
+  "offers": {
+    "@type": "Offer",
+    "price": "0.00",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "JSDev"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+   {
+     "@type": "Question",
+     "name": "¿Cada cuánto conviene hacer una pausa activa?",
+     "acceptedAnswer": {
+       "@type": "Answer",
+       "text": "Se recomienda realizar pausas breves cada 30 a 60 minutos durante actividades sedentarias prolongadas."
+     }
+   },
+   {
+     "@type": "Question",
+     "name": "¿Las pausas activas ayudan a la productividad?",
+     "acceptedAnswer": {
+       "@type": "Answer",
+       "text": "Sí. Ayudan a reducir la fatiga y mantener la concentración durante el estudio o trabajo."
+     }
+   },
+   {
+     "@type": "Question",
+     "name": "¿Timer Pausa Activa sirve para home office?",
+     "acceptedAnswer": {
+       "@type": "Answer",
+       "text": "Sí. Es útil para personas que estudian, trabajan desde casa o pasan mucho tiempo frente a la computadora."
+     }
+   }
+ ]
+}
+</script>
+
+</body>
+</html>
