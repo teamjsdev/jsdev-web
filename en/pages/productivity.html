@@ -186,14 +186,18 @@
       text-align: center;
     }
 
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
     .card {
       background: white;
       border-radius: 12px;
       padding: 22px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       text-align: center;
-      max-width: 420px;
-      margin: auto;
       transition: transform 0.3s ease;
     }
 
@@ -309,26 +313,43 @@
 
 </section>
 
-<!-- APP -->
+<!-- APPS -->
 <section>
-  <h2>Android Apps for Productivity and Organization</h2>
+  <h2>Available Android Apps</h2>
 
-  <article class="card">
-    <img src="https://play-lh.googleusercontent.com/XNqH4ZgkUvytJMXkWwJudfG6dM-OfwsIPq6hN7wrg5Y_QOj2LO4v5vf63VWQlD2scMk=w240-h480-rw" alt="Notaker Android notes and tasks app">
+  <div class="projects">
+
+<div class="card">
+    <img src="https://play-lh.googleusercontent.com/XNqH4ZgkUvytJMXkWwJudfG6dM-OfwsIPq6hN7wrg5Y_QOj2LO4v5vf63VWQlD2scMk=w240-h480-rw" alt="Notaker app for notes and task organization on Android">
     <h3>Notaker</h3>
     <p>
-      Simple note and task organizer for Android focused on productivity,
-      color organization and manual control of note order.
+      Notes and task organization app focused on simplicity,
+      color customization and manual note sorting.
     </p>
 
     <a href="https://play.google.com/store/apps/details?id=com.jsdev.newnotes" target="_blank" class="button">
       Google Play
     </a><br>
 
-    <a href="notaker-en.html" class="button">
+    <a href="notaker-android-app.html" class="button">
       More details
     </a>
-  </article>
+  </div>
+
+  <div class="card">
+      <img src="https://play-lh.googleusercontent.com/ZANnY6SSCtj5Rub7uNxkqx320Eh2krGaSE3AKwZWOLu0Ymd9JB9p9UUebrdB0HedtFpxL3Yj4yMIQoeNknrzcjo=w240-h480-rw" alt="Active Break Timer">
+      <h3>Active Break Timer</h3>
+      <p>
+        Android app with reminders to drink water, move and take healthy breaks,
+        ideal for reducing sedentary habits and improving daily routines.
+      </p>
+
+      <a href="https://play.google.com/store/apps/details?id=com.jsdev.timer.activebreak" target="_blank" class="button">Google Play</a><br>
+
+      <a href="active-break-timer-android-app.html" class="button">More details</a>
+    </div>
+
+  </div>
 </section>
 
 <!-- SOBRE -->
