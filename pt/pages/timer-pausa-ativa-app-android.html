@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Timer Pausa Ativa – App de lembretes para estudar e trabalhar | JSDev</title>
+
+  <link rel="alternate" hreflang="es-AR" href="https://jsdevmobile.com/pages/timer-pausa-activa-app-android.html">
+  <link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/timer-active-break-android-app.html">
+  <link rel="alternate" hreflang="pt-BR" href="https://jsdevmobile.com/pt/pages/timer-pausa-ativa-app-android.html">
+
+
+  <!-- SEO -->
+  <meta name="description" content="Timer Pausa Ativa é um app Android com lembretes de pausas, hidratação e movimento para estudar ou trabalhar. Reduza o sedentarismo e melhore seus hábitos diários.">
+  <meta name="keywords" content="timer pausa ativa, lembrete de pausa, lembrete de água, app produtividade, app saúde android, evitar sedentarismo, pausas no trabalho">
+  <link rel="canonical" href="https://jsdevmobile.com/pt/pages/timer-pausa-ativa-app-android.html">
+  <meta name="author" content="JSDev">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Timer Pausa Ativa – Lembretes para se mover e beber água">
+  <meta property="og:description" content="Temporizador de pausas para estudar e trabalhar. Lembretes de água, movimento e bem-estar diário.">
+  <meta property="og:image" content="https://play-lh.googleusercontent.com/ZANnY6SSCtj5Rub7uNxkqx320Eh2krGaSE3AKwZWOLu0Ymd9JB9p9UUebrdB0HedtFpxL3Yj4yMIQoeNknrzcjo=w240-h480-rw">
+  <meta property="og:url" content="https://play.google.com/store/apps/details?id=com.jsdev.timer.activebreak">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Timer Pausa Ativa – Bem-estar e produtividade">
+  <meta name="twitter:description" content="App Android para pausas ativas, hidratação e redução do sedentarismo.">
+  <meta name="twitter:image" content="https://play-lh.googleusercontent.com/ZANnY6SSCtj5Rub7uNxkqx320Eh2krGaSE3AKwZWOLu0Ymd9JB9p9UUebrdB0HedtFpxL3Yj4yMIQoeNknrzcjo=w240-h480-rw">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8FVHCZT452"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8FVHCZT452');
+  </script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+    }
+
+    body {
+      background-color: #f4f6f8;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* TOPBAR */
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+    }
+
+    .brand-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    /* MAIN NAV */
+    .main-nav {
+      background: white;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 12px;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 400;
+    }
+
+    .main-nav a {
+      text-decoration: none;
+      color: #2a5298;
+      font-weight: 600;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background-color: white;
+      padding: 28px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+      color: #1e3c72;
+      font-size: clamp(1.6rem, 3vw, 2rem);
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    h2, h3 {
+      color: #1e3c72;
+      margin-top: 25px;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+
+    .app-image {
+      max-width: 260px;
+      display: block;
+      margin: 20px auto;
+      border-radius: 20px;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 14px 22px;
+      background-color: #1e3c72;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+    footer {
+      background-color: #1e3c72;
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+      margin-top: 60px;
+    }
+
+    footer a {
+      color: #a9c9ff;
+      text-decoration: none;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <img src="../../assets/img/web2.png" alt="Logo JSDev" class="logo">
+  <span class="brand-title">JSDev</span>
+</header>
+
+<nav class="main-nav" aria-label="Navegação principal">
+  <a href="../index.html">Início</a>
+  <a href="../index.html#sobre">Sobre mim</a>
+  <a href="../index.html#apps">Projetos</a>
+  <a href="servicos.html">Serviços</a>
+  <a href="../index.html#contacto">Contato</a>
+</nav>
+
+<main>
+  <article class="card">
+    <h1>Timer Pausa Ativa – App de lembretes para estudar e trabalhar</h1>
+
+    <img
+      src="https://play-lh.googleusercontent.com/ZANnY6SSCtj5Rub7uNxkqx320Eh2krGaSE3AKwZWOLu0Ymd9JB9p9UUebrdB0HedtFpxL3Yj4yMIQoeNknrzcjo=w240-h480-rw"
+      alt="Ícone do app Timer Pausa Ativa para Android"
+      class="app-image"
+      loading="lazy"
+    >
+
+    <h2>O que é o Timer Pausa Ativa?</h2>
+    <p>
+      <strong>Timer Pausa Ativa</strong> é um aplicativo Android criado para ajudar a reduzir o sedentarismo durante estudos,
+      home office ou longas horas em frente à tela. Ele usa lembretes programados para ajudar você a beber água,
+      se movimentar e fazer pausas saudáveis ao longo do dia.
+    </p>
+
+    <h3>Principais recursos</h3>
+    <ul>
+      <li>Temporizadores automáticos de pausa</li>
+      <li>Lembretes para beber água</li>
+      <li>Lembretes para se movimentar</li>
+      <li>Temporizador personalizado</li>
+      <li>Modo escuro</li>
+      <li>Notificações simples e confiáveis</li>
+    </ul>
+
+    <p>
+      Ideal para estudantes, pessoas em home office e qualquer pessoa
+      que queira criar hábitos mais saudáveis durante longos períodos sentada.
+    </p>
+
+    <a class="button">
+      Baixar grátis
+    </a>
+
+<section>
+
+<h2>Por que fazer pausas ativas durante o dia?</h2>
+
+<p>
+Passar muitas horas sentado pode afetar a postura, aumentar o cansaço
+e diminuir a concentração. As pausas ativas ajudam a manter o corpo em movimento
+e melhorar o bem-estar geral.
+</p>
+
+<p>
+Fazer pequenas pausas durante o estudo ou trabalho também pode melhorar
+a produtividade e reduzir desconfortos físicos relacionados ao sedentarismo.
+</p>
+
+<p>
+<strong>Timer Pausa Ativa</strong> ajuda você a criar hábitos mais saudáveis
+com lembretes automáticos de movimento e hidratação.
+</p>
+
+<h2>Benefícios das pausas ativas</h2>
+
+<ul>
+<li>Reduz o sedentarismo</li>
+<li>Melhora a postura</li>
+<li>Ajuda na hidratação</li>
+<li>Ajuda a reduzir o cansaço mental</li>
+<li>Melhora a produtividade</li>
+</ul>
+
+</section>
+
+<section>
+
+<h2>Perguntas frequentes</h2>
+
+<h3>Com que frequência devo fazer uma pausa ativa?</h3>
+<p>
+Muitos especialistas recomendam fazer pausas curtas a cada 30 a 60 minutos
+quando você permanece sentado por muito tempo.
+</p>
+
+<h3>As pausas ativas melhoram a produtividade?</h3>
+<p>
+Sim. Fazer pequenas pausas ajuda a manter o foco e reduzir o cansaço.
+</p>
+
+<h3>O app serve para estudar e trabalhar?</h3>
+<p>
+Sim. O Timer Pausa Ativa foi criado para acompanhar longas sessões de estudo,
+rotinas de home office e trabalho em escritório.
+</p>
+
+</section>
+
+  </article>
+</main>
+
+<footer>
+  <p>© <span id="year"></span> JSDev – Desenvolvimento de Apps Android e Sites Web</p>
+  <p>
+<a href="privacidade.html">Política de Privacidade</a>
+</p>
+</footer>
+
+<script>    
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+  
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "Active Break Timer",
+  "operatingSystem": "ANDROID",
+  "applicationCategory": "HealthApplication",
+  "url": "https://play.google.com/store/apps/details?id=com.jsdev.timer.activebreak",
+  "offers": {
+    "@type": "Offer",
+    "price": "0.00",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "JSDev"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+   {
+     "@type": "Question",
+     "name": "Com que frequência devo beber água?",
+     "acceptedAnswer": {
+       "@type": "Answer",
+       "text": "Muitos especialistas recomendam manter hidratação regular durante o dia. A quantidade ideal depende da atividade, clima e fatores individuais."
+     }
+   },
+   {
+     "@type": "Question",
+     "name": "Ficar muito tempo sentado faz mal?",
+     "acceptedAnswer": {
+       "@type": "Answer",
+       "text": "Sim. Permanecer muitas horas sentado pode afetar a postura, causar cansaço e contribuir para o sedentarismo."
+     }
+   },
+   {
+     "@type": "Question",
+     "name": "Um temporizador pode ajudar a melhorar hábitos?",
+     "acceptedAnswer": {
+       "@type": "Answer",
+       "text": "Sim. Lembretes programados podem ajudar você a criar hábitos mais saudáveis, como fazer pausas, beber água e se movimentar."
+     }
+   }
+ ]
+}
+</script>
+
+</body>
+</html>
