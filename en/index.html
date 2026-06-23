@@ -418,11 +418,76 @@
   font-weight: 500;
 }
 
-    @media (max-width: 768px) {
-      section {
-        scroll-margin-top: 110px;
-      }
-    }
+/* LAYOUT APPS */
+.apps-layout {
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  gap: 25px;
+  align-items: start;
+}
+
+
+/* APPS DESTACADAS */
+.featured-apps {
+  background: white;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 90px;
+}
+
+
+.featured-apps h3 {
+  color:#1e3c72;
+  margin-bottom:15px;
+  text-align:center;
+}
+
+
+.featured-apps a {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  text-decoration:none;
+  color:#333;
+  margin-bottom:14px;
+  font-weight:600;
+}
+
+
+.featured-apps img {
+  width:42px;
+  height:42px;
+  border-radius:10px;
+  object-fit:contain;
+}
+
+
+.featured-apps a:hover {
+  color:#2a5298;
+  transform:translateX(4px);
+  transition:.2s;
+}
+
+
+/* MOBILE */
+@media(max-width:768px){
+
+  .apps-layout {
+    grid-template-columns:1fr;
+  }
+
+  .featured-apps {
+    position:relative;
+    top:auto;
+  }
+
+  .featured-apps a {
+    justify-content:center;
+  }
+
+}
 
   </style>
 
@@ -500,11 +565,47 @@
 </div>
 </section>
 
+<!-- APPS -->
 <section id="apps">
+  <h2>Android Apps</h2>
 
-<h2>Android Apps</h2>
+  <div class="apps-layout">
 
-<div class="ideas">
+    <!-- APPS DESTACADAS -->
+    <div class="featured-apps">
+
+      <h3>Featured Apps</h3>
+
+      <a href="../pages/gymload-app-android.html">
+        <img src="https://play-lh.googleusercontent.com/cLz57paREaEp90HBrzE3YHujZkBESe7hdgStAsFBMoNeRmOyaR0_YZ_X_F4cVnxQdUViFcNvQzi_IJDCL5C8gA=w240-h480-rw" alt="GymLoad">
+        <span>GymLoad</span>
+      </a>
+
+      <a href="pages/info-dengue-en.html">
+        <img src="https://play-lh.googleusercontent.com/heJ-rfmepYOrdmhTkSEI6Ig3T6OusFu3XoUdNggs5i0vgiXurgoQSEXmZA2SPoGM8w=w240-h480-rw" alt="InfoDengue">
+        <span>InfoDengue</span>
+      </a>
+
+      <a href="pages/timer-active-break-android-app.html">
+        <img src="https://play-lh.googleusercontent.com/ZANnY6SSCtj5Rub7uNxkqx320Eh2krGaSE3AKwZWOLu0Ymd9JB9p9UUebrdB0HedtFpxL3Yj4yMIQoeNknrzcjo=w240-h480-rw" alt="Toilet Timer">
+        <span>Active Break</span>
+      </a>
+
+      <a href="pages/toilet-timer.html">
+        <img src="https://play-lh.googleusercontent.com/Ss_pk1aXWFrQ2A_x3jE6OfW-5yXgGtLtl-mnBLmlOEWrqc0Q45jr8ED0vih8tptJJdMS21qKC4WOS8X5AlA7Qg=w480-h960-rw" alt="Toilet Timer">
+        <span>Toilet Timer</span>
+      </a>
+
+      <a href="pages/notaker-en.html">
+        <img src="https://play-lh.googleusercontent.com/XNqH4ZgkUvytJMXkWwJudfG6dM-OfwsIPq6hN7wrg5Y_QOj2LO4v5vf63VWQlD2scMk=w240-h480-rw" alt="App Notaker para notas">
+        <span>Notaker</span>
+      </a>
+
+    </div>
+
+
+    <!-- CATEGORÍAS ACTUALES -->
+    <div class="ideas">
 
 <a href="pages/health.html">
 <div class="card">
@@ -554,7 +655,10 @@
 </div>
 </a>
 
-</div>
+    </div> <!-- cierre ideas -->
+
+  </div> <!-- cierre apps-layout -->
+
 </section>
 
 <section id="herramientas">
