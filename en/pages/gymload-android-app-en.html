@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>GymLoad – Gym Workout Tracker App | JSDev</title>
+
+  <!-- SEO -->
+  <meta name="description" content="GymLoad is an Android app to track gym workouts, manage exercises, sets, repetitions, lifted weight, and monitor your fitness progress.">
+  <meta name="keywords" content="gymload, gym app, workout tracker, gym tracker, workout log, gym routine, exercise tracking, lifted weight, hypertrophy, strength training, gym log, fitness app Android">
+  <meta name="author" content="JSDev">
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://jsdevmobile.com/en/pages/gymload-android-app-en.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="GymLoad – Gym Workout Tracking App">
+  <meta property="og:description" content="Create routines, track exercises, manage sets, lifted weight, and monitor your fitness progress with GymLoad.">
+  <!-- <meta property="og:image" content="https://play-lh.googleusercontent.com/cLz57paREaEp90HBrzE3YHujZkBESe7hdgStAsFBMoNeRmOyaR0_YZ_X_F4cVnxQdUViFcNvQzi_IJDCL5C8gA=w240-h480-rw"> -->
+  <meta property="og:url" content="https://play.google.com/store/apps/details?id=com.jsdev.gymload.repstracker">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:title" content="GymLoad – Workout Tracking and Progress">
+  <meta name="twitter:description" content="Android app to track routines, exercises, sets, lifted weight, and gym progress.">
+  <!-- <meta name="twitter:image" content="https://play-lh.googleusercontent.com/cLz57paREaEp90HBrzE3YHujZkBESe7hdgStAsFBMoNeRmOyaR0_YZ_X_F4cVnxQdUViFcNvQzi_IJDCL5C8gA=w240-h480-rw"> -->
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8FVHCZT452"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8FVHCZT452');
+  </script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+    }
+
+    body {
+      background-color: #f4f6f8;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* TOPBAR */
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+    }
+
+    .brand-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    /* MAIN NAV */
+    .main-nav {
+      background: white;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 12px;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 400;
+    }
+
+    .main-nav a {
+      text-decoration: none;
+      color: #2a5298;
+      font-weight: 600;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background-color: white;
+      padding: 28px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+      color: #1e3c72;
+      font-size: clamp(1.6rem, 3vw, 2rem);
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    h2, h3 {
+      color: #1e3c72;
+      margin-top: 25px;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+
+    .app-image {
+      max-width: 260px;
+      display: block;
+      margin: 20px auto;
+      border-radius: 20px;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 14px 22px;
+      background-color: #1e3c72;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+    footer {
+      background-color: #1e3c72;
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+      margin-top: 60px;
+    }
+
+    footer a {
+      color: #a9c9ff;
+      text-decoration: none;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <img src="../../assets/img/web2.png" alt="JSDev Logo" class="logo">
+  <span class="brand-title">JSDev</span>
+</header>
+
+<nav class="main-nav">
+  <a href="../index.html">Home</a>
+  <a href="../index.html#apps">Projects</a>
+  <a href="services.html">Services</a>
+  <a href="../index.html#contacto">Contact</a>
+</nav>
+
+<main>
+  <article class="card">
+    <h1>GymLoad – Gym Workout Tracking App</h1>
+
+    <img
+      src="https://play-lh.googleusercontent.com/cLz57paREaEp90HBrzE3YHujZkBESe7hdgStAsFBMoNeRmOyaR0_YZ_X_F4cVnxQdUViFcNvQzi_IJDCL5C8gA=w240-h480-rw"
+      alt="GymLoad"
+      class="app-image"
+      loading="lazy"
+    >
+
+    <h2>What is GymLoad?</h2>
+
+<p>
+  <strong>GymLoad</strong> is an Android application designed to track
+  gym workouts, manage exercises, sets, repetitions, and lifted weight
+  during each training session.
+</p>
+
+<p>
+  With GymLoad, you can create weekly routines, organize exercises by day,
+  save important notes, add machine photos, and track your long-term progress
+  from a single application.
+</p>
+
+<p>
+  Whether you train for strength, hypertrophy, or general fitness, GymLoad
+  helps you maintain a complete workout history to make better decisions and
+  progress consistently.
+</p>
+
+<h2>Main Features</h2>
+
+<ul>
+  <li>Create workout routines organized by day.</li>
+  <li>Track exercises, sets, repetitions, and lifted weight.</li>
+  <li>Use the rest timer between sets.</li>
+  <li>Save personalized notes for each exercise.</li>
+  <li>Add photos to remember machine settings.</li>
+  <li>View workout statistics and progress.</li>
+  <li>Analyze weekly and monthly progress.</li>
+  <li>Track training volume by muscle group.</li>
+  <li>Record personal records.</li>
+  <li>Track your workout streaks.</li>
+  <li>Built-in dark mode.</li>
+</ul>
+
+
+<p>
+  Ideal for people who train at the gym and want to track routines,
+  manage workloads, follow strength progressions, and maintain a detailed
+  history of their workouts.
+</p>
+
+    <a
+      href="https://play.google.com/store/apps/details?id=com.jsdev.gymload.repstracker"
+      target="_blank"
+      rel="noopener"
+      class="button">
+      Download Free
+    </a>
+
+<section>
+
+<h2>Why Use GymLoad for Your Workouts?</h2>
+
+<p>
+  Tracking your workouts is one of the most effective ways to measure your
+  progress in the gym. Keeping control of exercises, sets, repetitions, and
+  lifted weight allows you to identify improvements, adjust loads, and maintain
+  consistency over time.
+</p>
+
+<p>
+  Many people train for months without remembering exactly how much weight they
+  used in previous sessions. GymLoad solves this problem by allowing you to
+  access your complete workout history whenever you need it.
+</p>
+
+<p>
+  In addition to recording basic data, GymLoad allows you to save photos of
+  machines and specific settings to reproduce your workouts more accurately
+  in future sessions.
+</p>
+
+<p>
+  <strong>GymLoad</strong> brings together routines, progress tracking,
+  statistics, and workout notes in a single easy-to-use application.
+</p>
+
+
+<h2>Benefits of Tracking Your Workouts</h2>
+
+<ul>
+  <li>Identify performance improvements using real data.</li>
+  <li>Apply progressive overload more accurately.</li>
+  <li>Avoid forgetting weights and settings used.</li>
+  <li>Compare results between weeks and months.</li>
+  <li>Control training volume for each muscle group.</li>
+  <li>Detect plateaus more easily.</li>
+  <li>Stay motivated by seeing your progress.</li>
+</ul>
+
+
+<h2>App for Tracking Gym Routines and Fitness Progress</h2>
+
+<p>
+GymLoad is designed for athletes, beginners, and people who train regularly
+and want detailed control over their gym sessions. The application allows you
+to track routines, exercises, sets, repetitions, lifted weight, and progress
+statistics directly from your mobile phone.
+</p>
+
+<p>
+Thanks to workout history tracking, you can compare results, identify
+performance improvements, and maintain steady progress over time. In addition,
+GymLoad includes features such as a rest timer, personalized notes, machine
+photos, and training volume tracking.
+</p>
+
+</section>
+
+
+<section>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>Is GymLoad free?</h3>
+<p>
+  Yes. GymLoad can be downloaded for free from Google Play.
+</p>
+
+<h3>Can I track weight and repetitions?</h3>
+<p>
+  Yes. You can save the weight used and repetitions completed for each
+  exercise set.
+</p>
+
+<h3>Is it useful for strength training and hypertrophy?</h3>
+<p>
+  Yes. GymLoad can be used for strength programs, hypertrophy routines,
+  and general fitness training.
+</p>
+
+<h3>Can I save machine photos?</h3>
+<p>
+  Yes. The app allows you to add photos to remember specific machine positions,
+  adjustments, and settings.
+</p>
+
+<h3>Does it have a rest timer?</h3>
+<p>
+  Yes. It includes an integrated timer to control rest periods between sets
+  during your workout.
+</p>
+
+</section>
+
+  </article>
+</main>
+
+<footer>
+  <p>© <span id="year"></span> JSDev – Android Apps and Website Development</p>
+  <p>
+    <a href="privacy.html">Privacy Policy</a>
+  </p>
+</footer>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "GymLoad",
+  "operatingSystem": "ANDROID",
+  "applicationCategory": "SportsApplication",
+  "url": "https://play.google.com/store/apps/details?id=com.jsdev.gymload.repstracker",
+  "description": "Android application to track gym workouts, exercises, sets, repetitions, and lifted weight.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0.00",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "JSDev"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+   {
+     "@type": "Question",
+     "name": "Is GymLoad free?",
+     "acceptedAnswer": {
+       "@type": "Answer",
+       "text": "Yes. GymLoad can be downloaded for free from Google Play."
+     }
+   },
+   {
+     "@type": "Question",
+     "name": "Can I track weight and repetitions?",
+     "acceptedAnswer": {
+       "@type": "Answer",
+       "text": "Yes. You can save the weight used and repetitions completed in each workout set."
+     }
+   },
+   {
+     "@type": "Question",
+     "name": "Is GymLoad useful for strength training and hypertrophy?",
+     "acceptedAnswer": {
+       "@type": "Answer",
+       "text": "Yes. GymLoad can be used for strength programs, hypertrophy routines, and general fitness training."
+     }
+   },
+   {
+     "@type": "Question",
+     "name": "Does GymLoad have a rest timer?",
+     "acceptedAnswer": {
+       "@type": "Answer",
+       "text": "Yes. It includes an integrated timer to control rest periods between sets."
+     }
+   },
+   {
+     "@type": "Question",
+     "name": "Can I save machine photos?",
+     "acceptedAnswer": {
+       "@type": "Answer",
+       "text": "Yes. The application allows you to add photos to remember gym machine settings and adjustments."
+     }
+   }
+ ]
+}
+</script>
+
+</body>
+</html>
