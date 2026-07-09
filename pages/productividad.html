@@ -28,7 +28,7 @@
     gtag('config', 'G-8FVHCZT452');
   </script>
 
-  <style>
+ <style>
     * {
       margin: 0;
       padding: 0;
@@ -199,6 +199,8 @@
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       text-align: center;
       transition: transform 0.3s ease;
+
+      position: relative;
     }
 
     .card:hover {
@@ -218,6 +220,26 @@
       margin-bottom: 10px;
       font-size: 1.3rem;
     }
+
+    .status-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,.15);
+    }
+
+    .status-play {
+  background: #28a745;   /* Verde */
+}
+
+.status-coming {
+  background: #ff9800;   /* Naranja */
+}
 
     .button {
       display: inline-block;
@@ -260,6 +282,7 @@
     }
 
   </style>
+
 </head>
 
 <body>
@@ -319,6 +342,9 @@
   <div class="projects">
 
 <div class="card">
+      <div class="status-badge status-play">
+        Disponible en Google Play
+      </div>
     <img src="https://play-lh.googleusercontent.com/XNqH4ZgkUvytJMXkWwJudfG6dM-OfwsIPq6hN7wrg5Y_QOj2LO4v5vf63VWQlD2scMk=w240-h480-rw" alt="App Notaker para notas y organización de tareas en Android">
     <h3>Notaker</h3>
     <p>
@@ -335,24 +361,46 @@
     </a>
   </div>
 
-  <div class="card">
-      <img src="https://play-lh.googleusercontent.com/ZANnY6SSCtj5Rub7uNxkqx320Eh2krGaSE3AKwZWOLu0Ymd9JB9p9UUebrdB0HedtFpxL3Yj4yMIQoeNknrzcjo=w240-h480-rw" alt="Toilet Timer">
-      <h3>Timer Pausa Activa</h3>
+    <div class="card">
+      <div class="status-badge status-coming">
+        Próximamente
+      </div>
+      <img src="../assets/img/calendar.png" alt="Calendar with Notes">
+      <h3>Calendar with Notes</h3>
       <p>
-  Aplicación Android con recordatorios para beber agua, moverse y realizar pausas saludables, ideal para reducir el sedentarismo y mejorar hábitos diarios
+Aplicación Android que combina un calendario con un espacio para escribir notas, tareas, recordatorios y eventos en cada día.
       </p>
-      <a href="https://play.google.com/store/apps/details?id=com.jsdev.timer.activebreak" target="_blank" class="button">Google Play</a><br>
-      <a href="timer-pausa-activa-app-android.html" class="button">Más detalles</a>
+        <a href="formulario.html?app=calendar" class="button">
+    Lista de espera
+        </a>
     </div>
 
-  <div class="card">
-      <img src="https://play-lh.googleusercontent.com/cLz57paREaEp90HBrzE3YHujZkBESe7hdgStAsFBMoNeRmOyaR0_YZ_X_F4cVnxQdUViFcNvQzi_IJDCL5C8gA=w240-h480-rw" alt="GymLoad">
-      <h3>GymLoad</h3>
+    <div class="card">
+      <div class="status-badge status-coming">
+        Próximamente
+      </div>
+      <img src="../assets/img/memopic.png" alt="MemoPic">
+      <h3>MemoPic</h3>
       <p>
-  Aplicación Android para crear rutinas de gimnasio, registrar ejercicios, controlar series, anotar pesos y seguir tu progreso de entrenamiento.
+Aplicación Android para estudiantes que genera imágenes a partir de palabras o conceptos, facilitando el aprendizaje mediante técnicas de memorización visual.
       </p>
-      <a href="https://play.google.com/store/apps/details?id=com.jsdev.gymload.repstracker" target="_blank" class="button">Google Play</a><br>
-      <a href="gymload-app-android.html" class="button">Más detalles</a>
+        <a href="formulario.html?app=memopic" class="button">
+    Lista de espera
+        </a>
+    </div>
+
+    <div class="card">
+      <div class="status-badge status-coming">
+        Próximamente
+      </div>
+      <img src="../assets/img/unigrups.png" alt="UniGroups">
+      <h3>UniGroups</h3>
+      <p>
+Aplicación Android que facilita encontrar compañeros para trabajos prácticos y crear grupos de WhatsApp para organizar equipos de estudio de forma rápida.
+      </p>
+        <a href="formulario.html?app=unigrups" class="button">
+    Lista de espera
+        </a>
     </div>
 
   </div>
