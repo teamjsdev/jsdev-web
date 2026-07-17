@@ -490,11 +490,18 @@ if(apps[id]){
 }
 else{
 
-    document.getElementById("appName").textContent="Aplicación no encontrada";
+    document.title = "Acceso anticipado | JSDev";
 
-    document.getElementById("appDescription").textContent="La aplicación solicitada no existe.";
+    document.getElementById("appName").textContent =
+        "Acceso anticipado a nuevos proyectos";
 
-    document.getElementById("waitlistButton").style.display="none";
+    document.getElementById("appDescription").textContent =
+        "Estoy desarrollando nuevas aplicaciones Android en distintas categorías. Unite para enterarte antes de cada lanzamiento y recibir novedades sobre los próximos proyectos.";
+
+    document.getElementById("appIcon").src =
+        "../assets/img/web2.png";
+
+    document.getElementById("waitlistButton").href = FORM_URL;
 
 }
 
