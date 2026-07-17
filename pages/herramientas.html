@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <title>Apps Android de Herramientas | JSDev</title>
+  <link rel="canonical" href="https://jsdevmobile.com/pages/herramientas.html" />
+
+  <!-- SEO -->
+<meta name="description" content="Descubre las aplicaciones Android de herramientas desarrolladas por JSDev. Mide distancias, verifica el funcionamiento de tu teléfono y crea firmas digitales con utilidades prácticas para el día a día.">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8FVHCZT452"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8FVHCZT452');
+  </script>
+
+ <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+    }
+
+    body {
+      background-color: #f4f6f8;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* TOP BAR */
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      z-index: 300;
+    }
+
+    .menu-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+    }
+
+    .brand-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    .brand p {
+      font-size: 0.85rem;
+      opacity: 0.9;
+    }
+
+    /* SIDE MENU */
+    .side-menu {
+      display: none;
+      position: absolute;
+      top: 52px;
+      left: 0;
+      background: white;
+      width: 230px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      z-index: 500;
+    }
+
+    .side-menu a {
+      display: block;
+      padding: 14px 18px;
+      text-decoration: none;
+      color: #1e3c72;
+      font-weight: 500;
+    }
+
+    .side-menu a:hover {
+      background: #f0f4ff;
+    }
+
+    /* MAIN NAV */
+    .main-nav {
+      position: sticky;
+      top: 0;
+      z-index: 400;
+      background: white;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 12px;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    }
+
+    .main-nav a,
+    .dropdown span {
+      text-decoration: none;
+      color: #2a5298;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* DROPDOWN */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 30px;
+      left: 0;
+      background: white;
+      min-width: 180px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      z-index: 300;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 12px 16px;
+      color: #1e3c72;
+    }
+
+    .dropdown-content a:hover {
+      background: #f0f4ff;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      max-width: 900px;
+      margin: auto;
+      font-size: 1.05rem;
+    }
+
+    section {
+      max-width: 1100px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    section h2 {
+      color: #1e3c72;
+      margin-bottom: 30px;
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 22px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s ease;
+
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      margin-bottom: 15px;
+      border-radius: 20px;
+    }
+
+    .card h3 {
+      color: #1e3c72;
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+    }
+
+    .status-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,.15);
+    }
+
+    .status-play {
+  background: #28a745;   /* Verde */
+}
+
+.status-coming {
+  background: #ff9800;   /* Naranja */
+}
+
+    .button {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 10px 16px;
+      background-color: #2a5298;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .button:hover {
+      background-color: #1e3c72;
+    }
+
+    .team {
+      text-align: center;
+    }
+
+    .team img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    footer {
+      background-color: #1e3c72;
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+      margin-top: 60px;
+    }
+
+    footer a {
+      color: #a9c9ff;
+      text-decoration: none;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <button class="menu-btn" onclick="toggleMenu()" aria-label="Abrir menú">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <img src="../assets/img/web2.png" alt="Logo JSDev" class="logo">
+
+  <div class="brand">
+    <span class="brand-title">JSDev</span>
+    <p>Apps Android</p>
+  </div>
+</header>
+
+<!-- SIDE MENU -->
+<div id="sideMenu" class="side-menu">
+  <a href="../index.html#apps">Apps Android</a>
+  <a href="web.html">Diseño Web</a>
+</div>
+
+<!-- MAIN NAV -->
+<nav class="main-nav">
+  <a href="../index.html">Inicio</a>
+  <a href="../index.html#sobre">Sobre mí</a>
+
+  <div class="dropdown">
+    <span>Proyectos ▾</span>
+    <div class="dropdown-content">
+      <a href="../index.html#apps">Apps Android</a>
+      <a href="web.html">Diseño Web</a>
+    </div>
+  </div>
+
+  <a href="servicios.html">Servicios</a>
+  <a href="../index.html#contacto">Contacto</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Apps Android de Herramientas</h1>
+
+  <p>
+Desarrollo herramientas Android diseñadas para resolver problemas cotidianos de forma rápida y sencilla. Desde utilidades para medir distancias hasta aplicaciones para comprobar el estado del teléfono o crear firmas digitales.
+  </p>
+</section>
+
+<!-- APP -->
+<section>
+  <h2>Proyectos en desarrollo</h2>
+
+  <div class="projects">
+
+    <div class="card">
+  <div class="status-badge status-coming">
+    Próximamente
+  </div>
+
+  <img src="../assets/img/ardistance.png" alt="AR Distance Measure">
+
+  <h3>Distance Measure</h3>
+
+  <p>
+    Mide distancias utilizando la cámara de tu teléfono. Una herramienta práctica para obtener mediciones aproximadas en el hogar, la oficina o cualquier otro lugar.
+  </p>
+
+  <a href="formulario.html?app=ardistance" class="button">
+    Lista de espera
+  </a>
+</div>
+
+    <div class="card">
+  <div class="status-badge status-coming">
+    Próximamente
+  </div>
+
+  <img src="../assets/img/hardwaretest.png" alt="Phone Hardware Test">
+
+  <h3>Phone Hardware Test</h3>
+
+  <p>
+    Comprueba el funcionamiento de los principales componentes de tu teléfono mediante pruebas sencillas. Ideal para verificar el estado del dispositivo en pocos minutos.
+  </p>
+
+  <a href="formulario.html?app=hardwaretest" class="button">
+    Lista de espera
+  </a>
+</div>
+
+    <div class="card">
+  <div class="status-badge status-coming">
+    Próximamente
+  </div>
+
+  <img src="../assets/img/signaturecreator.png" alt="Signature Creator">
+
+  <h3>Signature Creator</h3>
+
+  <p>
+    Crea tu propia firma digital para utilizarla en documentos o diseña una firma desde cero de forma sencilla y divertida para desarrollar un estilo personal.
+  </p>
+
+  <a href="formulario.html?app=signaturecreator" class="button">
+    Lista de espera
+  </a>
+</div>
+
+  </div>
+</section>
+
+
+<!-- SOBRE -->
+<section class="team" id="sobre">
+  <h2>Quién soy</h2>
+  <img src="../assets/img/imagen1.png" alt="Joaquín Sánchez">
+  <p>
+Joaquín Sánchez, farmacéutico y desarrollador Android.
+Creo aplicaciones que simplifican tareas cotidianas y ayudan a tomar mejores decisiones, combinando experiencia técnica, diseño intuitivo y soluciones pensadas para problemas reales.
+  </p>
+</section>
+
+<footer>
+  <p>© <span id="year"></span> JSDev – Desarrollo de Apps Android y Sitios Web</p>
+  <p>
+    <a href="politica.html">Política de Privacidad</a>
+  </p>
+</footer>
+
+<script>    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById("sideMenu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+  }
+</script>
+
+</body>
+</html>
