@@ -470,6 +470,50 @@
   transition:.2s;
 }
 
+/* ============================= */
+/* TICKER DE NOVEDADES */
+/* ============================= */
+
+.news-ticker{
+    background:linear-gradient(135deg,#1e3c72,#2a5298);
+    overflow:hidden;
+    white-space:nowrap;
+
+    margin:0;
+    margin-bottom:35px;
+
+    box-shadow:0 3px 10px rgba(0,0,0,.12);
+}
+
+.news-ticker a{
+    display:inline-block;
+    color:#fff;
+    text-decoration:none;
+    padding:14px 0;
+    font-weight:600;
+    animation:ticker 28s linear infinite;
+}
+
+.news-ticker:hover a{
+    animation-play-state:paused;
+}
+
+.news-ticker span{
+    margin-right:70px;
+}
+
+@keyframes ticker{
+
+    from{
+        transform:translateX(100%);
+    }
+
+    to{
+        transform:translateX(-100%);
+    }
+
+}
+
 
 /* MOBILE */
 @media(max-width:768px){
@@ -488,6 +532,11 @@
   .featured-apps a {
     justify-content:flex-start;
   }
+
+.news-ticker a{
+        animation-duration:22s;
+        font-size:.95rem;
+    }
 
 }
 
@@ -554,6 +603,21 @@
 
   <a href="#contacto">Contacto</a>
 </nav>
+
+
+<div class="news-ticker">
+    <a href="pages/formulario.html">
+
+        <span>🚀 Nuevas aplicaciones Android en desarrollo.</span>
+
+        <span>📱 Anotate para enterarte antes de cada lanzamiento.</span>
+
+        <span>⭐ Beneficios para quienes acompañan los proyectos desde el primer día.</span>
+
+        <span>👉 Tocá aquí para unirte a la lista de espera general.</span>
+
+    </a>
+</div>
 
 <!-- INICIO SOBRE JSDev -->
 <section id="inicio" class="card">
