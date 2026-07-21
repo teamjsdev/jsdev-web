@@ -325,8 +325,7 @@
 }
 
 /* CARD BASE */
-.card-bg-instagram {
-  background-image: url('assets/img/bg_instagram_grid.jpg');
+.card-bg {
   background-size: cover;
   background-position: center;
   border-radius: 14px;
@@ -343,8 +342,19 @@
   transition: all 0.35s ease;
 }
 
+/* IMÁGENES */
+
+.card-bg-instagram{
+    background-image:url("assets/img/bg_instagram_grid.jpg");
+}
+
+.card-bg-gym{
+    background-image:url("assets/img/bg_gym.jpg");
+  background-position: top;
+}
+
 /* OVERLAY OSCURO */
-.card-bg-instagram::before {
+.card-bg::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -358,31 +368,31 @@
 }
 
 /* TEXTO */
-.card-bg-instagram h3,
-.card-bg-instagram p {
+.card-bg h3,
+.card-bg p {
   position: relative;
   z-index: 2;
   color: #fff;
 }
 
-.card-bg-instagram h3 {
+.card-bg h3 {
   font-size: 1.4rem;
   margin-bottom: 8px;
 }
 
-.card-bg-instagram p {
+.card-bg p {
   font-size: 0.95rem;
   opacity: 0.9;
 }
 
 /* HOVER EFECTO PRO */
-.tool-card:hover .card-bg-instagram {
+.tool-card:hover .card-bg {
   transform: translateY(-6px) scale(1.02);
   box-shadow: 0 15px 30px rgba(0,0,0,0.25);
 }
 
 /* EFECTO BRILLO SUTIL */
-.card-bg-instagram::after {
+.card-bg::after {
   content: "";
   position: absolute;
   top: -50%;
@@ -394,8 +404,27 @@
   transition: opacity 0.4s;
 }
 
-.tool-card:hover .card-bg-instagram::after {
+.tool-card:hover .card-bg::after {
   opacity: 1;
+}
+
+/* ============================= */
+/* HERRAMIENTAS PARA NEGOCIOS */
+/* ============================= */
+
+.business-tools{
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+.business-tools .tool-card{
+    width:100%;
+}
+
+.business-tools .card-bg{
+    width:100%;
+    min-height:180px;
 }
 
 /* FIX SIDE MENU DROPDOWN */
@@ -768,13 +797,22 @@
 <section id="herramientas">
   <h2>Herramientas para hacer crecer tu negocio</h2>
 
-  <div class="ideas">
+  <div class="business-tools">
+
     <a href="pages/dividir-imagen-instagram.html" class="tool-card">
-  <div class="card card-bg-instagram">
+  <div class="card card-bg card-bg-instagram">
     <h3>Dividir imagen Instagram</h3>
     <p>Divide tus imágenes automáticamente para crear un feed profesional en Instagram.</p>
   </div>
    </a>
+
+  <a href="pages/web_construccion.html" class="tool-card">
+  <div class="card card-bg card-bg-gym">
+    <h3>Apps para Gimnasios</h3>
+    <p>Aplicaciones para gimnasios que ayudan a fidelizar socios, ofrecer un mejor servicio y diferenciarse de la competencia.</p>
+  </div>
+   </a>
+
   </div>
 </section>
 
