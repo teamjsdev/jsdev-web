@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>MedVision – Recordatorios de Medicamentos y Alertas de Dosis | JSDev</title>
+
+  <!-- SEO -->
+  <meta name="description" content="MedVision es una app Android para recordatorios de medicamentos, confirmación de dosis, seguimiento diario y alertas automáticas a un contacto de confianza.">
+  <meta name="keywords" content="MedVision, recordatorio de medicamentos, alarma medicamentos, seguimiento de dosis, medicación, Android, alertas cuidador">
+  <meta name="author" content="JSDev">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://jsdevmobile.com/pages/medvision.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="MedVision - Recordatorios inteligentes de medicamentos"> 
+  <meta property="og:description" content="Organiza tus medicamentos, confirma tus dosis y comparte alertas importantes con un contacto de confianza."> 
+  <meta property="og:url" content="https://play.google.com/store/apps/details?id=com.jsdev.medication.camerareminder">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:title" content="MedVision - Recordatorios de medicamentos y seguimiento de dosis"> 
+  <meta name="twitter:description" content="Recordatorios inteligentes, confirmación de dosis y alertas a contactos de confianza.">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8FVHCZT452"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8FVHCZT452');
+  </script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+    }
+
+    body {
+      background-color: #f4f6f8;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* TOPBAR */
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+    }
+
+    .brand-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    /* MAIN NAV */
+    .main-nav {
+      background: white;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 12px;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 400;
+    }
+
+    .main-nav a {
+      text-decoration: none;
+      color: #2a5298;
+      font-weight: 600;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background-color: white;
+      padding: 28px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+      color: #1e3c72;
+      font-size: clamp(1.6rem, 3vw, 2rem);
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    h2, h3 {
+      color: #1e3c72;
+      margin-top: 25px;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+
+    .app-image {
+      max-width: 260px;
+      display: block;
+      margin: 20px auto;
+      border-radius: 20px;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 14px 22px;
+      background-color: #1e3c72;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+    footer {
+      background-color: #1e3c72;
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+      margin-top: 60px;
+    }
+
+    footer a {
+      color: #a9c9ff;
+      text-decoration: none;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <img src="../assets/img/web2.png" alt="Logo JSDev" class="logo">
+  <span class="brand-title">JSDev</span>
+</header>
+
+<nav class="main-nav">
+  <a href="../index.html">Inicio</a>
+  <a href="../index.html#apps">Proyectos</a>
+  <a href="servicios.html">Servicios</a>
+  <a href="../index.html#contacto">Contacto</a>
+</nav>
+
+<main>
+  <article class="card">
+    <h1>MedVision – Recordatorios inteligentes de medicamentos</h1>
+
+    <img src="../assets/img/medvision.png" alt="MedVision" 
+      alt="Icono de la aplicación MedVision para Android"
+      class="app-image"
+      loading="lazy"
+    >
+
+    <h2>¿Qué es MedVision?</h2>
+
+<section>
+    <p><strong>MedVision</strong> es la aplicación Android definitiva diseñada para ayudar a personas y familias a organizar sus rutinas de medicación diaria sin complicaciones. Gestionar múltiples medicamentos, pastillas y horarios exigentes puede convertirse en una tarea difícil; por eso, MedVision ofrece una solución intuitiva para realizar el seguimiento exacto de tus tomas y compartir datos críticos con personas de absoluta confianza.</p>
+
+    <p>La aplicación te permite configurar alarmas personalizadas, registrar la confirmación de cada dosis y mantener protegidos a tus seres queridos enviando alertas automáticas si una toma importante no se registra dentro del margen de tiempo establecido por el usuario.</p>
+</section>
+
+<div class="cta-container">
+        <a href="https://play.google.com/store/apps/details?id=com.jsdev.medication.camerareminder" 
+	target="_blank" 
+	rel="noopener" 
+	class="button"> Descargar MedVision Gratis </a>
+</div>
+
+<section>
+    <h2>Funciones Principales y Beneficios para tu Salud</h2>
+    <div class="features-grid">
+        <article class="feature-item">
+            <strong>Alarma y Recordatorios de Medicamentos:</strong> Crea alertas totalmente personalizadas con el nombre del fármaco, horarios detallados e indicaciones exactas de la dosis.
+        </article>
+        <article class="feature-item">
+            <strong>Alertas SMS Automáticas a Familiares:</strong> Envía notificaciones de emergencia vía SMS a un contacto de confianza si una toma crítica con seguimiento no se confirma en el plazo configurado.
+        </article>
+        <article class="feature-item">
+            <strong>Identificación Visual con Fotos:</strong> Añade imágenes reales de las cajas, blísteres o comprimidos para identificar de forma visual y rápida cada pastilla dentro de tu rutina.
+        </article>
+        <article class="feature-item">
+            <strong>Seguimiento Inteligente de Tomas:</strong> Elige qué medicamentos requieren una supervisión estricta y cuáles pueden funcionar con un aviso o recordatorio convencional.
+        </article>
+        <article class="feature-item">
+            <strong>Tiempos de Tolerancia Personalizados:</strong> Define con total flexibilidad el periodo de margen que debe transcurrir antes de notificar a tu cuidador o familiar.
+        </article>
+        <article class="feature-item">
+            <strong>Alarmas por Voz Avanzadas:</strong> Escucha el nombre exacto de la medicación y su dosis mediante anuncios de audio cuando se activa la alarma, ideal para adultos mayores y personas no videntes o con discapacidad visual.
+        </article>
+    </div>
+    <div class="feature-item" style="width: 100%;">
+        <strong>Almacenamiento Local 100% Privado:</strong> Toda la información, horarios e imágenes se guardan exclusivamente en la memoria interna de tu dispositivo para máxima seguridad.
+    </div>
+</section>
+
+<section>
+    <h2>¿Cómo funciona el Seguimiento Automático de Medicación?</h2>
+    <p>MedVision cuenta con un sistema inteligente de monitoreo pasivo diseñado para brindar total tranquilidad al ámbito familiar y a los cuidadores:</p>
+    <ol>
+        <li><strong>Configuración:</strong> Registrás el medicamento y establecés sus alarmas horarias.</li>
+        <li><strong>Supervisión:</strong> Activás el seguimiento adicional para las tomas más importantes del día.</li>
+        <li><strong>Tolerancia:</strong> Determinás el tiempo límite de espera (por ejemplo, 30 o 60 minutos).</li>
+        <li><strong>Acción Automatizada:</strong> Si no confirmás la toma en la app durante ese lapso, el sistema procesa el envío de un SMS de aviso al contacto asignado.</li>
+    </ol>
+</section>
+
+<div class="info-box">
+    <strong>Privacidad y Control Absoluto:</strong> MedVision no te obliga a crear cuentas en internet ni a subir datos médicos a la nube. El usuario es el único que decide qué medicamentos supervisar y a quién alertar, manteniendo el control completo de su información personal.
+</div>
+
+<section>
+    <h2>Preguntas Frecuentes (FAQ)</h2>
+
+    <h3>¿La app permite organizar múltiples tratamientos?</h3>
+    <p>Sí. Puedes añadir un catálogo ilimitado de medicamentos con dosis, alarmas diarias o intermitentes y configuraciones de alerta independientes.</p>
+
+    <h3>¿Es necesario tener conexión a Internet?</h3>
+    <p>No es necesario para los recordatorios. Las alarmas de MedVision se ejecutan localmente en el dispositivo Android. La función de alertas SMS si se realiza mediante la red de telefonía móvil de tu dispositivo móvil.</p>
+
+    <h3>¿Puedo desactivar las alertas por SMS para ciertos medicamentos?</h3>
+    <p>Por supuesto. Por defecto, todos los medicamentos se configuran inicialmente como críticos con el protocolo SMS activo. Sin embargo, puedes discriminar con precisión cuáles mantienen este aviso de emergencia y cuáles operan únicamente como notificaciones normales en pantalla.</p>
+
+    <h3>¿Qué ocurre si olvido registrar la toma?</h3>
+    <p>Si el margen de tolerancia configurado finaliza sin que hayas pulsado el botón de confirmación, MedVision enviará la alerta por mensaje de texto al familiar o contacto elegido para informarle del retraso.</p>
+</section>
+
+<section class="disclaimer-box">
+    <h2>Aviso Importante</h2>
+    <p>MedVision es exclusivamente una herramienta tecnológica de recordatorio y asistencia en la organización de tratamientos médicos. <strong>No proporciona diagnósticos, asesoramiento profesional de salud, recomendaciones médicas ni servicios de respuesta ante emergencias sanitarias.</strong> Consulta siempre con tu médico o farmacéutico de cabecera antes de realizar modificaciones en tus planes de tratamiento.</p>
+</section>
+
+  </article>
+</main>
+
+<footer>
+  <p>© <span id="year"></span> JSDev – Desarrollo de Apps Android y Sitios Web</p>
+  <p>
+    <a href="politica.html">Política de Privacidad</a>
+  </p>
+</footer>
+
+<script>    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+<!-- Rich Snippet -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "MedVision",
+  "operatingSystem": "ANDROID",
+  "applicationCategory": "HealthApplication",
+  "url": "https://play.google.com/store/apps/details?id=com.jsdev.medication.camerareminder",
+  "description": "Aplicación Android para recordatorios de medicamentos, seguimiento de tomas y alertas automáticas por SMS a contactos de confianza.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0.00",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "JSDev"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+   {
+     "@type": "Question",
+     "name": "¿MedVision sirve para varios medicamentos?",
+     "acceptedAnswer": {
+       "@type": "Answer",
+       "text": "Sí. Puedes crear múltiples medicamentos con horarios, dosis y configuraciones de seguimiento independientes."
+     }
+   },
+   {
+     "@type": "Question",
+     "name": "¿Necesito internet para recibir recordatorios?",
+     "acceptedAnswer": {
+       "@type": "Answer",
+       "text": "No, los recordatorios funcionan localmente en el dispositivo. El envío de SMS depende de la disponibilidad del servicio de mensajería del dispositivo."
+     }
+   },
+   {
+     "@type": "Question",
+     "name": "¿Puedo elegir qué medicamentos generan alertas?",
+     "acceptedAnswer": {
+       "@type": "Answer",
+       "text": "Sí. Puedes decidir qué medicamentos requieren seguimiento adicional y cuáles funcionarán únicamente con un recordatorio normal."
+     }
+   },
+   { 
+     "@type": "Question",
+     "name": "¿Qué ocurre si no confirmo una toma importante?",
+     "acceptedAnswer": {
+     "@type": "Answer",
+     "text": "Si el seguimiento está activado y el periodo configurado finaliza sin confirmación, MedVision puede enviar una alerta SMS al contacto de confianza seleccionado para que se comuniquen." } } ] } </script>
+
+</body>
+</html>
