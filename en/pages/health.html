@@ -198,6 +198,8 @@
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       text-align: center;
       transition: transform 0.3s ease;
+
+      position: relative;
     }
 
     .card:hover {
@@ -217,6 +219,26 @@
       margin-bottom: 10px;
       font-size: 1.3rem;
     }
+
+    .status-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,.15);
+    }
+
+    .status-play {
+  background: #28a745;   /* Verde */
+}
+
+.status-coming {
+  background: #ff9800;   /* Naranja */
+}
 
     .button {
       display: inline-block;
@@ -259,6 +281,7 @@
     }
 
   </style>
+  
 </head>
 
 <body>
@@ -316,6 +339,19 @@ and healthy habits, combining pharmacy and technology.
   <h2>Android Apps for Health and Prevention</h2>
 
   <div class="projects">
+
+    <div class="card">
+      <div class="status-badge status-play">
+        Available on Google Play
+      </div>
+      <img src="../assets/img/medvision.png" alt="MedVision">
+      <h3>MedVision</h3>
+      <p>
+  An Android app designed to help you stay on track with your medications using smart reminders. It automatically alerts a family member or trusted contact via text message if you miss a dose.
+      </p>
+      <a href="https://play.google.com/store/apps/details?id=com.jsdev.medication.camerareminder" target="_blank" class="button">Google Play</a><br>
+      <a href="medvision.html" class="button">Learn More</a>
+    </div>    
 
     <div class="card">
       <img src="https://play-lh.googleusercontent.com/heJ-rfmepYOrdmhTkSEI6Ig3T6OusFu3XoUdNggs5i0vgiXurgoQSEXmZA2SPoGM8w=w240-h480-rw" alt="InfoDengue">
