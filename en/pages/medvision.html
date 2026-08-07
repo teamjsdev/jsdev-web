@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>MedVision – Medication Reminder App & Pill Alarm for Android | JSDev</title>
+
+  <!-- SEO -->
+  <meta name="description" content="MedVision is an Android medication reminder app with pill alarms, dose confirmation, medication tracking, and automatic SMS alerts for caregivers or trusted contacts when a critical dose is missed.">
+  <meta name="keywords" content="medication reminder app, pill reminder, pill alarm, medicine reminder, dose tracker, medication tracker, medication schedule, missed dose alert, caregiver alert, Android medication app, MedVision">
+  <meta name="author" content="JSDev">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://jsdevmobile.com/en/pages/medvision.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="MedVision – Smart Medication Reminder & Pill Tracker for Android">
+  <meta property="og:description" content="Manage medications, confirm doses, track your treatment, and send automatic alerts to a trusted contact if an important dose is missed."> 
+  
+  <meta property="og:url" content="https://play.google.com/store/apps/details?id=com.jsdev.medication.camerareminder">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:title" content="MedVision – Medication Reminder & Pill Tracker">
+  <meta name="twitter:description" content="Smart pill reminders, dose tracking, voice alarms, and caregiver SMS alerts for Android.">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8FVHCZT452"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8FVHCZT452');
+  </script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+    }
+
+    body {
+      background-color: #f4f6f8;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* TOPBAR */
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+    }
+
+    .brand-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    /* MAIN NAV */
+    .main-nav {
+      background: white;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 12px;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 400;
+    }
+
+    .main-nav a {
+      text-decoration: none;
+      color: #2a5298;
+      font-weight: 600;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background-color: white;
+      padding: 28px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+      color: #1e3c72;
+      font-size: clamp(1.6rem, 3vw, 2rem);
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    h2, h3 {
+      color: #1e3c72;
+      margin-top: 25px;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+
+    .app-image {
+      max-width: 260px;
+      display: block;
+      margin: 20px auto;
+      border-radius: 20px;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 14px 22px;
+      background-color: #1e3c72;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+    footer {
+      background-color: #1e3c72;
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+      margin-top: 60px;
+    }
+
+    footer a {
+      color: #a9c9ff;
+      text-decoration: none;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <img src="../assets/img/web2.png" alt="Logo JSDev" class="logo">
+  <span class="brand-title">JSDev</span>
+</header>
+
+<nav class="main-nav">
+  <a href="../index.html">Home</a>
+  <a href="../index.html#apps">Projects</a>
+  <a href="services.html">Services</a>
+  <a href="../index.html#contacto">Contact</a>
+</nav>
+
+<main>
+  <article class="card">
+    <h1>MedVision – Smart Medication Reminder & Pill Alarm App</h1>
+
+    <img src="../../assets/img/medvision.png"
+     alt="MedVision Android medication reminder app icon"
+     class="app-image"
+     loading="lazy">
+
+    <h2>What is MedVision?</h2>
+
+<section>
+  <p><strong>MedVision</strong> is an Android medication reminder and pill tracking app designed to help individuals and families manage daily treatments with confidence. Keeping track of multiple medications, pills, and schedules can be challenging, so MedVision provides a simple and reliable way to organize reminders, confirm doses, and monitor medication routines.</p>
+
+  <p>You can create personalized medication alarms, record each dose, and automatically notify a trusted contact by SMS if an important dose is not confirmed within the time window you choose. MedVision is especially useful for older adults, caregivers, and anyone who wants extra peace of mind when managing medications.</p>
+</section>
+
+<div class="cta-container">
+        <a href="https://play.google.com/store/apps/details?id=com.jsdev.medication.camerareminder" 
+	target="_blank" 
+	rel="noopener" 
+	class="button"> Download MedVision for Free </a>
+</div>
+
+<section>
+    <h2>Key Features & Benefits</h2>
+
+<div class="features-grid">
+
+  <article class="feature-item">
+    <strong>Custom medication reminders:</strong>
+    Set personalized pill alarms with medication names, schedules, and dosage instructions.
+  </article>
+
+  <article class="feature-item">
+    <strong>Automatic SMS caregiver alerts:</strong>
+    Send text message alerts to a trusted contact when a critical dose is not confirmed.
+  </article>
+
+  <article class="feature-item">
+    <strong>Photo-based pill identification:</strong>
+    Add pictures of pill boxes, blister packs, or tablets for quick visual recognition.
+  </article>
+
+  <article class="feature-item">
+    <strong>Smart dose tracking:</strong>
+    Choose which medications require strict monitoring and which only need a standard reminder.
+  </article>
+
+  <article class="feature-item">
+    <strong>Flexible grace periods:</strong>
+    Define how long MedVision should wait before sending a missed-dose alert.
+  </article>
+
+  <article class="feature-item">
+    <strong>Voice medication alarms:</strong>
+    Hear the medication name and dosage when the alarm sounds, ideal for seniors and visually impaired users.
+  </article>
+
+</div>
+
+<div class="feature-item" style="width:100%;">
+  <strong>100% local storage:</strong>
+  Your medication data, schedules, and photos stay on your Android device for maximum privacy.
+</div>
+</section>
+
+<section>
+  <h2>How the Automatic Medication Monitoring Works</h2>
+
+  <ol>
+    <li><strong>Set up your medication:</strong> Add the medicine and choose reminder times.</li>
+    <li><strong>Enable monitoring:</strong> Activate additional tracking for important doses.</li>
+    <li><strong>Choose a grace period:</strong> Select how long to wait before sending an alert.</li>
+    <li><strong>Automatic action:</strong> If the dose is not confirmed in time, MedVision can send an SMS alert to the selected trusted contact.</li>
+  </ol>
+</section>
+
+<div class="info-box">
+  <strong>Privacy First:</strong>
+  MedVision does not require online accounts or cloud storage. You decide which medications are monitored and who receives alerts, keeping full control of your personal information.
+</div>
+
+<section>
+  <h2>Frequently Asked Questions</h2>
+
+  <h3>Can I manage multiple medications?</h3>
+  <p>Yes. You can add multiple medications with different doses, schedules, reminders, and monitoring settings.</p>
+
+  <h3>Do I need an internet connection?</h3>
+  <p>No. Medication reminders and alarms work locally on your Android device. SMS alerts use your phone's mobile network.</p>
+
+  <h3>Can I disable SMS alerts for specific medications?</h3>
+  <p>Yes. You can decide which medications trigger caregiver SMS alerts and which only show standard reminders.</p>
+
+  <h3>What happens if I forget to confirm a dose?</h3>
+  <p>If the configured grace period ends without confirmation, MedVision can send a missed-dose SMS alert to your chosen trusted contact.</p>
+</section>
+
+<section class="disclaimer-box">
+  <h2>Important Notice</h2>
+
+  <p>MedVision is a medication reminder and treatment organization tool. It does not provide medical advice, diagnoses, treatment recommendations, or emergency response services. Always consult your doctor or pharmacist before making changes to your medications or treatment plan.</p>
+</section>
+
+  </article>
+</main>
+
+<footer>
+  <p>© <span id="year"></span> JSDev – Android App & Web Development</p>
+  <p>
+  <a href="privacy.html">Privacy Policy</a>
+</p>
+</footer>
+
+<script>    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+<!-- Rich Snippet -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "MedVision",
+  "operatingSystem": "ANDROID",
+  "applicationCategory": "HealthApplication",
+  "url": "https://play.google.com/store/apps/details?id=com.jsdev.medication.camerareminder",
+  "description": "Android medication reminder app with pill alarms, dose tracking, voice reminders, and automatic SMS alerts for caregivers or trusted contacts when a critical dose is missed."  "offers": {
+    "@type": "Offer",
+    "price": "0.00",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "JSDev"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I manage multiple medications with MedVision?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. You can create multiple medications with independent schedules, dosages, reminders, and monitoring settings."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need an internet connection to receive medication reminders?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Medication reminders work locally on your Android device. SMS alerts depend on your device's mobile network and messaging service availability."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I choose which medications trigger caregiver alerts?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. You can decide which medications require additional monitoring and which will function only as standard reminders."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if I do not confirm an important dose?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If monitoring is enabled and the configured grace period ends without confirmation, MedVision can send an SMS alert to the selected trusted contact so they can check on you."
+      }
+    }
+  ]
+}
+</script>
+
+</body>
+</html>
