@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>MedVision – App de Lembrete de Medicamentos e Alarme de Remédios para Android | JSDev</title>
+
+  <!-- SEO -->
+  <meta name="description" content="MedVision é um aplicativo Android de lembrete de medicamentos com alarmes de remédios, confirmação de doses, rastreamento de medicação e alertas automáticos por SMS para cuidadores ou contatos de confiança quando uma dose importante não é confirmada.">
+  <meta name="keywords" content="app lembrete de medicamentos, lembrete de remédios, alarme de remédios, rastreamento de doses, controle de medicação, agenda de medicamentos, alerta de dose perdida, alerta para cuidador, aplicativo Android de medicamentos, MedVision">
+  <meta name="author" content="JSDev">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://jsdevmobile.com/pt/pages/medvision.html">
+
+  <!-- Open Graph -->
+   <meta property="og:title" content="MedVision – Lembrete Inteligente de Medicamentos e Controle de Doses para Android">
+   <meta property="og:description" content="Organize seus medicamentos, confirme suas doses, acompanhe seu tratamento e envie alertas automáticos para um contato de confiança se uma dose importante não for confirmada.">
+  
+  <meta property="og:url" content="https://play.google.com/store/apps/details?id=com.jsdev.medication.camerareminder">
+
+  <!-- Twitter Card -->
+   <meta name="twitter:title" content="MedVision – Lembrete de Medicamentos e Controle de Doses">
+   <meta name="twitter:description" content="Lembretes inteligentes de remédios, rastreamento de doses, alarmes por voz e alertas por SMS para cuidadores no Android.">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8FVHCZT452"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8FVHCZT452');
+  </script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+    }
+
+    body {
+      background-color: #f4f6f8;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* TOPBAR */
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+    }
+
+    .brand-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    /* MAIN NAV */
+    .main-nav {
+      background: white;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 12px;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 400;
+    }
+
+    .main-nav a {
+      text-decoration: none;
+      color: #2a5298;
+      font-weight: 600;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background-color: white;
+      padding: 28px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+      color: #1e3c72;
+      font-size: clamp(1.6rem, 3vw, 2rem);
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    h2, h3 {
+      color: #1e3c72;
+      margin-top: 25px;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+
+    .app-image {
+      max-width: 260px;
+      display: block;
+      margin: 20px auto;
+      border-radius: 20px;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 14px 22px;
+      background-color: #1e3c72;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+    footer {
+      background-color: #1e3c72;
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+      margin-top: 60px;
+    }
+
+    footer a {
+      color: #a9c9ff;
+      text-decoration: none;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <img src="../assets/img/web2.png" alt="Logo JSDev" class="logo">
+  <span class="brand-title">JSDev</span>
+</header>
+
+<nav class="main-nav">
+<a href="../index.html">Início</a>
+<a href="../index.html#apps">Projetos</a>
+<a href="servicos.html">Serviços</a>
+<a href="../index.html#contacto">Contato</a>
+</nav>
+
+<main>
+  <article class="card">
+    <h1>MedVision – Lembrete Inteligente de Medicamentos e Alarme de Remédios</h1>
+
+    <img src="../../assets/img/medvision.png"
+     alt="Ícone do aplicativo Android MedVision para lembrete de medicamentos"
+     class="app-image"
+     loading="lazy">
+
+    <h2>O que é o MedVision?</h2>
+
+<section>
+  <p><strong>MedVision</strong> é um aplicativo Android de lembrete de medicamentos e controle de doses criado para ajudar pessoas e famílias a gerenciar tratamentos diários com mais segurança e tranquilidade. Controlar vários medicamentos, comprimidos e horários pode ser complicado, por isso o MedVision oferece uma maneira simples e confiável de organizar lembretes, confirmar doses e acompanhar sua rotina de medicação.</p>
+
+  <p>Você pode criar alarmes personalizados, registrar cada dose e notificar automaticamente um contato de confiança por SMS caso uma dose importante não seja confirmada dentro do período definido por você. O MedVision é especialmente útil para idosos, cuidadores e qualquer pessoa que queira mais tranquilidade ao administrar medicamentos.</p>
+</section>
+
+<div class="cta-container">
+        <a href="https://play.google.com/store/apps/details?id=com.jsdev.medication.camerareminder" 
+	target="_blank" 
+	rel="noopener" 
+	class="button"> Baixar MedVision Grátis </a>
+</div>
+
+<section>
+    <h2>Principais Recursos e Benefícios</h2>
+
+<div class="features-grid">
+
+  <article class="feature-item">
+    <strong>Lembretes personalizados de medicamentos:</strong>
+    Configure alarmes de remédios com nome do medicamento, horários e instruções de dose.
+  </article>
+
+  <article class="feature-item">
+    <strong>Alertas automáticos por SMS para cuidadores:</strong>
+    Envie mensagens de texto para um contato de confiança quando uma dose crítica não for confirmada.
+  </article>
+
+  <article class="feature-item">
+    <strong>Identificação visual com fotos:</strong>
+    Adicione fotos de caixas, cartelas ou comprimidos para reconhecer rapidamente cada medicamento.
+  </article>
+
+  <article class="feature-item">
+    <strong>Controle inteligente de doses:</strong>
+    Escolha quais medicamentos exigem monitoramento rigoroso e quais precisam apenas de um lembrete comum.
+  </article>
+
+  <article class="feature-item">
+    <strong>Períodos de tolerância flexíveis:</strong>
+    Defina quanto tempo o MedVision deve esperar antes de enviar um alerta de dose perdida.
+  </article>
+
+  <article class="feature-item">
+    <strong>Alarmes por voz:</strong>
+    Ouça o nome do medicamento e a dose quando o alarme tocar, ideal para idosos e pessoas com deficiência visual.
+  </article>
+
+</div>
+
+<div class="feature-item" style="width:100%;">
+  <strong>Armazenamento 100% local:</strong>
+  Seus dados, horários e fotos permanecem no seu dispositivo Android para máxima privacidade.
+</div>
+</section>
+
+<section>
+  <h2>Como funciona o monitoramento automático da medicação</h2>
+
+  <ol>
+    <li><strong>Cadastre o medicamento:</strong> Adicione o remédio e escolha os horários dos lembretes.</li>
+    <li><strong>Ative o monitoramento:</strong> Habilite o acompanhamento adicional para as doses mais importantes.</li>
+    <li><strong>Defina o período de tolerância:</strong> Escolha quanto tempo esperar antes de enviar um alerta.</li>
+    <li><strong>Ação automática:</strong> Se a dose não for confirmada a tempo, o MedVision poderá enviar um SMS ao contato de confiança selecionado.</li>
+  </ol>
+</section>
+
+<div class="info-box">
+  <strong>Privacidade em primeiro lugar:</strong>
+  O MedVision não exige contas online nem armazenamento em nuvem. Você decide quais medicamentos serão monitorados e quem receberá os alertas, mantendo controle total sobre suas informações pessoais.
+</div>
+
+<section>
+  <h2>Perguntas frequentes</h2>
+
+  <h3>Posso gerenciar vários medicamentos?</h3>
+  <p>Sim. Você pode adicionar vários medicamentos com doses, horários, lembretes e configurações de monitoramento diferentes.</p>
+
+  <h3>Preciso de conexão com a internet?</h3>
+  <p>Não. Os lembretes e alarmes funcionam localmente no seu dispositivo Android. Os alertas por SMS utilizam a rede móvel do aparelho.</p>
+
+  <h3>Posso desativar os alertas por SMS para alguns medicamentos?</h3>
+  <p>Sim. Você pode escolher quais medicamentos enviarão alertas ao cuidador e quais funcionarão apenas como lembretes normais.</p>
+
+  <h3>O que acontece se eu esquecer de confirmar uma dose?</h3>
+  <p>Se o período de tolerância terminar sem confirmação, o MedVision poderá enviar um alerta por SMS para o contato de confiança escolhido.</p>
+</section>
+
+<section class="disclaimer-box">
+  <h2>Aviso importante</h2>
+
+  <p>O MedVision é uma ferramenta de lembrete de medicamentos e organização de tratamentos. Ele não fornece aconselhamento médico, diagnósticos, recomendações de tratamento nem serviços de emergência. Consulte sempre seu médico ou farmacêutico antes de fazer alterações nos seus medicamentos ou no seu plano de tratamento.</p>
+</section>
+
+  </article>
+</main>
+
+<footer>
+  <p>© <span id="year"></span> JSDev – Desenvolvimento de Apps Android e Sites Web</p>
+  <p>
+<a href="privacidade.html">Política de Privacidade</a>
+</p>
+</footer>
+
+<script>    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+<!-- Rich Snippet -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "MedVision",
+  "operatingSystem": "ANDROID",
+  "applicationCategory": "HealthApplication",
+  "url": "https://play.google.com/store/apps/details?id=com.jsdev.medication.camerareminder",
+  "description": "Aplicativo Android de lembrete de medicamentos com alarmes de remédios, rastreamento de doses, lembretes por voz e alertas automáticos por SMS para cuidadores ou contatos de confiança quando uma dose importante não é confirmada.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0.00",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "JSDev"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Posso gerenciar vários medicamentos com o MedVision?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim. Você pode cadastrar vários medicamentos com horários, doses, lembretes e configurações de monitoramento independentes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Preciso de internet para receber os lembretes de medicamentos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Não. Os lembretes funcionam localmente no seu dispositivo Android. Os alertas por SMS dependem da rede móvel e da disponibilidade do serviço de mensagens do aparelho."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Posso escolher quais medicamentos enviam alertas para o cuidador?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim. Você pode decidir quais medicamentos exigem monitoramento adicional e quais funcionarão apenas como lembretes comuns."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "O que acontece se eu não confirmar uma dose importante?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Se o monitoramento estiver ativado e o período de tolerância configurado terminar sem confirmação, o MedVision poderá enviar um alerta por SMS para o contato de confiança selecionado para que ele possa verificar se está tudo bem com você."
+      }
+    }
+  ]
+}
+</script>
+
+</body>
+</html>
