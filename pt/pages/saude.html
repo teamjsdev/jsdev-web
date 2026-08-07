@@ -27,7 +27,7 @@
     gtag('config', 'G-8FVHCZT452');
   </script>
 
-  <style>
+<style>
     * {
       margin: 0;
       padding: 0;
@@ -41,6 +41,7 @@
       line-height: 1.6;
     }
 
+    /* TOP BAR */
     .topbar {
       display: flex;
       align-items: center;
@@ -76,6 +77,7 @@
       opacity: 0.9;
     }
 
+    /* SIDE MENU */
     .side-menu {
       display: none;
       position: absolute;
@@ -99,6 +101,7 @@
       background: #f0f4ff;
     }
 
+    /* MAIN NAV */
     .main-nav {
       position: sticky;
       top: 0;
@@ -120,6 +123,7 @@
       cursor: pointer;
     }
 
+    /* DROPDOWN */
     .dropdown {
       position: relative;
     }
@@ -149,6 +153,7 @@
       display: block;
     }
 
+    /* HERO */
     .hero {
       background: linear-gradient(135deg, #1e3c72, #2a5298);
       color: white;
@@ -193,6 +198,8 @@
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       text-align: center;
       transition: transform 0.3s ease;
+
+      position: relative;
     }
 
     .card:hover {
@@ -212,6 +219,26 @@
       margin-bottom: 10px;
       font-size: 1.3rem;
     }
+
+    .status-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,.15);
+    }
+
+    .status-play {
+  background: #28a745;   /* Verde */
+}
+
+.status-coming {
+  background: #ff9800;   /* Naranja */
+}
 
     .button {
       display: inline-block;
@@ -252,6 +279,7 @@
       color: #a9c9ff;
       text-decoration: none;
     }
+
   </style>
 </head>
 
@@ -305,6 +333,19 @@
   <h2>Apps publicados</h2>
 
   <div class="projects">
+
+    <div class="card">
+      <div class="status-badge status-play">
+        Disponível no Google Play
+      </div>
+      <img src="../../assets/img/medvision.png" alt="MedVision">
+      <h3>MedVision</h3>
+      <p>
+  Aplicativo Android para ajudar você a seguir seus tratamentos com lembretes inteligentes e alertas por mensagem de texto para um familiar ou pessoa de confiança caso uma dose seja perdida.
+      </p>
+      <a href="https://play.google.com/store/apps/details?id=com.jsdev.medication.camerareminder" target="_blank" class="button">Google Play</a><br>
+      <a href="medvision.html" class="button">Mais detalhes</a>
+    </div>       
 
     <div class="card">
       <img src="https://play-lh.googleusercontent.com/heJ-rfmepYOrdmhTkSEI6Ig3T6OusFu3XoUdNggs5i0vgiXurgoQSEXmZA2SPoGM8w=w240-h480-rw" alt="InfoDengue">
