@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>GymLoad – App para Registrar Treinos de Academia | JSDev</title>
+
+  <!-- SEO -->
+  <meta name="description" content="GymLoad é um aplicativo Android para registrar treinos de academia, gerenciar exercícios, séries, repetições, peso levantado e acompanhar seu progresso fitness.">  
+  <meta name="keywords" content="gymload, app de academia, registro de treino, tracker de treino, diário de treino, rotina de academia, acompanhamento de exercícios, peso levantado, hipertrofia, treino de força, aplicativo fitness Android">
+  <meta name="author" content="JSDev">
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://jsdevmobile.com/pt/pages/gymload-android-app-pt.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="GymLoad – App para Registrar Treinos de Academia"> 
+  <meta property="og:description" content="Crie rotinas, registre exercícios, séries, peso levantado e acompanhe seu progresso fitness com o GymLoad.">
+  <!-- <meta property="og:image" content="https://play-lh.googleusercontent.com/cLz57paREaEp90HBrzE3YHujZkBESe7hdgStAsFBMoNeRmOyaR0_YZ_X_F4cVnxQdUViFcNvQzi_IJDCL5C8gA=w240-h480-rw"> -->
+  <meta property="og:url" content="https://play.google.com/store/apps/details?id=com.jsdev.gymload.repstracker">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:title" content="GymLoad – Registro de Treinos e Progresso"> 
+  <meta name="twitter:description" content="Aplicativo Android para registrar rotinas, exercícios, séries, peso levantado e progresso na academia.">
+  <!-- <meta name="twitter:image" content="https://play-lh.googleusercontent.com/cLz57paREaEp90HBrzE3YHujZkBESe7hdgStAsFBMoNeRmOyaR0_YZ_X_F4cVnxQdUViFcNvQzi_IJDCL5C8gA=w240-h480-rw"> -->
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8FVHCZT452"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8FVHCZT452');
+  </script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+    }
+
+    body {
+      background-color: #f4f6f8;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* TOPBAR */
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+    }
+
+    .brand-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    /* MAIN NAV */
+    .main-nav {
+      background: white;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 12px;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 400;
+    }
+
+    .main-nav a {
+      text-decoration: none;
+      color: #2a5298;
+      font-weight: 600;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background-color: white;
+      padding: 28px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+      color: #1e3c72;
+      font-size: clamp(1.6rem, 3vw, 2rem);
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    h2, h3 {
+      color: #1e3c72;
+      margin-top: 25px;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+
+    .app-image {
+      max-width: 260px;
+      display: block;
+      margin: 20px auto;
+      border-radius: 20px;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 14px 22px;
+      background-color: #1e3c72;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+    footer {
+      background-color: #1e3c72;
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+      margin-top: 60px;
+    }
+
+    footer a {
+      color: #a9c9ff;
+      text-decoration: none;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+<img src="../../assets/img/web2.png" alt="Logo JSDev" class="logo">
+<span class="brand-title">JSDev</span>
+</header>
+
+<nav class="main-nav">
+<a href="../index.html">Início</a>
+<a href="../index.html#apps">Projetos</a>
+<a href="servicos.html">Serviços</a>
+<a href="../index.html#contacto">Contato</a>
+</nav>
+
+<main>
+  <article class="card">
+    <h1>GymLoad – App para Registrar Treinos de Academia</h1>
+
+    <img
+      src="https://play-lh.googleusercontent.com/cLz57paREaEp90HBrzE3YHujZkBESe7hdgStAsFBMoNeRmOyaR0_YZ_X_F4cVnxQdUViFcNvQzi_IJDCL5C8gA=w240-h480-rw"
+      alt="GymLoad"
+      class="app-image"
+      loading="lazy"
+    >
+
+    <h2>O que é o GymLoad?</h2>
+
+<p> <strong>GymLoad</strong> é um aplicativo Android desenvolvido para registrar treinos de academia, gerenciar exercícios, séries, repetições e o peso levantado em cada sessão de treino. </p>
+
+<p> Com o GymLoad, você pode criar rotinas semanais, organizar exercícios por dia, salvar anotações importantes, adicionar fotos de máquinas e acompanhar seu progresso a longo prazo em um único aplicativo. </p>
+
+<p> Seja para treino de força, hipertrofia ou condicionamento físico geral, o GymLoad ajuda você a manter um histórico completo dos seus treinos para tomar melhores decisões e evoluir de forma consistente. </p>
+
+<h2>Principais Recursos</h2>
+
+<ul> 
+    <li>Criar rotinas de treino organizadas por dia.</li> 
+    <li>Registrar exercícios, séries, repetições e peso levantado.</li> 
+    <li>Usar o cronômetro de descanso entre as séries.</li> 
+    <li>Salvar anotações personalizadas para cada exercício.</li> 
+    <li>Adicionar fotos para lembrar as configurações das máquinas.</li> 
+    <li>Visualizar estatísticas e progresso dos treinos.</li> 
+    <li>Analisar o progresso semanal e mensal.</li> 
+    <li>Acompanhar o volume de treino por grupo muscular.</li> 
+    <li>Registrar recordes pessoais.</li> 
+    <li>Acompanhar sua sequência de treinos.</li> 
+    <li>Modo escuro integrado.</li> 
+</ul>
+
+
+<p>
+      Ideal para pessoas que treinam na academia e buscam registrar rotinas,
+      controlar a carga de trabalho, acompanhar progressões de força e manter um
+      histórico detalhado dos seus treinos.
+    </p>
+
+    <a
+      href="https://play.google.com/store/apps/details?id=com.jsdev.gymload.repstracker"
+      target="_blank"
+      rel="noopener"
+      class="button">
+      Baixar Grátis
+    </a>
+
+<section>
+
+      <h2>Por que usar o GymLoad nos seus treinos?</h2>
+
+      <p>
+        Registrar seus treinos é uma das formas mais eficazes de medir seu
+        progresso na academia. Manter o controle dos exercícios, séries,
+        repetições e cargas permite identificar melhorias, ajustar cargas e
+        manter a consistência ao longo do tempo.
+      </p>
+
+      <p>
+        Muitas pessoas treinam por meses sem lembrar exatamente quanta carga
+        utilizaram nas sessões anteriores. O GymLoad elimina esse problema permitindo
+        consultar seu histórico completo sempre que precisar.
+      </p>
+
+      <p>
+        Além de registrar dados básicos, o GymLoad permite salvar fotos dos
+        aparelhos e configurações específicas para reproduzir seus treinos de
+        forma mais precisa em sessões futuras.
+      </p>
+
+      <p>
+        O <strong>GymLoad</strong> reúne rotinas, acompanhamento de progresso,
+        estatísticas e notas de treino em um único aplicativo fácil de usar.
+      </p>
+
+      <h2>Benefícios de registrar seus treinos</h2>
+
+      <ul>
+        <li>Identificar melhorias de rendimento com dados reais.</li>
+        <li>Aplicar a sobrecarga progressiva com maior precisão.</li>
+        <li>Evitar esquecer os pesos e ajustes utilizados.</li>
+        <li>Comparar resultados entre semanas e meses.</li>
+        <li>Controlar o volume de treino por músculo.</li>
+        <li>Detectar estagnações com mais facilidade.</li>
+        <li>Manter a motivação ao observar a sua evolução.</li>
+      </ul>
+
+      <h2>App para registrar rotinas de academia e progresso físico</h2>
+
+      <p>
+        O GymLoad foi desenvolvido para atletas, iniciantes e pessoas que treinam regularmente e desejam manter um controle detalhado das suas sessões de academia. O aplicativo permite registrar rotinas, exercícios, séries, repetições, carga levantada e estatísticas de progresso direto do celular.
+      </p>
+
+      <p>
+        Graças ao histórico de treinos, é possível comparar resultados, identificar melhorias de desempenho e manter uma evolução constante ao longo do tempo. Além disso, o GymLoad inclui recursos como temporizador de descanso, notas personalizadas, fotos dos aparelhos e controle de volume de treino.
+      </p>
+
+    </section>
+
+    <section>
+
+      <h2>Perguntas frequentes</h2>
+
+      <h3>O GymLoad é gratuito?</h3>
+      <p>
+        Sim. O GymLoad pode ser baixado gratuitamente na Google Play Store.
+      </p>
+
+      <h3>Posso registrar peso e repetições?</h3>
+      <p>
+        Sim. Você pode salvar a carga utilizada e as repetições realizadas em cada
+        série dos seus exercícios.
+      </p>
+
+      <h3>Serve para treinos de força e hipertrofia?</h3>
+      <p>
+        Sim. O GymLoad pode ser utilizado tanto para programas de força quanto para rotinas
+        focadas em hipertrofia e condicionamento físico geral.
+      </p>
+
+      <h3>Posso salvar fotos das máquinas?</h3>
+      <p>
+        Sim. O aplicativo permite adicionar fotos para lembrar posições,
+        ajustes e configurações específicas das máquinas da academia.
+      </p>
+
+      <h3>Possui temporizador de descanso?</h3>
+      <p>
+        Sim. Possui um temporizador integrado para controlar os descansos entre
+        as séries durante o treino.
+      </p>
+
+    </section>
+
+  </article>
+</main>
+
+<footer>
+  <p>© <span id="year"></span> JSDev – Desenvolvimento de Apps Android e Sites Web</p>
+  <p>
+<a href="privacidade.html">Política de Privacidade</a>
+</p>
+</footer>
+
+<script>    
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "GymLoad",
+  "operatingSystem": "ANDROID",
+  "applicationCategory": "SportsApplication",
+  "url": "https://play.google.com/store/apps/details?id=com.jsdev.gymload.repstracker",
+  "description": "Aplicativo Android para registrar treinos de academia, exercícios, séries, repetições e carga levantada.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0.00",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "JSDev"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "O GymLoad é gratuito?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim. O GymLoad pode ser baixado gratuitamente na Google Play Store."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Posso registrar peso e repetições?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim. Você pode salvar a carga utilizada e as repetições realizadas em cada série do treino."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Serve para força e hipertrofia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim. O GymLoad pode ser utilizado para programas de força, hipertrofia e treino físico geral."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Possui temporizador de descanso?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim. Inclui um temporizador integrado para controlar os descansos entre as séries."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Posso salvar fotos das máquinas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim. O aplicativo permite adicionar fotos para lembrar configurações e ajustes das máquinas da academia."
+      }
+    }
+ ]
+}
+</script>
+
+</body>
+</html>
