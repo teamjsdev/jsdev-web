@@ -195,6 +195,8 @@
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       text-align: center;
       transition: transform 0.3s ease;
+
+      position: relative;
     }
 
     .card:hover {
@@ -214,6 +216,26 @@
       margin-bottom: 10px;
       font-size: 1.3rem;
     }
+
+    .status-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,.15);
+    }
+
+    .status-play {
+  background: #28a745;   /* Verde */
+}
+
+.status-coming {
+  background: #ff9800;   /* Naranja */
+}
 
     .button {
       display: inline-block;
@@ -256,6 +278,7 @@
     }
 
   </style>
+
 </head>
 
 <body>
@@ -313,15 +336,45 @@
 
   <div class="projects">
 
-     <div class="card">
+div class="card">
+      <div class="status-badge status-play">
+        Available on Google Play
+      </div>
       <img src="https://play-lh.googleusercontent.com/cLz57paREaEp90HBrzE3YHujZkBESe7hdgStAsFBMoNeRmOyaR0_YZ_X_F4cVnxQdUViFcNvQzi_IJDCL5C8gA=w240-h480-rw" alt="GymLoad">
       <h3>GymLoad</h3>
       <p>
-       Android app to create gym routines, record exercises, track sets, log weights, and monitor your workout progress.
+Android app to create gym routines, record exercises, track sets, log weights, and monitor your workout progress.
       </p>
       <a href="https://play.google.com/store/apps/details?id=com.jsdev.gymload.repstracker" target="_blank" class="button">Google Play</a><br>
       <a href="gymload-android-app-en.html" class="button">More details</a>
     </div>
+
+    <div class="card">
+      <div class="status-badge status-play">
+        Available on Google Play
+      </div>
+      <img src="https://play-lh.googleusercontent.com/ZANnY6SSCtj5Rub7uNxkqx320Eh2krGaSE3AKwZWOLu0Ymd9JB9p9UUebrdB0HedtFpxL3Yj4yMIQoeNknrzcjo=w240-h480-rw" alt="Toilet Timer">
+      <h3>Active Break Timer</h3>
+      <p>
+ Android app with reminders to drink water, move and take healthy breaks, ideal for reducing sedentary habits and improving daily routines
+      </p>
+      <a href="https://play.google.com/store/apps/details?id=com.jsdev.timer.activebreak" target="_blank" class="button">Google Play</a><br>
+      <a href="timer-pausa-activa-app-android.html" class="button">More details</a>
+    </div>
+
+        <div class="card">
+      <div class="status-badge status-play">
+        Available on Google Play
+      </div>
+      <img src="../../assets/img/bodylog-en.png" alt="BodyLog">
+      <h3>BodyLog</h3>
+      <p>
+   Android app to record weight, calculate body mass index (BMI), track calories and easily monitor your physical progress.
+      </p>
+      <a href="https://play.google.com/store/apps/details?id=com.jsdev.bodylog.bmiweight" target="_blank" class="button">Google Play</a><br>
+      <a href="bodylog.html" class="button">More details</a>
+    </div>
+    
 
   </div>
 </section>
