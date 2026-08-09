@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>BodyLog – Bajar de Peso, Contar Calorías y Controlar tu IMC | JSDev</title>
+
+  <!-- SEO -->
+  <meta name="description" content="BodyLog es una app Android gratuita para bajar de peso, contar calorías, calcular IMC, estimar TMB y seguir tu déficit calórico y progreso diario de forma simple y privada.">
+  <meta name="author" content="JSDev">
+  <meta name="robots" content="index, follow">
+  <meta name="keywords" content="BodyLog, bajar de peso, contar calorías, déficit calórico, control de peso, seguimiento de peso, IMC, TMB, GET, nutrición, bienestar, calorías diarias, perder grasa, Android">
+
+  <link rel="canonical" href="https://jsdevmobile.com/en/pages/bodylog.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="BodyLog - Registro inteligente de calorías y peso">
+  <meta property="og:description" content="Organiza tus comidas, controla tu peso, calcula IMC, TMB y visualiza tu progreso de forma simple y privada."> 
+  <meta property="og:url" content="https://play.google.com/store/apps/details?id=com.jsdev.bodylog.bmiweight">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:title" content="BodyLog - Bajar de peso, contar calorías y controlar tu IMC">
+  <meta name="twitter:description" content="Registrá comidas, calculá IMC, estimá tu gasto energético y seguí tu déficit o superávit calórico de forma simple y privada.">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8FVHCZT452"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8FVHCZT452');
+  </script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+    }
+
+    body {
+      background-color: #f4f6f8;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* TOPBAR */
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+    }
+
+    .brand-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    /* MAIN NAV */
+    .main-nav {
+      background: white;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 12px;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 400;
+    }
+
+    .main-nav a {
+      text-decoration: none;
+      color: #2a5298;
+      font-weight: 600;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background-color: white;
+      padding: 28px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+      color: #1e3c72;
+      font-size: clamp(1.6rem, 3vw, 2rem);
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    h2, h3 {
+      color: #1e3c72;
+      margin-top: 25px;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+
+    .app-image {
+      max-width: 260px;
+      display: block;
+      margin: 20px auto;
+      border-radius: 20px;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 14px 22px;
+      background-color: #1e3c72;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+    footer {
+      background-color: #1e3c72;
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+      margin-top: 60px;
+    }
+
+    footer a {
+      color: #a9c9ff;
+      text-decoration: none;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <img src="../assets/img/web2.png" alt="Logo JSDev" class="logo">
+  <span class="brand-title">JSDev</span>
+</header>
+
+<nav class="main-nav">
+  <a href="../index.html">Inicio</a>
+  <a href="../index.html#apps">Proyectos</a>
+  <a href="servicios.html">Servicios</a>
+  <a href="../index.html#contacto">Contacto</a>
+</nav>
+
+<main>
+  <article class="card">
+    <h1>BodyLog – Bajar de peso, contar calorías y controlar tu progreso diario</h1>
+
+    <img src="../assets/img/bodylog.png" alt="Icono de la aplicación BodyLog para Android"
+      class="app-image"
+      loading="lazy"
+    >
+
+<p style="text-align:center; max-width:720px; margin:20px auto; font-size:1.05rem;">
+  <strong>BodyLog te ayuda a bajar de peso, controlar tus calorías y seguir tu progreso diario de forma simple y privada.</strong>
+  Registrá tus comidas, calculá tu IMC, estimá tu gasto energético y visualizá si estás en <strong>déficit o superávit calórico</strong> desde una única aplicación Android.
+  Además, podés <strong>contar calorías fácilmente en cada comida del día</strong> para mantener un seguimiento más claro de tus hábitos alimentarios.
+</p>
+
+    <h2>¿Qué es BodyLog?</h2>
+<section>
+<p>
+<strong>BodyLog</strong> es una aplicación Android sencilla y práctica diseñada para ayudarte a organizar tus registros de alimentación, peso y bienestar en un solo lugar.
+</p>
+
+<p>
+Si querés controlar tu ingesta calórica, seguir la tendencia de tu peso o mantener un historial claro de tus avances, BodyLog te ofrece una forma rápida y ordenada de registrar tu información diaria.
+</p> 
+
+<p>
+La aplicación permite cargar comidas por momento del día, calcular indicadores orientativos como el <strong>IMC, la TMB y el GET</strong>, y visualizar el balance energético a lo largo del tiempo. Todos los datos se almacenan localmente en tu dispositivo para mantener tu información personal bajo tu control.
+</p> 
+</section>
+
+
+
+<div class="cta-container">
+        <a href="https://play.google.com/store/apps/details?id=com.jsdev.bodylog.bmiweight" 
+	target="_blank" 
+	rel="noopener" 
+	class="button"> Descargar BodyLog Gratis </a>
+</div>
+
+<section>
+    <h2>Funciones principales y beneficios para tu bienestar</h2>
+    <div class="features-grid">
+
+    <article class="feature-item">
+      <strong>📊 Cálculo de IMC:</strong> Obtené tu Índice de Masa Corporal de forma instantánea utilizando tu peso y altura actuales.
+    </article>
+
+    <article class="feature-item">
+      <strong>🍽️ Diario de calorías:</strong> Registrá desayuno, almuerzo, merienda o snacks y cena mediante un sistema de carga rápida y organizado.
+    </article>
+
+    <article class="feature-item">
+      <strong>🔥 Estimación de TMB y GET:</strong> Calculá de manera orientativa tu Tasa Metabólica Basal y tu Gasto Energético Total según tu nivel de actividad física.
+    </article>
+
+    <article class="feature-item">
+      <strong>⚖️ Balance energético:</strong> Compará las calorías consumidas con el gasto estimado para seguir tu déficit o superávit calórico.
+    </article>
+
+    <article class="feature-item">
+      <strong>📈 Progreso visual:</strong> Visualizá la evolución de tu peso y tus registros a lo largo del tiempo mediante gráficos simples y claros.
+    </article>
+
+    <article class="feature-item">
+      <strong>📂 Historial y exportación:</strong> Mantené un registro organizado a largo plazo y exportá tus datos con fecha y hora para conservar un seguimiento detallado.
+    </article>
+
+  </div>
+
+    <div class="feature-item" style="width: 100%;">
+        <strong>Almacenamiento Local 100% Privado:</strong> Toda la información, horarios e imágenes se guardan exclusivamente en la memoria interna de tu dispositivo para máxima seguridad.
+    </div>
+</section>
+
+<section>
+  <h2>¿Cómo funciona BodyLog?</h2>
+
+  <p>BodyLog está pensado para que el registro diario tome solo unos segundos:</p>
+
+  <ol>
+    <li>
+      <strong>Completá tu perfil:</strong> ingresá peso, altura, edad y nivel de actividad física.
+    </li>
+
+    <li>
+      <strong>Registrá tus comidas:</strong> cargá las calorías de cada comida del día.
+    </li>
+
+    <li>
+      <strong>Consultá tus indicadores:</strong> IMC, TMB y GET se calculan automáticamente de forma orientativa.
+    </li>
+
+    <li>
+      <strong>Revisá tu progreso:</strong> observá la tendencia de tu peso y el balance energético acumulado.
+    </li>
+  </ol>
+</section>
+
+<section>
+  <h2>¿Querés bajar de peso de forma organizada?</h2>
+
+  <p>BodyLog está especialmente pensada para quienes desean <strong>controlar su ingesta calórica diaria y seguir la tendencia de su peso</strong> sin complicaciones.</p>
+
+  <ul>
+    <li>Registrá las calorías de cada comida</li>
+    <li>Calculá tu IMC</li>
+    <li>Estimá tu gasto energético diario</li>
+    <li>Visualizá tu déficit o superávit calórico</li>
+    <li>Seguí la evolución de tu peso a lo largo del tiempo</li>
+  </ul>
+
+  <p>Mantener un registro constante puede ayudarte a comprender mejor tus hábitos alimentarios y a tomar decisiones más informadas sobre tu alimentación y actividad física.</p>
+</section>
+
+<div class="info-box">
+  <strong>🔒 Privacidad y control:</strong>
+  BodyLog no requiere cuentas, suscripciones ni almacenamiento obligatorio en la nube. Tus registros de peso, calorías y bienestar permanecen en tu dispositivo y podés exportarlos cuando lo necesites.
+</div>
+
+<section>
+  <h2>Preguntas Frecuentes (FAQ)</h2>
+
+  <h3>¿BodyLog sirve para bajar de peso?</h3>
+  <p>Sí. Puede ayudarte a <strong>registrar tu ingesta calórica y observar tu balance energético</strong>, aunque no reemplaza el asesoramiento de un profesional de la salud.</p>
+
+  <h3>¿Puedo usarla para aumentar de peso o mantenerme?</h3>
+  <p>Sí. La app es útil tanto para objetivos de pérdida, mantenimiento o aumento de peso, ya que permite comparar calorías consumidas y gasto estimado.</p>
+
+  <h3>¿Necesito conexión a internet?</h3>
+  <p>No. Las funciones principales funcionan de manera local en el dispositivo.</p>
+
+  <h3>¿Qué tan precisos son los cálculos de IMC, TMB y GET?</h3>
+
+<p>BodyLog utiliza fórmulas ampliamente conocidas y aceptadas para ofrecer valores orientativos. Cada cálculo tiene un nivel de precisión diferente:</p>
+
+<ul>
+  <li>
+    <strong>IMC (Índice de Masa Corporal):</strong> el cálculo matemático es exacto porque se obtiene a partir del peso y la altura ingresados (peso / altura²). Sin embargo, su interpretación no siempre refleja la composición corporal real. Por ejemplo, una persona con mucha masa muscular puede presentar un IMC elevado sin tener exceso de grasa corporal.
+  </li>
+
+  <li>
+    <strong>TMB (Tasa Metabólica Basal):</strong> se estima mediante fórmulas reconocidas, como Mifflin-St Jeor o Harris-Benedict. Estas fórmulas se basan en estudios poblacionales y ofrecen una aproximación útil, aunque el gasto metabólico real puede variar según genética, masa muscular, edad, estado hormonal y otros factores individuales.
+  </li>
+
+  <li>
+    <strong>GET (Gasto Energético Total):</strong> se calcula a partir de la TMB y del nivel de actividad física seleccionado. Dos personas con el mismo peso y altura pueden tener necesidades energéticas muy diferentes debido al entrenamiento, el tipo de trabajo, el sueño, el estrés, la recuperación y otros hábitos diarios.
+  </li>
+</ul>
+<br>
+<p>Por estas razones, los resultados de BodyLog deben entenderse como <strong>estimaciones orientativas para el seguimiento personal</strong> y no como una evaluación médica o nutricional individual.</p>
+
+<h3>¿BodyLog ayuda a seguir un déficit calórico?</h3>
+<p>Sí. La aplicación permite registrar las calorías consumidas y compararlas con el gasto energético estimado, lo que puede ayudarte a visualizar si estás en <strong>déficit, mantenimiento o superávit calórico</strong>.</p>
+
+  <h3>¿Puedo exportar mis registros?</h3>
+  <p>Sí. Podés exportar tu historial con marca de tiempo para conservar o analizar tus datos.</p>
+</section>
+
+<section class="disclaimer-box">
+  <h2>Aviso importante</h2>
+
+  <p>BodyLog está diseñada exclusivamente para <strong>organización personal, automonitoreo e información general</strong>.</p>
+
+  <p>Los cálculos de IMC, TMB, GET y balance energético son estimaciones matemáticas y <strong>no constituyen asesoramiento médico, diagnóstico ni tratamiento</strong>.</p>
+
+  <p>Ante dudas sobre nutrición, peso, metabolismo o salud, consultá siempre con un médico, nutricionista o profesional de la salud calificado.</p>
+</section>
+
+  </article>
+</main>
+
+<footer>
+  <p>© <span id="year"></span> JSDev – Desarrollo de Apps Android y Sitios Web</p>
+  <p>
+    <a href="politica.html">Política de Privacidad</a>
+  </p>
+</footer>
+
+<script>    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+<!-- Rich Snippet -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "BodyLog",
+  "operatingSystem": "ANDROID",
+  "applicationCategory": "HealthApplication",
+  "url": "https://play.google.com/store/apps/details?id=com.jsdev.bodylog.bmiweight",
+  "description": "Aplicación Android gratuita para bajar de peso, contar calorías, calcular IMC, estimar TMB y seguir el déficit calórico y el progreso diario de forma simple y privada.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0.00",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "JSDev"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿BodyLog sirve para bajar de peso?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Puede ayudarte a registrar tu ingesta calórica y observar tu balance energético, aunque no reemplaza el asesoramiento de un profesional de la salud."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puedo usar BodyLog para aumentar de peso o mantenerme?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. La aplicación puede utilizarse para objetivos de pérdida, mantenimiento o aumento de peso, comparando calorías consumidas y gasto estimado."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Necesito internet para usar BodyLog?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Las funciones principales funcionan localmente en el dispositivo. La exportación de datos no requiere conexión permanente a internet."
+      }
+    },
+    {
+  "@type": "Question",
+  "name": "¿Qué tan precisos son los cálculos de IMC, TMB y GET?",
+  "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "El IMC se calcula matemáticamente a partir del peso y la altura ingresados, aunque su interpretación puede no reflejar la composición corporal real. La TMB y el GET son estimaciones basadas en fórmulas reconocidas y en el nivel de actividad seleccionado, por lo que pueden diferir de las necesidades energéticas reales de cada persona."
+  }
+    },
+    {
+  "@type": "Question",
+  "name": "¿BodyLog ayuda a seguir un déficit calórico?",
+  "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Sí. BodyLog permite registrar las calorías consumidas y compararlas con el gasto energético estimado para visualizar si el usuario se encuentra en déficit, mantenimiento o superávit calórico."
+  }
+    },
+
+    {
+      "@type": "Question",
+      "name": "¿Puedo exportar mis registros?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. BodyLog permite exportar el historial de registros con fecha y hora para conservar o analizar la información."
+      }
+    }
+  ]
+}
+</script>
+</body>
+</html>
