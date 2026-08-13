@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gym Apps | GymLoad to Increase Member Retention - JSDev</title>
+  <link rel="canonical" href="https://jsdevmobile.com/en/pages/gym-apps.html" />
+
+  <!-- SEO -->
+<meta name="description" content="Discover how a gym app can improve your members’ experience, increase retention, and help your gym stand out. Download the full proposal in PDF format.">
+
+<meta name="keywords" content="gym app, fitness app, gym software, gym app development, gymload, gym member retention">
+
+<meta name="author" content="Joaquin Sanchez">
+
+
+
+  <!-- language -->
+
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8FVHCZT452"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8FVHCZT452');
+  </script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+    }
+
+    body {
+      background-color: #f4f6f8;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* HEADER */
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      z-index: 300;
+    }
+
+    .lang-switch{
+      margin-left:auto;
+      display:flex;
+      gap:10px;
+    }
+
+    .lang-switch a{
+      color:white;
+      text-decoration:none;
+      font-weight:600;
+      font-size:0.9rem;
+      opacity:0.9;
+    }
+
+    .lang-switch a:hover{
+      opacity:1;
+    }
+
+
+    .menu-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+    }
+
+    .brand h1 {
+      font-size: 1.2rem;
+      margin: 0;
+      line-height: 1.1;
+    }
+
+    .brand p {
+      font-size: 0.85rem;
+      margin: 0;
+      opacity: 0.9;
+    }
+
+    .brand-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    /* SIDE MENU */
+    .side-menu {
+      display: none;
+      position: absolute;
+      top: 52px;
+      left: 0;
+      background: white;
+      width: 220px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      z-index: 500;
+    }
+
+    .side-menu a {
+      display: block;
+      padding: 14px 18px;
+      text-decoration: none;
+      color: #1e3c72;
+      font-weight: 500;
+    }
+
+    .side-menu a:hover {
+      background: #f0f4ff;
+    }
+
+    /* MAIN NAV */
+    .main-nav {
+      position: sticky;
+      top: 0;
+      z-index: 400;
+      background: white;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 12px;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    }
+
+
+    .main-nav a,
+    .dropdown span {
+      text-decoration: none;
+      color: #2a5298;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* DROPDOWN */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 30px;
+      left: 0;
+      background: white;
+      min-width: 180px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      z-index: 300;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 12px 16px;
+      color: #1e3c72;
+    }
+
+    .dropdown-content a:hover {
+      background: #f0f4ff;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* HEADER TEXTO */
+    .hero {
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      padding: 35px 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      max-width: 850px;
+      margin: auto;
+      font-size: 1.05rem;
+    }
+
+.card .hero-img{
+    width:100%;
+    max-width:500px;
+    height:auto;
+
+    display:block;
+    margin:0 auto 30px;
+
+    border-radius:14px;
+    box-shadow:0 8px 24px rgba(0,0,0,.15);
+
+    object-fit:cover;
+}
+
+    section {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    section h2 {
+      color: #1e3c72;
+      margin-bottom: 25px;
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    .card {
+      transition: transform 0.3s ease;
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .card img {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      margin-bottom: 15px;
+      border-radius: 20px;
+    }
+
+    .card h3 {
+      font-size: 1.3em;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 0.95em;
+    }
+
+    .ideas {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .ideas a,
+    .ideas a:visited {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .ideas h3 {
+      color: #1e3c72;
+      margin-bottom: 10px;
+    }
+
+    /* SOPORTE */
+    .support-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .support-btn {
+      padding: 14px 22px;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s ease;
+    }
+
+    .support-btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .cafecito {
+      background-color: #ffb703;
+      color: #000;
+    }
+
+    .paypal {
+      background-color: #0070ba;
+      color: #fff;
+    }
+
+    footer {
+      background-color: #1e3c72;
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+      margin-top: 60px;
+    }
+
+    footer a {
+      color: #a9c9ff;
+      text-decoration: none;
+    }
+    
+    .team {
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    .team img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid #e5e7eb;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      background-color: #e5e7eb;
+      margin-bottom: 10px;
+    }
+
+.switch {
+  position: relative;
+  width: 40px;
+  height: 22px;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  background: #ccc;
+  border-radius: 20px;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  transition: 0.3s;
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: white;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  transition: 0.3s;
+}
+
+input:checked + .slider {
+  background: #4CAF50;
+}
+
+input:checked + .slider::before {
+  transform: translateX(18px);
+}
+
+/* Estilos para evitar la superposición */
+.switch-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centra el switch si lo deseas, o usa flex-start */
+  gap: 12px;
+  margin-top: 25px; /* Espacio extra respecto al botón de arriba */
+  margin-bottom: 20px; /* Espacio respecto a los resultados */
+  padding: 10px;
+}
+
+.switch-label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #444;
+}
+
+/* Mejora para el botón de generar (plan-btn) */
+.plan-btn {
+  display: block;
+  width: 100%; /* O un ancho fijo, pero asegura que no flote */
+  max-width: 250px;
+  margin: 0 auto;
+  padding: 12px 20px;
+  background-color: #1e3c72;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.promo-web {
+  margin-top: 30px;
+  padding: 20px;
+  background: linear-gradient(135deg, #f0f4ff, #e6ecff);
+  border-radius: 12px;
+  text-align: center;
+}
+
+.promo-web p {
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.promo-btn {
+  display: inline-block;
+  padding: 10px 18px;
+  background: #2a5298;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.promo-btn:hover {
+  transform: translateY(-2px);
+  background: #1e3c72;
+}
+
+.seo-text {
+  max-width: 800px;
+  margin: 0 auto 20px auto;
+  font-size: 0.95rem;
+  color: #555;
+  text-align: left;
+  line-height: 1.5;
+}
+
+.tool-brand {
+  display: block;
+  text-align: center;
+  font-size: 1.2rem;     
+  font-weight: 700;       
+  color: #1e3c72;         
+  margin-top: 5px;
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;  
+}
+
+.seo-text p {
+  margin-bottom: 10px;
+}
+
+body {
+  background-image: url('../assets/img/bg_gym.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* overlay para que no moleste */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(244, 246, 248, 0.92); 
+  z-index: -1;
+}
+
+    @media (max-width: 768px) {
+      section {
+        scroll-margin-top: 110px;
+      }
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <img src="../../assets/img/web2.png" alt="JSDev Logo" class="logo">
+
+  <div class="brand">
+    <span class="brand-title">JSDev</span>
+    <p>Android Apps · Health · Productivity · Multimedia</p>
+  </div>
+
+</header>
+
+<!-- SIDE MENU -->
+<div id="sideMenu" class="side-menu">
+  <a href="../index.html#apps">Android Apps</a>
+  <a href="web.html">Web Design</a>
+  <a href="services.html">Website in 24h</a>
+  <a href="videos.html">Video Editing</a>
+</div>
+
+<!-- MAIN NAV -->
+<nav class="main-nav">
+  <a href="../index.html#inicio">Home</a>
+  <a href="../index.html#sobre">About Me</a>
+
+  <div class="dropdown">
+    <span>Projects ▾</span>
+    <div class="dropdown-content">
+      <a href="../index.html#apps">Android Apps</a>
+      <a href="web.html">Web Design</a>
+      <a href="videos.html">Video Editing</a>
+    </div>
+  </div>
+
+  <a href="services.html">Website in 24h</a>
+  <a href="#contacto">Contact</a>
+</nav>
+
+<section id="tool">
+
+<h1 style="text-align:center;font-size:2.4rem;color:#1e3c72;">
+Gym Apps
+</h1>
+
+<p class="tool-brand">An app that helps your gym offer a differentiated service to its members.</p>
+
+<div class="card">
+
+<img src="../../assets/img/gymload.jpg"
+     alt="Gym apps"
+     class="hero-img">
+
+<h2 style="margin-bottom:20px;">
+Turn your members’ phones into their best workout companion.
+</h2>
+
+<p style="max-width:850px;margin:auto;">
+GymLoad allows users to track workouts, weights used, sets, repetitions, machine photos, and progress statistics, all from a simple and intuitive Android app.
+</p>
+
+<br>
+
+<p style="max-width:850px;margin:auto;">
+The app does not replace your gym’s current workflow. It complements existing training and improves the member experience without creating extra work for trainers or front-desk staff.
+</p>
+
+<br><br>
+
+<h2>What benefits does your gym get?</h2>
+
+<div style="
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+margin-top:25px;
+text-align:left;
+">
+
+<div class="card">
+<h3>📈 Higher member retention</h3>
+<p> Members can see their progress and track every workout, which increases motivation to keep attending. </p>
+</div>
+
+<div class="card">
+<h3>💪 More autonomy</h3>
+<p>
+Each member can remember machine settings, weights, and notes without constantly relying on a trainer.
+</p>
+</div>
+
+<div class="card">
+<h3>⚡ No changes to your current workflow</h3>
+<p>It does not change your existing routines or require staff training. It simply adds value to your service.</p>
+</div>
+
+<div class="card">
+<h3>🚀 A growing platform</h3>
+<p>
+GymLoad continues to evolve and may include exclusive features adapted to each gym.
+</p>
+</div>
+
+</div>
+
+<br><br>
+
+<h2>Want to see all the details?</h2>
+
+<p style="max-width:750px;margin:auto;">
+I prepared a proposal that explains how the app works, the benefits for your gym, and how it can be implemente
+</p>
+
+<br>
+
+<a href="../../pdf/es/GymLoad_Propuesta.pdf"
+target="_blank"
+class="promo-btn"
+style="font-size:1.1rem;padding:15px 35px;">
+📄 Download full proposal (PDF)
+</a>
+
+<br><br>
+
+<p style="color:#666;font-size:.95rem;">
+The download is free and does not require registration.
+</p>
+
+<br><br>
+
+<a href="https://play.google.com/store/apps/details?id=com.jsdev.gymload.repstracker"
+class="promo-btn">
+📱 Download GymLoad on Google Play
+</a>
+
+</div>
+
+<div class="promo-web">
+
+<p>
+Interested in a custom version for your gym?
+</p>
+
+<p>
+I also develop exclusive apps tailored to the identity and needs of each gym.
+</p>
+
+<a href="contact.html" class="promo-btn">
+Request information
+</a>
+
+</div>
+
+</section>
+
+
+<div class="promo-web">
+  <p>
+    🚀 I develop custom web tools for your business
+  </p>
+
+  <a href="services.html" class="promo-btn">
+    I can build your website in 24h
+  </a>
+</div>
+
+  </div>
+</section>
+
+
+<!-- APOYO -->
+<section id="apoyo">
+  <h2>If any of my projects has been useful to you</h2>
+  <div class="card">
+    <p style="text-align:center;">
+      Your support helps me continue developing free and accessible tools.
+    </p>
+
+    <div class="support-buttons">
+      <a href="https://cafecito.app/JSDev" target="_blank" class="support-btn cafecito">
+        ☕ Buy me a coffee
+      </a>
+      <a href="https://www.paypal.me/TeamJSDev" target="_blank" class="support-btn paypal">
+        💙 Support via PayPal
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <h2>Contact</h2>
+  <div class="card">
+    <p>📧 <a href="mailto:teamjsdev@gmail.com">teamjsdev@gmail.com</a></p>
+    <p>
+      <a href="https://x.com/DevTeamjsdev" target="_blank" rel="noopener" style="margin-right: 15px; color: #000; font-weight: 700; font-size: 1.5rem; text-decoration: none;">X</a>
+      <a href="https://instagram.com/teamjsdev" target="_blank" rel="noopener" style="margin-right: 15px; color: #E4405F; font-size: 1.5rem; text-decoration: none;"><i class="fab fa-instagram"></i></a>
+      <a href="https://tiktok.com/@teamjsdev" target="_blank" rel="noopener" style="color: #000; font-size: 1.5rem; text-decoration: none;"><i class="fab fa-tiktok"></i></a>
+    </p>
+  </div>
+</section>
+
+<footer>
+  <p>© <span id="year"></span>JSDev – Android App & Website Development</p>
+  <p>
+    <a href="privacy.html">Privacy Policy</a>
+  </p>
+</footer>
+
+<script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById("sideMenu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+  }
+</script>
+
+</body>
+</html>
