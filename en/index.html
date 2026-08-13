@@ -325,8 +325,7 @@
 }
 
 /* CARD BASE */
-.card-bg-instagram {
-  background-image: url('../assets/img/bg_instagram_grid.jpg');
+.card-bg {
   background-size: cover;
   background-position: center;
   border-radius: 14px;
@@ -343,8 +342,24 @@
   transition: all 0.35s ease;
 }
 
+/* IMÁGENES */
+
+.card-bg-instagram{
+    background-image:url("assets/img/bg_instagram_grid.jpg");
+}
+
+.card-bg-gym{
+    background-image:url("assets/img/bg_gym.jpg");
+  background-position: top;
+}
+
+.card-bg-gastronomia{
+    background-image:url("assets/img/bg_gastronomia.jpg");
+  background-position: center;
+}
+
 /* OVERLAY OSCURO */
-.card-bg-instagram::before {
+.card-bg::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -358,31 +373,31 @@
 }
 
 /* TEXTO */
-.card-bg-instagram h3,
-.card-bg-instagram p {
+.card-bg h3,
+.card-bg p {
   position: relative;
   z-index: 2;
   color: #fff;
 }
 
-.card-bg-instagram h3 {
+.card-bg h3 {
   font-size: 1.4rem;
   margin-bottom: 8px;
 }
 
-.card-bg-instagram p {
+.card-bg p {
   font-size: 0.95rem;
   opacity: 0.9;
 }
 
 /* HOVER EFECTO PRO */
-.tool-card:hover .card-bg-instagram {
+.tool-card:hover .card-bg {
   transform: translateY(-6px) scale(1.02);
   box-shadow: 0 15px 30px rgba(0,0,0,0.25);
 }
 
 /* EFECTO BRILLO SUTIL */
-.card-bg-instagram::after {
+.card-bg::after {
   content: "";
   position: absolute;
   top: -50%;
@@ -394,8 +409,27 @@
   transition: opacity 0.4s;
 }
 
-.tool-card:hover .card-bg-instagram::after {
+.tool-card:hover .card-bg::after {
   opacity: 1;
+}
+
+/* ============================= */
+/* HERRAMIENTAS PARA NEGOCIOS */
+/* ============================= */
+
+.business-tools{
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+.business-tools .tool-card{
+    width:100%;
+}
+
+.business-tools .card-bg{
+    width:100%;
+    min-height:180px;
 }
 
 /* FIX SIDE MENU DROPDOWN */
@@ -470,6 +504,50 @@
   transition:.2s;
 }
 
+/* ============================= */
+/* TICKER DE NOVEDADES */
+/* ============================= */
+
+.news-ticker{
+    background:linear-gradient(135deg,#1e3c72,#2a5298);
+    overflow:hidden;
+    white-space:nowrap;
+
+    margin:0;
+    margin-bottom:35px;
+
+    box-shadow:0 3px 10px rgba(0,0,0,.12);
+}
+
+.news-ticker a{
+    display:inline-block;
+    color:#fff;
+    text-decoration:none;
+    padding:14px 0;
+    font-weight:600;
+    animation:ticker 28s linear infinite;
+}
+
+.news-ticker:hover a{
+    animation-play-state:paused;
+}
+
+.news-ticker span{
+    margin-right:70px;
+}
+
+@keyframes ticker{
+
+    from{
+        transform:translateX(100%);
+    }
+
+    to{
+        transform:translateX(-100%);
+    }
+
+}
+
 
 /* MOBILE */
 @media(max-width:768px){
@@ -488,6 +566,11 @@
   .featured-apps a {
     justify-content:flex-start;
   }
+
+.news-ticker a{
+        animation-duration:22s;
+        font-size:.95rem;
+    }
 
 }
 
