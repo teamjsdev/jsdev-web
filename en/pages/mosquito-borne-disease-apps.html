@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JSDev | Android Health & Prevention Apps</title>
+  <link rel="canonical" href="https://jsdevmobile.com/pages/mosquito-borne-disease-apps.html" />
+
+  <!-- SEO -->
+  <meta name="description" content="JSDev develops Android apps focused on health, wellness, and productivity. Technology applied to real-world solutions.">
+  <meta name="author" content="Joaquin Sanchez">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8FVHCZT452"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8FVHCZT452');
+  </script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+    }
+
+    body {
+      background-color: #f4f6f8;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* TOP BAR */
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      z-index: 300;
+    }
+
+    .menu-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+    }
+
+    .brand-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    .brand p {
+      font-size: 0.85rem;
+      opacity: 0.9;
+    }
+
+    /* SIDE MENU */
+    .side-menu {
+      display: none;
+      position: absolute;
+      top: 52px;
+      left: 0;
+      background: white;
+      width: 230px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      z-index: 500;
+    }
+
+    .side-menu a {
+      display: block;
+      padding: 14px 18px;
+      text-decoration: none;
+      color: #1e3c72;
+      font-weight: 500;
+    }
+
+    .side-menu a:hover {
+      background: #f0f4ff;
+    }
+
+    /* MAIN NAV */
+    .main-nav {
+      position: sticky;
+      top: 0;
+      z-index: 400;
+      background: white;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 12px;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    }
+
+    .main-nav a,
+    .dropdown span {
+      text-decoration: none;
+      color: #2a5298;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* DROPDOWN */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 30px;
+      left: 0;
+      background: white;
+      min-width: 180px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      z-index: 300;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 12px 16px;
+      color: #1e3c72;
+    }
+
+    .dropdown-content a:hover {
+      background: #f0f4ff;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      max-width: 900px;
+      margin: auto;
+      font-size: 1.05rem;
+    }
+
+    section {
+      max-width: 1100px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    section h2 {
+      color: #1e3c72;
+      margin-bottom: 30px;
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 22px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s ease;
+
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      margin-bottom: 15px;
+      border-radius: 20px;
+    }
+
+    .card h3 {
+      color: #1e3c72;
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+    }
+
+    .status-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,.15);
+    }
+
+    .status-play {
+  background: #28a745;   /* Verde */
+}
+
+.status-coming {
+  background: #ff9800;   /* Naranja */
+}
+
+    .button {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 10px 16px;
+      background-color: #2a5298;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .button:hover {
+      background-color: #1e3c72;
+    }
+
+    .team {
+      text-align: center;
+    }
+
+    .team img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    footer {
+      background-color: #1e3c72;
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+      margin-top: 60px;
+    }
+
+    footer a {
+      color: #a9c9ff;
+      text-decoration: none;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <img src="../../assets/img/web2.png" alt="Logo JSDev" class="logo">
+
+  <div class="brand">
+    <span class="brand-title">JSDev</span>
+    <p>Android Apps</p>
+  </div>
+</header>
+
+<!-- SIDE MENU -->
+<div id="sideMenu" class="side-menu">
+  <a href="../index.html#apps">Android Apps</a>
+  <a href="videos.html">Video Editing</a>
+  <a href="web.html">Web Design</a>
+</div>
+
+<!-- MAIN NAV -->
+<nav class="main-nav">
+  <a href="../index.html">Home</a>
+  <a href="../index.html#sobre">About Me</a>
+
+  <div class="dropdown">
+    <span>Projects ▾</span>
+    <div class="dropdown-content">
+      <a href="../index.html#apps">Android Apps</a>
+      <a href="videos.html">Video Editing</a>
+      <a href="web.html">Web Design</a>
+    </div>
+  </div>
+
+  <a href="services.html">Services</a>
+  <a href="#contacto">Contact</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+<h1>Android Apps for the Prevention of Mosquito-Borne Diseases</h1>
+<p> I develop Android apps focused on education, prevention, and mosquito control, with practical tools for individuals, families, and communities. </p>
+
+</section>
+
+<!-- APPS -->
+<section>
+  <h2>🦟 Apps About Mosquitoes and Vector-Borne Diseases</h2>
+
+  <div class="projects">
+
+    <div class="card">
+      <div class="status-badge status-play">
+        Available on Google Play
+      </div>
+      <img src="https://play-lh.googleusercontent.com/heJ-rfmepYOrdmhTkSEI6Ig3T6OusFu3XoUdNggs5i0vgiXurgoQSEXmZA2SPoGM8w=w240-h480-rw" alt="InfoDengue">
+      <h3>InfoDengue</h3>
+      <p> Educational Android app about dengue with clear information on symptoms, transmission, prevention, and control of the Aedes aegypti mosquito to help reduce the risk of infection. </p>
+      <a href="https://play.google.com/store/apps/details?id=com.jsdev.infodengue" target="_blank" class="button">Google Play</a><br>
+      <a href="info-dengue-en.html" class="button">More Details</a>
+    </div>
+
+    <div class="card">
+      <div class="status-badge status-coming">
+        Coming Soon
+      </div>
+      <img src="../assets/img/fiebreamarilla.png" alt="Fiebre Amarilla">
+      <h3>Fiebre Amarilla</h3>
+      <p>Learn how yellow fever is transmitted, what its symptoms are, preventive measures, and the importance of vaccination in high-risk areas. </p>
+        <a href="../../pages/formulario.html?app=fiebreamarilla" class="button">
+    Waiting List
+        </a>
+    </div>
+
+    <div class="card">
+      <div class="status-badge status-coming">
+        Coming Soon
+      </div>
+      <img src="../assets/img/infozika.png" alt="InfoZika">
+      <h3>InfoZika</h3>
+      <p> Practical guide to understanding the Zika virus, how it is transmitted, its symptoms, prevention, and recommendations to protect the whole family. </p>
+        <a href="../../pages/formulario.html?app=infozika" class="button">
+    Waiting List
+        </a>
+    </div>
+
+    <div class="card">
+      <div class="status-badge status-coming">
+        Coming Soon
+      </div>
+      <img src="../assets/img/infochikungunya.png" alt="InfoChikungunya">
+      <h3>InfoChikungunya</h3>
+      <p> Reliable information about chikungunya: symptoms, transmission, prevention, and care to reduce the risk of infection. </p>
+        <a href="../../pages/formulario.html?app=infochikungunya" class="button">
+    Waiting List
+        </a>
+    </div>
+
+    <div class="card">
+      <div class="status-badge status-coming">
+        Coming Soon
+      </div>
+      <img src="../assets/img/repelentealert.png" alt="Repelente Alert">
+      <h3>Repelente Alert</h3>
+      <p> Smart reminders to apply mosquito repellent at the right times, helping you maintain continuous protection against mosquito bites. </p>
+        <a href="../../pages/formulario.html?app=repelentealert" class="button">
+    Waiting List
+        </a>
+    </div>
+
+    <div class="card">
+      <div class="status-badge status-coming">
+        Coming Soon
+      </div>
+      <img src="../assets/img/repellentassistant.png" alt="Repellent Assistant">
+      <h3>Repellent Assistant</h3>
+      <p> Smart assistant that uses your phone’s camera to help you apply repellent more evenly and better cover exposed areas of the body. </p>
+        <a href="../../pages/formulario.html?app=repellentassistant" class="button">
+    Waiting List
+        </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="team" id="sobre">
+  <h2>About Me</h2>
+  <img src="../../assets/img/imagen1.png" alt="Joaquín Sánchez">
+  <p>
+Joaquin Sanchez, pharmacist and Android developer.
+I create digital tools with real impact on health.
+  </p>
+</section>
+
+<footer>
+  <p>© <span id="year"></span> JSDev – Android App & Web Development</p>
+  <p>
+  <a href="privacy.html">Privacy Policy</a>
+</p>
+</footer>
+
+<script>    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById("sideMenu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+  }
+</script>
+
+
+</body>
+</html>
