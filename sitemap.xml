@@ -1,54 +1,532 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <!-- HOME -->
-  <url><loc>https://jsdevmobile.com/</loc></url>
-  <url><loc>https://jsdevmobile.com/en/</loc></url>
-  <url><loc>https://jsdevmobile.com/pt/</loc></url>
-
-  <!-- ESPAÑOL -->
-  <url><loc>https://jsdevmobile.com/pages/contacto.html</loc></url>
-  <url><loc>https://jsdevmobile.com/pages/info-dengue.html</loc></url>
-  <url><loc>https://jsdevmobile.com/pages/notaker-android-app.html</loc></url>
-  <url><loc>https://jsdevmobile.com/pages/politica.html</loc></url>
-  <url><loc>https://jsdevmobile.com/pages/productividad.html</loc></url>
-  <url><loc>https://jsdevmobile.com/pages/salud.html</loc></url>
-  <url><loc>https://jsdevmobile.com/pages/servicios.html</loc></url>
-  <url><loc>https://jsdevmobile.com/pages/toilet-timer.html</loc></url>
-  <url><loc>https://jsdevmobile.com/pages/videos.html</loc></url>
-  <url><loc>https://jsdevmobile.com/pages/web.html</loc></url>
-  <url><loc>https://jsdevmobile.com/pages/web_construccion.html</loc></url>
-  <url><loc>https://jsdevmobile.com/pages/dividir-imagen-instagram.html</loc></url>
-  <url><loc>https://jsdevmobile.com/pages/timer-pausa-activa-app-android.html</loc></url>
-
-  <!-- INGLÉS -->
-  <url><loc>https://jsdevmobile.com/en/pages/contact.html</loc></url>
-  <url><loc>https://jsdevmobile.com/en/pages/health.html</loc></url>
-  <url><loc>https://jsdevmobile.com/en/pages/info-dengue-en.html</loc></url>
-  <url><loc>https://jsdevmobile.com/en/pages/notaker-en.html</loc></url>
-  <url><loc>https://jsdevmobile.com/en/pages/privacy.html</loc></url>
-  <url><loc>https://jsdevmobile.com/en/pages/productivity.html</loc></url>
-  <url><loc>https://jsdevmobile.com/en/pages/services.html</loc></url>
-  <url><loc>https://jsdevmobile.com/en/pages/toilet-timer.html</loc></url>
-  <url><loc>https://jsdevmobile.com/en/pages/videos.html</loc></url>
-  <url><loc>https://jsdevmobile.com/en/pages/web.html</loc></url>
-  <url><loc>https://jsdevmobile.com/en/pages/web_under_construction.html</loc></url>
-  <url><loc>https://jsdevmobile.com/en/pages/split-image-instagram.html</loc></url>
-  <url><loc>https://jsdevmobile.com/en/pages/timer-active-break-android-app.html</loc></url>
-
-  <!-- PORTUGUÉS -->
-  <url><loc>https://jsdevmobile.com/pt/pages/contato.html</loc></url>
-  <url><loc>https://jsdevmobile.com/pt/pages/info-dengue-pt.html</loc></url>
-  <url><loc>https://jsdevmobile.com/pt/pages/notaker-pt.html</loc></url>
-  <url><loc>https://jsdevmobile.com/pt/pages/privacidade.html</loc></url>
-  <url><loc>https://jsdevmobile.com/pt/pages/produtividade.html</loc></url>
-  <url><loc>https://jsdevmobile.com/pt/pages/saude.html</loc></url>
-  <url><loc>https://jsdevmobile.com/pt/pages/servicos.html</loc></url>
-  <url><loc>https://jsdevmobile.com/pt/pages/toilet-timer-pt.html</loc></url>
-  <url><loc>https://jsdevmobile.com/pt/pages/videos.html</loc></url>
-  <url><loc>https://jsdevmobile.com/pt/pages/web.html</loc></url>
-  <url><loc>https://jsdevmobile.com/pt/pages/web_em_construcao.html</loc></url>
-  <url><loc>https://jsdevmobile.com/pt/pages/dividir-imagem-instagram.html</loc></url>
-  <url><loc>https://jsdevmobile.com/pt/pages/timer-pausa-ativa-app-android.html</loc></url>
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://jsdevmobile.com/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/en/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pt/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pages/apps-para-gimnasios.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/apps-para-gimnasios.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/gym-apps.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/apps-de-academia.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/gym-apps.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/en/pages/gym-apps.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/apps-para-gimnasios.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/gym-apps.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/apps-de-academia.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/gym-apps.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pt/pages/apps-de-academia.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/apps-para-gimnasios.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/gym-apps.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/apps-de-academia.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/gym-apps.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pages/bodylog.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/bodylog.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/bodylog.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/bodylog.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/bodylog.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/en/pages/bodylog.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/bodylog.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/bodylog.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/bodylog.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/bodylog.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pt/pages/bodylog.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/bodylog.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/bodylog.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/bodylog.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/bodylog.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pages/cocina-y-alimentacion.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/cocina-y-alimentacion.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/cooking-and-food-apps.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/apps-de-culinaria.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/cooking-and-food-apps.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/en/pages/cooking-and-food-apps.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/cocina-y-alimentacion.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/cooking-and-food-apps.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/apps-de-culinaria.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/cooking-and-food-apps.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pt/pages/apps-de-culinaria.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/cocina-y-alimentacion.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/cooking-and-food-apps.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/apps-de-culinaria.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/cooking-and-food-apps.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pages/contacto.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/contacto.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/contact.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/contato.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/contact.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/en/pages/contact.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/contacto.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/contact.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/contato.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/contact.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pt/pages/contato.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/contacto.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/contact.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/contato.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/contact.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pages/control-de-mosquitos.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/control-de-mosquitos.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/mosquito-borne-disease-apps.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/mosquito-borne-disease-apps.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/mosquito-borne-disease-apps.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/en/pages/mosquito-borne-disease-apps.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/control-de-mosquitos.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/mosquito-borne-disease-apps.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/mosquito-borne-disease-apps.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/mosquito-borne-disease-apps.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pt/pages/mosquito-borne-disease-apps.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/control-de-mosquitos.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/mosquito-borne-disease-apps.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/mosquito-borne-disease-apps.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/mosquito-borne-disease-apps.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pages/dividir-imagen-instagram.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/dividir-imagen-instagram.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/split-image-instagram.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/dividir-imagem-instagram.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/split-image-instagram.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/en/pages/split-image-instagram.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/dividir-imagen-instagram.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/split-image-instagram.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/dividir-imagem-instagram.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/split-image-instagram.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pt/pages/dividir-imagem-instagram.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/dividir-imagen-instagram.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/split-image-instagram.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/dividir-imagem-instagram.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/split-image-instagram.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pages/finanzas.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/finanzas.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/finance-and-economy-apps.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/apps-de-financas.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/finance-and-economy-apps.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/en/pages/finance-and-economy-apps.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/finanzas.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/finance-and-economy-apps.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/apps-de-financas.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/finance-and-economy-apps.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pt/pages/apps-de-financas.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/finanzas.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/finance-and-economy-apps.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/apps-de-financas.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/finance-and-economy-apps.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pages/fitness.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/fitness.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/fitness-en.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/fitness-pt.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/fitness-en.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/en/pages/fitness-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/fitness.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/fitness-en.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/fitness-pt.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/fitness-en.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pt/pages/fitness-pt.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/fitness.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/fitness-en.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/fitness-pt.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/fitness-en.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pages/gymload-app-android.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/gymload-app-android.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/gymload-android-app-en.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/gymload-android-app-pt.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/gymload-android-app-en.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/en/pages/gymload-android-app-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/gymload-app-android.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/gymload-android-app-en.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/gymload-android-app-pt.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/gymload-android-app-en.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pt/pages/gymload-android-app-pt.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/gymload-app-android.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/gymload-android-app-en.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/gymload-android-app-pt.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/gymload-android-app-en.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pages/herramientas.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/herramientas.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/utility-apps.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/ferramentas-e-utilidades.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/utility-apps.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/en/pages/utility-apps.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/herramientas.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/utility-apps.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/ferramentas-e-utilidades.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/utility-apps.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pt/pages/ferramentas-e-utilidades.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/herramientas.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/utility-apps.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/ferramentas-e-utilidades.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/utility-apps.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pages/info-dengue.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/info-dengue.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/info-dengue-en.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/info-dengue-pt.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/info-dengue-en.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/en/pages/info-dengue-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/info-dengue.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/info-dengue-en.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/info-dengue-pt.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/info-dengue-en.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pt/pages/info-dengue-pt.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/info-dengue.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/info-dengue-en.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/info-dengue-pt.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/info-dengue-en.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pages/juegos.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/juegos.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/android-games.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/jogos-android.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/android-games.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/en/pages/android-games.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/juegos.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/android-games.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/jogos-android.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/android-games.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pt/pages/jogos-android.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/juegos.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/android-games.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/jogos-android.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/android-games.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pages/mascotas.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/mascotas.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/pet-care-apps.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/apps-para-pets.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/pet-care-apps.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/en/pages/pet-care-apps.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/mascotas.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/pet-care-apps.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/apps-para-pets.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/pet-care-apps.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pt/pages/apps-para-pets.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/mascotas.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/pet-care-apps.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/apps-para-pets.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/pet-care-apps.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pages/medvision.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/medvision.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/medvision.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/medvision.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/medvision.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/en/pages/medvision.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/medvision.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/medvision.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/medvision.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/medvision.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pt/pages/medvision.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/medvision.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/medvision.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/medvision.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/medvision.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pages/notaker-android-app.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/notaker-android-app.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/notaker-en.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/notaker-pt.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/notaker-en.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/en/pages/notaker-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/notaker-android-app.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/notaker-en.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/notaker-pt.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/notaker-en.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pt/pages/notaker-pt.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/notaker-android-app.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/notaker-en.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/notaker-pt.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/notaker-en.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pages/politica.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/politica.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/privacidade.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/privacy.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/en/pages/privacy.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/politica.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/privacidade.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/privacy.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pt/pages/privacidade.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/politica.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/privacidade.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/privacy.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pages/productividad.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/productividad.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/productivity.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/produtividade.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/productivity.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/en/pages/productivity.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/productividad.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/productivity.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/produtividade.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/productivity.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pt/pages/produtividade.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/productividad.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/productivity.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/produtividade.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/productivity.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pages/salud.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/salud.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/health.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/saude.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/health.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/en/pages/health.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/salud.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/health.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/saude.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/health.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pt/pages/saude.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/salud.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/health.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/saude.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/health.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pages/servicios.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/servicios.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/services.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/servicos.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/services.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/en/pages/services.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/servicios.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/services.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/servicos.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/services.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pt/pages/servicos.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/servicios.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/services.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/servicos.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/services.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pages/social-y-citas.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/social-y-citas.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/social-friendship-dating-apps.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/relacionamento-e-amizades.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/social-friendship-dating-apps.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/en/pages/social-friendship-dating-apps.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/social-y-citas.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/social-friendship-dating-apps.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/relacionamento-e-amizades.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/social-friendship-dating-apps.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pt/pages/relacionamento-e-amizades.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/social-y-citas.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/social-friendship-dating-apps.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/relacionamento-e-amizades.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/social-friendship-dating-apps.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pages/timer-pausa-activa-app-android.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/timer-pausa-activa-app-android.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/timer-active-break-android-app.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/timer-pausa-ativa-app-android.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/timer-active-break-android-app.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/en/pages/timer-active-break-android-app.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/timer-pausa-activa-app-android.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/timer-active-break-android-app.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/timer-pausa-ativa-app-android.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/timer-active-break-android-app.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pt/pages/timer-pausa-ativa-app-android.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/timer-pausa-activa-app-android.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/timer-active-break-android-app.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/timer-pausa-ativa-app-android.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/timer-active-break-android-app.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pages/toilet-timer.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/toilet-timer.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/toilet-timer.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/toilet-timer-pt.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/toilet-timer.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/en/pages/toilet-timer.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/toilet-timer.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/toilet-timer.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/toilet-timer-pt.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/toilet-timer.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pt/pages/toilet-timer-pt.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/toilet-timer.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/toilet-timer.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/toilet-timer-pt.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/toilet-timer.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pages/web.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/web.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/web.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/web.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/web.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/en/pages/web.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/web.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/web.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/web.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/web.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pt/pages/web.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/web.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/web.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/web.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/web.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pages/web_construccion.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/web_construccion.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/web_under_construction.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/site-em-construcao.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/web_under_construction.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/en/pages/web_under_construction.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/web_construccion.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/web_under_construction.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/site-em-construcao.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/web_under_construction.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pt/pages/site-em-construcao.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/web_construccion.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/web_under_construction.html" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://jsdevmobile.com/pt/pages/site-em-construcao.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/web_under_construction.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pages/formulario.html</loc>
+  </url>
 </urlset>
