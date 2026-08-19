@@ -41,7 +41,7 @@
       line-height: 1.6;
     }
 
-    /* TOPBAR (NO sticky) */
+    /* TOP BAR */
     .topbar {
       display: flex;
       align-items: center;
@@ -49,6 +49,7 @@
       padding: 10px 14px;
       background: linear-gradient(135deg, #1e3c72, #2a5298);
       color: white;
+      z-index: 300;
     }
 
     .menu-btn {
@@ -62,98 +63,208 @@
     .logo {
       width: 42px;
       height: 42px;
+      object-fit: contain;
     }
 
     .brand-title {
       font-size: 1.2rem;
       font-weight: 700;
+      line-height: 1.1;
     }
 
-    /* MAIN NAV (sticky real) */
+    .brand p {
+      font-size: 0.85rem;
+      opacity: 0.9;
+    }
+
+    /* SIDE MENU */
+    .side-menu {
+      display: none;
+      position: absolute;
+      top: 52px;
+      left: 0;
+      background: white;
+      width: 230px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      z-index: 500;
+    }
+
+    .side-menu a {
+      display: block;
+      padding: 14px 18px;
+      text-decoration: none;
+      color: #1e3c72;
+      font-weight: 500;
+    }
+
+    .side-menu a:hover {
+      background: #f0f4ff;
+    }
+
+    /* MAIN NAV */
     .main-nav {
+      position: sticky;
+      top: 0;
+      z-index: 400;
       background: white;
       display: flex;
       justify-content: center;
       gap: 20px;
       padding: 12px;
       flex-wrap: wrap;
-
       box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-      position: sticky;
-      top: 0;
-      z-index: 400;
     }
 
-    .main-nav a {
+    .main-nav a,
+    .dropdown span {
       text-decoration: none;
       color: #2a5298;
       font-weight: 600;
+      cursor: pointer;
     }
 
-    main {
-      max-width: 1000px;
+    /* DROPDOWN */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 30px;
+      left: 0;
+      background: white;
+      min-width: 180px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      z-index: 300;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 12px 16px;
+      color: #1e3c72;
+    }
+
+    .dropdown-content a:hover {
+      background: #f0f4ff;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      max-width: 900px;
+      margin: auto;
+      font-size: 1.05rem;
+    }
+
+    section {
+      max-width: 1100px;
       margin: 60px auto;
       padding: 0 20px;
     }
 
-    .card {
-      background-color: white;
-      padding: 28px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    section h2 {
+      color: #1e3c72;
       margin-bottom: 30px;
-    }
-
-    h1 {
-      color: #1e3c72;
-      font-size: 2.2rem;
+      font-size: 2rem;
       text-align: center;
-      margin-bottom: 15px;
     }
 
-    h2, h3 {
-      color: #1e3c72;
-      margin-top: 25px;
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
     }
 
-    ul {
-      padding-left: 20px;
-      margin-top: 10px;
-    }
-
-    .app-image {
-      max-width: 260px;
-      display: block;
-      margin: 20px auto;
+    .card {
+      background: white;
       border-radius: 12px;
-    }
+      padding: 22px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s ease;
 
-    .video-container {
       position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-      overflow: hidden;
-      border-radius: 12px;
-      margin: 25px 0;
     }
 
-    .video-container iframe {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
+    .card:hover {
+      transform: translateY(-5px);
     }
+
+    .card img {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      margin-bottom: 15px;
+      border-radius: 20px;
+    }
+
+    .card h3 {
+      color: #1e3c72;
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+    }
+
+    .status-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,.15);
+    }
+
+    .status-play {
+  background: #28a745;   /* Verde */
+}
+
+.status-coming {
+  background: #ff9800;   /* Naranja */
+}
 
     .button {
       display: inline-block;
-      margin-top: 25px;
-      padding: 14px 22px;
-      background-color: #1e3c72;
+      margin-top: 12px;
+      padding: 10px 16px;
+      background-color: #2a5298;
       color: white;
+      border-radius: 8px;
       text-decoration: none;
-      border-radius: 10px;
       font-weight: 600;
+    }
+
+    .button:hover {
+      background-color: #1e3c72;
+    }
+
+    .team {
+      text-align: center;
+    }
+
+    .team img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     }
 
     footer {
@@ -170,6 +281,7 @@
     }
 
   </style>
+  
 </head>
 
 <body>
@@ -210,48 +322,82 @@
   <a href="#contacto">Contato</a>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
-  <h1>Apps Android de produtividade</h1>
+  <h1>Aplicativos Android de Produtividade</h1>
   <p>
-    Desenvolvo aplicativos Android pensados para organização,
-    eficiência pessoal e soluções digitais simples e eficazes.
+    A JSDev desenvolve aplicativos Android práticos para melhorar a produtividade,
+    o gerenciamento de tarefas e a organização diária por meio de ferramentas simples e eficientes.
   </p>
 </section>
 
-<!-- APPS -->
+<!-- APP -->
 <section>
   <h2>Aplicativos Android disponíveis</h2>
 
   <div class="projects">
 
-<div class="card">
-    <img src="https://play-lh.googleusercontent.com/XNqH4ZgkUvytJMXkWwJudfG6dM-OfwsIPq6hN7wrg5Y_QOj2LO4v5vf63VWQlD2scMk=w240-h480-rw" alt="App Notaker para notas e organização de tarefas no Android">
-    <h3>Notaker</h3>
-    <p>
-      Aplicativo de notas e organização de tarefas com foco em simplicidade,
-      cores e controle manual da ordem.
-    </p>
-
-    <a href="https://play.google.com/store/apps/details?id=com.jsdev.newnotes" target="_blank" class="button">
-      Google Play
-    </a><br>
-
-    <a href="notaker-android-app.html" class="button">
-      Mais detalhes
-    </a>
-  </div>
-
-  <div class="card">
-      <img src="https://play-lh.googleusercontent.com/ZANnY6SSCtj5Rub7uNxkqx320Eh2krGaSE3AKwZWOLu0Ymd9JB9p9UUebrdB0HedtFpxL3Yj4yMIQoeNknrzcjo=w240-h480-rw" alt="Timer Pausa Ativa">
-      <h3>Timer Pausa Ativa</h3>
+    <div class="card">
+      <div class="status-badge status-play">
+        Disponível no Google Play
+      </div>
+      <img src="https://play-lh.googleusercontent.com/XNqH4ZgkUvytJMXkWwJudfG6dM-OfwsIPq6hN7wrg5Y_QOj2LO4v5vf63VWQlD2scMk=w240-h480-rw" alt="Aplicativo Notaker para anotações e organização de tarefas no Android">
+      <h3>Notaker</h3>
       <p>
-        Aplicativo Android com lembretes para beber água, se movimentar e fazer pausas saudáveis,
-        ideal para reduzir o sedentarismo e melhorar hábitos diários.
+        Aplicativo de anotações e organização de tarefas com foco em simplicidade,
+        cores e controle manual da ordem.
       </p>
+      <a href="https://play.google.com/store/apps/details?id=com.jsdev.newnotes" target="_blank" class="button">
+        Google Play
+      </a><br>
+      <a href="notaker-pt.html" class="button">
+        Mais detalhes
+      </a>
+    </div>
 
-      <a href="https://play.google.com/store/apps/details?id=com.jsdev.timer.activebreak" target="_blank" class="button">Google Play</a><br>
+    <div class="card">
+      <div class="status-badge status-coming">
+        Em breve
+      </div>
+      <img src="../../assets/img/calendar.png" alt="Calendário com notas">
+      <h3>Calendar with Notes</h3>
+      <p>
+        Aplicativo Android que combina um calendário com um espaço para escrever notas,
+        tarefas, lembretes e eventos de cada dia.
+      </p>
+      <a href="../../pages/formulario.html?app=calendar" class="button">
+        Lista de espera
+      </a>
+    </div>
 
-      <a href="timer-pausa-ativa-app-android.html" class="button">Mais detalhes</a>
+    <div class="card">
+      <div class="status-badge status-coming">
+        Em breve
+      </div>
+      <img src="../../assets/img/memopic.png" alt="MemoPic">
+      <h3>MemoPic</h3>
+      <p>
+        Aplicativo Android para estudantes que gera imagens a partir de palavras ou conceitos,
+        facilitando o aprendizado por meio de técnicas de memorização visual.
+      </p>
+      <a href="../../pages/formulario.html?app=memopic" class="button">
+        Lista de espera
+      </a>
+    </div>
+
+    <div class="card">
+      <div class="status-badge status-coming">
+        Em breve
+      </div>
+      <img src="../../assets/img/unigrups.png" alt="UniGroups">
+      <h3>UniGroups</h3>
+      <p>
+        Aplicativo Android que facilita encontrar colegas para trabalhos acadêmicos
+        e criar grupos no WhatsApp para organizar equipes de estudo rapidamente.
+      </p>
+      <a href="../../pages/formulario.html?app=unigrups" class="button">
+        Lista de espera
+      </a>
     </div>
 
   </div>
