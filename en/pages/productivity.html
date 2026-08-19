@@ -28,7 +28,7 @@
     gtag('config', 'G-8FVHCZT452');
   </script>
 
-  <style>
+   <style>
     * {
       margin: 0;
       padding: 0;
@@ -199,6 +199,8 @@
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       text-align: center;
       transition: transform 0.3s ease;
+
+      position: relative;
     }
 
     .card:hover {
@@ -218,6 +220,26 @@
       margin-bottom: 10px;
       font-size: 1.3rem;
     }
+
+    .status-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,.15);
+    }
+
+    .status-play {
+  background: #28a745;   /* Verde */
+}
+
+.status-coming {
+  background: #ff9800;   /* Naranja */
+}
 
     .button {
       display: inline-block;
@@ -260,6 +282,7 @@
     }
 
   </style>
+  
 </head>
 
 <body>
@@ -313,40 +336,73 @@
 
 </section>
 
-<!-- APPS -->
+<!-- APP -->
 <section>
   <h2>Available Android Apps</h2>
 
   <div class="projects">
 
-<div class="card">
-    <img src="https://play-lh.googleusercontent.com/XNqH4ZgkUvytJMXkWwJudfG6dM-OfwsIPq6hN7wrg5Y_QOj2LO4v5vf63VWQlD2scMk=w240-h480-rw" alt="Notaker app for notes and task organization on Android">
-    <h3>Notaker</h3>
-    <p>
-      Notes and task organization app focused on simplicity,
-      color customization and manual note sorting.
-    </p>
-
-    <a href="https://play.google.com/store/apps/details?id=com.jsdev.newnotes" target="_blank" class="button">
-      Google Play
-    </a><br>
-
-    <a href="notaker-android-app.html" class="button">
-      More details
-    </a>
-  </div>
-
-  <div class="card">
-      <img src="https://play-lh.googleusercontent.com/ZANnY6SSCtj5Rub7uNxkqx320Eh2krGaSE3AKwZWOLu0Ymd9JB9p9UUebrdB0HedtFpxL3Yj4yMIQoeNknrzcjo=w240-h480-rw" alt="Active Break Timer">
-      <h3>Active Break Timer</h3>
+    <div class="card">
+      <div class="status-badge status-play">
+        Available on Google Play
+      </div>
+      <img src="https://play-lh.googleusercontent.com/XNqH4ZgkUvytJMXkWwJudfG6dM-OfwsIPq6hN7wrg5Y_QOj2LO4v5vf63VWQlD2scMk=w240-h480-rw" alt="Notaker app for notes and task organization on Android">
+      <h3>Notaker</h3>
       <p>
-        Android app with reminders to drink water, move and take healthy breaks,
-        ideal for reducing sedentary habits and improving daily routines.
+        Note-taking and task organization app focused on simplicity,
+        colors, and manual control over the order.
       </p>
+      <a href="https://play.google.com/store/apps/details?id=com.jsdev.newnotes" target="_blank" class="button">
+        Google Play
+      </a><br>
+      <a href="notaker-en.html" class="button">
+        More details
+      </a>
+    </div>
 
-      <a href="https://play.google.com/store/apps/details?id=com.jsdev.timer.activebreak" target="_blank" class="button">Google Play</a><br>
+    <div class="card">
+      <div class="status-badge status-coming">
+        Coming Soon
+      </div>
+      <img src="../../assets/img/calendar.png" alt="Calendar with Notes">
+      <h3>Calendar with Notes</h3>
+      <p>
+        Android app that combines a calendar with a space to write notes,
+        tasks, reminders, and events for each day.
+      </p>
+      <a href="../../pages/formulario.html?app=calendar" class="button">
+        Waiting List
+      </a>
+    </div>
 
-      <a href="timer-active-break-android-app.html" class="button">More details</a>
+    <div class="card">
+      <div class="status-badge status-coming">
+        Coming Soon
+      </div>
+      <img src="../../assets/img/memopic.png" alt="MemoPic">
+      <h3>MemoPic</h3>
+      <p>
+        Android app for students that generates images from words or concepts,
+        making learning easier through visual memorization techniques.
+      </p>
+      <a href="../../pages/formulario.html?app=memopic" class="button">
+        Waiting List
+      </a>
+    </div>
+
+    <div class="card">
+      <div class="status-badge status-coming">
+        Coming Soon
+      </div>
+      <img src="../../assets/img/unigrups.png" alt="UniGroups">
+      <h3>UniGroups</h3>
+      <p>
+        Android app that makes it easier to find classmates for assignments
+        and create WhatsApp groups to organize study teams quickly.
+      </p>
+      <a href="../../pages/formulario.html?app=unigrups" class="button">
+        Waiting List
+      </a>
     </div>
 
   </div>
