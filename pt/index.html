@@ -30,7 +30,7 @@
     gtag('config', 'G-8FVHCZT452');
   </script>
 
-<style>
+ <style>
     * {
       margin: 0;
       padding: 0;
@@ -325,8 +325,7 @@
 }
 
 /* CARD BASE */
-.card-bg-instagram {
-  background-image: url('../assets/img/bg_instagram_grid.jpg');
+.card-bg {
   background-size: cover;
   background-position: center;
   border-radius: 14px;
@@ -343,8 +342,24 @@
   transition: all 0.35s ease;
 }
 
+/* IMÁGENES */
+
+.card-bg-instagram{
+    background-image:url("../assets/img/bg_instagram_grid.jpg");
+}
+
+.card-bg-gym{
+    background-image:url("../assets/img/bg_gym.jpg");
+  background-position: top;
+}
+
+.card-bg-gastronomia{
+    background-image:url("../assets/img/bg_gastronomia.jpg");
+  background-position: center;
+}
+
 /* OVERLAY OSCURO */
-.card-bg-instagram::before {
+.card-bg::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -358,31 +373,31 @@
 }
 
 /* TEXTO */
-.card-bg-instagram h3,
-.card-bg-instagram p {
+.card-bg h3,
+.card-bg p {
   position: relative;
   z-index: 2;
   color: #fff;
 }
 
-.card-bg-instagram h3 {
+.card-bg h3 {
   font-size: 1.4rem;
   margin-bottom: 8px;
 }
 
-.card-bg-instagram p {
+.card-bg p {
   font-size: 0.95rem;
   opacity: 0.9;
 }
 
 /* HOVER EFECTO PRO */
-.tool-card:hover .card-bg-instagram {
+.tool-card:hover .card-bg {
   transform: translateY(-6px) scale(1.02);
   box-shadow: 0 15px 30px rgba(0,0,0,0.25);
 }
 
 /* EFECTO BRILLO SUTIL */
-.card-bg-instagram::after {
+.card-bg::after {
   content: "";
   position: absolute;
   top: -50%;
@@ -394,8 +409,27 @@
   transition: opacity 0.4s;
 }
 
-.tool-card:hover .card-bg-instagram::after {
+.tool-card:hover .card-bg::after {
   opacity: 1;
+}
+
+/* ============================= */
+/* HERRAMIENTAS PARA NEGOCIOS */
+/* ============================= */
+
+.business-tools{
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+.business-tools .tool-card{
+    width:100%;
+}
+
+.business-tools .card-bg{
+    width:100%;
+    min-height:180px;
 }
 
 /* FIX SIDE MENU DROPDOWN */
@@ -470,6 +504,83 @@
   transition:.2s;
 }
 
+/* Posicionamiento del barrido */
+.card-bg-instagram {
+  position: relative;
+}
+
+.sweep-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* ruta de la versión dividida / con grid */
+  background-image: url("../assets/img/bg_instagram_grid_divided.jpg");
+  background-size: cover;
+  background-position: center;
+  z-index: 0; /* Va por detrás del overlay oscuro ::before y del texto */
+  animation: sweepAnimation 4s ease-in-out infinite alternate;
+}
+
+/* Animación de barrido suave */
+@keyframes sweepAnimation {
+  0%, 15% {
+    clip-path: inset(0 100% 0 0); /* Oculta la imagen dividida (se ve la base) */
+  }
+  85%, 100% {
+    clip-path: inset(0 0 0 0); /* Revela la imagen dividida completa */
+  }
+}
+
+/* Pausa al pasar el mouse/tap */
+.tool-card:hover .sweep-overlay {
+  animation-play-state: paused;
+}
+
+/* ============================= */
+/* TICKER DE NOVEDADES */
+/* ============================= */
+
+.news-ticker{
+    background:linear-gradient(135deg,#1e3c72,#2a5298);
+    overflow:hidden;
+    white-space:nowrap;
+
+    margin:0;
+    margin-bottom:35px;
+
+    box-shadow:0 3px 10px rgba(0,0,0,.12);
+}
+
+.news-ticker a{
+    display:inline-block;
+    color:#fff;
+    text-decoration:none;
+    padding:14px 0;
+    font-weight:600;
+    animation:ticker 28s linear infinite;
+}
+
+.news-ticker:hover a{
+    animation-play-state:paused;
+}
+
+.news-ticker span{
+    margin-right:70px;
+}
+
+@keyframes ticker{
+
+    from{
+        transform:translateX(100%);
+    }
+
+    to{
+        transform:translateX(-100%);
+    }
+
+}
+
 
 /* MOBILE */
 @media(max-width:768px){
@@ -488,6 +599,11 @@
   .featured-apps a {
     justify-content:flex-start;
   }
+
+.news-ticker a{
+        animation-duration:22s;
+        font-size:.95rem;
+    }
 
 }
 
@@ -553,6 +669,22 @@
 <a href="#contacto">Contato</a>
 </nav>
 
+<div class="news-ticker">
+    <a href="../pages/formulario.html">
+
+        <span>🚀 Novos aplicativos Android em desenvolvimento.</span>
+
+        <span>📱 Cadastre-se para saber de cada lançamento antes de todo mundo.</span>
+
+        <span>⭐ Benefícios para quem apoia os projetos desde o primeiro dia.</span>
+
+        <span>👉 Toque aqui para entrar na lista de espera geral.</span>
+
+    </a>
+</div>
+
+<!-- INICIO SOBRE JSDev -->
+
 <section id="inicio" class="card">
 <div class="hero-content">
 
@@ -600,7 +732,7 @@
       </a>
 
       <a href="pages/timer-pausa-ativa-app-android.html">
-        <img src="https://play-lh.googleusercontent.com/ZANnY6SSCtj5Rub7uNxkqx320Eh2krGaSE3AKwZWOLu0Ymd9JB9p9UUebrdB0HedtFpxL3Yj4yMIQoeNknrzcjo=w240-h480-rw" alt="Toilet Timer">
+        <img src="https://play-lh.googleusercontent.com/ZANnY6SSCtj5Rub7uNxkqx320Eh2krGaSE3AKwZWOLu0Ymd9JB9p9UUebrdB0HedtFpxL3Yj4yMIQoeNknrzcjo=w240-h480-rw" alt="Active Break">
         <span>Active Break</span>
       </a>
 
@@ -610,89 +742,131 @@
       </a>
 
       <a href="pages/notaker-pt.html">
-        <img src="https://play-lh.googleusercontent.com/XNqH4ZgkUvytJMXkWwJudfG6dM-OfwsIPq6hN7wrg5Y_QOj2LO4v5vf63VWQlD2scMk=w240-h480-rw" alt="App Notaker para notas">
+        <img src="https://play-lh.googleusercontent.com/XNqH4ZgkUvytJMXkWwJudfG6dM-OfwsIPq6hN7wrg5Y_QOj2LO4v5vf63VWQlD2scMk=w240-h480-rw" alt="Notaker">
         <span>Notaker</span>
       </a>
 
     </div>
 
-
     <!-- CATEGORÍAS ACTUALES -->
     <div class="ideas">
 
-<a href="pages/saude.html">
-<div class="card">
-<img src="../assets/img/salud.png" alt="Saúde e bem-estar" />
-<h3>Saúde e bem-estar</h3>
-<p>Ferramentas móveis para acompanhamento de sintomas, cuidados, prevenção e suporte em saúde.</p>
-</div>
-</a>
+      <a href="pages/saude.html" style="text-decoration: none; color: inherit;">
+        <div class="card">
+          <img src="../assets/img/salud.png" alt="Saúde e prevenção" />
+          <h3>Saúde e prevenção</h3>
+          <p>Ferramentas móveis para acompanhar sintomas, cuidar da saúde, prevenir problemas e oferecer suporte.</p>
+        </div>
+      </a>
+
+      <a href="pages/mosquito-borne-disease-apps.html" style="text-decoration: none; color: inherit;">
+        <div class="card">
+          <img src="../assets/img/mosquitos.png" alt="Controle de mosquitos" />
+          <h3>Controle de mosquitos</h3>
+          <p>Aplicativos para ajudar na prevenção de doenças transmitidas por mosquitos, com lembretes, informações educativas e ferramentas práticas de apoio.</p>
+        </div>
+      </a>
 
       <a href="pages/fitness-pt.html" style="text-decoration: none; color: inherit;">
         <div class="card">
           <img src="../assets/img/fitness.png" alt="Fitness e treino" />
-          <h3>Fitness e treino</h3>
-          <p>Apps para acompanhar treinos, criar rotinas de academia e monitorar o progresso físico.</p>
+          <h3>Fitness e bem-estar</h3>
+          <p>Aplicativos para acompanhar treinos, criar rotinas de academia e monitorar o progresso físico.</p>
         </div>
       </a>
 
-<a href="pages/produtividade.html">
-<div class="card">
-<img src="../assets/img/productividad.png" alt="Produtividade" />
-<h3>Produtividade</h3>
-<p>Aplicativos pensados para ajudar você a focar, organizar ideias e trabalhar melhor.</p>
-</div>
-</a>
+      <a href="pages/produtividade.html" style="text-decoration: none; color: inherit;">
+        <div class="card">
+          <img src="../assets/img/productividad.png" alt="Produtividade e estudos" />
+          <h3>Produtividade e estudos</h3>
+          <p><p>Aplicativos desenvolvidos para ajudar você a manter o foco, organizar suas ideias e trabalhar com mais eficiência.</p>
+        </div>
+      </a>
 
-<a href="pages/site-em-construcao.html">
-<div class="card">
-<img src="../assets/img/herramientas.png" alt="Ferramentas e utilidades" />
-<h3>Ferramentas e utilidades</h3>
-<p>Apps práticos para medição, diagnóstico, organização e uso diário do dispositivo.</p>
-</div>
-</a>
+      <a href="pages/apps-de-culinaria.html" style="text-decoration: none; color: inherit;">
+        <div class="card">
+          <img src="../assets/img/comida.png" alt="Culinária e alimentação" />
+          <h3>Culinária e alimentação</h3>
+          <p>Aplicativos para organizar sua alimentação, descobrir receitas e tornar a experiência de cozinhar mais prática.</p>
+        </div>
+      </a>
 
-<a href="pages/site-em-construcao.html">
-<div class="card">
-<img src="../assets/img/comida.png" alt="Comida e receitas" />
-<h3>Comida e receitas</h3>
-<p>Aplicativos para organizar alimentos, descobrir receitas e melhorar a experiência de cozinhar.</p>
-</div>
-</a>
+      <a href="pages/relacionamento-e-amizades.html" style="text-decoration: none; color: inherit;">
+        <div class="card">
+          <img src="../assets/img/social.png" alt="Social e relacionamentos" />
+          <h3>Social e relacionamentos</h3>
+          <p>Aplicativos para conectar pessoas, criar relacionamentos e explorar interesses em comum.</p>
+        </div>
+      </a>
 
-<a href="pages/site-em-construcao.html">
-<div class="card">
-<img src="../assets/img/juegos.png" alt="Jogos" />
-<h3>Jogos</h3>
-<p>Jogos casuais e experiências interativas com elementos educativos e gamificação.</p>
-</div>
-</a>
+      <a href="pages/apps-de-financas.html" style="text-decoration: none; color: inherit;">
+        <div class="card">
+          <img src="../assets/img/finanzas.png" alt="Finanças" />
+          <h3>Finanças</h3>
+          <p>Ferramentas para organizar suas finanças, comparar opções, calcular custos e tomar decisões financeiras mais informadas.</p>
+        </div>
+      </a>
 
-<a href="pages/site-em-construcao.html">
-<div class="card">
-<img src="../assets/img/social.png" alt="Social e relacionamentos" />
-<h3>Social e encontros</h3>
-<p>Aplicativos para conectar pessoas, criar vínculos e explorar afinidades sociais.</p>
-</div>
-</a>
+      <a href="pages/ferramentas-e-utilidades.html" style="text-decoration: none; color: inherit;">
+        <div class="card">
+          <img src="../assets/img/herramientas.png" alt="Utilidades e ferramentas" />
+          <h3>Utilidades e ferramentas</h3>
+          <p>Aplicativos práticos para medições, diagnósticos, organização e uso cotidiano do seu dispositivo.</p>
+        </div>
+      </a>
 
+      <a href="pages/jogos-android.html" style="text-decoration: none; color: inherit;">
+        <div class="card">
+          <img src="../assets/img/juegos.png" alt="Jogos" />
+          <h3>Jogos</h3>
+          <p>Jogos e experiências interativas criados para diversão, competição e novos desafios.</p>
+        </div>
+      </a>
 
+      <a href="pages/apps-para-pets.html" style="text-decoration: none; color: inherit;">
+        <div class="card">
+          <img src="../assets/img/mascotas.png" alt="Animais de estimação" />
+          <h3>Animais de estimação</h3>
+          <p>Aplicativos para o cuidado, a saúde, a organização e o bem-estar dos seus animais de estimação.</p>
+        </div>
+      </a>
+    
     </div> <!-- cierre ideas -->
 
   </div> <!-- cierre apps-layout -->
 
 </section>
 
+<!-- HERRAMIENTAS -->
+
 <section id="herramientas">
   <h2>Ferramentas para fazer seu negócio crescer</h2>
 
-  <div class="ideas">
+  <div class="business-tools">
+
     <a href="pages/dividir-imagem-instagram.html" class="tool-card">
-  <div class="card card-bg-instagram">
-    <h3>Mosaico para Instagram</h3>
-    <p>Divida suas imagens automaticamente para criar um feed profissional no Instagram.</p>
+  <div class="card card-bg card-bg-instagram">
+        <!-- Capa que hace el barrido sobre la foto original de fondo -->
+    <div class="sweep-overlay"></div>
+        <h3>Divisor de Imagens para Instagram</h3>
+        <p>Divida automaticamente suas imagens para criar um feed profissional no Instagram.</p>
+  </div>
+  </a>
+
+  <a href="pages/apps-de-academia.html" class="tool-card">
+  <div class="card card-bg card-bg-gym">
+        <h3>Apps para Academias</h3>
+        <p>Apps para academias que ajudam a aumentar a retenção de alunos, oferecer um atendimento melhor e se destacar da concorrência.</p>
   </div>
    </a>
+
+  <a href="pages/site-em-construcao.html" class="tool-card">
+  <div class="card card-bg card-bg-gastronomia">
+        <h3>Padarias e Restaurantes</h3>
+        <p>Ferramentas digitais desenvolvidas para atrair clientes e aumentar suas vendas. (Em breve)</p>
+  </div>
+   </a>
+
   </div>
 </section>
 
