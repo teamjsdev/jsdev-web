@@ -22,16 +22,20 @@
 </main>
 <script>
   const match = window.location.pathname.match(/^\/hotcrave\/b\/([^/]+)\/?$/i);
+
   if (match) {
-    const businessId = decodeURIComponent(match[1]);
-    document.title = 'Abrir en Calentitos';
-    document.getElementById('app').innerHTML = `
-      <h1>Calentitos</h1>
-      <p>Este código QR pertenece a un negocio de Calentitos.</p>
-      <div class="actions">
-        <a class="primary" href="https://play.google.com/store/apps/details?id=com.jsdev.hotcrave.food">Abrir / descargar la app</a>
-      </div>
-    `;
+    const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.jsdev.hotcrave.food';
+    const isAndroid = /Android/i.test(navigator.userAgent);
+
+    if (isAndroid) {
+      window.location.replace(playStoreUrl);
+    } else {
+      document.title = 'Calentitos';
+      document.getElementById('app').innerHTML = `
+        <h1>Calentitos</h1>
+        <p>Este código QR pertenece a un negocio de Calentitos.</p>
+      `;
+    }
   }
 </script>
 </body>
