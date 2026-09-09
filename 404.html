@@ -24,7 +24,8 @@
   const match = window.location.pathname.match(/^\/hotcrave\/b\/([^/]+)\/?$/i);
 
   if (match) {
-    const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.jsdev.hotcrave.food';
+    const businessId = decodeURIComponent(match[1]);
+    const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.jsdev.hotcrave.food&referrer=' + encodeURIComponent('businessId=' + businessId);
     const isAndroid = /Android/i.test(navigator.userAgent);
 
     if (isAndroid) {
