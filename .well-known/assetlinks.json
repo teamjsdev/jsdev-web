@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.jsdev.hotcrave.food",
+      "sha256_cert_fingerprints": [
+        "4D:93:58:48:E8:45:86:0E:DE:F8:94:78:2A:06:5C:8C:63:C7:FE:82:F8:E1:4B:75:27:7D:FC:E6:C4:C7:D7:50"
+      ]
+    }
+  }
+]
