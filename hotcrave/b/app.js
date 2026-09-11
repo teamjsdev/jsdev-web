@@ -1,5 +1,5 @@
 const API_BASE = 'https://hotcrave-api-274560140811.southamerica-east1.run.app';
-const VAPID_PUBLIC_KEY = 'BJaVOiPK9aQB1pPUA-iq757xNFFNbwf2hmpDAm0BcV9QZRGK5O32KYXOYM_iz8bYmEZUSeuSB8omEDa0yfpAFLk';
+const VAPID_PUBLIC_KEY = '';
 
 const state = { businessId: null, business: null, following: false, subscription: null };
 
