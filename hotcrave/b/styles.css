@@ -1,0 +1,88 @@
+:root {
+  --crave-orange: #aa3000;
+  --crave-orange-bright: #d43f00;
+  --crave-orange-soft: #ffdbd0;
+  --charcoal: #1a1c1c;
+  --ink-warm: #5c4037;
+  --canvas: #f9f9f9;
+  --paper: #ffffff;
+  --mist: #f3f3f3;
+  --stone: #e2e2e2;
+  --outline-warm: #916f65;
+  --emerald: #006947;
+}
+
+* { box-sizing: border-box; }
+html { background: var(--canvas); }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--canvas);
+  color: var(--charcoal);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+}
+
+#app { width: 100%; }
+.content {
+  width: min(680px, 100%);
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+.hero-card {
+  background: linear-gradient(145deg, var(--crave-orange), var(--crave-orange-bright));
+  color: white;
+  border-radius: 24px;
+  padding: 32px 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 12px 30px rgba(26, 28, 28, .14);
+}
+.hero-card h1 { margin: 8px 0 4px; font-size: clamp(2rem, 8vw, 3rem); line-height: 1.05; }
+.hero-card p { margin: 0; opacity: .9; }
+.eyebrow { font-size: .78rem; font-weight: 800; letter-spacing: .14em; }
+
+.card {
+  background: var(--paper);
+  border: 1px solid var(--stone);
+  border-radius: 20px;
+  padding: 22px;
+  margin-bottom: 16px;
+  box-shadow: 0 5px 16px rgba(26, 28, 28, .06);
+}
+.card h2 { margin: 0 0 10px; color: var(--ink-warm); font-size: 1.25rem; }
+.card p { margin: 0 0 16px; }
+.hot-card { border-color: var(--crave-orange-soft); background: #fffaf8; }
+.hot-card strong { color: var(--crave-orange); }
+
+.product-list { list-style: none; padding: 0; margin: 0; }
+.product-list li {
+  padding: 13px 0;
+  border-bottom: 1px solid var(--mist);
+  font-weight: 600;
+}
+.product-list li:last-child { border-bottom: 0; }
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0 18px;
+  border-radius: 14px;
+  border: 0;
+  font: inherit;
+  font-weight: 750;
+  text-decoration: none;
+  cursor: pointer;
+}
+.button:disabled { opacity: .55; cursor: wait; }
+.button.primary { background: var(--crave-orange); color: white; }
+.button.secondary { background: var(--mist); color: var(--charcoal); }
+.notification-card { border-color: var(--crave-orange-soft); }
+.privacy-note { text-align: center; color: #6b6b6b; font-size: .85rem; padding: 4px 16px; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .card { animation: appear .25s ease-out both; }
+  @keyframes appear { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
+}
