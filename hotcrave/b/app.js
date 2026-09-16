@@ -222,12 +222,12 @@ async function toggleNotifications(button) {
       return;
     }
 
-    if (!('serviceWorker' in navigator) || !('PushManager' in window) || !('Notification' in window)) {
-      throw new Error('Este navegador no admite notificaciones web.');
-    }
-
     if (isIos() && !isStandalone()) {
       throw new Error('En iPhone, primero agregá Calentitos a la pantalla de inicio y luego activá las alertas desde allí.');
+    }
+
+    if (!('serviceWorker' in navigator) || !('PushManager' in window) || !('Notification' in window)) {
+      throw new Error('Este navegador no admite notificaciones web.');
     }
 
     const permission = await Notification.requestPermission();
