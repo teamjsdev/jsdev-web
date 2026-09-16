@@ -217,7 +217,7 @@ function productsView(message = "", error = false) {
     ? products.map((product) => `<article class="product-card"><div><h3>${escapeHtml(product.name)}</h3><p class="muted">${escapeHtml(product.type === "CUSTOM" ? (product.category || "Personalizado") : "Producto predefinido")}</p></div><span class="type-pill">${escapeHtml(product.type === "CUSTOM" ? "Personalizado" : "Predefinido")}</span></article>`).join("")
     : `<div class="empty-card"><span>▦</span><h3>No hay productos activos</h3><p class="muted">Los productos disponibles aparecerán acá.</p></div>`;
   const createForm = isManager()
-    ? `<section class="form-card"><div><p class="eyebrow">NUEVO PRODUCTO</p><h2>Agregar producto personalizado</h2><p class="muted">${premium ? `${customCount} / 100 productos personalizados utilizados.` : "Los productos personalizados están disponibles con Premium."}</p></div><form id="product-form"><label>Nombre<input name="name" maxlength="120" placeholder="Ej. Medialuna rellena" required ${premium ? "" : "disabled"}></label><label>Categoría<input name="category" maxlength="80" placeholder="Ej. Panadería" required ${premium ? "" : "disabled"}></label><button class="primary" type="submit" ${premium ? "" : "disabled"}>Agregar producto</button></form></section>`
+    ? `<section class="form-card"><div><p class="eyebrow">NUEVO PRODUCTO</p><h2>Agregar producto personalizado</h2><p class="muted">${premium ? `${customCount} / 100 productos personalizados utilizados.` : "Los productos personalizados están disponibles con Premium."}</p></div><form id="product-form"><label>Nombre<input name="name" maxlength="120" placeholder="Ej. Medialuna rellena" required ${premium ? "" : "disabled"}></label><button class="primary" type="submit" ${premium ? "" : "disabled"}>Agregar producto</button></form></section>`
     : "";
   render(shell(`${pageHeading("PRODUCTOS", "Catálogo", "Administrá los productos que podés usar para publicar Hot Events.")}${message ? `<p class="${error ? "error" : "success"}" role="status">${escapeHtml(message)}</p>` : ""}${createForm}<section class="section-heading compact"><p class="eyebrow">ACTIVOS</p><h2>${products.length} productos</h2></section><div class="product-list">${productCards}</div>`));
   bindShell();
@@ -275,7 +275,7 @@ async function createProduct(event) {
   try {
     await api("/business/me/products", {
       method: "POST",
-      body: JSON.stringify({ name: form.name.value.trim(), type: "CUSTOM", status: "ACTIVE", category: form.category.value.trim() }),
+      body: JSON.stringify({ name: form.name.value.trim(), type: "CUSTOM", status: "ACTIVE", category: "OTHER" }),
     });
     await loadProducts();
     productsView("El producto fue agregado al catálogo.");
