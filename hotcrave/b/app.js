@@ -199,6 +199,61 @@ async function restorePushSubscription() {
   }
 }
 
+function showIosInstallInstructions() {
+  const overlay = document.createElement('div');
+  overlay.className = 'ios-install-overlay';
+
+  const dialog = document.createElement('section');
+  dialog.className = 'ios-install-dialog';
+  dialog.setAttribute('role', 'dialog');
+  dialog.setAttribute('aria-modal', 'true');
+  dialog.setAttribute('aria-labelledby', 'ios-install-title');
+
+  const title = document.createElement('h2');
+  title.id = 'ios-install-title';
+  title.textContent = '🔥 Activá las alertas';
+
+  const intro = document.createElement('p');
+  intro.textContent = 'Para recibir notificaciones en iPhone, primero agregá Calentitos a tu pantalla de inicio.';
+
+  const steps = document.createElement('ol');
+  steps.className = 'ios-install-steps';
+
+  const step1 = document.createElement('li');
+  step1.innerHTML = 'Tocá <strong>Compartir</strong> en Safari.';
+
+  const step2 = document.createElement('li');
+  step2.innerHTML = 'Elegí <strong>“Agregar a pantalla de inicio”</strong>.';
+
+  const step3 = document.createElement('li');
+  step3.innerHTML = 'Volvé a esta página para activar las alertas o abrí directamente <strong>Calentitos</strong> desde el nuevo ícono.';
+
+  steps.append(step1, step2, step3);
+
+  const activateButton = document.createElement('button');
+  activateButton.className = 'button primary ios-install-button';
+  activateButton.type = 'button';
+  activateButton.textContent = 'Ya la agregué → Activar alertas';
+  activateButton.addEventListener('click', () => {
+    if (!isStandalone()) {
+      alert('Abrí Calentitos desde el nuevo ícono de la pantalla de inicio para activar las alertas.');
+      return;
+    }
+    overlay.remove();
+    toggleNotifications(activateButton);
+  });
+
+  const closeButton = document.createElement('button');
+  closeButton.className = 'button secondary ios-install-close';
+  closeButton.type = 'button';
+  closeButton.textContent = 'Ahora no';
+  closeButton.addEventListener('click', () => overlay.remove());
+
+  dialog.append(title, intro, steps, activateButton, closeButton);
+  overlay.append(dialog);
+  document.body.append(overlay);
+}
+
 async function toggleNotifications(button) {
   button.disabled = true;
   try {
@@ -223,7 +278,9 @@ async function toggleNotifications(button) {
     }
 
     if (isIos() && !isStandalone()) {
-      throw new Error('En iPhone, primero agregá Calentitos a la pantalla de inicio y luego activá las alertas desde allí.');
+      showIosInstallInstructions();
+      button.disabled = false;
+      return;
     }
 
     if (!('serviceWorker' in navigator) || !('PushManager' in window) || !('Notification' in window)) {
