@@ -214,21 +214,24 @@ function showIosInstallInstructions() {
   title.textContent = '🔥 Activá las alertas';
 
   const intro = document.createElement('p');
-  intro.textContent = 'Para recibir notificaciones en iPhone, primero agregá Calentitos a tu pantalla de inicio.';
+  intro.textContent = 'Para recibir notificaciones en iPhone, primero agregá la app Calentitos a tu pantalla de inicio.';
 
   const steps = document.createElement('ol');
   steps.className = 'ios-install-steps';
 
   const step1 = document.createElement('li');
-  step1.innerHTML = 'Tocá <strong>Compartir</strong> en Safari.';
+  step1.innerHTML = 'Tocá los tres puntitos … de Safari y elegí <strong>Compartir</strong>';
 
   const step2 = document.createElement('li');
-  step2.innerHTML = 'Elegí <strong>“Agregar a pantalla de inicio”</strong>.';
+  step2.innerHTML = 'Elegí <strong>“+ Agregar a inicio”</strong>.';
 
   const step3 = document.createElement('li');
-  step3.innerHTML = 'Volvé a esta página para activar las alertas o abrí directamente <strong>Calentitos</strong> desde el nuevo ícono.';
+  step3.innerHTML = 'Tocá <strong>“Agregar”</strong>.';
 
-  steps.append(step1, step2, step3);
+  const step4 = document.createElement('li');
+  step4.innerHTML = 'Abrí <strong>Calentitos</strong> desde el nuevo ícono de tu pantalla de inicio y tocá “Activar alertas”';
+
+  steps.append(step1, step2, step3, step4);
 
   const activateButton = document.createElement('button');
   activateButton.className = 'button primary ios-install-button';
