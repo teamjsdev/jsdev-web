@@ -120,6 +120,17 @@ function renderBusiness() {
   note.className = 'privacy-note';
   note.textContent = 'Las notificaciones son opcionales y podés desactivarlas cuando quieras.';
   content.append(note);
+
+  const businessAccessCard = document.createElement('section');
+  businessAccessCard.className = 'card';
+  const businessAccessTitle = document.createElement('h2');
+  businessAccessTitle.textContent = '¿Sos dueño de un negocio?';
+  const businessAccessButton = document.createElement('a');
+  businessAccessButton.className = 'button secondary';
+  businessAccessButton.href = 'https://jsdevmobile.com/hotcrave/business/';
+  businessAccessButton.textContent = 'Acceso para negocios →';
+  businessAccessCard.append(businessAccessTitle, businessAccessButton);
+  content.append(businessAccessCard);
 }
 
 async function load() {
