@@ -325,3 +325,111 @@ async function toggleNotifications(button) {
 }
 
 load();
+
+
+const CALENTITOS_LANG_KEY = 'calentitos_lang';
+let calentitosLang = localStorage.getItem(CALENTITOS_LANG_KEY) || (navigator.language || '').toLowerCase().startsWith('en') ? 'en' : 'es';
+if (!['es', 'en'].includes(calientitosLangSafe())) calentitosLang = 'es';
+
+function calientitosLangSafe() {
+  return calentitosLang;
+}
+
+const CALENTITOS_I18N = {
+  'Calentitos': 'Calentitos',
+  'Cargando información del negocio…': 'Loading business information…',
+  'No pudimos acceder': 'We could not access this business',
+  'Ir al inicio': 'Go to home',
+  'El enlace de este código QR no es válido.': 'This QR code link is not valid.',
+  'Productos': 'Products',
+  'Este negocio todavía no tiene productos publicados.': 'This business has no published products yet.',
+  'Disponible ahora': 'Available now',
+  'Agotado': 'Sold out',
+  'Próximamente': 'Coming soon',
+  'Alertas activadas': 'Alerts enabled',
+  '¿Querés enterarte cuando haya algo nuevo?': 'Want to know when something new is available?',
+  'Recibirás una notificación cuando este negocio publique un Hot Event.': 'You will receive a notification when this business publishes a Hot Event.',
+  'Seguí este negocio desde tu iPhone o navegador compatible para recibir alertas de Hot Events.': 'Follow this business from your iPhone or compatible browser to receive Hot Event alerts.',
+  'Dejar de recibir alertas': 'Stop receiving alerts',
+  'Activar alertas': 'Enable alerts',
+  'Las notificaciones son opcionales y podés desactivarlas cuando quieras.': 'Notifications are optional and can be disabled at any time.',
+  '¿Sos dueño de un negocio?': 'Do you own a business?',
+  'Acceso para negocios →': 'Business access →',
+  '🔥 Activá las alertas': '🔥 Enable alerts',
+  'Para recibir notificaciones en iPhone, primero agregá la app Calentitos a tu pantalla de inicio.': 'To receive notifications on iPhone, first add the Calentitos app to your Home Screen.',
+  'Tocá los tres puntitos … de Safari y elegí Compartir': 'Tap Safari’s three-dot menu … and choose Share',
+  'Elegí “+ Agregar a inicio”.': 'Choose “+ Add to Home Screen”.',
+  'Tocá “Agregar”.': 'Tap “Add”.',
+  'Abrí Calentitos desde el nuevo ícono de tu pantalla de inicio y tocá “Activar alertas”': 'Open Calentitos from the new Home Screen icon and tap “Enable alerts”',
+  'Ya la agregué → Activar alertas': 'I added it → Enable alerts',
+  'Ahora no': 'Not now',
+  'Abrí Calentitos desde el nuevo ícono de la pantalla de inicio para activar las alertas.': 'Open Calentitos from the new Home Screen icon to enable alerts.',
+  'Este navegador no admite notificaciones web.': 'This browser does not support web notifications.',
+  'Las notificaciones no fueron habilitadas.': 'Notifications were not enabled.',
+  'No se pudo crear la suscripción de notificaciones.': 'Could not create the notification subscription.',
+  'Enlace copiado.': 'Link copied.',
+  'No se pudo copiar automáticamente. Seleccioná el enlace para copiarlo.': 'Could not copy automatically. Select the link to copy it.',
+  'No se pudo generar el QR.': 'Could not generate the QR code.',
+  'No se pudo cargar el generador de QR. Recargá la página.': 'Could not load the QR generator. Reload the page.',
+  'es': 'es',
+  'en': 'en'
+};
+
+const CALENTITOS_REVERSE_I18N = Object.fromEntries(Object.entries(CALENTITOS_I18N).map(([es, en]) => [en, es]));
+
+function calentitosTranslateText(text) {
+  if (calentitosLang === 'es') return CALENTITOS_REVERSE_I18N[text] || text;
+  return CALENTITOS_I18N[text] || text;
+}
+
+function calentitosApplyLanguage() {
+  document.documentElement.lang = calentitosLang;
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  const nodes = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode);
+  nodes.forEach(node => {
+    if (node.parentElement?.closest('.calentitos-web-footer')) return;
+    const translated = calentitosTranslateText(node.nodeValue.trim());
+    if (translated !== node.nodeValue.trim() && node.nodeValue.trim()) {
+      node.nodeValue = node.nodeValue.replace(node.nodeValue.trim(), translated);
+    }
+  });
+  const title = document.querySelector('title');
+  if (title) title.textContent = calentitosLang === 'en' ? 'Business · Calentitos' : 'Negocio · Calentitos';
+}
+
+function calentitosLegalFooter() {
+  const footer = document.createElement('footer');
+  footer.className = 'calentitos-web-footer';
+  footer.innerHTML = `
+    <div class="language-switcher" aria-label="Language">
+      <button type="button" data-calentitos-lang="es">ES</button>
+      <button type="button" data-calentitos-lang="en">EN</button>
+    </div>
+    <div class="legal-links">
+      <a href="/calentitos/privacidad">Política de privacidad</a>
+      <span>·</span>
+      <a href="/calentitos/terminos">Términos y condiciones</a>
+    </div>
+  `;
+  footer.querySelectorAll('[data-calentitos-lang]').forEach(button => {
+    button.addEventListener('click', () => {
+      calentitosLang = button.dataset.calentitosLang;
+      localStorage.setItem(CALENTITOS_LANG_KEY, calentitosLang);
+      calentitosApplyLanguage();
+    });
+  });
+  return footer;
+}
+
+function calentitosEnsureChrome() {
+  if (!document.querySelector('.calentitos-web-footer')) content.append(calentitosLegalFooter());
+  calentitosApplyLanguage();
+}
+
+new MutationObserver(() => {
+  clearTimeout(window.__calentitosI18nTimer);
+  window.__calentitosI18nTimer = setTimeout(calentitosEnsureChrome, 0);
+}).observe(content, { childList: true, subtree: true });
+
+calentitosEnsureChrome();
