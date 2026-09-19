@@ -407,9 +407,9 @@ function calentitosLegalFooter() {
       <button type="button" data-calentitos-lang="en">EN</button>
     </div>
     <div class="legal-links">
-      <a href="/calentitos/privacidad">Política de privacidad</a>
+      <a href="${calentitosLang === "en" ? "/calentitos/privacy" : "/calentitos/privacidad"}">${calentitosLang === "en" ? "Privacy Policy" : "Política de privacidad"}</a>
       <span>·</span>
-      <a href="/calentitos/terminos">Términos y condiciones</a>
+      <a href="${calentitosLang === "en" ? "/calentitos/terms" : "/calentitos/terminos"}">${calentitosLang === "en" ? "Terms and Conditions" : "Términos y condiciones"}</a>
     </div>
   `;
   footer.querySelectorAll('[data-calentitos-lang]').forEach(button => {
