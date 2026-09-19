@@ -435,6 +435,7 @@ function businessTranslateText(value) {
   return BUSINESS_I18N[value] || value;
 }
 function businessApplyLanguage() {
+  businessObserver?.disconnect();
   document.documentElement.lang = businessLang;
   const walker=document.createTreeWalker(appRoot,NodeFilter.SHOW_TEXT);
   const nodes=[]; while(walker.nextNode()) nodes.push(walker.currentNode);
@@ -454,6 +455,7 @@ function businessApplyLanguage() {
     businessLang=b.dataset.businessLang; localStorage.setItem(CALENTITOS_BUSINESS_LANG_KEY,businessLang); businessApplyLanguage();
   }));
   appRoot.append(f);
+  businessObserver.observe(appRoot,{childList:true,subtree:true});
 }
 const businessObserver=new MutationObserver(()=>{clearTimeout(window.__businessI18nTimer);window.__businessI18nTimer=setTimeout(businessApplyLanguage,0);});
-businessObserver.observe(appRoot,{childList:true,subtree:true});
+businessApplyLanguage();
