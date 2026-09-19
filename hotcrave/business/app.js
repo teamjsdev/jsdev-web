@@ -398,3 +398,62 @@ if (!configured()) {
   auth = getAuth(initializeApp(FIREBASE_CONFIG));
   onAuthStateChanged(auth, (user) => user ? signedIn(user) : login());
 }
+
+const CALENTITOS_BUSINESS_LANG_KEY = 'calentitos_business_lang';
+let businessLang = localStorage.getItem(CALENTITOS_BUSINESS_LANG_KEY) || ((navigator.language || '').toLowerCase().startsWith('en') ? 'en' : 'es');
+if (!['es', 'en'].includes(businessLang)) businessLang = 'es';
+
+const BUSINESS_I18N = {
+  'CALENTITOS · NEGOCIOS':'CALENTITOS · BUSINESS','Panel de negocio':'Business dashboard','Cerrar sesión':'Sign out',
+  'Administración':'Administration','Hot Events':'Hot Events','Perfil':'Profile','Productos':'Products','QR':'QR','Premium':'Premium','Resumen':'Overview',
+  'Cargando…':'Loading…','PRIORIDAD':'PRIORITY','Publicá rápido cuando tengas comida recién hecha.':'Publish quickly when your food is freshly made.',
+  'Disponible ahora':'Available now','Listo en 15 minutos':'Ready in 15 minutes','Listo en 30 minutos':'Ready in 30 minutes','Agotado':'Sold out','Expirado':'Expired',
+  'Publicar Hot Event':'Publish Hot Event','Tus Hot Events':'Your Hot Events','HISTORIAL':'HISTORY','ACTIVOS':'ACTIVE',
+  'Información del negocio':'Business information','Estos datos son los que identifican y presentan a tu negocio en Calentitos.':'These details identify and present your business on Calentitos.',
+  'Nombre del negocio':'Business name','Ubicación':'Location','Guardar cambios':'Save changes','Catálogo':'Catalog','Administrá los productos que podés usar para publicar Hot Events.':'Manage the products you can use to publish Hot Events.',
+  'NUEVO PRODUCTO':'NEW PRODUCT','Agregar producto personalizado':'Add custom product','Agregar producto':'Add product','Productos activos':'Active products',
+  'Código QR del negocio':'Business QR code','Este enlace es permanente y lleva a la experiencia pública de tu negocio.':'This permanent link opens your public business page.',
+  'Descargar QR':'Download QR','Copiar enlace':'Copy link','PLAN GRATUITO':'FREE PLAN','PREMIUM ACTIVO':'PREMIUM ACTIVE',
+  'Potenciá tu negocio':'Grow your business','Tu negocio tiene Premium':'Your business has Premium','Plan gratuito':'Free plan','Resumen':'Overview',
+  'Gestioná tu negocio':'Manage your business','Accedé al espacio de administración de tu negocio.':'Access your business management area.',
+  'Correo electrónico':'Email','Contraseña':'Password','Ingresar':'Sign in',
+  'No encontramos un negocio':'We could not find a business','Esta cuenta no tiene un negocio asociado.':'This account is not associated with a business.',
+  'Reintentar':'Try again','No pudimos acceder':'We could not access your account',
+  'Los datos del negocio fueron actualizados.':'Business information was updated.','El producto fue agregado al catálogo.':'The product was added to the catalog.',
+  'Hot Event publicado correctamente.':'Hot Event published successfully.','El Hot Event fue marcado como agotado.':'The Hot Event was marked as sold out.',
+  'Request failed':'Request failed','No se pudo completar la operación. Intentá nuevamente.':'The operation could not be completed. Please try again.',
+  'No encontramos tu negocio.':'We could not find your business.','Ese producto no está activo.':'That product is not active.',
+  'Alcanzaste el límite de productos de tu plan.':'You reached your plan’s product limit.','Los productos personalizados requieren HotCrave Premium.':'Custom products require Calentitos Premium.',
+  'Las categorías personalizadas requieren HotCrave Premium.':'Custom categories require Calentitos Premium.','Alcanzaste el límite de Hot Events activos de tu plan.':'You reached your plan’s active Hot Events limit.',
+  'No encontramos ese Hot Event.':'We could not find that Hot Event.','Ese Hot Event ya venció.':'That Hot Event has expired.',
+  'Este navegador no admite notificaciones web.':'This browser does not support web notifications.'
+};
+const BUSINESS_REVERSE_I18N = Object.fromEntries(Object.entries(BUSINESS_I18N).map(([es,en])=>[en,es]));
+
+function businessTranslateText(value) {
+  if (businessLang === 'es') return BUSINESS_REVERSE_I18N[value] || value;
+  return BUSINESS_I18N[value] || value;
+}
+function businessApplyLanguage() {
+  document.documentElement.lang = businessLang;
+  const walker=document.createTreeWalker(appRoot,NodeFilter.SHOW_TEXT);
+  const nodes=[]; while(walker.nextNode()) nodes.push(walker.currentNode);
+  nodes.forEach(node=>{
+    const raw=node.nodeValue;
+    const trimmed=raw.trim();
+    if(!trimmed) return;
+    const translated=businessTranslateText(trimmed);
+    if(translated!==trimmed) node.nodeValue=raw.replace(trimmed,translated);
+  });
+  const footer=document.querySelector('.calentitos-business-footer');
+  if(footer) footer.remove();
+  const f=document.createElement('footer');
+  f.className='calentitos-business-footer';
+  f.innerHTML=`<div><button type="button" data-business-lang="es">ES</button> <button type="button" data-business-lang="en">EN</button></div><p><a href="/calentitos/privacidad">Política de privacidad</a> · <a href="/calentitos/terminos">Términos y condiciones</a></p>`;
+  f.querySelectorAll('[data-business-lang]').forEach(b=>b.addEventListener('click',()=>{
+    businessLang=b.dataset.businessLang; localStorage.setItem(CALENTITOS_BUSINESS_LANG_KEY,businessLang); businessApplyLanguage();
+  }));
+  appRoot.append(f);
+}
+const businessObserver=new MutationObserver(()=>{clearTimeout(window.__businessI18nTimer);window.__businessI18nTimer=setTimeout(businessApplyLanguage,0);});
+businessObserver.observe(appRoot,{childList:true,subtree:true});
