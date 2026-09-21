@@ -325,7 +325,7 @@ function productsView(message = "", error = false) {
   render(shell(
     pageHeading("PRODUCTOS", "Catálogo", "Elegí por categorías los productos que querés tener disponibles para publicar Hot Events.") +
     (message ? '<p class="' + (error ? "error" : "success") + '" role="status">' + escapeHtml(message) + "</p>" : "") +
-    '<section class="form-card catalog-card"><p class="eyebrow">CATEGORÍAS</p><div class="catalog-tabs" role="tablist">' +
+    '<section class="form-card catalog-card"><p class="eyebrow">CATÁLOGO</p><div class="catalog-summary"><strong>' + predefinedCount + ' / 5</strong><span class="muted">productos predefinidos</span>' + (premium ? '<span class="muted"> · ' + customCount + ' / 100 personalizados</span>' : '') + '</div><p class="eyebrow">CATEGORÍAS</p><div class="catalog-tabs" role="tablist">' +
     tabs +
     '</div><div class="catalog-panel"><h2>' +
     WEB_PRODUCT_CATEGORY_LABELS[activeCategory] +
