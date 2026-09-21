@@ -217,8 +217,13 @@ const WEB_PRODUCT_CATALOG = {
   CAFE: ["Café", "Medialunas", "Tostado", "Muffin", "Croissant"],
   OTHER: ["Tarta", "Pastel", "Wrap", "Bowl", "Snack"],
 };
+
 const WEB_PRODUCT_CATEGORY_LABELS = {
-  BAKERY: "Panadería", PIZZERIA: "Pizzería", RESTAURANT: "Restaurante", CAFE: "Cafetería", OTHER: "Otros",
+  BAKERY: "Panadería",
+  PIZZERIA: "Pizzería",
+  RESTAURANT: "Restaurante",
+  CAFE: "Cafetería",
+  OTHER: "Otros",
 };
 
 function productsView(message = "", error = false) {
@@ -228,51 +233,133 @@ function productsView(message = "", error = false) {
   const predefinedCount = products.filter((product) => product.type === "PREDEFINED").length;
   const categories = Object.keys(WEB_PRODUCT_CATALOG);
   const activeCategory = window.__catalogCategory || categories[0];
+
   const categoryProducts = products.filter((product) => {
     if (product.type === "CUSTOM") return activeCategory === "OTHER";
     return String(product.category || "").toUpperCase() === activeCategory;
   });
+
   const available = WEB_PRODUCT_CATALOG[activeCategory].filter((name) =>
-    !products.some((product) => product.type === "PREDEFINED" &&
-      product.name.toLowerCase() === name.toLowerCase() &&
-      String(product.category || "").toUpperCase() === activeCategory)
+    !products.some((product) =>
+      product.type === "PREDEFINED" &&
+      product.name.toLowerCase() === name.toLowerCase()
+    )
   );
+
   const tabs = categories.map((category) =>
-    `<button type="button" class="catalog-tab \${activeCategory === category ? "active" : ""}" data-catalog-category="\${category}">\${WEB_PRODUCT_CATEGORY_LABELS[category]}</button>`
+    '<button type="button" class="catalog-tab ' +
+    (activeCategory === category ? "active" : "") +
+    '" data-catalog-category="' + category + '">' +
+    WEB_PRODUCT_CATEGORY_LABELS[category] +
+    "</button>"
   ).join("");
+
   const addPredefined = available.length
-    ? `<div class="catalog-add-list">\${available.map((name) =>
-        `<button type="button" class="secondary catalog-add-product" data-product-name="\${escapeHtml(name)}" \${!isManager() || (!premium && predefinedCount >= 5) ? "disabled" : ""}>+ \${escapeHtml(name)}</button>`
-      ).join("")}</div>`
-    : `<p class="muted small">Ya agregaste todos los productos predefinidos de esta categoría.</p>`;
+    ? '<div class="catalog-add-list">' +
+      available.map((name) =>
+        '<button type="button" class="secondary catalog-add-product" data-product-name="' +
+        escapeHtml(name) + '"' +
+        (!isManager() || (!premium && predefinedCount >= 5) ? " disabled" : "") +
+        '>+ ' + escapeHtml(name) + "</button>"
+      ).join("") +
+      "</div>"
+    : '<p class="muted small">Ya agregaste todos los productos predefinidos de esta categoría.</p>';
+
   const lockMessage = !premium && predefinedCount >= 5
-    ? `<p class="muted small">Alcanzaste los 5 productos del plan gratuito. Premium permite ampliar el catálogo con productos personalizados.</p>`
+    ? '<p class="muted small">Alcanzaste los 5 productos del plan gratuito. Premium permite ampliar el catálogo con productos personalizados.</p>'
     : "";
+
   const customForm = activeCategory === "OTHER" && isManager()
-    ? `<section class="form-card"><div><p class="eyebrow">NUEVO PRODUCTO</p><h2>Agregar producto personalizado</h2><p class="muted">\${premium ? `\${customCount} / 100 productos personalizados utilizados.` : "Los productos personalizados están disponibles con Premium."}</p></div><form id="product-form"><label>Nombre<input name="name" maxlength="120" placeholder="Ej. Medialuna rellena" required \${premium ? "" : "disabled"}></label><button class="primary" type="submit" \${premium ? "" : "disabled"}>Agregar producto</button></form></section>`
+    ? '<section class="form-card"><div><p class="eyebrow">NUEVO PRODUCTO</p><h2>Agregar producto personalizado</h2><p class="muted">' +
+      (premium ? customCount + " / 100 productos personalizados utilizados." : "Los productos personalizados están disponibles con Premium.") +
+      '</p></div><form id="product-form"><label>Nombre<input name="name" maxlength="120" placeholder="Ej. Medialuna rellena" required' +
+      (premium ? "" : " disabled") +
+      '></label><button class="primary" type="submit"' +
+      (premium ? "" : " disabled") +
+      '>Agregar producto</button></form></section>'
     : "";
+
   const customProducts = products.filter((product) => product.type === "CUSTOM");
   const customProductsSection = isManager() && activeCategory === "OTHER"
-    ? `<section class="form-card product-management-card"><div><p class="eyebrow">PRODUCTOS PERSONALIZADOS</p><h2>Administrar productos</h2><p class="muted">Eliminá productos personalizados que ya no ofrecés.</p></div>\${customProducts.length ? `<div class="product-management-list">\${customProducts.map((product) => `<div class="product-management-row"><div><strong>\${escapeHtml(product.name)}</strong><span class="muted small">Personalizado</span></div><button class="secondary delete-product" type="button" data-product-id="\${escapeHtml(product.productId)}" data-product-name="\${escapeHtml(product.name)}">Eliminar</button></div>`).join("")}</div>` : `<p class="muted small">No tenés productos personalizados para eliminar.</p>`}</section>`
+    ? '<section class="form-card product-management-card"><div><p class="eyebrow">PRODUCTOS PERSONALIZADOS</p><h2>Administrar productos</h2><p class="muted">Eliminá productos personalizados que ya no ofrecés.</p></div>' +
+      (customProducts.length
+        ? '<div class="product-management-list">' +
+          customProducts.map((product) =>
+            '<div class="product-management-row"><div><strong>' +
+            escapeHtml(product.name) +
+            '</strong><span class="muted small">Personalizado</span></div><button class="secondary delete-product" type="button" data-product-id="' +
+            escapeHtml(product.productId) +
+            '" data-product-name="' + escapeHtml(product.name) +
+            '">Eliminar</button></div>'
+          ).join("") +
+          "</div>"
+        : '<p class="muted small">No tenés productos personalizados para eliminar.</p>') +
+      "</section>"
     : "";
+
   const productCards = categoryProducts.length
-    ? categoryProducts.map((product) => `<article class="product-card"><div><h3>\${escapeHtml(product.name)}</h3><p class="muted">\${escapeHtml(product.type === "CUSTOM" ? "Personalizado" : "Producto predefinido")}</p></div><span class="type-pill">\${escapeHtml(product.type === "CUSTOM" ? "Personalizado" : "Predefinido")}</span></article>`).join("")
-    : `<div class="empty-card"><span>▦</span><h3>No hay productos activos</h3><p class="muted">Agregá productos de esta categoría para poder publicarlos.</p></div>`;
-  render(shell(`\${pageHeading("PRODUCTOS", "Catálogo", "Elegí por categorías los productos que querés tener disponibles para publicar Hot Events.")}\${message ? `<p class="\${error ? "error" : "success"}" role="status">\${escapeHtml(message)}</p>` : ""}<section class="form-card catalog-card"><p class="eyebrow">CATEGORÍAS</p><div class="catalog-tabs" role="tablist">\${tabs}</div><div class="catalog-panel"><h2>\${WEB_PRODUCT_CATEGORY_LABELS[activeCategory]}</h2>\${lockMessage}\${addPredefined}</div></section>\${customForm}\${customProductsSection}<section class="section-heading compact"><p class="eyebrow">ACTIVOS</p><h2>\${categoryProducts.length} productos</h2></section><div class="product-list">\${productCards}</div>`));
+    ? categoryProducts.map((product) =>
+        '<article class="product-card"><div><h3>' +
+        escapeHtml(product.name) +
+        '</h3><p class="muted">' +
+        escapeHtml(product.type === "CUSTOM" ? "Personalizado" : "Producto predefinido") +
+        '</p></div><span class="type-pill">' +
+        escapeHtml(product.type === "CUSTOM" ? "Personalizado" : "Predefinido") +
+        "</span></article>"
+      ).join("")
+    : '<div class="empty-card"><span>▦</span><h3>No hay productos activos</h3><p class="muted">Agregá productos de esta categoría para poder publicarlos.</p></div>';
+
+  render(shell(
+    pageHeading("PRODUCTOS", "Catálogo", "Elegí por categorías los productos que querés tener disponibles para publicar Hot Events.") +
+    (message ? '<p class="' + (error ? "error" : "success") + '" role="status">' + escapeHtml(message) + "</p>" : "") +
+    '<section class="form-card catalog-card"><p class="eyebrow">CATEGORÍAS</p><div class="catalog-tabs" role="tablist">' +
+    tabs +
+    '</div><div class="catalog-panel"><h2>' +
+    WEB_PRODUCT_CATEGORY_LABELS[activeCategory] +
+    "</h2>" + lockMessage + addPredefined +
+    '</div></section>' +
+    customForm +
+    customProductsSection +
+    '<section class="section-heading compact"><p class="eyebrow">ACTIVOS</p><h2>' +
+    categoryProducts.length +
+    ' productos</h2></section><div class="product-list">' +
+    productCards +
+    "</div>"
+  ));
+
   bindShell();
-  document.querySelectorAll("[data-catalog-category]").forEach((button) => button.addEventListener("click", () => {
-    window.__catalogCategory = button.dataset.catalogCategory;
-    productsView();
-  }));
-  document.querySelectorAll(".catalog-add-product").forEach((button) => button.addEventListener("click", () => addPredefinedProduct(button.dataset.productName)));
+
+  document.querySelectorAll("[data-catalog-category]").forEach((button) =>
+    button.addEventListener("click", () => {
+      window.__catalogCategory = button.dataset.catalogCategory;
+      productsView();
+    })
+  );
+
+  document.querySelectorAll(".catalog-add-product").forEach((button) =>
+    button.addEventListener("click", () => addPredefinedProduct(button.dataset.productName))
+  );
+
   document.querySelector("#product-form")?.addEventListener("submit", createProduct);
-  document.querySelectorAll(".delete-product").forEach((button) => button.addEventListener("click", () => deleteCustomProduct(button.dataset.productId, button.dataset.productName)));
+
+  document.querySelectorAll(".delete-product").forEach((button) =>
+    button.addEventListener("click", () =>
+      deleteCustomProduct(button.dataset.productId, button.dataset.productName)
+    )
+  );
 }
 
 async function addPredefinedProduct(name) {
   if (!isManager()) return;
-  const button = document.querySelector(`.catalog-add-product[data-product-name="\${CSS.escape(name)}"]`);
-  if (button) { button.disabled = true; button.textContent = "Agregando…"; }
+
+  const button = [...document.querySelectorAll(".catalog-add-product")]
+    .find((element) => element.dataset.productName === name);
+
+  if (button) {
+    button.disabled = true;
+    button.textContent = "Agregando…";
+  }
+
   try {
     await api("/business/me/products", {
       method: "POST",
