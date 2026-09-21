@@ -300,20 +300,21 @@ function productsView(message = "", error = false) {
     : "";
 
   const customProducts = products.filter((product) => product.type === "CUSTOM");
-  const customProductsSection = isManager() && activeCategory === "OTHER"
-    ? '<section class="form-card product-management-card"><div><p class="eyebrow">PRODUCTOS PERSONALIZADOS</p><h2>Administrar productos</h2><p class="muted">Eliminá productos personalizados que ya no ofrecés.</p></div>' +
-      (customProducts.length
+  const managementProducts = categoryProducts;
+  const customProductsSection = isManager()
+    ? '<section class="form-card product-management-card"><div><p class="eyebrow">ADMINISTRAR PRODUCTOS</p><h2>Productos activos</h2><p class="muted">Eliminá productos que ya no ofrecés. Las categorías solo sirven para filtrar.</p></div>' +
+      (managementProducts.length
         ? '<div class="product-management-list">' +
-          customProducts.map((product) =>
+          managementProducts.map((product) =>
             '<div class="product-management-row"><div><strong>' +
             escapeHtml(product.name) +
-            '</strong><span class="muted small">Personalizado</span></div><button class="secondary delete-product" type="button" data-product-id="' +
+            '</strong><span class="muted small">' + escapeHtml(product.type === "CUSTOM" ? "Personalizado" : "Predefinido") + '</span></div><button class="secondary delete-product" type="button" data-product-id="' +
             escapeHtml(product.productId) +
             '" data-product-name="' + escapeHtml(product.name) +
             '">Eliminar</button></div>'
           ).join("") +
           "</div>"
-        : '<p class="muted small">No tenés productos personalizados para eliminar.</p>') +
+        : '<p class="muted small">No hay productos activos en esta categoría.</p>') +
       "</section>"
     : "";
 
@@ -364,7 +365,7 @@ function productsView(message = "", error = false) {
 
   document.querySelectorAll(".delete-product").forEach((button) =>
     button.addEventListener("click", () =>
-      deleteCustomProduct(button.dataset.productId, button.dataset.productName)
+      deleteProduct(button.dataset.productId, button.dataset.productName)
     )
   );
 }
@@ -452,7 +453,7 @@ async function createProduct(event) {
   }
 }
 
-async function deleteCustomProduct(productId, productName) {
+async function deleteProduct(productId, productName) {
   if (!isManager()) return;
   const confirmed = window.confirm(`¿Eliminar "${productName}" del catálogo? Esta acción no se puede deshacer.`);
   if (!confirmed) return;
@@ -602,7 +603,7 @@ const BUSINESS_I18N = {
   'Correo electrónico':'Email','Contraseña':'Password','Ingresar':'Sign in',
   'No encontramos un negocio':'We could not find a business','Esta cuenta no tiene un negocio asociado.':'This account is not associated with a business.',
   'Reintentar':'Try again','No pudimos acceder':'We could not access your account',
-  'Los datos del negocio fueron actualizados.':'Business information was updated.','El producto fue agregado al catálogo.':'The product was added to the catalog.','El producto fue eliminado del catálogo.':'The product was removed from the catalog.','PRODUCTOS PERSONALIZADOS':'CUSTOM PRODUCTS','Administrar productos':'Manage products','Eliminá productos personalizados que ya no ofrecés.':'Remove custom products you no longer offer.','No tenés productos personalizados para eliminar.':'You have no custom products to delete.','Eliminar':'Delete','Eliminando…':'Deleting…','Los productos predefinidos no se pueden eliminar.':'Predefined products cannot be deleted.',
+  'Los datos del negocio fueron actualizados.':'Business information was updated.','El producto fue agregado al catálogo.':'The product was added to the catalog.','El producto fue eliminado del catálogo.':'The product was removed from the catalog.','PRODUCTOS PERSONALIZADOS':'CUSTOM PRODUCTS','Administrar productos':'Manage products','Eliminá productos personalizados que ya no ofrecés.':'Remove custom products you no longer offer.','No tenés productos personalizados para eliminar.':'You have no custom products to delete.','ADMINISTRAR PRODUCTOS':'MANAGE PRODUCTS','Productos activos':'Active products','Eliminá productos que ya no ofrecés. Las categorías solo sirven para filtrar.':'Remove products you no longer offer. Categories are only used for filtering.','No hay productos activos en esta categoría.':'There are no active products in this category.','Eliminar':'Delete','Eliminando…':'Deleting…',
   'Hot Event publicado correctamente.':'Hot Event published successfully.','El Hot Event fue marcado como agotado.':'The Hot Event was marked as sold out.',
   'Request failed':'Request failed','No se pudo completar la operación. Intentá nuevamente.':'The operation could not be completed. Please try again.',
   'No encontramos tu negocio.':'We could not find your business.','Ese producto no está activo.':'That product is not active.',
