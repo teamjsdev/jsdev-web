@@ -1,7 +1,7 @@
 const API_BASE = 'https://hotcrave-api-staging-274560140811.southamerica-east1.run.app';
 const VAPID_PUBLIC_KEY = 'BDg-XcXynucOK0vVTmk0WorOaga5lcd9ewEtpBh75Z8Hn9_b6iI_LKlkw1ZoU6I5iPm2g26rDfLIPJ3eE9PlQLI';
 
-const state = { businessId: null, business: null, following: false, subscription: null };
+const state = { businessId: null, business: null, following: false, subscription: null, productNotificationIds: null, productNotificationsConfigured: false };
 
 const app = document.getElementById('app');
 const content = document.createElement('div');
@@ -77,14 +77,41 @@ function renderBusiness() {
     empty.textContent = 'Este negocio todavía no tiene productos publicados.';
     productsSection.append(empty);
   } else {
+    const selectionHeader = document.createElement('div');
+    selectionHeader.className = 'product-selection-header';
+    const selectionTitle = document.createElement('p');
+    selectionTitle.className = 'product-selection-title';
+    selectionTitle.textContent = calentitosLang === 'en' ? 'Hot Event alerts' : 'Alertas de Hot Events';
+    const allButton = document.createElement('button');
+    allButton.className = 'product-all-button';
+    allButton.type = 'button';
+    allButton.textContent = calentitosLang === 'en' ? 'All' : 'Todos';
+    allButton.addEventListener('click', () => setAllProductNotifications(products));
+    selectionHeader.append(selectionTitle, allButton);
+    productsSection.append(selectionHeader);
     const list = document.createElement('ul');
     list.className = 'product-list';
     products.forEach(product => {
       const item = document.createElement('li');
-      item.textContent = product.name;
+      item.className = 'product-item';
+      const name = document.createElement('span');
+      name.textContent = product.name;
+      const button = document.createElement('button');
+      button.className = 'product-notification-button';
+      button.type = 'button';
+      button.setAttribute('aria-label', (calentitosLang === 'en' ? 'Toggle alerts for ' : 'Alternar alertas para ') + product.name);
+      button.setAttribute('aria-pressed', String(isProductNotificationSelected(product.id)));
+      button.title = calentitosLang === 'en' ? 'Hot Event alerts' : 'Alertas de Hot Events';
+      button.textContent = isProductNotificationSelected(product.id) ? '🔔' : '🔕';
+      button.addEventListener('click', () => toggleProductNotification(product.id));
+      item.append(name, button);
       list.append(item);
     });
     productsSection.append(list);
+    const hint = document.createElement('p');
+    hint.className = 'product-selection-hint';
+    hint.textContent = calentitosLang === 'en' ? 'Choose which products you want to hear about.' : 'Elegí sobre qué productos querés recibir alertas.';
+    productsSection.append(hint);
   }
   content.append(productsSection);
 
@@ -155,11 +182,83 @@ async function load() {
     state.business = business;
     state.products = productsResponse.products || [];
     state.hotEvent = (hotEventsResponse.hotEvents || []).find(item => item.business.businessId === state.businessId) || null;
+    await restoreProductNotificationSelection();
     await restorePushSubscription();
     document.title = `${business.name} · Calentitos`;
     renderBusiness();
   } catch (error) {
     renderError(error.message);
+  }
+}
+
+async function openProductNotificationDb() {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open('calentitos-notifications', 1);
+    request.onupgradeneeded = () => request.result.createObjectStore('businesses', { keyPath: 'businessId' });
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = () => reject(request.error);
+  });
+}
+
+async function getProductNotificationSelection(businessId) {
+  try {
+    const db = await openProductNotificationDb();
+    return await new Promise((resolve, reject) => {
+      const request = db.transaction('businesses', 'readonly').objectStore('businesses').get(businessId);
+      request.onsuccess = () => resolve(request.result || null);
+      request.onerror = () => reject(request.error);
+    });
+  } catch (error) {
+    console.warn('No se pudo leer la selección de productos.', error);
+    return null;
+  }
+}
+
+async function saveProductNotificationSelection(productIds) {
+  const db = await openProductNotificationDb();
+  await new Promise((resolve, reject) => {
+    const request = db.transaction('businesses', 'readwrite').objectStore('businesses').put({ businessId: state.businessId, productIds: [...new Set(productIds)], configured: true, updatedAt: Date.now() });
+    request.onsuccess = resolve;
+    request.onerror = () => reject(request.error);
+  });
+  state.productNotificationIds = [...new Set(productIds)];
+  state.productNotificationsConfigured = true;
+}
+
+async function restoreProductNotificationSelection() {
+  const saved = await getProductNotificationSelection(state.businessId);
+  if (!saved) {
+    state.productNotificationIds = (state.products || []).map(product => product.id);
+    state.productNotificationsConfigured = false;
+    return;
+  }
+  state.productNotificationIds = saved.productIds || [];
+  state.productNotificationsConfigured = true;
+}
+
+function isProductNotificationSelected(productId) {
+  if (!state.productNotificationsConfigured) return true;
+  return state.productNotificationIds.includes(productId);
+}
+
+async function setAllProductNotifications(products) {
+  try {
+    await saveProductNotificationSelection(products.map(product => product.id));
+    renderBusiness();
+  } catch (error) {
+    alert(calentitosLang === 'en' ? 'Could not save product alerts.' : 'No se pudieron guardar las alertas de productos.');
+  }
+}
+
+async function toggleProductNotification(productId) {
+  const selected = new Set(state.productNotificationsConfigured ? state.productNotificationIds : (state.products || []).map(product => product.id));
+  if (selected.has(productId)) selected.delete(productId);
+  else selected.add(productId);
+  try {
+    await saveProductNotificationSelection([...selected]);
+    renderBusiness();
+  } catch (error) {
+    alert(calentitosLang === 'en' ? 'Could not save product alerts.' : 'No se pudieron guardar las alertas de productos.');
   }
 }
 
@@ -367,6 +466,10 @@ const CALENTITOS_I18N = {
   'Este navegador no admite notificaciones web.': 'This browser does not support web notifications.',
   'Las notificaciones no fueron habilitadas.': 'Notifications were not enabled.',
   'No se pudo crear la suscripción de notificaciones.': 'Could not create the notification subscription.',
+  'Alertas de Hot Events': 'Hot Event alerts',
+  'Elegí sobre qué productos querés recibir alertas.': 'Choose which products you want to hear about.',
+  'Todos': 'All',
+  'No se pudieron guardar las alertas de productos.': 'Could not save product alerts.',
   'Enlace copiado.': 'Link copied.',
   'No se pudo copiar automáticamente. Seleccioná el enlace para copiarlo.': 'Could not copy automatically. Select the link to copy it.',
   'No se pudo generar el QR.': 'Could not generate the QR code.',
