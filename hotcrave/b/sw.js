@@ -1,3 +1,4 @@
+const API_BASE = 'https://hotcrave-api-staging-274560140811.southamerica-east1.run.app';
 const DB_NAME = 'calentitos-notifications';
 const DB_VERSION = 1;
 
@@ -16,6 +17,25 @@ async function getProductNotificationSelection(businessId) {
   });
 }
 
+async function resolveProductId(data) {
+  if (data.productId) return data.productId;
+  if (!data.hotEventId) return null;
+
+  try {
+    const response = await fetch(`${API_BASE}/hot-events`, { headers: { Accept: 'application/json' } });
+    if (!response.ok) return null;
+    const payload = await response.json();
+    const event = (payload.hotEvents || []).find(item =>
+      item.hotEvent?.id === data.hotEventId ||
+      item.hotEventId === data.hotEventId
+    );
+    return event?.hotEvent?.productId || event?.productId || event?.product?.id || null;
+  } catch (error) {
+    console.warn('[HotCrave SW] No se pudo resolver el producto del Hot Event', error);
+    return null;
+  }
+}
+
 self.addEventListener('push', event => {
   if (!event.data) return;
 
@@ -31,13 +51,14 @@ self.addEventListener('push', event => {
   event.waitUntil((async () => {
     const selection = await getProductNotificationSelection(data.businessId);
     const productIds = selection?.productIds;
+    const productId = await resolveProductId(data);
 
     // Older saved subscriptions have no explicit selection, so preserve
     // the existing behavior and allow every product.
-    if (Array.isArray(productIds) && data.productId && !productIds.includes(data.productId)) {
+    if (Array.isArray(productIds) && productId && !productIds.includes(productId)) {
       console.log('[HotCrave SW] Hot Event ignorado por selección de producto', {
         businessId: data.businessId,
-        productId: data.productId,
+        productId,
       });
       return;
     }
