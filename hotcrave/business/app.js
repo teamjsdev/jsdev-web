@@ -213,8 +213,9 @@ function profileView(message = "", error = false) {
 const WEB_PRODUCT_CATALOG = {
   BAKERY: ["Pan", "Criollos", "Facturas", "Medialunas", "Tortas"],
   PIZZERIA: ["Pizza", "Empanadas", "Fugazzeta", "Calzone", "Pizza muzzarella"],
-  RESTAURANT: ["Pizza", "Empanadas", "Hamburguesa", "Papas fritas", "Sándwich"],
+  RESTAURANT: ["Hamburguesa", "Papas fritas", "Sándwich", "Milanesa", "Ensalada"],
   CAFE: ["Café", "Medialunas", "Tostado", "Muffin", "Croissant"],
+  ROTISSERIE: ["Pollo al spiedo", "Milanesas", "Tortilla de papa", "Matambre arrollado", "Pastas caseras"],
   OTHER: ["Tarta", "Pastel", "Wrap", "Bowl", "Snack"],
 };
 
@@ -223,8 +224,12 @@ const WEB_PRODUCT_CATEGORY_LABELS = {
   PIZZERIA: "Pizzería",
   RESTAURANT: "Restaurante",
   CAFE: "Cafetería",
+  ROTISSERIE: "Rotisería",
   OTHER: "Otros",
 };
+
+const FREE_PREDEFINED_PRODUCT_LIMIT = 5;
+const PREMIUM_CUSTOM_PRODUCT_LIMIT = 100;
 
 function webProductCategory(product) {
   if (product.type === "CUSTOM") return "OTHER";
@@ -246,12 +251,13 @@ function productsView(message = "", error = false) {
   const customCount = products.filter((product) => product.type === "CUSTOM").length;
   const predefinedCount = products.filter((product) => product.type === "PREDEFINED").length;
   const categories = Object.keys(WEB_PRODUCT_CATALOG);
-  const activeCategory = window.__catalogCategory || categories[0];
+  const activeCategory = categories.includes(window.__catalogCategory) ? window.__catalogCategory : categories[0];
 
   const categoryProducts = products.filter((product) =>
     webProductCategory(product) === activeCategory
   );
 
+  // Categories are only an index/filter. They never create separate quotas.
   const available = WEB_PRODUCT_CATALOG[activeCategory].filter((name) =>
     !products.some((product) =>
       product.type === "PREDEFINED" &&
@@ -267,46 +273,48 @@ function productsView(message = "", error = false) {
     "</button>"
   ).join("");
 
+  const freePredefinedFull = !premium && predefinedCount >= FREE_PREDEFINED_PRODUCT_LIMIT;
   const addPredefined = available.length
     ? '<div class="catalog-add-list">' +
       available.map((name) =>
         '<button type="button" class="secondary catalog-add-product" data-product-name="' +
         escapeHtml(name) + '"' +
-        (!isManager() || (!premium && predefinedCount >= 5) ? " disabled" : "") +
+        (!isManager() || freePredefinedFull ? " disabled" : "") +
         '>+ ' + escapeHtml(name) + "</button>"
       ).join("") +
       "</div>"
     : '<p class="muted small">Ya agregaste todos los productos predefinidos de esta categoría.</p>';
 
-  const lockMessage = !premium && predefinedCount >= 5
-    ? '<p class="muted small">Alcanzaste los 5 productos del plan gratuito. Premium permite ampliar el catálogo con productos personalizados.</p>'
+  const limitMessage = freePredefinedFull
+    ? '<p class="muted small">Alcanzaste los 5 productos predefinidos del plan gratuito. El límite es global y no depende de la categoría.</p>'
     : "";
 
   const customForm = activeCategory === "OTHER" && isManager()
     ? '<section class="form-card"><div><p class="eyebrow">NUEVO PRODUCTO</p><h2>Agregar producto personalizado</h2><p class="muted">' +
-      (premium ? customCount + " / 100 productos personalizados utilizados." : "Los productos personalizados están disponibles con Premium.") +
+      (premium ? customCount + " / " + PREMIUM_CUSTOM_PRODUCT_LIMIT + " productos personalizados utilizados." : "Los productos personalizados están disponibles con Premium.") +
       '</p></div><form id="product-form"><label>Nombre<input name="name" maxlength="120" placeholder="Ej. Medialuna rellena" required' +
-      (premium ? "" : " disabled") +
+      (premium && customCount < PREMIUM_CUSTOM_PRODUCT_LIMIT ? "" : " disabled") +
       '></label><button class="primary" type="submit"' +
-      (premium ? "" : " disabled") +
+      (premium && customCount < PREMIUM_CUSTOM_PRODUCT_LIMIT ? "" : " disabled") +
       '>Agregar producto</button></form></section>'
     : "";
 
   const customProducts = products.filter((product) => product.type === "CUSTOM");
-  const customProductsSection = isManager() && activeCategory === "OTHER"
-    ? '<section class="form-card product-management-card"><div><p class="eyebrow">PRODUCTOS PERSONALIZADOS</p><h2>Administrar productos</h2><p class="muted">Eliminá productos personalizados que ya no ofrecés.</p></div>' +
-      (customProducts.length
+  const managementProducts = categoryProducts;
+  const customProductsSection = isManager()
+    ? '<section class="form-card product-management-card"><div><p class="eyebrow">ADMINISTRAR PRODUCTOS</p><h2>Productos activos</h2><p class="muted">Eliminá productos que ya no ofrecés. Las categorías solo sirven para filtrar.</p></div>' +
+      (managementProducts.length
         ? '<div class="product-management-list">' +
-          customProducts.map((product) =>
+          managementProducts.map((product) =>
             '<div class="product-management-row"><div><strong>' +
             escapeHtml(product.name) +
-            '</strong><span class="muted small">Personalizado</span></div><button class="secondary delete-product" type="button" data-product-id="' +
+            '</strong><span class="muted small">' + escapeHtml(product.type === "CUSTOM" ? "Personalizado" : "Predefinido") + '</span></div><button class="secondary delete-product" type="button" data-product-id="' +
             escapeHtml(product.productId) +
             '" data-product-name="' + escapeHtml(product.name) +
             '">Eliminar</button></div>'
           ).join("") +
           "</div>"
-        : '<p class="muted small">No tenés productos personalizados para eliminar.</p>') +
+        : '<p class="muted small">No hay productos activos en esta categoría.</p>') +
       "</section>"
     : "";
 
@@ -323,13 +331,13 @@ function productsView(message = "", error = false) {
     : '<div class="empty-card"><span>▦</span><h3>No hay productos activos</h3><p class="muted">Agregá productos de esta categoría para poder publicarlos.</p></div>';
 
   render(shell(
-    pageHeading("PRODUCTOS", "Catálogo", "Elegí por categorías los productos que querés tener disponibles para publicar Hot Events.") +
+    pageHeading("PRODUCTOS", "Catálogo", "Las categorías sirven para encontrar productos. El límite de productos es global.") +
     (message ? '<p class="' + (error ? "error" : "success") + '" role="status">' + escapeHtml(message) + "</p>" : "") +
-    '<section class="form-card catalog-card"><p class="eyebrow">CATÁLOGO</p><div class="catalog-summary"><strong>' + predefinedCount + ' / 5</strong><span class="muted">productos predefinidos</span>' + (premium ? '<span class="muted"> · ' + customCount + ' / 100 personalizados</span>' : '') + '</div><p class="eyebrow">CATEGORÍAS</p><div class="catalog-tabs" role="tablist">' +
+    '<section class="form-card catalog-card"><p class="eyebrow">CATÁLOGO</p><div class="catalog-summary"><strong>' + predefinedCount + ' / ' + FREE_PREDEFINED_PRODUCT_LIMIT + '</strong><span class="muted">productos predefinidos</span>' + (premium ? '<span class="muted"> · ' + customCount + ' / ' + PREMIUM_CUSTOM_PRODUCT_LIMIT + ' personalizados</span>' : '') + '</div><p class="eyebrow">CATEGORÍAS</p><div class="catalog-tabs" role="tablist">' +
     tabs +
     '</div><div class="catalog-panel"><h2>' +
     WEB_PRODUCT_CATEGORY_LABELS[activeCategory] +
-    "</h2>" + lockMessage + addPredefined +
+    "</h2>" + limitMessage + addPredefined +
     '</div></section>' +
     customForm +
     customProductsSection +
@@ -357,7 +365,7 @@ function productsView(message = "", error = false) {
 
   document.querySelectorAll(".delete-product").forEach((button) =>
     button.addEventListener("click", () =>
-      deleteCustomProduct(button.dataset.productId, button.dataset.productName)
+      deleteProduct(button.dataset.productId, button.dataset.productName)
     )
   );
 }
@@ -445,7 +453,7 @@ async function createProduct(event) {
   }
 }
 
-async function deleteCustomProduct(productId, productName) {
+async function deleteProduct(productId, productName) {
   if (!isManager()) return;
   const confirmed = window.confirm(`¿Eliminar "${productName}" del catálogo? Esta acción no se puede deshacer.`);
   if (!confirmed) return;
@@ -585,7 +593,7 @@ const BUSINESS_I18N = {
   'Cargando…':'Loading…','PRIORIDAD':'PRIORITY','Publicá rápido cuando tengas comida recién hecha.':'Publish quickly when your food is freshly made.',
   'Disponible ahora':'Available now','Listo en 15 minutos':'Ready in 15 minutes','Listo en 30 minutos':'Ready in 30 minutes','Agotado':'Sold out','Expirado':'Expired',
   'Publicar Hot Event':'Publish Hot Event','Tus Hot Events':'Your Hot Events','HISTORIAL':'HISTORY','ACTIVOS':'ACTIVE',
-  'Información del negocio':'Business information','Estos datos son los que identifican y presentan a tu negocio en Calentitos.':'These details identify and present your business on Calentitos.',
+  'Información del negocio':'Business information','Panadería':'Bakery','Pizzería':'Pizzeria','Restaurante':'Restaurant','Cafetería':'Café','Rotisería':'Rotisserie','Otros':'Other','Las categorías sirven para encontrar productos. El límite de productos es global.':'Categories are only used to find products. Product limits are global.','productos predefinidos':'predefined products','productos personalizados':'custom products','Alcanzaste los 5 productos predefinidos del plan gratuito. El límite es global y no depende de la categoría.':'You reached the 5 predefined-product limit on the free plan. The limit is global and does not depend on category.','Estos datos son los que identifican y presentan a tu negocio en Calentitos.':'These details identify and present your business on Calentitos.',
   'Nombre del negocio':'Business name','Ubicación':'Location','Guardar cambios':'Save changes','Catálogo':'Catalog','Administrá los productos que podés usar para publicar Hot Events.':'Manage the products you can use to publish Hot Events.',
   'NUEVO PRODUCTO':'NEW PRODUCT','Agregar producto personalizado':'Add custom product','Agregar producto':'Add product','Productos activos':'Active products',
   'Código QR del negocio':'Business QR code','Este enlace es permanente y lleva a la experiencia pública de tu negocio.':'This permanent link opens your public business page.',
@@ -595,7 +603,7 @@ const BUSINESS_I18N = {
   'Correo electrónico':'Email','Contraseña':'Password','Ingresar':'Sign in',
   'No encontramos un negocio':'We could not find a business','Esta cuenta no tiene un negocio asociado.':'This account is not associated with a business.',
   'Reintentar':'Try again','No pudimos acceder':'We could not access your account',
-  'Los datos del negocio fueron actualizados.':'Business information was updated.','El producto fue agregado al catálogo.':'The product was added to the catalog.','El producto fue eliminado del catálogo.':'The product was removed from the catalog.','PRODUCTOS PERSONALIZADOS':'CUSTOM PRODUCTS','Administrar productos':'Manage products','Eliminá productos personalizados que ya no ofrecés.':'Remove custom products you no longer offer.','No tenés productos personalizados para eliminar.':'You have no custom products to delete.','Eliminar':'Delete','Eliminando…':'Deleting…','Los productos predefinidos no se pueden eliminar.':'Predefined products cannot be deleted.',
+  'Los datos del negocio fueron actualizados.':'Business information was updated.','El producto fue agregado al catálogo.':'The product was added to the catalog.','El producto fue eliminado del catálogo.':'The product was removed from the catalog.','PRODUCTOS PERSONALIZADOS':'CUSTOM PRODUCTS','Administrar productos':'Manage products','Eliminá productos personalizados que ya no ofrecés.':'Remove custom products you no longer offer.','No tenés productos personalizados para eliminar.':'You have no custom products to delete.','ADMINISTRAR PRODUCTOS':'MANAGE PRODUCTS','Productos activos':'Active products','Eliminá productos que ya no ofrecés. Las categorías solo sirven para filtrar.':'Remove products you no longer offer. Categories are only used for filtering.','No hay productos activos en esta categoría.':'There are no active products in this category.','Eliminar':'Delete','Eliminando…':'Deleting…',
   'Hot Event publicado correctamente.':'Hot Event published successfully.','El Hot Event fue marcado como agotado.':'The Hot Event was marked as sold out.',
   'Request failed':'Request failed','No se pudo completar la operación. Intentá nuevamente.':'The operation could not be completed. Please try again.',
   'No encontramos tu negocio.':'We could not find your business.','Ese producto no está activo.':'That product is not active.',
