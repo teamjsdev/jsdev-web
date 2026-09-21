@@ -100,10 +100,10 @@ function renderBusiness() {
       button.className = 'product-notification-button';
       button.type = 'button';
       button.setAttribute('aria-label', (calentitosLang === 'en' ? 'Toggle alerts for ' : 'Alternar alertas para ') + product.name);
-      button.setAttribute('aria-pressed', String(isProductNotificationSelected(product.id)));
+      button.setAttribute('aria-pressed', String(isProductNotificationSelected(product.productId)));
       button.title = calentitosLang === 'en' ? 'Hot Event alerts' : 'Alertas de Hot Events';
-      button.textContent = isProductNotificationSelected(product.id) ? '🔔' : '🔕';
-      button.addEventListener('click', () => toggleProductNotification(product.id));
+      button.textContent = isProductNotificationSelected(product.productId) ? '🔔' : '🔕';
+      button.addEventListener('click', () => toggleProductNotification(product.productId));
       item.append(name, button);
       list.append(item);
     });
@@ -228,7 +228,7 @@ async function saveProductNotificationSelection(productIds) {
 async function restoreProductNotificationSelection() {
   const saved = await getProductNotificationSelection(state.businessId);
   if (!saved) {
-    state.productNotificationIds = (state.products || []).map(product => product.id);
+    state.productNotificationIds = (state.products || []).map(product => product.productId);
     state.productNotificationsConfigured = false;
     return;
   }
@@ -243,7 +243,7 @@ function isProductNotificationSelected(productId) {
 
 async function setAllProductNotifications(products) {
   try {
-    await saveProductNotificationSelection(products.map(product => product.id));
+    await saveProductNotificationSelection(products.map(product => product.productId));
     renderBusiness();
   } catch (error) {
     alert(calentitosLang === 'en' ? 'Could not save product alerts.' : 'No se pudieron guardar las alertas de productos.');
@@ -251,7 +251,7 @@ async function setAllProductNotifications(products) {
 }
 
 async function toggleProductNotification(productId) {
-  const selected = new Set(state.productNotificationsConfigured ? state.productNotificationIds : (state.products || []).map(product => product.id));
+  const selected = new Set(state.productNotificationsConfigured ? state.productNotificationIds : (state.products || []).map(product => product.productId));
   if (selected.has(productId)) selected.delete(productId);
   else selected.add(productId);
   try {
