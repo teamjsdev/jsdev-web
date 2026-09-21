@@ -440,7 +440,7 @@ const BUSINESS_I18N = {
   'Correo electrónico':'Email','Contraseña':'Password','Ingresar':'Sign in',
   'No encontramos un negocio':'We could not find a business','Esta cuenta no tiene un negocio asociado.':'This account is not associated with a business.',
   'Reintentar':'Try again','No pudimos acceder':'We could not access your account',
-  'Los datos del negocio fueron actualizados.':'Business information was updated.','El producto fue agregado al catálogo.':'The product was added to the catalog.',
+  'Los datos del negocio fueron actualizados.':'Business information was updated.','El producto fue agregado al catálogo.':'The product was added to the catalog.','El producto fue eliminado del catálogo.':'The product was removed from the catalog.','PRODUCTOS PERSONALIZADOS':'CUSTOM PRODUCTS','Administrar productos':'Manage products','Eliminá productos personalizados que ya no ofrecés.':'Remove custom products you no longer offer.','No tenés productos personalizados para eliminar.':'You have no custom products to delete.','Eliminar':'Delete','Eliminando…':'Deleting…','Los productos predefinidos no se pueden eliminar.':'Predefined products cannot be deleted.',
   'Hot Event publicado correctamente.':'Hot Event published successfully.','El Hot Event fue marcado como agotado.':'The Hot Event was marked as sold out.',
   'Request failed':'Request failed','No se pudo completar la operación. Intentá nuevamente.':'The operation could not be completed. Please try again.',
   'No encontramos tu negocio.':'We could not find your business.','Ese producto no está activo.':'That product is not active.',
