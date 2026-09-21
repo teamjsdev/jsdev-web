@@ -213,8 +213,9 @@ function profileView(message = "", error = false) {
 const WEB_PRODUCT_CATALOG = {
   BAKERY: ["Pan", "Criollos", "Facturas", "Medialunas", "Tortas"],
   PIZZERIA: ["Pizza", "Empanadas", "Fugazzeta", "Calzone", "Pizza muzzarella"],
-  RESTAURANT: ["Pizza", "Empanadas", "Hamburguesa", "Papas fritas", "Sándwich"],
+  RESTAURANT: ["Hamburguesa", "Papas fritas", "Sándwich", "Milanesa", "Ensalada"],
   CAFE: ["Café", "Medialunas", "Tostado", "Muffin", "Croissant"],
+  ROTISSERIE: ["Pollo al spiedo", "Milanesas", "Tortilla de papa", "Matambre arrollado", "Pastas caseras"],
   OTHER: ["Tarta", "Pastel", "Wrap", "Bowl", "Snack"],
 };
 
@@ -223,8 +224,12 @@ const WEB_PRODUCT_CATEGORY_LABELS = {
   PIZZERIA: "Pizzería",
   RESTAURANT: "Restaurante",
   CAFE: "Cafetería",
+  ROTISSERIE: "Rotisería",
   OTHER: "Otros",
 };
+
+const FREE_PREDEFINED_PRODUCT_LIMIT = 5;
+const PREMIUM_CUSTOM_PRODUCT_LIMIT = 100;
 
 function webProductCategory(product) {
   if (product.type === "CUSTOM") return "OTHER";
@@ -246,12 +251,13 @@ function productsView(message = "", error = false) {
   const customCount = products.filter((product) => product.type === "CUSTOM").length;
   const predefinedCount = products.filter((product) => product.type === "PREDEFINED").length;
   const categories = Object.keys(WEB_PRODUCT_CATALOG);
-  const activeCategory = window.__catalogCategory || categories[0];
+  const activeCategory = categories.includes(window.__catalogCategory) ? window.__catalogCategory : categories[0];
 
   const categoryProducts = products.filter((product) =>
     webProductCategory(product) === activeCategory
   );
 
+  // Categories are only an index/filter. They never create separate quotas.
   const available = WEB_PRODUCT_CATALOG[activeCategory].filter((name) =>
     !products.some((product) =>
       product.type === "PREDEFINED" &&
@@ -267,28 +273,29 @@ function productsView(message = "", error = false) {
     "</button>"
   ).join("");
 
+  const freePredefinedFull = !premium && predefinedCount >= FREE_PREDEFINED_PRODUCT_LIMIT;
   const addPredefined = available.length
     ? '<div class="catalog-add-list">' +
       available.map((name) =>
         '<button type="button" class="secondary catalog-add-product" data-product-name="' +
         escapeHtml(name) + '"' +
-        (!isManager() || (!premium && predefinedCount >= 5) ? " disabled" : "") +
+        (!isManager() || freePredefinedFull ? " disabled" : "") +
         '>+ ' + escapeHtml(name) + "</button>"
       ).join("") +
       "</div>"
     : '<p class="muted small">Ya agregaste todos los productos predefinidos de esta categoría.</p>';
 
-  const lockMessage = !premium && predefinedCount >= 5
-    ? '<p class="muted small">Alcanzaste los 5 productos del plan gratuito. Premium permite ampliar el catálogo con productos personalizados.</p>'
+  const limitMessage = freePredefinedFull
+    ? '<p class="muted small">Alcanzaste los 5 productos predefinidos del plan gratuito. El límite es global y no depende de la categoría.</p>'
     : "";
 
   const customForm = activeCategory === "OTHER" && isManager()
     ? '<section class="form-card"><div><p class="eyebrow">NUEVO PRODUCTO</p><h2>Agregar producto personalizado</h2><p class="muted">' +
-      (premium ? customCount + " / 100 productos personalizados utilizados." : "Los productos personalizados están disponibles con Premium.") +
+      (premium ? customCount + " / " + PREMIUM_CUSTOM_PRODUCT_LIMIT + " productos personalizados utilizados." : "Los productos personalizados están disponibles con Premium.") +
       '</p></div><form id="product-form"><label>Nombre<input name="name" maxlength="120" placeholder="Ej. Medialuna rellena" required' +
-      (premium ? "" : " disabled") +
+      (premium && customCount < PREMIUM_CUSTOM_PRODUCT_LIMIT ? "" : " disabled") +
       '></label><button class="primary" type="submit"' +
-      (premium ? "" : " disabled") +
+      (premium && customCount < PREMIUM_CUSTOM_PRODUCT_LIMIT ? "" : " disabled") +
       '>Agregar producto</button></form></section>'
     : "";
 
@@ -323,13 +330,13 @@ function productsView(message = "", error = false) {
     : '<div class="empty-card"><span>▦</span><h3>No hay productos activos</h3><p class="muted">Agregá productos de esta categoría para poder publicarlos.</p></div>';
 
   render(shell(
-    pageHeading("PRODUCTOS", "Catálogo", "Elegí por categorías los productos que querés tener disponibles para publicar Hot Events.") +
+    pageHeading("PRODUCTOS", "Catálogo", "Las categorías sirven para encontrar productos. El límite de productos es global.") +
     (message ? '<p class="' + (error ? "error" : "success") + '" role="status">' + escapeHtml(message) + "</p>" : "") +
-    '<section class="form-card catalog-card"><p class="eyebrow">CATÁLOGO</p><div class="catalog-summary"><strong>' + predefinedCount + ' / 5</strong><span class="muted">productos predefinidos</span>' + (premium ? '<span class="muted"> · ' + customCount + ' / 100 personalizados</span>' : '') + '</div><p class="eyebrow">CATEGORÍAS</p><div class="catalog-tabs" role="tablist">' +
+    '<section class="form-card catalog-card"><p class="eyebrow">CATÁLOGO</p><div class="catalog-summary"><strong>' + predefinedCount + ' / ' + FREE_PREDEFINED_PRODUCT_LIMIT + '</strong><span class="muted">productos predefinidos</span>' + (premium ? '<span class="muted"> · ' + customCount + ' / ' + PREMIUM_CUSTOM_PRODUCT_LIMIT + ' personalizados</span>' : '') + '</div><p class="eyebrow">CATEGORÍAS</p><div class="catalog-tabs" role="tablist">' +
     tabs +
     '</div><div class="catalog-panel"><h2>' +
     WEB_PRODUCT_CATEGORY_LABELS[activeCategory] +
-    "</h2>" + lockMessage + addPredefined +
+    "</h2>" + limitMessage + addPredefined +
     '</div></section>' +
     customForm +
     customProductsSection +
