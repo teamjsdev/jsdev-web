@@ -226,6 +226,20 @@ const WEB_PRODUCT_CATEGORY_LABELS = {
   OTHER: "Otros",
 };
 
+function webProductCategory(product) {
+  if (product.type === "CUSTOM") return "OTHER";
+  const explicit = String(product.category || "").toUpperCase();
+  if (WEB_PRODUCT_CATEGORY_LABELS[explicit]) return explicit;
+
+  const name = String(product.name || "").trim().toLowerCase();
+  for (const [category, names] of Object.entries(WEB_PRODUCT_CATALOG)) {
+    if (names.some((catalogName) => catalogName.toLowerCase() === name)) {
+      return category;
+    }
+  }
+  return "OTHER";
+}
+
 function productsView(message = "", error = false) {
   const business = businessContext.business;
   const premium = business?.plan === "PREMIUM" || entitlements?.businessPlan === "PREMIUM";
@@ -234,10 +248,9 @@ function productsView(message = "", error = false) {
   const categories = Object.keys(WEB_PRODUCT_CATALOG);
   const activeCategory = window.__catalogCategory || categories[0];
 
-  const categoryProducts = products.filter((product) => {
-    if (product.type === "CUSTOM") return activeCategory === "OTHER";
-    return String(product.category || "").toUpperCase() === activeCategory;
-  });
+  const categoryProducts = products.filter((product) =>
+    webProductCategory(product) === activeCategory
+  );
 
   const available = WEB_PRODUCT_CATALOG[activeCategory].filter((name) =>
     !products.some((product) =>
