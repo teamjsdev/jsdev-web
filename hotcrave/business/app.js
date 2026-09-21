@@ -82,6 +82,7 @@ function apiErrorMessage(error) {
     HOT_EVENT_EXPIRED: "Ese Hot Event ya venció.",
     HOT_EVENT_NOT_ACTIVE: "Ese Hot Event ya no está disponible para marcar como agotado.",
     BUSINESS_NOT_FOUND: "No encontramos tu negocio.",
+    PREDEFINED_PRODUCT_CANNOT_BE_DELETED: "Los productos predefinidos no se pueden eliminar.",
   };
   return messages[error?.code] || "No se pudo completar la operación. Intentá nuevamente.";
 }
@@ -219,9 +220,14 @@ function productsView(message = "", error = false) {
   const createForm = isManager()
     ? `<section class="form-card"><div><p class="eyebrow">NUEVO PRODUCTO</p><h2>Agregar producto personalizado</h2><p class="muted">${premium ? `${customCount} / 100 productos personalizados utilizados.` : "Los productos personalizados están disponibles con Premium."}</p></div><form id="product-form"><label>Nombre<input name="name" maxlength="120" placeholder="Ej. Medialuna rellena" required ${premium ? "" : "disabled"}></label><button class="primary" type="submit" ${premium ? "" : "disabled"}>Agregar producto</button></form></section>`
     : "";
-  render(shell(`${pageHeading("PRODUCTOS", "Catálogo", "Administrá los productos que podés usar para publicar Hot Events.")}${message ? `<p class="${error ? "error" : "success"}" role="status">${escapeHtml(message)}</p>` : ""}${createForm}<section class="section-heading compact"><p class="eyebrow">ACTIVOS</p><h2>${products.length} productos</h2></section><div class="product-list">${productCards}</div>`));
+  const customProducts = products.filter((product) => product.type === "CUSTOM");
+  const customProductsSection = isManager()
+    ? `<section class="form-card product-management-card"><div><p class="eyebrow">PRODUCTOS PERSONALIZADOS</p><h2>Administrar productos</h2><p class="muted">Eliminá productos personalizados que ya no ofrecés.</p></div>${customProducts.length ? `<div class="product-management-list">${customProducts.map((product) => `<div class="product-management-row"><div><strong>${escapeHtml(product.name)}</strong><span class="muted small">${escapeHtml(product.category || "Personalizado")}</span></div><button class="secondary delete-product" type="button" data-product-id="${escapeHtml(product.productId)}" data-product-name="${escapeHtml(product.name)}">Eliminar</button></div>`).join("")}</div>` : `<p class="muted small">No tenés productos personalizados para eliminar.</p>`}</section>`
+    : "";
+  render(shell(`${pageHeading("PRODUCTOS", "Catálogo", "Administrá los productos que podés usar para publicar Hot Events.")}${message ? `<p class="${error ? "error" : "success"}" role="status">${escapeHtml(message)}</p>` : ""}${createForm}${customProductsSection}<section class="section-heading compact"><p class="eyebrow">ACTIVOS</p><h2>${products.length} productos</h2></section><div class="product-list">${productCards}</div>`));
   bindShell();
   document.querySelector("#product-form")?.addEventListener("submit", createProduct);
+  document.querySelectorAll(".delete-product").forEach((button) => button.addEventListener("click", () => deleteCustomProduct(button.dataset.productId, button.dataset.productName)));
 }
 
 function qrView() {
@@ -279,6 +285,21 @@ async function createProduct(event) {
     });
     await loadProducts();
     productsView("El producto fue agregado al catálogo.");
+  } catch (error) {
+    productsView(apiErrorMessage(error), true);
+  }
+}
+
+async function deleteCustomProduct(productId, productName) {
+  if (!isManager()) return;
+  const confirmed = window.confirm(`¿Eliminar "${productName}" del catálogo? Esta acción no se puede deshacer.`);
+  if (!confirmed) return;
+  const button = document.querySelector(`.delete-product[data-product-id="${CSS.escape(productId)}"]`);
+  if (button) { button.disabled = true; button.textContent = "Eliminando…"; }
+  try {
+    await api(`/business/me/products/${encodeURIComponent(productId)}`, { method: "DELETE" });
+    await loadProducts();
+    productsView("El producto fue eliminado del catálogo.");
   } catch (error) {
     productsView(apiErrorMessage(error), true);
   }
@@ -419,7 +440,7 @@ const BUSINESS_I18N = {
   'Correo electrónico':'Email','Contraseña':'Password','Ingresar':'Sign in',
   'No encontramos un negocio':'We could not find a business','Esta cuenta no tiene un negocio asociado.':'This account is not associated with a business.',
   'Reintentar':'Try again','No pudimos acceder':'We could not access your account',
-  'Los datos del negocio fueron actualizados.':'Business information was updated.','El producto fue agregado al catálogo.':'The product was added to the catalog.',
+  'Los datos del negocio fueron actualizados.':'Business information was updated.','El producto fue agregado al catálogo.':'The product was added to the catalog.','El producto fue eliminado del catálogo.':'The product was removed from the catalog.','PRODUCTOS PERSONALIZADOS':'CUSTOM PRODUCTS','Administrar productos':'Manage products','Eliminá productos personalizados que ya no ofrecés.':'Remove custom products you no longer offer.','No tenés productos personalizados para eliminar.':'You have no custom products to delete.','Eliminar':'Delete','Eliminando…':'Deleting…','Los productos predefinidos no se pueden eliminar.':'Predefined products cannot be deleted.',
   'Hot Event publicado correctamente.':'Hot Event published successfully.','El Hot Event fue marcado como agotado.':'The Hot Event was marked as sold out.',
   'Request failed':'Request failed','No se pudo completar la operación. Intentá nuevamente.':'The operation could not be completed. Please try again.',
   'No encontramos tu negocio.':'We could not find your business.','Ese producto no está activo.':'That product is not active.',
