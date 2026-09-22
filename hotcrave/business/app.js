@@ -110,6 +110,10 @@ function isManager() {
   return ["OWNER", "MANAGER"].includes(businessContext?.membership?.role);
 }
 
+function isBusinessPremium() {
+  return entitlements?.businessPlan === "PREMIUM";
+}
+
 async function loadBusiness() {
   return api("/business/me");
 }
@@ -170,7 +174,9 @@ function hotEventsView(message = "", error = false) {
     const status = effectiveStatus(event);
     return status !== "SOLD_OUT" && status !== "EXPIRED";
   }).length;
-  const options = products.map((product) => `<option value="${escapeHtml(product.productId)}">${escapeHtml(product.name)}</option>`).join("");
+  const premium = isBusinessPremium();
+  const publishableProducts = products.filter((product) => premium || product.type !== "CUSTOM");
+  const options = publishableProducts.map((product) => `<option value="${escapeHtml(product.productId)}">${escapeHtml(product.name)}</option>`).join("");
   const eventCards = hotEvents.length
     ? hotEvents.slice().sort((a, b) => new Date(b.createdAt || b.availableAt || 0) - new Date(a.createdAt || a.availableAt || 0)).map((event) => {
         const product = products.find((item) => item.productId === event.productId);
@@ -181,7 +187,7 @@ function hotEventsView(message = "", error = false) {
     : `<div class="empty-card"><span>♨</span><h3>No hay Hot Events todavía</h3><p class="muted">Publicá el primero y avisá cuando haya comida recién hecha.</p></div>`;
 
   const publishForm = isManager()
-    ? `<section class="publish-card"><div><p class="eyebrow">NUEVO AVISO</p><h2>Comida recién hecha</h2><p class="muted">Elegí un producto y cuándo querés avisar.</p></div><form id="hot-event-form"><label>Producto<select name="productId" required ${products.length ? "" : "disabled"}>${products.length ? `<option value="">Seleccioná un producto</option>${options}` : "<option>No hay productos activos</option>"}</select></label><fieldset><legend>Estado inicial</legend><label class="radio-option"><input type="radio" name="status" value="AVAILABLE_NOW" checked> Disponible ahora</label><label class="radio-option"><input type="radio" name="status" value="READY_IN_15_MIN"> Listo en 15 minutos</label><label class="radio-option"><input type="radio" name="status" value="READY_IN_30_MIN"> Listo en 30 minutos</label></fieldset><button class="primary" type="submit" ${products.length ? "" : "disabled"}>Publicar Hot Event</button></form></section>`
+    ? `<section class="publish-card"><div><p class="eyebrow">NUEVO AVISO</p><h2>Comida recién hecha</h2><p class="muted">Elegí un producto y cuándo querés avisar.</p></div><form id="hot-event-form"><label>Producto<select name="productId" required ${publishableProducts.length ? "" : "disabled"}>${publishableProducts.length ? `<option value="">Seleccioná un producto</option>${options}` : "<option>No hay productos disponibles para publicar</option>"}</select></label>${!premium && products.some((product) => product.type === "CUSTOM") ? '<p class="muted small">Los productos personalizados requieren Premium. Tus productos guardados seguirán disponibles cuando vuelvas a activar Premium.</p>' : ""}<fieldset><legend>Estado inicial</legend><label class="radio-option"><input type="radio" name="status" value="AVAILABLE_NOW" checked> Disponible ahora</label><label class="radio-option"><input type="radio" name="status" value="READY_IN_15_MIN"> Listo en 15 minutos</label><label class="radio-option"><input type="radio" name="status" value="READY_IN_30_MIN"> Listo en 30 minutos</label></fieldset><button class="primary" type="submit" ${publishableProducts.length ? "" : "disabled"}>Publicar Hot Event</button></form></section>`
     : `<section class="info-card"><strong>Solo los responsables del negocio pueden publicar Hot Events.</strong><p class="muted">Tu rol actual es ${escapeHtml(businessContext.membership?.role || "Miembro")}.</p></section>`;
 
   render(shell(`${pageHeading("PRIORIDAD", "Hot Events", `${active} de ${limit} activos. Publicá rápido cuando tengas comida recién hecha.`)}${message ? `<p class="${error ? "error" : "success"}" role="status">${escapeHtml(message)}</p>` : ""}${publishForm}<section class="section-heading compact"><p class="eyebrow">HISTORIAL</p><h2>Tus Hot Events</h2></section><div class="event-list">${eventCards}</div>`));
@@ -247,7 +253,7 @@ function webProductCategory(product) {
 
 function productsView(message = "", error = false) {
   const business = businessContext.business;
-  const premium = business?.plan === "PREMIUM" || entitlements?.businessPlan === "PREMIUM";
+  const premium = isBusinessPremium();
   const customCount = products.filter((product) => product.type === "CUSTOM").length;
   const predefinedCount = products.filter((product) => product.type === "PREDEFINED").length;
   const categories = Object.keys(WEB_PRODUCT_CATALOG);
@@ -474,6 +480,12 @@ async function createHotEvent(event) {
   const button = form.querySelector("button[type=submit]");
   button.disabled = true;
   button.textContent = "Publicando…";
+  const selectedProduct = products.find((product) => product.productId === form.productId.value);
+  if (selectedProduct?.type === "CUSTOM" && !isBusinessPremium()) {
+    hotEventsView("Los productos personalizados requieren HotCrave Premium.", true);
+    return;
+  }
+
   try {
     await api("/business/me/hot-events", {
       method: "POST",
