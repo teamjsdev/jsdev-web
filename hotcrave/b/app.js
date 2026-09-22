@@ -1,7 +1,23 @@
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js';
+import { deleteUser, getAuth, signInAnonymously } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js';
+
 const API_BASE = 'https://hotcrave-api-staging-274560140811.southamerica-east1.run.app';
+const FIREBASE_CONFIG = {
+  apiKey: 'AIzaSyBG67zAGYRofPjCxu02oRKfPjD_v1HHiOrM',
+  authDomain: 'hotcrave-app.firebaseapp.com',
+  projectId: 'hotcrave-app',
+  appId: '1:274560140811:web:841b72c8b3c8a0fae4e90e',
+};
 const VAPID_PUBLIC_KEY = 'BDg-XcXynucOK0vVTmk0WorOaga5lcd9ewEtpBh75Z8Hn9_b6iI_LKlkw1ZoU6I5iPm2g26rDfLIPJ3eE9PlQLI';
 
 const state = { businessId: null, business: null, following: false, subscription: null, productNotificationIds: null, productNotificationsConfigured: false };
+const firebaseAuth = getAuth(initializeApp(FIREBASE_CONFIG));
+
+async function ensurePushUser() {
+  if (firebaseAuth.currentUser) return firebaseAuth.currentUser;
+  const credential = await signInAnonymously(firebaseAuth);
+  return credential.user;
+}
 
 const app = document.getElementById('app');
 const content = document.createElement('div');
@@ -13,9 +29,15 @@ function escapePathSegment(value) {
 }
 
 async function api(path, options = {}) {
+  const token = firebaseAuth.currentUser ? await firebaseAuth.currentUser.getIdToken() : null;
   const response = await fetch(`${API_BASE}${path}`, {
     ...options,
-    headers: { Accept: 'application/json', ...(options.body ? { 'Content-Type': 'application/json' } : {}), ...(options.headers || {}) },
+    headers: {
+      Accept: 'application/json',
+      ...(options.body ? { 'Content-Type': 'application/json' } : {}),
+      ...(token ? { Authorization: 'Bearer ' + token } : {}),
+      ...(options.headers || {}),
+    },
   });
   if (!response.ok) {
     let message = 'No se pudo completar la solicitud.';
@@ -370,6 +392,7 @@ function showIosInstallInstructions() {
 async function toggleNotifications(button) {
   button.disabled = true;
   try {
+    await ensurePushUser();
     if (state.following) {
       if (state.subscription) {
         const json = state.subscription.toJSON();
@@ -384,6 +407,7 @@ async function toggleNotifications(button) {
         });
         await state.subscription.unsubscribe();
       }
+      if (firebaseAuth.currentUser) await deleteUser(firebaseAuth.currentUser).catch(() => {});
       state.following = false;
       state.subscription = null;
       renderBusiness();
