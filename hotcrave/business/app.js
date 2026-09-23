@@ -429,10 +429,9 @@ async function addPredefinedProduct(productId) {
   }
 
   try {
-    await api("/business/me/products", {
-      method: "POST",
-      const catalogProduct = Object.values(WEB_PRODUCT_CATALOG).flat().find((product) => product.id === productId);
+    const catalogProduct = Object.values(WEB_PRODUCT_CATALOG).flat().find((product) => product.id === productId);
     if (!catalogProduct) throw new Error("Unknown predefined product");
+
     await api("/business/me/products", {
       method: "POST",
       body: JSON.stringify({ name: catalogProduct.name, type: "PREDEFINED", status: "ACTIVE" }),
@@ -691,7 +690,7 @@ function businessApplyLanguage() {
   if(footer) footer.remove();
   const f=document.createElement('footer');
   f.className='calentitos-business-footer';
-  f.innerHTML=`<div><button type="button" data-business-lang="es">ES</button> <button type="button" data-business-lang="en">EN</button></div><p><a href="${calentitosLang === "en" ? "/calentitos/privacy" : "/calentitos/privacidad"}">${calentitosLang === "en" ? "Privacy Policy" : "Política de privacidad"}</a> · <a href="${calentitosLang === "en" ? "/calentitos/terms" : "/calentitos/terminos"}">${calentitosLang === "en" ? "Terms and Conditions" : "Términos y condiciones"}</a></p>`;
+  f.innerHTML=`<div><button type="button" data-business-lang="es">ES</button> <button type="button" data-business-lang="en">EN</button></div><p><a href="${businessLang === "en" ? "/calentitos/privacy" : "/calentitos/privacidad"}">${businessLang === "en" ? "Privacy Policy" : "Política de privacidad"}</a> · <a href="${businessLang === "en" ? "/calentitos/terms" : "/calentitos/terminos"}">${businessLang === "en" ? "Terms and Conditions" : "Términos y condiciones"}</a></p>`;
   f.querySelectorAll('[data-business-lang]').forEach(b=>b.addEventListener('click',()=>{
     businessLang=b.dataset.businessLang; localStorage.setItem(CALENTITOS_BUSINESS_LANG_KEY,businessLang); businessApplyLanguage();
   }));
