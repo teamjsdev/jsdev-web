@@ -273,7 +273,6 @@ const FREE_PREDEFINED_PRODUCT_LIMIT = 5;
 const PREMIUM_CUSTOM_PRODUCT_LIMIT = 100;
 
 function webProductCategory(product) {
-  if (product.type === "CUSTOM") return "OTHER";
   const explicit = String(product.category || "").toUpperCase();
   if (WEB_PRODUCT_CATEGORY_LABELS[explicit]) return explicit;
 
@@ -322,7 +321,7 @@ function productsView(message = "", error = false) {
         escapeHtml(catalogProduct.id) + '" data-product-name="' +
         escapeHtml(catalogProduct.name) + '"' +
         (!isManager() || freePredefinedFull ? " disabled" : "") +
-        '>+ ' + escapeHtml(name) + "</button>"
+        '>+ ' + escapeHtml(catalogProduct.name) + "</button>"
       ).join("") +
       "</div>"
     : '<p class="muted small">Ya agregaste todos los productos predefinidos de esta categoría.</p>';
@@ -331,12 +330,18 @@ function productsView(message = "", error = false) {
     ? '<p class="muted small">Alcanzaste los 5 productos predefinidos del plan gratuito. El límite es global y no depende de la categoría.</p>'
     : "";
 
-  const customForm = activeCategory === "OTHER" && isManager()
+  const customForm = isManager()
     ? '<section class="form-card"><div><p class="eyebrow">NUEVO PRODUCTO</p><h2>Agregar producto personalizado</h2><p class="muted">' +
       (premium ? customCount + " / " + PREMIUM_CUSTOM_PRODUCT_LIMIT + " productos personalizados utilizados." : "Los productos personalizados están disponibles con Premium.") +
       '</p></div><form id="product-form"><label>Nombre<input name="name" maxlength="120" placeholder="Ej. Medialuna rellena" required' +
       (premium && customCount < PREMIUM_CUSTOM_PRODUCT_LIMIT ? "" : " disabled") +
-      '></label><button class="primary" type="submit"' +
+      '></label><label>Categoría<select name="category" required' +
+      (premium && customCount < PREMIUM_CUSTOM_PRODUCT_LIMIT ? "" : " disabled") +
+      '>' +
+      Object.entries(WEB_PRODUCT_CATEGORY_LABELS).map(([category, label]) =>
+        '<option value="' + category + '"' + (category === activeCategory ? " selected" : "") + '>' + label + '</option>'
+      ).join("") +
+      '</select></label><button class="primary" type="submit"' +
       (premium && customCount < PREMIUM_CUSTOM_PRODUCT_LIMIT ? "" : " disabled") +
       '>Agregar producto</button></form></section>'
     : "";
@@ -490,7 +495,7 @@ async function createProduct(event) {
   try {
     await api("/business/me/products", {
       method: "POST",
-      body: JSON.stringify({ name: form.name.value.trim(), type: "CUSTOM", status: "ACTIVE", category: "OTHER" }),
+      body: JSON.stringify({ name: form.name.value.trim(), type: "CUSTOM", status: "ACTIVE", category: form.category.value }),
     });
     await loadProducts();
     productsView("El producto fue agregado al catálogo.");
