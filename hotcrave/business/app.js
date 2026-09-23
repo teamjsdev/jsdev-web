@@ -278,7 +278,7 @@ function webProductCategory(product) {
 
   const name = String(product.name || "").trim().toLowerCase();
   for (const [category, names] of Object.entries(WEB_PRODUCT_CATALOG)) {
-    if (names.some((catalogName) => catalogName.toLowerCase() === name)) {
+    if (names.some((catalogProduct) => catalogProduct.name.toLowerCase() === name)) {
       return category;
     }
   }
