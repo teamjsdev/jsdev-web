@@ -217,12 +217,47 @@ function profileView(message = "", error = false) {
 }
 
 const WEB_PRODUCT_CATALOG = {
-  BAKERY: ["Pan", "Criollos", "Facturas", "Medialunas", "Tortas"],
-  PIZZERIA: ["Pizza", "Empanadas", "Fugazzeta", "Calzone", "Pizza muzzarella"],
-  RESTAURANT: ["Hamburguesa", "Papas fritas", "Sándwich", "Milanesa", "Ensalada"],
-  CAFE: ["Café", "Medialunas", "Tostado", "Muffin", "Croissant"],
-  ROTISSERIE: ["Pollo al spiedo", "Milanesas", "Tortilla de papa", "Matambre arrollado", "Pastas caseras"],
-  OTHER: ["Tarta", "Pastel", "Wrap", "Bowl", "Snack"],
+  BAKERY: [
+    { id: "predefined-pan", name: "Pan" },
+    { id: "predefined-facturas", name: "Facturas" },
+    { id: "predefined-criollos", name: "Criollos" },
+    { id: "predefined-medialunas", name: "Medialunas" },
+    { id: "predefined-chipa", name: "Chipás" },
+  ],
+  PIZZERIA: [
+    { id: "predefined-pizza-muzza", name: "Pizzas" },
+    { id: "predefined-fugazzeta", name: "Fugazzetas" },
+    { id: "predefined-faina", name: "Fainás" },
+    { id: "predefined-calzone", name: "Calzones" },
+  ],
+  RESTAURANT: [
+    { id: "predefined-menu-ejecutivo", name: "Menú ejecutivo" },
+    { id: "predefined-menu-del-dia", name: "Platos del Día" },
+    { id: "predefined-viandas", name: "Viandas" },
+    { id: "predefined-estofados", name: "Estofados" },
+    { id: "predefined-humita", name: "Humita" },
+  ],
+  CAFE: [
+    { id: "predefined-churros", name: "Churros" },
+    { id: "predefined-donas", name: "Donas" },
+    { id: "predefined-croissants", name: "Croissants" },
+    { id: "predefined-brownies", name: "Brownies" },
+    { id: "predefined-cafe", name: "Café" },
+  ],
+  ROTISSERIE: [
+    { id: "predefined-pollo", name: "Pollo" },
+    { id: "predefined-empanadas-roti", name: "Empanadas" },
+    { id: "predefined-tartas", name: "Tartas" },
+    { id: "predefined-tortilla", name: "Tortillas" },
+    { id: "predefined-guisos", name: "Guisos" },
+  ],
+  OTHER: [
+    { id: "predefined-asado", name: "Asado" },
+    { id: "predefined-choripan", name: "Choripanes" },
+    { id: "predefined-pancho", name: "Panchos" },
+    { id: "predefined-locro", name: "Locro" },
+    { id: "predefined-papas-fritas", name: "Papas Fritas" },
+  ],
 };
 
 const WEB_PRODUCT_CATEGORY_LABELS = {
@@ -264,10 +299,10 @@ function productsView(message = "", error = false) {
   );
 
   // Categories are only an index/filter. They never create separate quotas.
-  const available = WEB_PRODUCT_CATALOG[activeCategory].filter((name) =>
+  const available = WEB_PRODUCT_CATALOG[activeCategory].filter((catalogProduct) =>
     !products.some((product) =>
       product.type === "PREDEFINED" &&
-      product.name.toLowerCase() === name.toLowerCase()
+      product.productId === catalogProduct.id
     )
   );
 
@@ -282,9 +317,10 @@ function productsView(message = "", error = false) {
   const freePredefinedFull = !premium && predefinedCount >= FREE_PREDEFINED_PRODUCT_LIMIT;
   const addPredefined = available.length
     ? '<div class="catalog-add-list">' +
-      available.map((name) =>
-        '<button type="button" class="secondary catalog-add-product" data-product-name="' +
-        escapeHtml(name) + '"' +
+      available.map((catalogProduct) =>
+        '<button type="button" class="secondary catalog-add-product" data-product-id="' +
+        escapeHtml(catalogProduct.id) + '" data-product-name="' +
+        escapeHtml(catalogProduct.name) + '"' +
         (!isManager() || freePredefinedFull ? " disabled" : "") +
         '>+ ' + escapeHtml(name) + "</button>"
       ).join("") +
@@ -364,7 +400,7 @@ function productsView(message = "", error = false) {
   );
 
   document.querySelectorAll(".catalog-add-product").forEach((button) =>
-    button.addEventListener("click", () => addPredefinedProduct(button.dataset.productName))
+    button.addEventListener("click", () => addPredefinedProduct(button.dataset.productId))
   );
 
   document.querySelector("#product-form")?.addEventListener("submit", createProduct);
@@ -376,11 +412,11 @@ function productsView(message = "", error = false) {
   );
 }
 
-async function addPredefinedProduct(name) {
+async function addPredefinedProduct(productId) {
   if (!isManager()) return;
 
   const button = [...document.querySelectorAll(".catalog-add-product")]
-    .find((element) => element.dataset.productName === name);
+    .find((element) => element.dataset.productId === productId);
 
   if (button) {
     button.disabled = true;
@@ -390,7 +426,11 @@ async function addPredefinedProduct(name) {
   try {
     await api("/business/me/products", {
       method: "POST",
-      body: JSON.stringify({ name, type: "PREDEFINED", status: "ACTIVE" }),
+      const catalogProduct = Object.values(WEB_PRODUCT_CATALOG).flat().find((product) => product.id === productId);
+    if (!catalogProduct) throw new Error("Unknown predefined product");
+    await api("/business/me/products", {
+      method: "POST",
+      body: JSON.stringify({ name: catalogProduct.name, type: "PREDEFINED", status: "ACTIVE" }),
     });
     await loadProducts();
     productsView("El producto fue agregado al catálogo.");
