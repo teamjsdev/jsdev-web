@@ -321,7 +321,7 @@ function productsView(message = "", error = false) {
         escapeHtml(catalogProduct.id) + '" data-product-name="' +
         escapeHtml(catalogProduct.name) + '"' +
         (!isManager() || freePredefinedFull ? " disabled" : "") +
-        '>+ ' + escapeHtml(catalogProduct.name) + "</button>"
+        '>+ ' + escapeHtml(catalogProduct.name) + '</button>'
       ).join("") +
       "</div>"
     : '<p class="muted small">Ya agregaste todos los productos predefinidos de esta categoría.</p>';
