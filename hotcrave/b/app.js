@@ -3,7 +3,7 @@ import { deleteUser, getAuth, signInAnonymously } from 'https://www.gstatic.com/
 
 const API_BASE = 'https://hotcrave-api-staging-274560140811.southamerica-east1.run.app';
 const FIREBASE_CONFIG = {
-  apiKey: 'AIzaSyBG67zAGYRofPjCxu02oRKfPjD_v1HHiOrM',
+  apiKey: 'AIzaSyBG67zAGYRofpCxu02oRKfPjD_v1HHiOrM',
   authDomain: 'hotcrave-app.firebaseapp.com',
   projectId: 'hotcrave-app',
   appId: '1:274560140811:web:841b72c8b3c8a0fae4e90e',
