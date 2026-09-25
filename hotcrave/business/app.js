@@ -115,11 +115,15 @@ function isBusinessPremium() {
 }
 
 async function loadBusiness() {
-  return api("/business/me");
+  return api("/business");
+}
+
+function businessPath(suffix = "") {
+  return `/business/${encodeURIComponent(businessContext.business.businessId)}${suffix}`;
 }
 
 async function loadProducts() {
-  const response = await api("/business/me/products");
+  const response = await api(businessPath("/products"));
   products = response.products || [];
 }
 
@@ -432,7 +436,7 @@ async function addPredefinedProduct(productId) {
     const catalogProduct = Object.values(WEB_PRODUCT_CATALOG).flat().find((product) => product.id === productId);
     if (!catalogProduct) throw new Error("Unknown predefined product");
 
-    await api("/business/me/products", {
+    await api(businessPath("/products"), {
       method: "POST",
       body: JSON.stringify({ name: catalogProduct.name, type: "PREDEFINED", status: "ACTIVE" }),
     });
@@ -474,7 +478,7 @@ async function updateProfile(event) {
   button.disabled = true;
   button.textContent = "Guardando…";
   try {
-    const business = await api("/business/me", {
+    const business = await api(businessPath(), {
       method: "PATCH",
       body: JSON.stringify({ name: form.name.value.trim(), location: form.location.value.trim(), latitude: businessContext.business.latitude, longitude: businessContext.business.longitude }),
     });
@@ -492,7 +496,7 @@ async function createProduct(event) {
   button.disabled = true;
   button.textContent = "Agregando…";
   try {
-    await api("/business/me/products", {
+    await api(businessPath("/products"), {
       method: "POST",
       body: JSON.stringify({ name: form.name.value.trim(), type: "CUSTOM", status: "ACTIVE", category: form.category.value }),
     });
@@ -510,7 +514,7 @@ async function deleteProduct(productId, productName) {
   const button = document.querySelector(`.delete-product[data-product-id="${CSS.escape(productId)}"]`);
   if (button) { button.disabled = true; button.textContent = "Eliminando…"; }
   try {
-    await api(`/business/me/products/${encodeURIComponent(productId)}`, { method: "DELETE" });
+    await api(businessPath(`/products/${encodeURIComponent(productId)}`), { method: "DELETE" });
     await loadProducts();
     productsView("El producto fue eliminado del catálogo.");
   } catch (error) {
