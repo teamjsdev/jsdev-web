@@ -80,6 +80,12 @@ body {
 .button.primary { background: var(--crave-orange); color: white; }
 .button.secondary { background: var(--mist); color: var(--charcoal); }
 .notification-card { border-color: var(--crave-orange-soft); }
+.notification-schedule-title { margin: 22px 0 6px; color: var(--ink-warm); font-size: 1rem; }
+.notification-schedule-text { margin-bottom: 12px !important; color: #6b6b6b; font-size: .9rem; }
+.notification-schedule-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.notification-schedule-fields label { display: flex; flex-direction: column; gap: 6px; font-weight: 700; font-size: .9rem; }
+.notification-schedule-fields input { min-height: 44px; padding: 0 10px; border: 1px solid var(--stone); border-radius: 12px; background: var(--paper); color: var(--charcoal); font: inherit; }
+.notification-schedule-save { grid-column: 1 / -1; width: 100%; }
 .privacy-note { text-align: center; color: #6b6b6b; font-size: .85rem; padding: 4px 16px; }
 
 .ios-install-overlay {

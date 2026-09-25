@@ -10,7 +10,11 @@ const FIREBASE_CONFIG = {
 };
 const VAPID_PUBLIC_KEY = 'BDg-XcXynucOK0vVTmk0WorOaga5lcd9ewEtpBh75Z8Hn9_b6iI_LKlkw1ZoU6I5iPm2g26rDfLIPJ3eE9PlQLI';
 
-const state = { businessId: null, business: null, following: false, subscription: null, productNotificationIds: null, productNotificationsConfigured: false };
+const NOTIFICATION_SCHEDULE_KEY = '__notification_schedule__';
+const DEFAULT_NOTIFICATION_START_MINUTES = 8 * 60;
+const DEFAULT_NOTIFICATION_END_MINUTES = 22 * 60;
+
+const state = { businessId: null, business: null, following: false, subscription: null, productNotificationIds: null, productNotificationsConfigured: false, notificationStartMinutes: DEFAULT_NOTIFICATION_START_MINUTES, notificationEndMinutes: DEFAULT_NOTIFICATION_END_MINUTES };
 const firebaseAuth = getAuth(initializeApp(FIREBASE_CONFIG));
 
 async function ensurePushUser() {
@@ -162,7 +166,62 @@ function renderBusiness() {
   button.type = 'button';
   button.textContent = state.following ? 'Dejar de recibir alertas' : 'Activar alertas';
   button.addEventListener('click', () => toggleNotifications(button));
-  notificationCard.append(notificationTitle, notificationText, button);
+  const scheduleTitle = document.createElement('h3');
+  scheduleTitle.className = 'notification-schedule-title';
+  scheduleTitle.textContent = calentitosLang === 'en' ? 'Alert hours' : 'Horario de alertas';
+
+  const scheduleText = document.createElement('p');
+  scheduleText.className = 'notification-schedule-text';
+  scheduleText.textContent = calentitosLang === 'en'
+    ? 'Notifications will only be delivered during this time on your device’s local time.'
+    : 'Las notificaciones solo se entregarán durante este horario según la hora local de tu dispositivo.';
+
+  const scheduleFields = document.createElement('div');
+  scheduleFields.className = 'notification-schedule-fields';
+
+  const startLabel = document.createElement('label');
+  startLabel.textContent = calentitosLang === 'en' ? 'From' : 'Desde';
+  const startInput = document.createElement('input');
+  startInput.type = 'time';
+  startInput.value = minutesToTime(state.notificationStartMinutes);
+  startInput.setAttribute('aria-label', calentitosLang === 'en' ? 'Notification start time' : 'Hora de inicio de las notificaciones');
+  startLabel.append(startInput);
+
+  const endLabel = document.createElement('label');
+  endLabel.textContent = calentitosLang === 'en' ? 'Until' : 'Hasta';
+  const endInput = document.createElement('input');
+  endInput.type = 'time';
+  endInput.value = minutesToTime(state.notificationEndMinutes);
+  endInput.setAttribute('aria-label', calentitosLang === 'en' ? 'Notification end time' : 'Hora de fin de las notificaciones');
+  endLabel.append(endInput);
+
+  const saveScheduleButton = document.createElement('button');
+  saveScheduleButton.className = 'button secondary notification-schedule-save';
+  saveScheduleButton.type = 'button';
+  saveScheduleButton.textContent = calentitosLang === 'en' ? 'Save hours' : 'Guardar horario';
+  saveScheduleButton.addEventListener('click', async () => {
+    const startMinutes = timeToMinutes(startInput.value);
+    const endMinutes = timeToMinutes(endInput.value);
+    if (startMinutes === null || endMinutes === null || startMinutes >= endMinutes) {
+      alert(calentitosLang === 'en'
+        ? 'Choose a valid notification period. The start time must be before the end time.'
+        : 'Elegí un horario válido. La hora de inicio debe ser anterior a la hora de fin.');
+      return;
+    }
+    saveScheduleButton.disabled = true;
+    try {
+      await saveNotificationSchedule(startMinutes, endMinutes);
+      saveScheduleButton.textContent = calentitosLang === 'en' ? 'Saved' : 'Guardado';
+      setTimeout(() => { if (saveScheduleButton.isConnected) saveScheduleButton.textContent = calentitosLang === 'en' ? 'Save hours' : 'Guardar horario'; }, 1400);
+    } catch (_) {
+      saveScheduleButton.disabled = false;
+      alert(calentitosLang === 'en' ? 'Could not save the notification hours.' : 'No se pudo guardar el horario de alertas.');
+    }
+    saveScheduleButton.disabled = false;
+  });
+
+  scheduleFields.append(startLabel, endLabel, saveScheduleButton);
+  notificationCard.append(notificationTitle, notificationText, button, scheduleTitle, scheduleText, scheduleFields);
   content.append(notificationCard);
 
   const note = document.createElement('p');
@@ -205,6 +264,7 @@ async function load() {
     state.products = productsResponse.products || [];
     state.hotEvent = (hotEventsResponse.hotEvents || []).find(item => item.business.businessId === state.businessId) || null;
     await restoreProductNotificationSelection();
+    await restoreNotificationSchedule();
     await restorePushSubscription();
     document.title = `${business.name} · Calentitos`;
     renderBusiness();
@@ -304,6 +364,66 @@ async function getCurrentPushSubscription() {
   await navigator.serviceWorker.register('/hotcrave/b/sw.js', { scope: '/hotcrave/b/' });
   const registration = await navigator.serviceWorker.ready;
   return registration.pushManager.getSubscription();
+}
+
+async function restoreNotificationSchedule() {
+  const saved = await getNotificationSchedule();
+  if (!saved) return;
+  const startMinutes = Number(saved.notificationStartMinutes);
+  const endMinutes = Number(saved.notificationEndMinutes);
+  if (Number.isInteger(startMinutes) && Number.isInteger(endMinutes) && startMinutes >= 0 && startMinutes < endMinutes && endMinutes <= 1439) {
+    state.notificationStartMinutes = startMinutes;
+    state.notificationEndMinutes = endMinutes;
+  }
+}
+
+function minutesToTime(minutes) {
+  const hours = Math.floor(minutes / 60).toString().padStart(2, '0');
+  const mins = (minutes % 60).toString().padStart(2, '0');
+  return `${hours}:${mins}`;
+}
+
+function timeToMinutes(value) {
+  if (!/^\\d{2}:\\d{2}$/.test(value)) return null;
+  const [hours, minutes] = value.split(':').map(Number);
+  if (hours > 23 || minutes > 59) return null;
+  return hours * 60 + minutes;
+}
+
+async function getNotificationSchedule() {
+  try {
+    const db = await openProductNotificationDb();
+    return await new Promise((resolve, reject) => {
+      const request = db.transaction('businesses', 'readonly').objectStore('businesses').get(NOTIFICATION_SCHEDULE_KEY);
+      request.onsuccess = () => resolve(request.result || null);
+      request.onerror = () => reject(request.error);
+    });
+  } catch (error) {
+    console.warn('No se pudo leer el horario de notificaciones.', error);
+    return null;
+  }
+}
+
+async function saveNotificationSchedule(notificationStartMinutes, notificationEndMinutes) {
+  const db = await openProductNotificationDb();
+  await new Promise((resolve, reject) => {
+    const existing = db.transaction('businesses', 'readonly').objectStore('businesses').get(NOTIFICATION_SCHEDULE_KEY);
+    existing.onsuccess = () => {
+      const current = existing.result || { businessId: NOTIFICATION_SCHEDULE_KEY };
+      const request = db.transaction('businesses', 'readwrite').objectStore('businesses').put({
+        ...current,
+        businessId: NOTIFICATION_SCHEDULE_KEY,
+        notificationStartMinutes,
+        notificationEndMinutes,
+        updatedAt: Date.now(),
+      });
+      request.onsuccess = resolve;
+      request.onerror = () => reject(request.error);
+    };
+    existing.onerror = () => reject(existing.error);
+  });
+  state.notificationStartMinutes = notificationStartMinutes;
+  state.notificationEndMinutes = notificationEndMinutes;
 }
 
 async function restorePushSubscription() {
@@ -509,6 +629,16 @@ const CALENTITOS_I18N = {
   'Elegí sobre qué productos querés recibir alertas.': 'Choose which products you want to hear about.',
   'Todos': 'All',
   'No se pudieron guardar las alertas de productos.': 'Could not save product alerts.',
+  'Horario de alertas': 'Alert hours',
+  'Las notificaciones solo se entregarán durante este horario según la hora local de tu dispositivo.': 'Notifications will only be delivered during this time on your device’s local time.',
+  'Desde': 'From',
+  'Hasta': 'Until',
+  'Hora de inicio de las notificaciones': 'Notification start time',
+  'Hora de fin de las notificaciones': 'Notification end time',
+  'Guardar horario': 'Save hours',
+  'Guardado': 'Saved',
+  'Elegí un horario válido. La hora de inicio debe ser anterior a la hora de fin.': 'Choose a valid notification period. The start time must be before the end time.',
+  'No se pudo guardar el horario de alertas.': 'Could not save the notification hours.',
   'Enlace copiado.': 'Link copied.',
   'No se pudo copiar automáticamente. Seleccioná el enlace para copiarlo.': 'Could not copy automatically. Select the link to copy it.',
   'No se pudo generar el QR.': 'Could not generate the QR code.',
