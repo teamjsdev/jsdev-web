@@ -347,7 +347,7 @@ function showIosInstallInstructions() {
 
   const intro = document.createElement('p');
   intro.textContent = calentitosLang === 'en' 
-    ? 'To receive notifications on iPhone, first add the Calentitos app to your Home Screen.' 
+    ? 'To receive notifications on iPhone, first add the HotCrave app to your Home Screen.' 
     : 'Para recibir notificaciones en iPhone, primero agregá la app Calentitos a tu pantalla de inicio.';
 
   const steps = document.createElement('ol');
@@ -370,7 +370,7 @@ function showIosInstallInstructions() {
 
   const step4 = document.createElement('li');
   step4.innerHTML = calentitosLang === 'en' 
-    ? 'Open <strong>Calentitos</strong> from the new Home Screen icon and tap “Enable alerts”' 
+    ? 'Open <strong>HotCrave</strong> from the new Home Screen icon and tap “Enable alerts”' 
     : 'Abrí <strong>Calentitos</strong> desde el nuevo ícono de tu pantalla de inicio y tocá “Activar alertas”';
 
   steps.append(step1, step2, step3, step4);
@@ -382,7 +382,7 @@ function showIosInstallInstructions() {
   activateButton.addEventListener('click', () => {
     if (!isStandalone()) {
       alert(calentitosLang === 'en' 
-        ? 'Open Calentitos from the new Home Screen icon to enable alerts.' 
+        ? 'Open HotCrave from the new Home Screen icon to enable alerts.' 
         : 'Abrí Calentitos desde el nuevo ícono de la pantalla de inicio para activar las alertas.');
       return;
     }
@@ -474,7 +474,7 @@ function calientitosLangSafe() {
 }
 
 const CALENTITOS_I18N = {
-  'Calentitos': 'Calentitos',
+  'Calentitos': 'HotCrave',
   'Cargando información del negocio…': 'Loading business information…',
   'No pudimos acceder': 'We could not access this business',
   'Ir al inicio': 'Go to home',
@@ -494,14 +494,14 @@ const CALENTITOS_I18N = {
   '¿Sos dueño de un negocio?': 'Do you own a business?',
   'Acceso para negocios →': 'Business access →',
   '🔥 Activá las alertas': '🔥 Enable alerts',
-  'Para recibir notificaciones en iPhone, primero agregá la app Calentitos a tu pantalla de inicio.': 'To receive notifications on iPhone, first add the Calentitos app to your Home Screen.',
+  'Para recibir notificaciones en iPhone, primero agregá la app Calentitos a tu pantalla de inicio.': 'To receive notifications on iPhone, first add the HotCrave app to your Home Screen.',
   'Tocá los tres puntitos … de Safari y elegí Compartir': 'Tap Safari’s three-dot menu … and choose Share',
   'Elegí “+ Agregar a inicio”.': 'Choose “+ Add to Home Screen”.',
   'Tocá “Agregar”.': 'Tap “Add”.',
-  'Abrí Calentitos desde el nuevo ícono de tu pantalla de inicio y tocá “Activar alertas”': 'Open Calentitos from the new Home Screen icon and tap “Enable alerts”',
+  'Abrí Calentitos desde el nuevo ícono de tu pantalla de inicio y tocá “Activar alertas”': 'Open HotCrave from the new Home Screen icon and tap “Enable alerts”',
   'Ya la agregué → Activar alertas': 'I added it → Enable alerts',
   'Ahora no': 'Not now',
-  'Abrí Calentitos desde el nuevo ícono de la pantalla de inicio para activar las alertas.': 'Open Calentitos from the new Home Screen icon to enable alerts.',
+  'Abrí Calentitos desde el nuevo ícono de la pantalla de inicio para activar las alertas.': 'Open HotCrave from the new Home Screen icon to enable alerts.',
   'Este navegador no admite notificaciones web.': 'This browser does not support web notifications.',
   'Las notificaciones no fueron habilitadas.': 'Notifications were not enabled.',
   'No se pudo crear la suscripción de notificaciones.': 'Could not create the notification subscription.',
@@ -537,7 +537,7 @@ function calentitosApplyLanguage() {
     }
   });
   const title = document.querySelector('title');
-  if (title) title.textContent = calentitosLang === 'en' ? 'Business · Calentitos' : 'Negocio · Calentitos';
+  if (title) title.textContent = calentitosLang === 'en' ? 'Business · HotCrave' : 'Negocio · Calentitos';
 }
 
 function calentitosLegalFooter() {
