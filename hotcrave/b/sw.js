@@ -17,6 +17,31 @@ async function getProductNotificationSelection(businessId) {
   });
 }
 
+async function getNotificationSchedule(businessId) {
+  if (!businessId) return null;
+  return new Promise(resolve => {
+    const request = indexedDB.open(DB_NAME, DB_VERSION);
+    request.onupgradeneeded = () => request.result.createObjectStore('businesses', { keyPath: 'businessId' });
+    request.onsuccess = () => {
+      const db = request.result;
+      const getRequest = db.transaction('businesses', 'readonly').objectStore('businesses').get(businessId);
+      getRequest.onsuccess = () => resolve(getRequest.result || null);
+      getRequest.onerror = () => resolve(null);
+    };
+    request.onerror = () => resolve(null);
+  });
+}
+
+function isWithinNotificationSchedule(schedule, now = new Date()) {
+  const start = Number(schedule?.notificationStartMinutes);
+  const end = Number(schedule?.notificationEndMinutes);
+  if (!Number.isInteger(start) || !Number.isInteger(end) || start < 0 || start > 1439 || end < 1 || end > 1439 || start >= end) {
+    return true;
+  }
+  const current = now.getHours() * 60 + now.getMinutes();
+  return current >= start && current < end;
+}
+
 async function resolveProductId(data) {
   if (data.productId) return data.productId;
   if (!data.hotEventId) return null;
@@ -51,6 +76,17 @@ self.addEventListener('push', event => {
   event.waitUntil((async () => {
     const selection = await getProductNotificationSelection(data.businessId);
     const productIds = selection?.productIds;
+    const schedule = await getNotificationSchedule(data.businessId);
+
+    if (!isWithinNotificationSchedule(schedule)) {
+      console.log('[HotCrave SW] Hot Event ignorado fuera del horario de alertas', {
+        businessId: data.businessId,
+        notificationStartMinutes: schedule?.notificationStartMinutes,
+        notificationEndMinutes: schedule?.notificationEndMinutes,
+      });
+      return;
+    }
+
     const productId = await resolveProductId(data);
 
     // Older saved subscriptions have no explicit selection, so preserve
