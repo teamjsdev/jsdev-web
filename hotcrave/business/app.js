@@ -115,15 +115,11 @@ function isBusinessPremium() {
 }
 
 async function loadBusiness() {
-  return api("/business");
-}
-
-function businessPath(suffix = "") {
-  return `/business/${encodeURIComponent(businessContext.business.businessId)}${suffix}`;
+  return api("/business/me");
 }
 
 async function loadProducts() {
-  const response = await api(businessPath("/products"));
+  const response = await api("/business/me/products");
   products = response.products || [];
 }
 
@@ -436,7 +432,7 @@ async function addPredefinedProduct(productId) {
     const catalogProduct = Object.values(WEB_PRODUCT_CATALOG).flat().find((product) => product.id === productId);
     if (!catalogProduct) throw new Error("Unknown predefined product");
 
-    await api(businessPath("/products"), {
+    await api("/business/me/products", {
       method: "POST",
       body: JSON.stringify({ name: catalogProduct.name, type: "PREDEFINED", status: "ACTIVE" }),
     });
@@ -478,7 +474,7 @@ async function updateProfile(event) {
   button.disabled = true;
   button.textContent = "Guardando…";
   try {
-    const business = await api(businessPath(), {
+    const business = await api("/business/me", {
       method: "PATCH",
       body: JSON.stringify({ name: form.name.value.trim(), location: form.location.value.trim(), latitude: businessContext.business.latitude, longitude: businessContext.business.longitude }),
     });
@@ -514,7 +510,7 @@ async function deleteProduct(productId, productName) {
   const button = document.querySelector(`.delete-product[data-product-id="${CSS.escape(productId)}"]`);
   if (button) { button.disabled = true; button.textContent = "Eliminando…"; }
   try {
-    await api(businessPath(`/products/${encodeURIComponent(productId)}`), { method: "DELETE" });
+    await api(`/business/me/products/${encodeURIComponent(productId)}`, { method: "DELETE" });
     await loadProducts();
     productsView("El producto fue eliminado del catálogo.");
   } catch (error) {
