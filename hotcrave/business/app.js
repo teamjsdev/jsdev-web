@@ -644,7 +644,7 @@ let businessLang = localStorage.getItem(CALENTITOS_BUSINESS_LANG_KEY) || ((navig
 if (!['es', 'en'].includes(businessLang)) businessLang = 'es';
 
 const BUSINESS_I18N = {
-  'CALENTITOS · NEGOCIOS':'CALENTITOS · BUSINESS','Panel de negocio':'Business dashboard','Cerrar sesión':'Sign out',
+  'CALENTITOS · NEGOCIOS':'HOTCRAVE · BUSINESS','Panel de negocio':'Business dashboard','Cerrar sesión':'Sign out',
   'Administración':'Administration','Hot Events':'Hot Events','Perfil':'Profile','Productos':'Products','QR':'QR','Premium':'Premium','Resumen':'Overview',
   'Cargando…':'Loading…','PRIORIDAD':'PRIORITY','Publicá rápido cuando tengas comida recién hecha.':'Publish quickly when your food is freshly made.',
   'Disponible ahora':'Available now','Listo en 15 minutos':'Ready in 15 minutes','Listo en 30 minutos':'Ready in 30 minutes','Agotado':'Sold out','Expirado':'Expired',
