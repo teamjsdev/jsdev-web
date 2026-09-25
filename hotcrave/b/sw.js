@@ -121,7 +121,7 @@ self.addEventListener('push', event => {
         hotEventId: data.hotEventId || '',
       },
     });
-  })();
+  })());
 });
 
 self.addEventListener('notificationclick', event => {
