@@ -343,35 +343,47 @@ function showIosInstallInstructions() {
 
   const title = document.createElement('h2');
   title.id = 'ios-install-title';
-  title.textContent = '🔥 Activá las alertas';
+  title.textContent = calentitosLang === 'en' ? '🔥 Enable alerts' : '🔥 Activá las alertas';
 
   const intro = document.createElement('p');
-  intro.textContent = 'Para recibir notificaciones en iPhone, primero agregá la app Calentitos a tu pantalla de inicio.';
+  intro.textContent = calentitosLang === 'en' 
+    ? 'To receive notifications on iPhone, first add the Calentitos app to your Home Screen.' 
+    : 'Para recibir notificaciones en iPhone, primero agregá la app Calentitos a tu pantalla de inicio.';
 
   const steps = document.createElement('ol');
   steps.className = 'ios-install-steps';
 
   const step1 = document.createElement('li');
-  step1.innerHTML = 'Tocá los tres puntitos … de Safari y elegí <strong>Compartir</strong>';
+  step1.innerHTML = calentitosLang === 'en' 
+    ? 'Tap Safari’s three-dot menu … and choose <strong>Share</strong>' 
+    : 'Tocá los tres puntitos … de Safari y elegí <strong>Compartir</strong>';
 
   const step2 = document.createElement('li');
-  step2.innerHTML = 'Elegí <strong>“+ Agregar a inicio”</strong>.';
+  step2.innerHTML = calentitosLang === 'en' 
+    ? 'Choose <strong>“+ Add to Home Screen”</strong>.' 
+    : 'Elegí <strong>“+ Agregar a inicio”</strong>.';
 
   const step3 = document.createElement('li');
-  step3.innerHTML = 'Tocá <strong>“Agregar”</strong>.';
+  step3.innerHTML = calentitosLang === 'en' 
+    ? 'Tap <strong>“Add”</strong>.' 
+    : 'Tocá <strong>“Agregar”</strong>.';
 
   const step4 = document.createElement('li');
-  step4.innerHTML = 'Abrí <strong>Calentitos</strong> desde el nuevo ícono de tu pantalla de inicio y tocá “Activar alertas”';
+  step4.innerHTML = calentitosLang === 'en' 
+    ? 'Open <strong>Calentitos</strong> from the new Home Screen icon and tap “Enable alerts”' 
+    : 'Abrí <strong>Calentitos</strong> desde el nuevo ícono de tu pantalla de inicio y tocá “Activar alertas”';
 
   steps.append(step1, step2, step3, step4);
 
   const activateButton = document.createElement('button');
   activateButton.className = 'button primary ios-install-button';
   activateButton.type = 'button';
-  activateButton.textContent = 'Ya la agregué → Activar alertas';
+  activateButton.textContent = calentitosLang === 'en' ? 'I added it → Enable alerts' : 'Ya la agregué → Activar alertas';
   activateButton.addEventListener('click', () => {
     if (!isStandalone()) {
-      alert('Abrí Calentitos desde el nuevo ícono de la pantalla de inicio para activar las alertas.');
+      alert(calentitosLang === 'en' 
+        ? 'Open Calentitos from the new Home Screen icon to enable alerts.' 
+        : 'Abrí Calentitos desde el nuevo ícono de la pantalla de inicio para activar las alertas.');
       return;
     }
     overlay.remove();
@@ -381,7 +393,7 @@ function showIosInstallInstructions() {
   const closeButton = document.createElement('button');
   closeButton.className = 'button secondary ios-install-close';
   closeButton.type = 'button';
-  closeButton.textContent = 'Ahora no';
+  closeButton.textContent = calentitosLang === 'en' ? 'Not now' : 'Ahora no';
   closeButton.addEventListener('click', () => overlay.remove());
 
   dialog.append(title, intro, steps, activateButton, closeButton);
@@ -449,9 +461,12 @@ async function toggleNotifications(button) {
 
 load();
 
-
 const CALENTITOS_LANG_KEY = 'calentitos_lang';
-let calentitosLang = localStorage.getItem(CALENTITOS_LANG_KEY) || (navigator.language || '').toLowerCase().startsWith('en') ? 'en' : 'es';
+const storedLang = localStorage.getItem(CALENTITOS_LANG_KEY);
+const browserIsEn = (navigator.language || '').toLowerCase().startsWith('en');
+
+let calentitosLang = storedLang || (browserIsEn ? 'en' : 'es');
+
 if (!['es', 'en'].includes(calientitosLangSafe())) calentitosLang = 'es';
 
 function calientitosLangSafe() {
