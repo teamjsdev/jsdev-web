@@ -10,7 +10,11 @@ const FIREBASE_CONFIG = {
 };
 const VAPID_PUBLIC_KEY = 'BDg-XcXynucOK0vVTmk0WorOaga5lcd9ewEtpBh75Z8Hn9_b6iI_LKlkw1ZoU6I5iPm2g26rDfLIPJ3eE9PlQLI';
 
-const state = { businessId: null, business: null, following: false, subscription: null, productNotificationIds: null, productNotificationsConfigured: false, notificationStartMinutes: 8 * 60, notificationEndMinutes: 22 * 60 };
+const NOTIFICATION_SCHEDULE_KEY = '__notification_schedule__';
+const DEFAULT_NOTIFICATION_START_MINUTES = 8 * 60;
+const DEFAULT_NOTIFICATION_END_MINUTES = 22 * 60;
+
+const state = { businessId: null, business: null, following: false, subscription: null, productNotificationIds: null, productNotificationsConfigured: false, notificationStartMinutes: DEFAULT_NOTIFICATION_START_MINUTES, notificationEndMinutes: DEFAULT_NOTIFICATION_END_MINUTES };
 const firebaseAuth = getAuth(initializeApp(FIREBASE_CONFIG));
 
 async function ensurePushUser() {
@@ -390,7 +394,7 @@ async function getNotificationSchedule() {
   try {
     const db = await openProductNotificationDb();
     return await new Promise((resolve, reject) => {
-      const request = db.transaction('businesses', 'readonly').objectStore('businesses').get(state.businessId);
+      const request = db.transaction('businesses', 'readonly').objectStore('businesses').get(NOTIFICATION_SCHEDULE_KEY);
       request.onsuccess = () => resolve(request.result || null);
       request.onerror = () => reject(request.error);
     });
@@ -405,10 +409,10 @@ async function saveNotificationSchedule(notificationStartMinutes, notificationEn
   await new Promise((resolve, reject) => {
     const existing = db.transaction('businesses', 'readonly').objectStore('businesses').get(state.businessId);
     existing.onsuccess = () => {
-      const current = existing.result || { businessId: state.businessId };
+      const current = existing.result || { businessId: NOTIFICATION_SCHEDULE_KEY };
       const request = db.transaction('businesses', 'readwrite').objectStore('businesses').put({
         ...current,
-        businessId: state.businessId,
+        businessId: NOTIFICATION_SCHEDULE_KEY,
         notificationStartMinutes,
         notificationEndMinutes,
         updatedAt: Date.now(),
