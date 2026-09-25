@@ -407,7 +407,7 @@ async function getNotificationSchedule() {
 async function saveNotificationSchedule(notificationStartMinutes, notificationEndMinutes) {
   const db = await openProductNotificationDb();
   await new Promise((resolve, reject) => {
-    const existing = db.transaction('businesses', 'readonly').objectStore('businesses').get(state.businessId);
+    const existing = db.transaction('businesses', 'readonly').objectStore('businesses').get(NOTIFICATION_SCHEDULE_KEY);
     existing.onsuccess = () => {
       const current = existing.result || { businessId: NOTIFICATION_SCHEDULE_KEY };
       const request = db.transaction('businesses', 'readwrite').objectStore('businesses').put({
