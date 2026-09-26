@@ -14,7 +14,7 @@ const NOTIFICATION_SCHEDULE_KEY = '__notification_schedule__';
 const DEFAULT_NOTIFICATION_START_MINUTES = 8 * 60;
 const DEFAULT_NOTIFICATION_END_MINUTES = 22 * 60;
 
-const state = { businessId: null, business: null, following: false, subscription: null, productNotificationIds: null, productNotificationsConfigured: false, notificationStartMinutes: DEFAULT_NOTIFICATION_START_MINUTES, notificationEndMinutes: DEFAULT_NOTIFICATION_END_MINUTES };
+const state = { businessId: null, business: null, hotEvents: [], following: false, subscription: null, productNotificationIds: null, productNotificationsConfigured: false, notificationStartMinutes: DEFAULT_NOTIFICATION_START_MINUTES, notificationEndMinutes: DEFAULT_NOTIFICATION_END_MINUTES };
 const firebaseAuth = getAuth(initializeApp(FIREBASE_CONFIG));
 
 async function ensurePushUser() {
@@ -141,8 +141,7 @@ function renderBusiness() {
   }
   content.append(productsSection);
 
-  if (state.hotEvent) {
-    const event = state.hotEvent;
+  state.hotEvents.slice(0, 10).forEach(event => {
     const eventCard = document.createElement('section');
     eventCard.className = 'card hot-card';
     const heading = document.createElement('h2');
@@ -153,7 +152,7 @@ function renderBusiness() {
     status.textContent = event.hotEvent.status === 'AVAILABLE_NOW' ? 'Disponible ahora' : event.hotEvent.status === 'SOLD_OUT' ? 'Agotado' : 'Próximamente';
     eventCard.append(heading, product, status);
     content.append(eventCard);
-  }
+  });
 
   const notificationCard = document.createElement('section');
   notificationCard.className = 'card notification-card';
@@ -262,7 +261,7 @@ async function load() {
     ]);
     state.business = business;
     state.products = productsResponse.products || [];
-    state.hotEvent = (hotEventsResponse.hotEvents || []).find(item => item.business.businessId === state.businessId) || null;
+    state.hotEvents = (hotEventsResponse.hotEvents || []).filter(item => item.business.businessId === state.businessId).slice(0, 10);
     await restoreProductNotificationSelection();
     await restoreNotificationSchedule();
     await restorePushSubscription();
