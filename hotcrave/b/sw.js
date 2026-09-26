@@ -15,7 +15,7 @@ async function getProductNotificationSelection(businessId) {
     request.onupgradeneeded = () => request.result.createObjectStore('businesses', { keyPath: 'businessId' });
     request.onsuccess = () => {
       const db = request.result;
-      const getRequest = db.transaction('businesses', 'readonly').objectStore('businesses').get(NOTIFICATION_SCHEDULE_KEY);
+      const getRequest = db.transaction('businesses', 'readonly').objectStore('businesses').get(businessId);
       getRequest.onsuccess = () => resolve(getRequest.result || null);
       getRequest.onerror = () => resolve(null);
     };
@@ -29,7 +29,7 @@ async function getNotificationSchedule() {
     request.onupgradeneeded = () => request.result.createObjectStore('businesses', { keyPath: 'businessId' });
     request.onsuccess = () => {
       const db = request.result;
-      const getRequest = db.transaction('businesses', 'readonly').objectStore('businesses').get(businessId);
+      const getRequest = db.transaction('businesses', 'readonly').objectStore('businesses').get(NOTIFICATION_SCHEDULE_KEY);
       getRequest.onsuccess = () => resolve(getRequest.result || null);
       getRequest.onerror = () => resolve(null);
     };
