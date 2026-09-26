@@ -15,7 +15,7 @@ async function getProductNotificationSelection(businessId) {
     request.onupgradeneeded = () => request.result.createObjectStore('businesses', { keyPath: 'businessId' });
     request.onsuccess = () => {
       const db = request.result;
-      const getRequest = db.transaction('businesses', 'readonly').objectStore('businesses').get(businessId);
+      const getRequest = db.transaction('businesses', 'readonly').objectStore('businesses').get(NOTIFICATION_SCHEDULE_KEY);
       getRequest.onsuccess = () => resolve(getRequest.result || null);
       getRequest.onerror = () => resolve(null);
     };
@@ -23,8 +23,7 @@ async function getProductNotificationSelection(businessId) {
   });
 }
 
-async function getNotificationSchedule(businessId) {
-  if (!businessId) return null;
+async function getNotificationSchedule() {
   return new Promise(resolve => {
     const request = indexedDB.open(DB_NAME, DB_VERSION);
     request.onupgradeneeded = () => request.result.createObjectStore('businesses', { keyPath: 'businessId' });
@@ -86,7 +85,7 @@ self.addEventListener('push', event => {
   event.waitUntil((async () => {
     const selection = await getProductNotificationSelection(data.businessId);
     const productIds = selection?.productIds;
-    const schedule = await getNotificationSchedule(data.businessId);
+    const schedule = await getNotificationSchedule();
 
     if (!isWithinNotificationSchedule(schedule)) {
       console.log('[HotCrave SW] Hot Event ignorado fuera del horario de alertas', {
