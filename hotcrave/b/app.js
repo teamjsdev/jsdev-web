@@ -361,9 +361,10 @@ function isStandalone() {
 
 async function getCurrentPushSubscription() {
   if (!('serviceWorker' in navigator) || !('PushManager' in window)) return null;
-  await navigator.serviceWorker.register('/hotcrave/b/sw.js', { scope: '/hotcrave/b/' });
-  const registration = await navigator.serviceWorker.ready;
-  return registration.pushManager.getSubscription();
+  const registration = await navigator.serviceWorker.register('/hotcrave/b/sw.js', { scope: '/hotcrave/b/' });
+  await registration.update().catch(() => {});
+  const activeRegistration = await navigator.serviceWorker.ready;
+  return activeRegistration.pushManager.getSubscription();
 }
 
 async function restoreNotificationSchedule() {

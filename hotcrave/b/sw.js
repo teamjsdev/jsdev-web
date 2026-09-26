@@ -5,6 +5,9 @@ const NOTIFICATION_SCHEDULE_KEY = '__notification_schedule__';
 const DEFAULT_NOTIFICATION_START_MINUTES = 8 * 60;
 const DEFAULT_NOTIFICATION_END_MINUTES = 22 * 60;
 
+self.addEventListener('install', () => self.skipWaiting());
+self.addEventListener('activate', event => event.waitUntil(self.clients.claim()));
+
 async function getProductNotificationSelection(businessId) {
   if (!businessId) return null;
   return new Promise(resolve => {
@@ -12,7 +15,7 @@ async function getProductNotificationSelection(businessId) {
     request.onupgradeneeded = () => request.result.createObjectStore('businesses', { keyPath: 'businessId' });
     request.onsuccess = () => {
       const db = request.result;
-      const getRequest = db.transaction('businesses', 'readonly').objectStore('businesses').get(NOTIFICATION_SCHEDULE_KEY);
+      const getRequest = db.transaction('businesses', 'readonly').objectStore('businesses').get(businessId);
       getRequest.onsuccess = () => resolve(getRequest.result || null);
       getRequest.onerror = () => resolve(null);
     };
