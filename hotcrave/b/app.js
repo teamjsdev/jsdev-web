@@ -384,7 +384,7 @@ function minutesToTime(minutes) {
 }
 
 function timeToMinutes(value) {
-  if (!/^\\d{2}:\\d{2}$/.test(value)) return null;
+  if (!/^\d{2}:\d{2}$/.test(value)) return null;
   const [hours, minutes] = value.split(':').map(Number);
   if (hours > 23 || minutes > 59) return null;
   return hours * 60 + minutes;
