@@ -176,7 +176,7 @@ function hotEventsView(message = "", error = false) {
   }).length;
   const premium = isBusinessPremium();
   const publishableProducts = products.filter((product) => premium || product.type !== "CUSTOM");
-  const options = publishableProducts.map((product) => `<option value="${escapeHtml(product.productId)}">${escapeHtml(product.name)}</option>`).join("");
+  const options = publishableProducts.map((product) => `<option value="${escapeHtml(product.productId)}">${escapeHtml(webProductName(product))}</option>`).join("");
   const eventCards = hotEvents.length
     ? hotEvents.slice().sort((a, b) => new Date(b.createdAt || b.availableAt || 0) - new Date(a.createdAt || a.availableAt || 0)).map((event) => {
         const product = products.find((item) => item.productId === event.productId);
@@ -218,48 +218,64 @@ function profileView(message = "", error = false) {
 
 const WEB_PRODUCT_CATALOG = {
   BAKERY: [
-    { id: "predefined-pan", name: "Bread" },
-    { id: "predefined-facturas", name: "Donuts" },
-    { id: "predefined-criollos", name: "Muffins" },
-    { id: "predefined-medialunas", name: "Croissants" },
-    { id: "predefined-chipa", name: "Bagel" },
+    { id: "predefined-pan", names: { en: "Bread", es: "Pan", "es-rAR": "Pan" } },
+    { id: "predefined-facturas", names: { en: "Donuts", es: "Croissants dulces", "es-rAR": "Facturas" } },
+    { id: "predefined-criollos", names: { en: "Muffins", es: "Bizcochos", "es-rAR": "Criollos" } },
+    { id: "predefined-medialunas", names: { en: "Croissants", es: "Croissants", "es-rAR": "Medialunas" } },
+    { id: "predefined-chipa", names: { en: "Bagel", es: "Panecillos", "es-rAR": "Chipás" } },
   ],
   PIZZERIA: [
-    { id: "predefined-empanadas", name: "Pizzas" },
-    { id: "predefined-pizza-muzza", name: "Pepperoni Pizza" },
-    { id: "predefined-fugazzeta", name: "Pizza Slices" },
-    { id: "predefined-faina", name: "Garlic Knots" },
-    { id: "predefined-calzone", name: "Calzones" },
+    { id: "predefined-empanadas", names: { en: "Pizzas", es: "Pizzas", "es-rAR": "Pizzas" } },
+    { id: "predefined-pizza-muzza", names: { en: "Pepperoni Pizza", es: "Pizza Mozzarella", "es-rAR": "Pizza Muzzarella" } },
+    { id: "predefined-fugazzeta", names: { en: "Pizza Slices", es: "Pizzas de Cebolla", "es-rAR": "Fugazzetas" } },
+    { id: "predefined-faina", names: { en: "Garlic Knots", es: "Bastones de Queso", "es-rAR": "Fainás" } },
+    { id: "predefined-calzone", names: { en: "Calzones", es: "Rollos de Pizza", "es-rAR": "Calzones" } },
   ],
   RESTAURANT: [
-    { id: "predefined-menu-ejecutivo", name: "Lunch Special" },
-    { id: "predefined-menu-del-dia", name: "Daily Specials" },
-    { id: "predefined-viandas", name: "Lunch Boxes" },
-    { id: "predefined-estofados", name: "Hearty Stews" },
-    { id: "predefined-humita", name: "Lasagna" },
+    { id: "predefined-menu-ejecutivo", names: { en: "Lunch Special", es: "Menú Ejecutivo", "es-rAR": "Menú ejecutivo" } },
+    { id: "predefined-menu-del-dia", names: { en: "Daily Specials", es: "Platos del Día", "es-rAR": "Platos del Día" } },
+    { id: "predefined-viandas", names: { en: "Lunch Boxes", es: "Menús para Llevar", "es-rAR": "Viandas" } },
+    { id: "predefined-estofados", names: { en: "Hearty Stews", es: "Estofados", "es-rAR": "Estofados" } },
+    { id: "predefined-humita", names: { en: "Lasagna", es: "Pastel", "es-rAR": "Humita" } },
   ],
   CAFE: [
-    { id: "predefined-churros", name: "Cookies" },
-    { id: "predefined-donas", name: "Donuts" },
-    { id: "predefined-croissants", name: "Cinnamon Rolls" },
-    { id: "predefined-brownies", name: "Brownies" },
-    { id: "predefined-cafe", name: "Coffee" },
+    { id: "predefined-churros", names: { en: "Cookies", es: "Churros", "es-rAR": "Churros" } },
+    { id: "predefined-donas", names: { en: "Donuts", es: "Donas", "es-rAR": "Donas" } },
+    { id: "predefined-croissants", names: { en: "Cinnamon Rolls", es: "Croissants", "es-rAR": "Croissants" } },
+    { id: "predefined-brownies", names: { en: "Brownies", es: "Brownies", "es-rAR": "Brownies" } },
+    { id: "predefined-cafe", names: { en: "Coffee", es: "Café", "es-rAR": "Café" } },
   ],
   ROTISSERIE: [
-    { id: "predefined-pollo", name: "Fried Chicken" },
-    { id: "predefined-empanadas-roti", name: "French Fries" },
-    { id: "predefined-tartas", name: "Chicken Wings" },
-    { id: "predefined-tortilla", name: "Meatballs" },
-    { id: "predefined-guisos", name: "Mac & Cheese" },
+    { id: "predefined-pollo", names: { en: "Fried Chicken", es: "Pollo Rostizado", "es-rAR": "Pollo" } },
+    { id: "predefined-empanadas-roti", names: { en: "French Fries", es: "Empanadas", "es-rAR": "Empanadas" } },
+    { id: "predefined-tartas", names: { en: "Chicken Wings", es: "Tartas", "es-rAR": "Tartas" } },
+    { id: "predefined-tortilla", names: { en: "Meatballs", es: "Tortillas", "es-rAR": "Tortillas" } },
+    { id: "predefined-guisos", names: { en: "Mac & Cheese", es: "Guisados", "es-rAR": "Guisos" } },
   ],
   OTHER: [
-    { id: "predefined-asado", name: "BBQ" },
-    { id: "predefined-choripan", name: "Pulled Pork" },
-    { id: "predefined-pancho", name: "Hot Dogs" },
-    { id: "predefined-locro", name: "Baked Potato" },
-    { id: "predefined-papas-fritas", name: "Onion Rings" },
+    { id: "predefined-asado", names: { en: "BBQ", es: "Carne Asada", "es-rAR": "Asado" } },
+    { id: "predefined-choripan", names: { en: "Pulled Pork", es: "Alitas de pollo", "es-rAR": "Choripanes" } },
+    { id: "predefined-pancho", names: { en: "Hot Dogs", es: "Hot Dogs", "es-rAR": "Panchos" } },
+    { id: "predefined-locro", names: { en: "Baked Potato", es: "Sopa", "es-rAR": "Locro" } },
+    { id: "predefined-papas-fritas", names: { en: "Onion Rings", es: "Papas Fritas", "es-rAR": "Papas Fritas" } },
   ],
 };
+
+function findWebCatalogProduct(productId) {
+  return Object.values(WEB_PRODUCT_CATALOG).flat().find((catalogProduct) => catalogProduct.id === productId) || null;
+}
+
+function localizedWebCatalogProductName(catalogProduct) {
+  if (!catalogProduct) return "";
+  const locale = businessLang === "en" ? "en" : "es-rAR";
+  return catalogProduct.names[locale] || catalogProduct.names.en;
+}
+
+function webProductName(product) {
+  if (!product || product.type !== "PREDEFINED") return String(product?.name || "");
+  const catalogProduct = findWebCatalogProduct(product.productId);
+  return localizedWebCatalogProductName(catalogProduct) || String(product.name || "");
+}
 
 const WEB_PRODUCT_CATEGORY_LABELS = {
   BAKERY: "Panadería",
@@ -274,16 +290,17 @@ const FREE_PREDEFINED_PRODUCT_LIMIT = 5;
 const PREMIUM_CUSTOM_PRODUCT_LIMIT = 100;
 
 function webProductCategory(product) {
-  const explicit = String(product.category || "").toUpperCase();
-  if (WEB_PRODUCT_CATEGORY_LABELS[explicit]) return explicit;
-
-  const name = String(product.name || "").trim().toLowerCase();
-  for (const [category, names] of Object.entries(WEB_PRODUCT_CATALOG)) {
-    if (names.some((catalogProduct) => catalogProduct.name.toLowerCase() === name)) {
-      return category;
+  if (product?.type === "PREDEFINED") {
+    for (const [category, catalogProducts] of Object.entries(WEB_PRODUCT_CATALOG)) {
+      if (catalogProducts.some((catalogProduct) => catalogProduct.id === product.productId)) {
+        return category;
+      }
     }
+    return "OTHER";
   }
-  return "OTHER";
+
+  const explicit = String(product?.category || "").toUpperCase();
+  return WEB_PRODUCT_CATEGORY_LABELS[explicit] ? explicit : "OTHER";
 }
 
 function productsView(message = "", error = false) {
@@ -320,9 +337,9 @@ function productsView(message = "", error = false) {
       available.map((catalogProduct) =>
         '<button type="button" class="secondary catalog-add-product" data-product-id="' +
         escapeHtml(catalogProduct.id) + '" data-product-name="' +
-        escapeHtml(catalogProduct.name) + '"' +
+        escapeHtml(localizedWebCatalogProductName(catalogProduct)) + '"' +
         (!isManager() || freePredefinedFull ? " disabled" : "") +
-        '>+ ' + escapeHtml(catalogProduct.name) + '</button>'
+        '>+ ' + escapeHtml(localizedWebCatalogProductName(catalogProduct)) + '</button>'
       ).join("") +
       "</div>"
     : '<p class="muted small">Ya agregaste todos los productos predefinidos de esta categoría.</p>';
@@ -355,10 +372,10 @@ function productsView(message = "", error = false) {
         ? '<div class="product-management-list">' +
           managementProducts.map((product) =>
             '<div class="product-management-row"><div><strong>' +
-            escapeHtml(product.name) +
+            escapeHtml(webProductName(product)) +
             '</strong><span class="muted small">' + escapeHtml(product.type === "CUSTOM" ? "Personalizado" : "Predefinido") + '</span></div><button class="secondary delete-product" type="button" data-product-id="' +
             escapeHtml(product.productId) +
-            '" data-product-name="' + escapeHtml(product.name) +
+            '" data-product-name="' + escapeHtml(webProductName(product)) +
             '">Eliminar</button></div>'
           ).join("") +
           "</div>"
@@ -369,7 +386,7 @@ function productsView(message = "", error = false) {
   const productCards = categoryProducts.length
     ? categoryProducts.map((product) =>
         '<article class="product-card"><div><h3>' +
-        escapeHtml(product.name) +
+        escapeHtml(webProductName(product)) +
         '</h3><p class="muted">' +
         escapeHtml(product.type === "CUSTOM" ? "Personalizado" : "Producto predefinido") +
         '</p></div><span class="type-pill">' +
@@ -435,7 +452,7 @@ async function addPredefinedProduct(productId) {
 
     await api("/business/me/products", {
       method: "POST",
-      body: JSON.stringify({ name: catalogProduct.name, type: "PREDEFINED", status: "ACTIVE" }),
+      body: JSON.stringify({ name: localizedWebCatalogProductName(catalogProduct), type: "PREDEFINED", status: "ACTIVE" }),
     });
     await loadProducts();
     productsView("El producto fue agregado al catálogo.");
