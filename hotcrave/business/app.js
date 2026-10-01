@@ -464,7 +464,7 @@ function qrView() {
 function premiumView() {
   const business = businessContext.business;
   const premium = business?.plan === "PREMIUM" || entitlements?.businessPlan === "PREMIUM";
-  render(shell(`${pageHeading("PREMIUM", "HotCrave Premium", "Más capacidad para negocios que publican con frecuencia.")}<section class="premium-card ${premium ? "premium-active" : ""}"><div><span class="premium-badge">${premium ? "PREMIUM ACTIVO" : "PLAN GRATUITO"}</span><h2>${premium ? "Tu negocio tiene Premium" : "Potenciá tu negocio"}</h2><p class="muted">${premium ? "Disfrutás de las funciones Premium disponibles para tu negocio." : "Publicá hasta 10 Hot Events activos, agregá hasta 100 productos personalizados, usá categorías personalizadas y configurá la duración de los Hot Events."}</p></div><div class="premium-features"><div><strong>10</strong><span>Hot Events activos</span></div><div><strong>100</strong><span>productos personalizados</span></div><div><strong>15–60 min</strong><span>duración configurable</span></div><div><strong>Sin anuncios</strong><span>experiencia Premium</span></div></div>${!premium ? `<p class="security-note">La suscripción se gestiona mediante Google Play en la app Android. El estado Premium que se muestra acá proviene del backend.</p>` : ""}</section>`));
+  render(shell(`${pageHeading("PREMIUM", "HotCrave Premium", "Más capacidad para negocios que publican con frecuencia.")}<section class="premium-card ${premium ? "premium-active" : ""}"><div><span class="premium-badge">${premium ? "PREMIUM ACTIVO" : "PLAN GRATUITO"}</span><h2>${premium ? "Tu negocio tiene Premium" : "Potenciá tu negocio"}</h2><p class="muted">${premium ? "Disfrutás de las funciones Premium disponibles para tu negocio." : "Publicá hasta 10 Hot Events activos, agregá hasta 100 productos personalizados, usá categorías personalizadas y configurá la duración de los Hot Events."}</p></div><div class="premium-features"><div><strong>10</strong><span>Hot Events activos</span></div><div><strong>100</strong><span>productos personalizados</span></div><div><strong>15–60 min</strong><span>duración configurable</span></div><div><strong>Sin anuncios</strong><span>experiencia Premium</span></div></div>${!premium ? `<p class="security-note">La suscripción Premium se gestiona desde la app Android a través de Google Play.</p>` : ""}</section>`));
   bindShell();
 }
 
@@ -596,7 +596,7 @@ function bindShell() {
 }
 
 function login(errorMessage = "") {
-  render(`<section class="auth-shell"><div class="auth-card"><div class="brand-mark">♨</div><p class="eyebrow">CALENTITOS · NEGOCIOS</p><h1>Gestioná tu negocio</h1><p class="muted">Accedé al espacio de administración de tu negocio.</p>${errorMessage ? `<p class="error" role="alert">${escapeHtml(errorMessage)}</p>` : ""}<form id="login-form"><label>Correo electrónico<input name="email" type="email" autocomplete="email" required></label><label>Contraseña<input name="password" type="password" autocomplete="current-password" required></label><button class="primary" type="submit">Ingresar</button></form><p class="security-note">Usa la misma cuenta de negocio de Firebase que la app Android.</p></div></section>`);
+  render(`<section class="auth-shell"><div class="auth-card"><div class="brand-mark">♨</div><p class="eyebrow">CALENTITOS · NEGOCIOS</p><h1>Gestioná tu negocio</h1><p class="muted">Accedé al espacio de administración de tu negocio.</p>${errorMessage ? `<p class="error" role="alert">${escapeHtml(errorMessage)}</p>` : ""}<form id="login-form"><label>Correo electrónico<input name="email" type="email" autocomplete="email" required></label><label>Contraseña<input name="password" type="password" autocomplete="current-password" required></label><button class="primary" type="submit">Ingresar</button></form><p class="security-note">Usá las credenciales de tu cuenta de negocio para ingresar.</p></div></section>`);
   document.querySelector("#login-form")?.addEventListener("submit", async (event) => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -634,7 +634,7 @@ async function signedIn(user) {
 }
 
 if (!configured()) {
-  render(`<section class="message-shell"><div class="brand-mark">♨</div><h1>Configuración pendiente</h1><p class="muted">La interfaz web de negocios está creada, pero falta conectar la configuración pública de Firebase.</p><p class="security-note">No se debe colocar ninguna clave privada, service account ni secreto en este sitio.</p></section>`);
+  render(`<section class="message-shell"><div class="brand-mark">♨</div><h1>Servicio no disponible</h1><p class="muted">Estamos teniendo un problema temporal. Intentá nuevamente más tarde.</p></section>`);
 } else {
   auth = getAuth(initializeApp(FIREBASE_CONFIG));
   onAuthStateChanged(auth, (user) => user ? signedIn(user) : login());
@@ -669,12 +669,14 @@ const BUSINESS_I18N = {
   'No encontramos ese Hot Event.':'We could not find that Hot Event.','Ese Hot Event ya venció.':'That Hot Event has expired.',
   'Este navegador no admite notificaciones web.':'This browser does not support web notifications.'
 };
+
 const BUSINESS_REVERSE_I18N = Object.fromEntries(Object.entries(BUSINESS_I18N).map(([es,en])=>[en,es]));
 
 function businessTranslateText(value) {
   if (businessLang === 'es') return BUSINESS_REVERSE_I18N[value] || value;
   return BUSINESS_I18N[value] || value;
 }
+
 function businessApplyLanguage() {
   businessObserver?.disconnect();
   document.documentElement.lang = businessLang;
@@ -698,5 +700,6 @@ function businessApplyLanguage() {
   appRoot.append(f);
   businessObserver.observe(appRoot,{childList:true,subtree:true});
 }
+
 const businessObserver=new MutationObserver(()=>{clearTimeout(window.__businessI18nTimer);window.__businessI18nTimer=setTimeout(businessApplyLanguage,0);});
 businessApplyLanguage();
