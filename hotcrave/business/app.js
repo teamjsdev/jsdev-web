@@ -272,9 +272,7 @@ function localizedWebCatalogProductName(catalogProduct) {
 }
 
 function webProductName(product) {
-  if (!product || product.type !== "PREDEFINED") return String(product?.name || "");
-  const catalogProduct = findWebCatalogProduct(product.productId);
-  return localizedWebCatalogProductName(catalogProduct) || String(product.name || "");
+  return String(product?.name || "");
 }
 
 const WEB_PRODUCT_CATEGORY_LABELS = {
