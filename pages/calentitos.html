@@ -762,6 +762,29 @@
             transform: translateY(-2px);
         }
 
+.access-subtitle {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.access-image {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 18px 18px 0 0;
+}
+
+.access-image img {
+    display: block;
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+}
+
+.access-card-content {
+    padding: 30px;
+    text-align: center;
+}
+
         /* =========================
            BENEFITS
         ========================= */
@@ -1475,6 +1498,7 @@
             }
         }
     </style>
+
 </head>
 
 <body>
@@ -1580,11 +1604,9 @@
 </section>
 
 <!-- ACCESS -->
-
 <section class="section access-section" id="acceso">
 
     <div class="access-intro">
-
         <span class="section-kicker">
             Empezá ahora
         </span>
@@ -1592,17 +1614,79 @@
         <h2>
             Entrá a Calentitos
         </h2>
-
-        <p>
-            ¿Viste un QR de Calentitos en un negocio?
-            <strong>
-                Usá la cámara de tu teléfono para escanearlo.
-            </strong>
-        </p>
-
     </div>
 
-    <div class="access-card">
+    <div class="business-access">
+        <div class="business-copy">
+            <h3>
+                <i class="fa-solid fa-store"></i>
+                ¿Sos dueño de un negocio?
+            </h3>
+            <p>
+                Accedé al panel con tus credenciales y publicá
+                cuándo tus productos están recién hechos.
+            </p>
+        </div>
+
+        <a class="business-button" href="https://jsdevmobile.com/hotcrave/business/">
+            Acceder al panel
+            <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i>
+        </a>
+    </div>
+
+    <div class="business-access">
+        <div class="business-copy">
+            <h3>
+                <i class="fa-brands fa-android"></i>
+                Descargá Calentitos
+            </h3>
+            <p>
+                Descubrí comida recién hecha, seguí tus lugares favoritos
+                y enterate cuando haya algo caliente cerca tuyo.
+            </p>
+        </div>
+
+        <a class="business-button" href="https://play.google.com/store/apps/details?id=com.jsdev.hotcrave.food" target="_blank" rel="noopener noreferrer">
+            Descargar para Android
+            <i class="fa-solid fa-arrow-down" style="margin-left: 8px;"></i>
+        </a>
+    </div>
+
+    <div class="business-access">
+        <div class="business-copy">
+            <h3>
+                <i class="fa-brands fa-apple"></i>
+                ¿Usás iPhone?
+            </h3>
+            <p>
+                Escaneá el QR del negocio con la cámara de tu iPhone
+                o pedile al comercio el enlace para seguirlo desde la web.
+            </p>
+        </div>
+    </div>
+
+</section>
+
+
+<p class="access-subtitle">
+    ¿Viste un QR de Calentitos en un negocio?
+    <strong>
+        Usá la cámara de tu teléfono para escanearlo.
+    </strong>
+</p>
+
+
+<section class="section access-card">
+
+    <!-- IMAGEN -->
+    <div class="access-image">
+        <img
+            src="../assets/img/scan-qr.jpg"
+            alt="Persona escaneando el código QR de un negocio"
+        >
+    </div>
+
+    <div class="access-card-content">
 
         <div class="access-icon">
             <i class="fa-solid fa-qrcode"></i>
@@ -1613,23 +1697,20 @@
         </h3>
 
         <p>
-            Usá la cámara de tu teléfono para escanear el QR.
             El código identifica automáticamente el negocio
             y Calentitos te lleva al lugar correcto.
         </p>
 
         <div class="camera-note">
-
             <i class="fa-solid fa-camera"></i>
-
             <span>
-                No necesitás escribir códigos ni buscar el negocio manualmente.
+                ¿Usás Android? También podés encontrar negocios cercanos
+                desde <strong>Siguiendo → Agregar un negocio</strong>,
+                con negocios de hasta 20 km a la redonda.
             </span>
-
         </div>
 
         <div class="platforms">
-
             <span class="platform">
                 <i class="fa-brands fa-android"></i>
                 Android
@@ -1644,98 +1725,11 @@
                 <i class="fa-solid fa-globe"></i>
                 Web
             </span>
-
         </div>
 
     </div>
-
-    <section id="negocios" class="section"></section>
-
-    <div class="business-access">
-
-        <div class="business-copy">
-
-            <h3>
-                <i class="fa-solid fa-store"></i>
-                ¿Sos dueño de un negocio?
-            </h3>
-
-            <p>
-                Accedé al panel con tus credenciales y publicá
-                cuándo tus productos están recién hechos.
-            </p>
-
-        </div>
-
-        <a
-            class="business-button"
-            href="https://jsdevmobile.com/hotcrave/business/"
-        >
-            Acceder al panel
-
-            <i
-                class="fa-solid fa-arrow-right"
-                style="margin-left: 8px;"
-            ></i>
-
-        </a>
-
-    </div>
-
-    <div class="business-access">
-
-    <div class="business-copy">
-
-        <h3>
-            <i class="fa-brands fa-android"></i>
-            Descargá Calentitos
-        </h3>
-
-        <p>
-            Descubrí comida recién hecha, seguí tus lugares favoritos
-            y enterate cuando haya algo caliente cerca tuyo.
-        </p>
-
-    </div>
-
-    <a
-        class="business-button"
-        href="https://play.google.com/store/apps/details?id=com.jsdev.hotcrave.food"
-        target="_blank"
-        rel="noopener noreferrer"
-    >
-        Descargar para Android
-
-        <i
-            class="fa-solid fa-arrow-down"
-            style="margin-left: 8px;"
-        ></i>
-
-    </a>
-    </div>
-
-        <div class="business-access">
-
-    <div class="business-copy">
-
-        <h3>
-            <i class="fa-brands fa-apple"></i>
-            ¿Usás iPhone?
-        </h3>
-
-        <p>
-    Escaneá el QR del negocio con la cámara de tu iPhone
-    o pedile al comercio el enlace para seguirlo desde la web.
-        </p>
-
-    </div>
-
-    </div>
-
-</div>
 
 </section>
-
 
 
 <!-- BENEFITS -->
