@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Calentitos – Comida recién hecha y caliente cerca tuyo | JSDev</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Calentitos te avisa cuando salen criollos calientes, pan recién horneado, facturas, empanadas y comida recién hecha cerca tuyo. Seguí tus comercios favoritos y enterate en tiempo real.">
+  <meta name="keywords" content="Calentitos, comida caliente, comida recién hecha, criollos calientes, pan recién horneado, facturas, medialunas, empanadas, panadería, rotisería, parrilla, comida argentina, comercios cerca, comida cerca">
+  <meta name="author" content="JSDev">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://jsdevmobile.com/pages/calentitos-app-android.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Calentitos – Enterate cuando sale comida recién hecha cerca tuyo">
+  <meta property="og:description" content="Recibí avisos cuando salen criollos calientes, pan recién horneado, facturas, empanadas y comida recién hecha cerca tuyo.">
+  <meta property="og:image" content="https://play-lh.googleusercontent.com/I0NTZ53D9Rf-qVr4mAoeMl9Otm5gzHQ6qHDPg4BHmgoHCYnivvQBWY0-Muvaov60Niba6dKDCvb4a_EEfO5jboo=w240-h480-rw">
+  <meta property="og:url" content="https://play.google.com/store/apps/details?id=com.jsdev.hotcrave.food">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Calentitos – Comida recién hecha cerca tuyo">
+  <meta name="twitter:description" content="Enterate cuando salen criollos calientes, pan, facturas, empanadas y comida recién hecha cerca tuyo.">
+  <meta name="twitter:image" content="https://play-lh.googleusercontent.com/I0NTZ53D9Rf-qVr4mAoeMl9Otm5gzHQ6qHDPg4BHmgoHCYnivvQBWY0-Muvaov60Niba6dKDCvb4a_EEfO5jboo=w240-h480-rw">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8FVHCZT452"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8FVHCZT452');
+  </script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+    }
+
+    body {
+      background-color: #f4f6f8;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* TOPBAR */
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+    }
+
+    .brand-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    /* MAIN NAV */
+    .main-nav {
+      background: white;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 12px;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 400;
+    }
+
+    .main-nav a {
+      text-decoration: none;
+      color: #2a5298;
+      font-weight: 600;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background-color: white;
+      padding: 28px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+      color: #1e3c72;
+      font-size: clamp(1.6rem, 3vw, 2rem);
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    h2, h3 {
+      color: #1e3c72;
+      margin-top: 25px;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+
+    .app-image {
+      max-width: 260px;
+      display: block;
+      margin: 20px auto;
+      border-radius: 20px;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 14px 22px;
+      background-color: #1e3c72;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+    footer {
+      background-color: #1e3c72;
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+      margin-top: 60px;
+    }
+
+    footer a {
+      color: #a9c9ff;
+      text-decoration: none;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <img src="../assets/img/web2.png" alt="Logo JSDev" class="logo">
+  <span class="brand-title">JSDev</span>
+</header>
+
+<nav class="main-nav">
+  <a href="../index.html">Inicio</a>
+  <a href="../index.html#apps">Proyectos</a>
+  <a href="servicios.html">Servicios</a>
+  <a href="../index.html#contacto">Contacto</a>
+</nav>
+
+<main>
+  <article class="card">
+    <h1>Calentitos – Enterate cuando sale comida recién hecha cerca tuyo</h1>
+
+    <img
+      src="https://play-lh.googleusercontent.com/I0NTZ53D9Rf-qVr4mAoeMl9Otm5gzHQ6qHDPg4BHmgoHCYnivvQBWY0-Muvaov60Niba6dKDCvb4a_EEfO5jboo=w240-h480-rw"
+      alt="Aplicación Calentitos para descubrir comida recién hecha cerca tuyo"
+      class="app-image"
+      loading="lazy"
+    >
+
+        <h2>
+      ¿Qué es Calentitos?
+    </h2>
+
+    <p>
+      <strong>Calentitos</strong> conecta comercios locales con personas que quieren
+      enterarse cuando algo recién hecho está listo para disfrutar.
+    </p>
+
+    <p>
+      Porque hay comidas que tienen un momento especial: cuando salen del horno,
+      de la cocina o de la parrilla. Calentitos te ayuda a saber cuándo llegó
+      ese momento.
+    </p>
+
+    <div class="highlight">
+
+      <strong>
+        🔥 Si hay algo recién hecho cerca tuyo, deberías ser el primero en enterarte.
+      </strong>
+
+    </div>
+
+
+    <h2>
+      ¿Alguna vez llegaste demasiado temprano?
+    </h2>
+
+    <p>
+      Tal vez pasaste por la panadería y todavía no habían salido los criollos.
+      O llegaste a la rotisería antes de que estuvieran listas las empanadas.
+      O simplemente no sabías cuándo iba a salir la próxima tanda.
+    </p>
+
+    <p>
+      Muchas veces no es que no quieras comprar algo recién hecho:
+      <strong>simplemente no sabés cuándo va a estar listo.</strong>
+    </p>
+
+    <p>
+      Calentitos busca solucionar justamente eso.
+    </p>
+
+
+    <h2>
+      🔥 Seguí cada tanda en vivo
+    </h2>
+
+    <p>
+      Los comercios pueden indicar el estado de sus productos para que sepas
+      aproximadamente cuándo estarán disponibles.
+    </p>
+
+    <ul>
+
+      <li>
+        <strong>Preparando:</strong>
+        falta aproximadamente 30 minutos.
+      </li>
+
+      <li>
+        <strong>Últimos minutos:</strong>
+        falta aproximadamente 15 minutos.
+      </li>
+
+      <li>
+        <strong>Listo:</strong>
+        ya está disponible.
+      </li>
+
+    </ul>
+
+    <p>
+      Porque no es lo mismo saber que hoy habrá criollos que saber que
+      <strong>acaban de salir del horno.</strong>
+    </p>
+
+
+    <h2>
+      ¿Cómo funciona?
+    </h2>
+
+    <h3>
+      📍 1. Encontrá tus comercios
+    </h3>
+
+    <p>
+      Descubrí negocios participantes cerca tuyo o escaneá el código QR
+      de un comercio para acceder directamente a su perfil.
+    </p>
+
+    <h3>
+      ❤️ 2. Seguí tus lugares favoritos
+    </h3>
+
+    <p>
+      Elegí las panaderías, cafeterías, rotiserías, parrillas y otros comercios
+      que querés tener siempre a mano.
+    </p>
+
+    <h3>
+      🔔 3. Recibí el aviso
+    </h3>
+
+    <p>
+      Cuando un comercio que seguís publica una nueva tanda,
+      Calentitos puede avisarte directamente en tu celular.
+    </p>
+
+
+    <h2>
+      🥐 Desde criollos hasta comida recién hecha
+    </h2>
+
+    <p>
+      Cada comercio decide qué publicar. Podés encontrar desde productos
+      recién salidos del horno hasta comidas preparadas en el momento.
+    </p>
+
+    <ul>
+
+      <li>
+        <strong>Panaderías:</strong>
+        criollos, pan, facturas, medialunas y otros productos recién horneados.
+      </li>
+
+      <li>
+        <strong>Cafeterías:</strong>
+        medialunas, churros, tostados y otras opciones recién preparadas.
+      </li>
+
+      <li>
+        <strong>Rotiserías y casas de comida:</strong>
+        empanadas, tartas, pizzas, milanesas, pastas y platos del día.
+      </li>
+
+      <li>
+        <strong>Parrillas y asadores:</strong>
+        asado, choripán y otros productos recién salidos de la parrilla.
+      </li>
+
+      <li>
+        <strong>Comida tradicional:</strong>
+        locro, humita, empanadas y otros platos típicos cuando están recién hechos.
+      </li>
+
+    </ul>
+
+
+    <h2>
+      ¿No está tu lugar favorito?
+    </h2>
+
+    <p>
+      Contale a tu panadería, cafetería, rotisería o parrilla de confianza
+      sobre Calentitos y pediles que se sumen.
+    </p>
+
+    <p>
+      Así vas a poder seguir ese comercio y enterarte cuando publique
+      una nueva tanda.
+    </p>
+
+
+    <h2>
+      🏪 ¿Tenés un comercio?
+    </h2>
+
+    <p>
+      <strong>Avisá cuando salga lo recién hecho.</strong>
+    </p>
+
+    <p>
+      Tus clientes no tienen que adivinar cuándo estará lista la próxima tanda.
+      Cuando algo sale del horno, de la cocina o de la parrilla, publicalo
+      desde Calentitos y avisales a las personas que siguen tu negocio.
+    </p>
+
+    <p>
+      Publicar una nueva tanda lleva unos pocos segundos y puede hacerse
+      desde el celular, una tablet o el navegador web.
+    </p>
+
+    <ul>
+
+      <li>
+        <strong>Un toque:</strong>
+        publicá una nueva tanda rápidamente.
+      </li>
+
+      <li>
+        <strong>Un aviso:</strong>
+        informá a las personas que siguen tu comercio.
+      </li>
+
+      <li>
+        <strong>En el momento:</strong>
+        tus clientes pueden enterarse cuando el producto está
+        recién hecho.
+      </li>
+
+      <li>
+        <strong>Tu propio perfil:</strong>
+        compartí tu comercio mediante su código QR.
+      </li>
+
+    </ul>
+
+
+    <div class="highlight">
+
+      <strong>
+        🏪 ¿Querés que tu comercio forme parte de Calentitos?
+      </strong>
+
+      <p style="margin-top: 8px;">
+        Contactanos para conocer cómo empezar a publicar tus productos
+        y avisar a tus clientes cuando estén recién hechos.
+      </p>
+
+    </div>
+
+
+    <h2>
+      🔥 Una idea simple
+    </h2>
+
+    <p>
+      Si hay criollos calientes, pan recién horneado, facturas recién salidas
+      o comida recién hecha cerca tuyo, deberías ser el primero en enterarte.
+    </p>
+
+    <p>
+      <strong>Eso es Calentitos.</strong>
+    </p>
+
+    <a
+      href="https://play.google.com/store/apps/details?id=com.jsdev.hotcrave.food"
+      target="_blank"
+      rel="noopener"
+      class="button"
+    >
+      Descargar Calentitos
+    </a>
+
+  </article>
+
+</main>
+
+<footer>
+  <p>© <span id="year"></span> JSDev – Desarrollo de Apps Android y Sitios Web</p>
+  <p>
+    <a href="politica.html">Política de Privacidad</a>
+  </p>
+</footer>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "Calentitos",
+  "operatingSystem": "ANDROID",
+  "applicationCategory": "LifestyleApplication",
+  "description": "Aplicación para descubrir comercios cercanos y recibir avisos cuando publican comida recién preparada y caliente.",
+  "url": "https://play.google.com/store/apps/details?id=com.jsdev.hotcrave.food",
+  "offers": {
+    "@type": "Offer",
+    "price": "0.00",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "JSDev"
+  }
+}
+</script>
+
+<!-- FAQ Schema -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+
+    {
+      "@type": "Question",
+      "name": "¿Qué es Calentitos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Calentitos es una aplicación que conecta a clientes con comercios locales para avisar cuando hay productos y comida recién hecha y caliente disponible cerca."
+      }
+    },
+
+    {
+      "@type": "Question",
+      "name": "¿Qué puedo encontrar en Calentitos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Podés encontrar criollos calientes, pan recién horneado, facturas, medialunas, churros, empanadas, pizzas, comidas caseras, asado y otros productos recién preparados por comercios locales."
+      }
+    },
+
+    {
+      "@type": "Question",
+      "name": "¿Cómo recibo avisos de Calentitos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Podés seguir los comercios que te interesan y recibir una notificación cuando publiquen una nueva tanda o comida recién hecha."
+      }
+    },
+
+    {
+      "@type": "Question",
+      "name": "¿Puedo encontrar comercios cerca mío?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Calentitos utiliza la ubicación para ayudarte a descubrir comercios participantes cerca tuyo."
+      }
+    },
+
+    {
+      "@type": "Question",
+      "name": "¿Puedo seguir mi panadería o comercio favorito?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Podés seguir tus comercios favoritos y recibir avisos cuando publiquen nuevos productos o tandas."
+      }
+    },
+
+    {
+      "@type": "Question",
+      "name": "¿Cómo pueden participar los comercios?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Los comercios pueden utilizar Calentitos para publicar avisos cuando sus productos estén recién preparados y notificar a los clientes que siguen su negocio."
+      }
+    }
+
+  ]
+}
+</script>
+
+</body>
+</html>
