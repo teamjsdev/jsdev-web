@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>HotCrave – Discover Fresh Food Near You | JSDev</title>
+
+  <!-- SEO -->
+  <meta name="description" content="HotCrave lets you discover fresh food near you and get notified when your favorite local businesses have a new batch ready.">
+  <meta name="keywords" content="HotCrave, fresh food, food near me, fresh baked goods, local restaurants, bakery, pizza, donuts, BBQ, food notifications">
+  <meta name="author" content="JSDev">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://jsdevmobile.com/pages/hotcrave-android-app.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="HotCrave – Discover Fresh Food Near You">
+  <meta property="og:description" content="Discover fresh food near you and get notified when your favorite local businesses have something new ready.">
+  <meta property="og:image" content="https://play-lh.googleusercontent.com/I0NTZ53D9Rf-qVr4mAoeMl9Otm5gzHQ6qHDPg4BHmgoHCYnivvQBWY0-Muvaov60Niba6dKDCvb4a_EEfO5jboo=w240-h480-rw">
+  <meta property="og:url" content="https://play.google.com/store/apps/details?id=com.jsdev.hotcrave.food">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="HotCrave – Discover Fresh Food Near You">
+  <meta name="twitter:description" content="Get notified when fresh food is ready at your favorite local businesses.">
+  <meta name="twitter:image" content="https://play-lh.googleusercontent.com/I0NTZ53D9Rf-qVr4mAoeMl9Otm5gzHQ6qHDPg4BHmgoHCYnivvQBWY0-Muvaov60Niba6dKDCvb4a_EEfO5jboo=w240-h480-rw">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8FVHCZT452"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8FVHCZT452');
+  </script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+    }
+
+    body {
+      background-color: #f4f6f8;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* TOPBAR */
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+    }
+
+    .brand-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    /* MAIN NAV */
+    .main-nav {
+      background: white;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 12px;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 400;
+    }
+
+    .main-nav a {
+      text-decoration: none;
+      color: #2a5298;
+      font-weight: 600;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background-color: white;
+      padding: 28px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+      color: #1e3c72;
+      font-size: clamp(1.6rem, 3vw, 2rem);
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    h2, h3 {
+      color: #1e3c72;
+      margin-top: 25px;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+
+    .app-image {
+      max-width: 260px;
+      display: block;
+      margin: 20px auto;
+      border-radius: 20px;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 14px 22px;
+      background-color: #1e3c72;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+    footer {
+      background-color: #1e3c72;
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+      margin-top: 60px;
+    }
+
+    footer a {
+      color: #a9c9ff;
+      text-decoration: none;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <img src="../../assets/img/web2.png" alt="JSDev Logo" class="logo">
+  <span class="brand-title">JSDev</span>
+</header>
+
+<nav class="main-nav" aria-label="Main navigation">
+  <a href="../index.html">Home</a>
+  <a href="../index.html#sobre">About</a>
+  <a href="../index.html#apps">Projects</a>
+  <a href="services.html">Services</a>
+  <a href="../index.html#contacto">Contact</a>
+</nav>
+
+<main>
+  <article class="card">
+    <h1>HotCrave – Get notified when freshly made food is ready near you</h1>
+
+    <img
+      src="https://play-lh.googleusercontent.com/I0NTZ53D9Rf-qVr4mAoeMl9Otm5gzHQ6qHDPg4BHmgoHCYnivvQBWY0-Muvaov60Niba6dKDCvb4a_EEfO5jboo=w240-h480-rw"
+      alt="HotCrave app for discovering fresh food near you"
+      class="app-image"
+      loading="lazy"
+    >
+
+        <h2>
+  What is HotCrave?
+</h2>
+
+<p>
+  <strong>HotCrave</strong> connects local businesses with people who want to know
+  when fresh food is ready to enjoy.
+</p>
+
+<p>
+  Some foods have a special moment: when they come out of the oven,
+  the kitchen, the fryer, or the grill. HotCrave helps you know when
+  that moment arrives.
+</p>
+
+<div class="highlight">
+
+  <strong>
+    🔥 If something fresh and delicious is being made near you, you should be the first to know.
+  </strong>
+
+</div>
+
+
+<h2>
+  Have you ever arrived too early?
+</h2>
+
+<p>
+  Maybe you stopped by the bakery and the fresh bread wasn't ready yet.
+  Or you got to your favorite pizza place before the next batch was out of the oven.
+  Or you simply had no idea when the next batch of your favorite food would be ready.
+</p>
+
+<p>
+  Sometimes it's not that you don't want freshly made food:
+  <strong>you simply don't know when it's going to be ready.</strong>
+</p>
+
+<p>
+  That's exactly what HotCrave is designed to solve.
+</p>
+
+
+<h2>
+  🔥 Follow every batch in real time
+</h2>
+
+<p>
+  Businesses can update the status of their food so you can see approximately
+  when it will be ready.
+</p>
+
+<ul>
+
+  <li>
+    <strong>Preparing:</strong>
+    approximately 30 minutes remaining.
+  </li>
+
+  <li>
+    <strong>Almost ready:</strong>
+    approximately 15 minutes remaining.
+  </li>
+
+  <li>
+    <strong>Ready:</strong>
+    available now.
+  </li>
+
+</ul>
+
+<p>
+  Because knowing that your favorite bakery makes fresh donuts every morning
+  is not the same as knowing that <strong>the next batch is coming out right now.</strong>
+</p>
+
+
+<h2>
+  How does it work?
+</h2>
+
+<h3>
+  📍 1. Find local businesses
+</h3>
+
+<p>
+  Discover participating businesses near you, or scan a business QR code
+  to go directly to its profile.
+</p>
+
+<h3>
+  ❤️ 2. Follow your favorites
+</h3>
+
+<p>
+  Follow the bakeries, cafés, restaurants, pizzerias, BBQ spots,
+  and other local businesses you want to keep up with.
+</p>
+
+<h3>
+  🔔 3. Get notified
+</h3>
+
+<p>
+  When a business you follow publishes a new batch,
+  HotCrave can notify you directly on your phone.
+</p>
+
+
+<h2>
+  🍕 From fresh donuts to food straight off the grill
+</h2>
+
+<p>
+  Every business decides what to publish. You might find anything from
+  freshly baked goods to hot meals prepared right when you are ready to enjoy them.
+</p>
+
+<ul>
+
+  <li>
+    <strong>Bakeries:</strong>
+    fresh bread, donuts, muffins, cookies, croissants, pastries and other
+    baked goods straight from the oven.
+  </li>
+
+  <li>
+    <strong>Cafés and breakfast spots:</strong>
+    fresh pastries, bagels, breakfast sandwiches, muffins and other
+    freshly prepared favorites.
+  </li>
+
+  <li>
+    <strong>Pizza and casual food:</strong>
+    fresh pizza, wings, fries, sandwiches and other food prepared throughout the day.
+  </li>
+
+  <li>
+    <strong>Restaurants and takeout:</strong>
+    burgers, fried chicken, tacos, sandwiches, pasta, daily specials
+    and other freshly prepared meals.
+  </li>
+
+  <li>
+    <strong>BBQ and grills:</strong>
+    ribs, pulled pork, brisket, grilled chicken and other foods
+    coming fresh off the grill or smoker.
+  </li>
+
+</ul>
+
+
+<h2>
+  Can't find your favorite place?
+</h2>
+
+<p>
+  Tell your favorite bakery, café, restaurant, pizzeria, BBQ spot,
+  or local food business about HotCrave and ask them to join.
+</p>
+
+<p>
+  Once they're on HotCrave, you can follow their business and get notified
+  whenever they publish a new batch.
+</p>
+
+
+<h2>
+  🏪 Do you own a business?
+</h2>
+
+<p>
+  <strong>Let your customers know when the fresh food is ready.</strong>
+</p>
+
+<p>
+  Your customers shouldn't have to guess when the next batch will be available.
+  When something comes out of the oven, kitchen, fryer, grill, or smoker,
+  publish it on HotCrave and let the people who follow your business know.
+</p>
+
+<p>
+  Publishing a new batch takes just a few seconds and can be done
+  from a phone, tablet, or web browser.
+</p>
+
+<ul>
+
+  <li>
+    <strong>One tap:</strong>
+    publish a new batch quickly.
+  </li>
+
+  <li>
+    <strong>One notification:</strong>
+    let your followers know when it's coming.
+  </li>
+
+  <li>
+    <strong>Right on time:</strong>
+    customers can find out when your food is freshly made and ready.
+  </li>
+
+  <li>
+    <strong>Your own business profile:</strong>
+    share your business using its unique QR code.
+  </li>
+
+</ul>
+
+
+<div class="highlight">
+
+  <strong>
+    🏪 Want your business to be part of HotCrave?
+  </strong>
+
+  <p style="margin-top: 8px;">
+    Contact us to learn how to start publishing your products
+    and letting your customers know when they're freshly made.
+  </p>
+
+</div>
+
+
+<h2>
+  🔥 A simple idea
+</h2>
+
+<p>
+  If there are fresh donuts, warm bread, a new pizza coming out of the oven,
+  or hot food being prepared near you, you should be the first to know.
+</p>
+
+<p>
+  <strong>That's HotCrave.</strong>
+</p>
+
+<a
+  href="https://play.google.com/store/apps/details?id=com.jsdev.hotcrave.food"
+  target="_blank"
+  rel="noopener"
+  class="button"
+>
+  Get HotCrave on Google Play
+</a>
+
+</article>
+
+</main>
+
+<footer>
+  <p>© <span id="year"></span> JSDev – Android App & Web Development</p>
+  <p>
+  <a href="privacy.html">Privacy Policy</a>
+</p>
+</footer>
+
+<script>    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "HotCrave",
+  "operatingSystem": "ANDROID",
+  "applicationCategory": "LifestyleApplication",
+  "description": "An app for discovering nearby businesses and getting notified when they have freshly made food ready to enjoy.",
+  "url": "https://play.google.com/store/apps/details?id=com.jsdev.hotcrave.food",
+  "offers": {
+    "@type": "Offer",
+    "price": "0.00",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "JSDev"
+  }
+}
+</script>
+
+<!-- FAQ Schema -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+
+    {
+      "@type": "Question",
+      "name": "What is HotCrave?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "HotCrave is an app that connects customers with local businesses and lets them know when freshly made food is ready to enjoy nearby."
+      }
+    },
+
+    {
+      "@type": "Question",
+      "name": "What can I find on HotCrave?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can find fresh bread, donuts, pastries, bagels, pizza, wings, burgers, sandwiches, BBQ, grilled food, daily specials, and other freshly prepared food from local businesses."
+      }
+    },
+
+    {
+      "@type": "Question",
+      "name": "How do I get notifications from HotCrave?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Follow the local businesses you are interested in and receive a notification when they publish a new batch or freshly made food."
+      }
+    },
+
+    {
+      "@type": "Question",
+      "name": "Can I find businesses near me?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. HotCrave uses your location to help you discover participating businesses near you."
+      }
+    },
+
+    {
+      "@type": "Question",
+      "name": "Can I follow my favorite bakery or local business?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. You can follow your favorite local businesses and receive notifications when they publish new products or batches."
+      }
+    },
+
+    {
+      "@type": "Question",
+      "name": "How can businesses participate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Businesses can use HotCrave to publish updates when their food is freshly made and notify customers who follow their business."
+      }
+    }
+
+  ]
+}
+</script>
+
+</body>
+</html>
+
+</body>
+</html>
