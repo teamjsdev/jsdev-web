@@ -2675,8 +2675,15 @@
 </section>
 
 <footer>
-    © <span id="year"></span> JSDev · Calentitos
+  <p>© <span id="year"></span> JSDev · Calentitos</p>
+  <p>
+    <a href="politica.html">Política de Privacidad</a>
+  </p>
 </footer>
+
+<script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 
 <script>
 
@@ -2719,9 +2726,6 @@
             });
 
         });
-
-    document.getElementById("year").textContent =
-        new Date().getFullYear();
 
 </script>
 
