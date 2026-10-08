@@ -2662,8 +2662,15 @@
 </section>
 
 <footer>
-    © <span id="year"></span> JSDev · HotCrave
+  <p>© <span id="year"></span> JSDev · HotCrave</p>
+  <p>
+    <a href="privacy.html">Privacy Policy</a>
+  </p>
 </footer>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
 <script>
 
@@ -2706,9 +2713,6 @@
             });
 
         });
-
-    document.getElementById("year").textContent =
-        new Date().getFullYear();
 
 </script>
 
