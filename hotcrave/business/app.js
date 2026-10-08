@@ -211,7 +211,7 @@ function dashboardView() {
 function profileView(message = "", error = false) {
   const business = businessContext.business;
   const editable = isManager();
-  render(shell(`${pageHeading("PERFIL", "Información del negocio", "Estos datos son los que identifican y presentan a tu negocio en Calentitos.")}${message ? `<p class="${error ? "error" : "success"}" role="status">${escapeHtml(message)}</p>` : ""}<section class="form-card"><form id="profile-form"><label>Nombre del negocio<input name="name" maxlength="120" value="${escapeHtml(business?.name)}" required ${editable ? "" : "disabled"}></label><label>Ubicación<input name="location" maxlength="160" value="${escapeHtml(business?.location)}" required ${editable ? "" : "disabled"}></label><p class="muted small">${businessLang === "en" ? "The current business coordinates are preserved when you edit these details." : "Las coordenadas actuales del negocio se conservan al editar estos datos."}</p><button class="primary" type="submit" ${editable ? "" : "disabled"}>Guardar cambios</button></form></section>`));
+  render(shell(`${pageHeading("PERFIL", "Información del negocio", "Estos datos son los que identifican y presentan a tu negocio en Calentitos.")}${message ? `<p class="${error ? "error" : "success"}" role="status">${escapeHtml(message)}</p>` : ""}<section class="form-card"><form id="profile-form"><label>Nombre del negocio<input name="name" maxlength="120" value="${escapeHtml(business?.name)}" required ${editable ? "" : "disabled"}></label><label>Ubicación<input name="location" maxlength="160" value="${escapeHtml(business?.location)}" required ${editable ? "" : "disabled"}></label><div class="profile-coordinates"><p class="muted small">${businessLang === "en" ? "Business coordinates" : "Coordenadas del negocio"}</p><div class="profile-coordinate-grid"><label>${businessLang === "en" ? "Latitude" : "Latitud"}<input name="latitude" type="number" step="any" min="-90" max="90" value="${business?.latitude ?? ""}" inputmode="decimal" required ${editable ? "" : "disabled"}></label><label>${businessLang === "en" ? "Longitude" : "Longitud"}<input name="longitude" type="number" step="any" min="-180" max="180" value="${business?.longitude ?? ""}" inputmode="decimal" required ${editable ? "" : "disabled"}></label></div><p class="muted small">${businessLang === "en" ? "Use the exact coordinates where customers should find your business." : "Usá las coordenadas exactas donde tus clientes deben encontrar tu negocio."}</p></div><button class="primary" type="submit" ${editable ? "" : "disabled"}>${businessLang === "en" ? "Save changes" : "Guardar cambios"}</button></form></section>`));
   bindShell();
   document.querySelector("#profile-form")?.addEventListener("submit", updateProfile);
 }
@@ -487,15 +487,21 @@ async function updateProfile(event) {
   event.preventDefault();
   const form = event.currentTarget;
   const button = form.querySelector("button[type=submit]");
+  const latitude = Number(form.latitude.value);
+  const longitude = Number(form.longitude.value);
+  if (!Number.isFinite(latitude) || latitude < -90 || latitude > 90 || !Number.isFinite(longitude) || longitude < -180 || longitude > 180) {
+    profileView(businessLang === "en" ? "Enter valid latitude and longitude values." : "Ingresá valores válidos de latitud y longitud.", true);
+    return;
+  }
   button.disabled = true;
-  button.textContent = "Guardando…";
+  button.textContent = businessLang === "en" ? "Saving…" : "Guardando…";
   try {
     const business = await api("/business/me", {
       method: "PATCH",
-      body: JSON.stringify({ name: form.name.value.trim(), location: form.location.value.trim(), latitude: businessContext.business.latitude, longitude: businessContext.business.longitude }),
+      body: JSON.stringify({ name: form.name.value.trim(), location: form.location.value.trim(), latitude, longitude }),
     });
     businessContext.business = business;
-    profileView("Los datos del negocio fueron actualizados.");
+    profileView(businessLang === "en" ? "Business information updated successfully." : "Los datos del negocio fueron actualizados.");
   } catch (error) {
     profileView(apiErrorMessage(error), true);
   }
