@@ -758,6 +758,7 @@
                 0 7px 16px rgba(30, 60, 114, 0.18);
 
             transition: 0.2s ease;
+            gap: 8px;
         }
 
         .business-button:hover {
@@ -787,6 +788,261 @@
 .access-card-content {
     padding: 30px;
     text-align: center;
+}
+
+/* =========================
+   MODERN DIALOG
+========================= */
+
+.modern-dialog {
+    width: min(92vw, 520px);
+    max-height: 88vh;
+
+    padding: 0;
+    border: none;
+    border-radius: 24px;
+
+    background: #ffffff;
+
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.22);
+
+    overflow: hidden;
+}
+
+.modern-dialog::backdrop {
+    background: rgba(15, 23, 42, 0.58);
+    backdrop-filter: blur(5px);
+}
+
+
+/* Contenido con scroll */
+
+.modern-dialog-content {
+    position: relative;
+
+    max-height: 88vh;
+    overflow-y: auto;
+
+    padding: 30px;
+}
+
+
+/* Scrollbar */
+
+.modern-dialog-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modern-dialog-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.modern-dialog-content::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 10px;
+}
+
+
+/* Botón cerrar */
+
+.modern-dialog-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+
+    width: 36px;
+    height: 36px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #f3f4f6;
+    color: #374151;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: 0.2s ease;
+
+    z-index: 2;
+}
+
+.modern-dialog-close:hover {
+    background: #e5e7eb;
+    transform: scale(1.05);
+}
+
+
+/* Icono */
+
+.modern-dialog-icon {
+    width: 54px;
+    height: 54px;
+
+    margin-bottom: 16px;
+
+    border-radius: 16px;
+
+    background: #fff3e0;
+    color: #f97316;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 23px;
+}
+
+
+/* Etiqueta */
+
+.modern-dialog-label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+
+    color: #f97316;
+}
+
+
+/* Título */
+
+.modern-dialog h3 {
+    margin: 0 45px 10px 0;
+
+    font-size: 1.45rem;
+    line-height: 1.25;
+
+    color: #111827;
+}
+
+
+/* Descripción */
+
+.modern-dialog-description {
+    margin: 0 0 20px;
+
+    color: #6b7280;
+
+    font-size: 0.94rem;
+    line-height: 1.5;
+}
+
+
+/* Pasos */
+
+.modern-step {
+    display: flex;
+    gap: 13px;
+
+    padding: 13px 0;
+
+    border-top: 1px solid #f0f0f0;
+}
+
+
+/* Número */
+
+.modern-step-number {
+    flex-shrink: 0;
+
+    width: 30px;
+    height: 30px;
+
+    border-radius: 50%;
+
+    background: #111827;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+
+/* Texto */
+
+.modern-step strong {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: #111827;
+
+    font-size: 0.94rem;
+}
+
+.modern-step p {
+    margin: 0;
+
+    color: #6b7280;
+
+    font-size: 0.86rem;
+    line-height: 1.45;
+}
+
+
+/* Aviso final */
+
+.modern-dialog-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+
+    margin-top: 18px;
+    padding: 13px 14px;
+
+    border-radius: 13px;
+
+    background: #f9fafb;
+
+    color: #4b5563;
+
+    font-size: 0.83rem;
+    line-height: 1.45;
+}
+
+.modern-dialog-note i {
+    flex-shrink: 0;
+
+    margin-top: 2px;
+
+    color: #f97316;
+}
+
+
+/* Móvil */
+
+@media (max-width: 600px) {
+
+    .modern-dialog {
+        width: calc(100vw - 20px);
+        max-height: 90vh;
+
+        border-radius: 20px;
+    }
+
+    .modern-dialog-content {
+        max-height: 90vh;
+        padding: 24px 20px;
+    }
+
+    .modern-dialog h3 {
+        font-size: 1.3rem;
+    }
+
 }
 
         /* =========================
@@ -1622,6 +1878,7 @@
 <section class="section access-section" id="acceso">
 
     <div class="access-intro" id="negocios">
+
         <span class="section-kicker">
             Empezá ahora
         </span>
@@ -1629,56 +1886,336 @@
         <h2>
             Entrá a Calentitos
         </h2>
+
     </div>
 
+
+    <!-- NEGOCIO -->
     <div class="business-access">
+
         <div class="business-copy">
+
             <h3>
                 <i class="fa-solid fa-store"></i>
                 ¿Sos dueño de un negocio?
             </h3>
+
             <p>
                 Accedé al panel con tus credenciales y publicá
                 cuándo tus productos están recién hechos.
             </p>
+
         </div>
 
-        <a class="business-button" href="https://jsdevmobile.com/hotcrave/business/">
+        <a
+            class="business-button"
+            href="https://jsdevmobile.com/hotcrave/business/"
+        >
             Acceder al panel
-            <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i>
+            <i class="fa-solid fa-arrow-right"></i>
         </a>
+
     </div>
 
+
+    <!-- ANDROID -->
     <div class="business-access">
+
         <div class="business-copy">
+
             <h3>
                 <i class="fa-brands fa-android"></i>
-                Descargá Calentitos
+                ¿Usás Android?
             </h3>
+
             <p>
                 Descubrí comida recién hecha, seguí tus lugares favoritos
-                y enterate cuando haya algo caliente cerca tuyo.
+                y enterate cuando haya algo calentito cerca tuyo.
             </p>
+
         </div>
 
-        <a class="business-button" href="https://play.google.com/store/apps/details?id=com.jsdev.hotcrave.food" target="_blank" rel="noopener noreferrer">
+        <a
+            class="business-button"
+            href="https://play.google.com/store/apps/details?id=com.jsdev.hotcrave.food"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
             Descargar para Android
-            <i class="fa-solid fa-arrow-down" style="margin-left: 8px;"></i>
+            <i class="fa-solid fa-arrow-down"></i>
         </a>
+
     </div>
 
+
+    <!-- IPHONE -->
     <div class="business-access">
+
         <div class="business-copy">
+
             <h3>
                 <i class="fa-brands fa-apple"></i>
                 ¿Usás iPhone?
             </h3>
+
             <p>
-                Escaneá el QR del negocio con la cámara de tu iPhone
-                o pedile al comercio el enlace para seguirlo desde la web.
+                Instalá la web app de Calentitos en tu pantalla de inicio
+                y recibí notificaciones cuando tus comercios publiquen.
             </p>
+
         </div>
+
+        <button
+            type="button"
+            class="business-button button-secondary"
+            onclick="document.getElementById('dialogo-iphone').showModal()"
+        >
+            Saber más
+            <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
     </div>
+
+
+    <!-- IPHONE MODAL -->
+    <dialog id="dialogo-iphone" class="modern-dialog">
+
+        <div class="modern-dialog-content">
+
+            <button
+                type="button"
+                class="modern-dialog-close"
+                onclick="document.getElementById('dialogo-iphone').close()"
+                aria-label="Cerrar"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+
+            <div class="modern-dialog-icon">
+                <i class="fa-brands fa-apple"></i>
+            </div>
+
+
+            <span class="modern-dialog-label">
+                CALENTITOS EN IPHONE
+            </span>
+
+
+            <h3>
+                Recibí avisos en tu iPhone
+            </h3>
+
+
+            <p class="modern-dialog-description">
+                Calentitos funciona como una web app en iPhone.
+                Para recibir notificaciones, agregala a tu pantalla de inicio.
+            </p>
+
+
+            <div class="modern-step">
+
+                <span class="modern-step-number">
+                    1
+                </span>
+
+                <div>
+                    <strong>Abrí Calentitos</strong>
+
+                    <p>
+                        Escaneá el QR del comercio o abrí el enlace
+                        que te proporcione tu comercio favorito.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="modern-step">
+
+                <span class="modern-step-number">
+                    2
+                </span>
+
+                <div>
+                    <strong>Agregalo a tu pantalla de inicio</strong>
+
+                    <p>
+                        En Safari, tocá <strong>Compartir</strong>,
+                        elegí <strong>Agregar a pantalla de inicio</strong>
+                        y confirmá.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="modern-step">
+
+                <span class="modern-step-number">
+                    3
+                </span>
+
+                <div>
+                    <strong>Activá las notificaciones</strong>
+
+                    <p>
+                        Abrí la web app desde el nuevo ícono
+                        y permití las notificaciones cuando se soliciten.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="modern-dialog-note">
+
+                <i class="fa-solid fa-bell"></i>
+
+                <span>
+                    Después recibirás avisos cuando tus comercios favoritos
+                    publiquen comida recién hecha.
+                </span>
+
+            </div>
+
+        </div>
+
+    </dialog>
+
+
+    <!-- WEB -->
+    <div class="business-access">
+
+        <div class="business-copy">
+
+            <h3>
+                <i class="fa-solid fa-desktop"></i>
+                ¿Preferís usar la Web?
+            </h3>
+
+            <p>
+                Activá las notificaciones en tu navegador y recibí avisos
+                cuando tus comercios favoritos publiquen.
+            </p>
+
+        </div>
+
+        <button
+            type="button"
+            class="business-button button-secondary"
+            onclick="document.getElementById('dialogo-web').showModal()"
+        >
+            Saber más
+            <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+    </div>
+
+
+    <!-- WEB MODAL -->
+    <dialog id="dialogo-web" class="modern-dialog">
+
+        <div class="modern-dialog-content">
+
+            <button
+                type="button"
+                class="modern-dialog-close"
+                onclick="document.getElementById('dialogo-web').close()"
+                aria-label="Cerrar"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+
+            <div class="modern-dialog-icon">
+                <i class="fa-solid fa-bell"></i>
+            </div>
+
+
+            <span class="modern-dialog-label">
+                CALENTITOS WEB
+            </span>
+
+
+            <h3>
+                Recibí avisos directamente en tu navegador
+            </h3>
+
+
+            <p class="modern-dialog-description">
+                No necesitás instalar una aplicación.
+                Abrí el enlace de tu comercio y activá las notificaciones.
+            </p>
+
+
+            <div class="modern-step">
+
+                <span class="modern-step-number">
+                    1
+                </span>
+
+                <div>
+                    <strong>Abrí el enlace</strong>
+
+                    <p>
+                        Pedile a tu comercio favorito su enlace.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="modern-step">
+
+                <span class="modern-step-number">
+                    2
+                </span>
+
+                <div>
+                    <strong>Permití las notificaciones</strong>
+
+                    <p>
+                        Cuando tu navegador te pregunte si querés
+                        recibir avisos, seleccioná <strong>Permitir</strong>.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="modern-step">
+
+                <span class="modern-step-number">
+                    3
+                </span>
+
+                <div>
+                    <strong>Listo</strong>
+
+                    <p>
+                        Recibirás un aviso cuando el comercio publique
+                        comida recién hecha.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="modern-dialog-note">
+
+                <i class="fa-solid fa-bolt"></i>
+
+                <span>
+                    Podés usar Calentitos desde tu celular,
+                    tablet o computadora.
+                </span>
+
+            </div>
+
+        </div>
+
+    </dialog>
 
 </section>
 
