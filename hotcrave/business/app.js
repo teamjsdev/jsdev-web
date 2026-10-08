@@ -211,9 +211,35 @@ function dashboardView() {
 function profileView(message = "", error = false) {
   const business = businessContext.business;
   const editable = isManager();
-  render(shell(`${pageHeading("PERFIL", "Información del negocio", "Estos datos son los que identifican y presentan a tu negocio en Calentitos.")}${message ? `<p class="${error ? "error" : "success"}" role="status">${escapeHtml(message)}</p>` : ""}<section class="form-card"><form id="profile-form"><label>Nombre del negocio<input name="name" maxlength="120" value="${escapeHtml(business?.name)}" required ${editable ? "" : "disabled"}></label><label>Ubicación<input name="location" maxlength="160" value="${escapeHtml(business?.location)}" required ${editable ? "" : "disabled"}></label><div class="profile-coordinates"><p class="muted small">${businessLang === "en" ? "Business coordinates" : "Coordenadas del negocio"}</p><div class="profile-coordinate-grid"><label>${businessLang === "en" ? "Latitude" : "Latitud"}<input name="latitude" type="number" step="any" min="-90" max="90" value="${business?.latitude ?? ""}" inputmode="decimal" required ${editable ? "" : "disabled"}></label><label>${businessLang === "en" ? "Longitude" : "Longitud"}<input name="longitude" type="number" step="any" min="-180" max="180" value="${business?.longitude ?? ""}" inputmode="decimal" required ${editable ? "" : "disabled"}></label></div><p class="muted small">${businessLang === "en" ? "Use the exact coordinates where customers should find your business." : "Usá las coordenadas exactas donde tus clientes deben encontrar tu negocio."}</p></div><button class="primary" type="submit" ${editable ? "" : "disabled"}>${businessLang === "en" ? "Save changes" : "Guardar cambios"}</button></form></section>`));
+  render(shell(`${pageHeading("PERFIL", "Información del negocio", "Estos datos son los que identifican y presentan a tu negocio en Calentitos.")}${message ? `<p class="${error ? "error" : "success"}" role="status">${escapeHtml(message)}</p>` : ""}<section class="form-card"><form id="profile-form"><label>Nombre del negocio<input name="name" maxlength="120" value="${escapeHtml(business?.name)}" required ${editable ? "" : "disabled"}></label><label>Ubicación<input name="location" maxlength="160" value="${escapeHtml(business?.location)}" required ${editable ? "" : "disabled"}></label><div class="profile-coordinates"><p class="muted small">${businessLang === "en" ? "Business coordinates" : "Coordenadas del negocio"}</p><div class="profile-coordinate-grid"><label>${businessLang === "en" ? "Latitude" : "Latitud"}<input name="latitude" type="number" step="any" min="-90" max="90" value="${business?.latitude ?? ""}" inputmode="decimal" required ${editable ? "" : "disabled"}></label><label>${businessLang === "en" ? "Longitude" : "Longitud"}<input name="longitude" type="number" step="any" min="-180" max="180" value="${business?.longitude ?? ""}" inputmode="decimal" required ${editable ? "" : "disabled"}></label></div><button class="secondary profile-location-button" type="button" id="use-current-location" ${editable ? "" : "disabled"}>${businessLang === "en" ? "Use my current location" : "Usar mi ubicación actual"}</button><p class="muted small">${businessLang === "en" ? "Use the exact coordinates where customers should find your business." : "Usá las coordenadas exactas donde tus clientes deben encontrar tu negocio."}</p></div><button class="primary" type="submit" ${editable ? "" : "disabled"}>${businessLang === "en" ? "Save changes" : "Guardar cambios"}</button></form></section>`));
   bindShell();
   document.querySelector("#profile-form")?.addEventListener("submit", updateProfile);
+  document.querySelector("#use-current-location")?.addEventListener("click", useCurrentLocation);
+}
+
+function useCurrentLocation(event) {
+  const button = event.currentTarget;
+  const form = document.querySelector("#profile-form");
+  if (!form || !navigator.geolocation) {
+    profileView(businessLang === "en" ? "Geolocation is not supported by this browser." : "Este navegador no admite geolocalización.", true);
+    return;
+  }
+  button.disabled = true;
+  button.textContent = businessLang === "en" ? "Getting location…" : "Obteniendo ubicación…";
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      form.latitude.value = position.coords.latitude.toFixed(6);
+      form.longitude.value = position.coords.longitude.toFixed(6);
+      button.disabled = false;
+      button.textContent = businessLang === "en" ? "Use my current location" : "Usar mi ubicación actual";
+    },
+    () => {
+      button.disabled = false;
+      button.textContent = businessLang === "en" ? "Use my current location" : "Usar mi ubicación actual";
+      profileView(businessLang === "en" ? "Could not get your current location. Please allow location access and try again." : "No se pudo obtener tu ubicación actual. Permití el acceso a la ubicación y volvé a intentarlo.", true);
+    },
+    { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+  );
 }
 
 const WEB_PRODUCT_CATALOG = {
