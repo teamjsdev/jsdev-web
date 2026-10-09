@@ -4,6 +4,15 @@ const DB_VERSION = 1;
 const NOTIFICATION_SCHEDULE_KEY = '__notification_schedule__';
 const DEFAULT_NOTIFICATION_START_MINUTES = 8 * 60;
 const DEFAULT_NOTIFICATION_END_MINUTES = 22 * 60;
+const FRESH_PRODUCT_MARKER = '\u2063';
+
+function cleanFreshProductName(name) {
+  return String(name || '').replaceAll(FRESH_PRODUCT_MARKER, '');
+}
+
+function isFreshProductName(name) {
+  return String(name || '').includes(FRESH_PRODUCT_MARKER);
+}
 
 self.addEventListener('install', () => self.skipWaiting());
 self.addEventListener('activate', event => event.waitUntil(self.clients.claim()));
@@ -109,10 +118,17 @@ self.addEventListener('push', event => {
     }
 
     const available = data.status === 'AVAILABLE_NOW';
-    const title = available ? '🔥 Hot Event disponible' : '🔥 Nuevo Hot Event';
-    const body = data.businessName && data.productName
-      ? `${data.businessName}: ${data.productName}`
-      : 'Hay una novedad de un negocio que seguís.';
+    const fresh = isFreshProductName(data.productName);
+    const productName = cleanFreshProductName(data.productName);
+    const isEnglish = /^en(?:-|$)/i.test(self.navigator?.language || '');
+    const title = fresh
+      ? (isEnglish ? '🥬 Fresh items' : '🥬 Frescos disponibles')
+      : (available ? '🔥 Hot Event disponible' : '🔥 Nuevo Hot Event');
+    const body = data.businessName && productName
+      ? fresh
+        ? `${data.businessName}: ${productName} ${available ? (isEnglish ? 'is now available.' : 'ya está disponible.') : (isEnglish ? 'will be available soon.' : 'estará disponible pronto.')}`
+        : `${data.businessName}: ${productName}`
+      : (isEnglish ? 'There is an update from a business you follow.' : 'Hay una novedad de un negocio que seguís.');
 
     await self.registration.showNotification(title, {
       body,
