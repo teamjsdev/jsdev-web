@@ -529,4 +529,28 @@
   <url>
     <loc>https://jsdevmobile.com/pages/formulario.html</loc>
   </url>
+  <url>
+    <loc>https://jsdevmobile.com/pages/calentitos.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/calentitos.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/hotcrave.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/hotcrave.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/en/pages/hotcrave.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/calentitos.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/hotcrave.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/hotcrave.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/pages/calentitos-app-android.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/calentitos-app-android.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/hotcrave-android-app.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/hotcrave-android-app.html" />
+  </url>
+  <url>
+    <loc>https://jsdevmobile.com/en/pages/hotcrave-android-app.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jsdevmobile.com/pages/calentitos-app-android.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://jsdevmobile.com/en/pages/hotcrave-android-app.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jsdevmobile.com/en/pages/hotcrave-android-app.html" />
+  </url>
 </urlset>
