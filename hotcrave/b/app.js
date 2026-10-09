@@ -11,6 +11,11 @@ const FIREBASE_CONFIG = {
 const VAPID_PUBLIC_KEY = 'BDg-XcXynucOK0vVTmk0WorOaga5lcd9ewEtpBh75Z8Hn9_b6iI_LKlkw1ZoU6I5iPm2g26rDfLIPJ3eE9PlQLI';
 
 const NOTIFICATION_SCHEDULE_KEY = '__notification_schedule__';
+const FRESH_PRODUCT_MARKER = '\u2063';
+
+function cleanFreshProductName(name) {
+  return String(name || '').replaceAll(FRESH_PRODUCT_MARKER, '');
+}
 const DEFAULT_NOTIFICATION_START_MINUTES = 8 * 60;
 const DEFAULT_NOTIFICATION_END_MINUTES = 22 * 60;
 
@@ -121,11 +126,11 @@ function renderBusiness() {
       const item = document.createElement('li');
       item.className = 'product-item';
       const name = document.createElement('span');
-      name.textContent = product.name;
+      name.textContent = cleanFreshProductName(product.name);
       const button = document.createElement('button');
       button.className = 'product-notification-button';
       button.type = 'button';
-      button.setAttribute('aria-label', (calentitosLang === 'en' ? 'Toggle alerts for ' : 'Alternar alertas para ') + product.name);
+      button.setAttribute('aria-label', (calentitosLang === 'en' ? 'Toggle alerts for ' : 'Alternar alertas para ') + cleanFreshProductName(product.name));
       button.setAttribute('aria-pressed', String(isProductNotificationSelected(product.productId)));
       button.title = calentitosLang === 'en' ? 'Hot Event alerts' : 'Alertas de Hot Events';
       button.textContent = isProductNotificationSelected(product.productId) ? '🔔' : '🔕';
@@ -147,7 +152,7 @@ function renderBusiness() {
     const heading = document.createElement('h2');
     heading.textContent = '🔥 Hot Event';
     const product = document.createElement('p');
-    product.textContent = event.product.name;
+    product.textContent = cleanFreshProductName(event.product.name);
     const status = document.createElement('strong');
     status.textContent = event.hotEvent.status === 'AVAILABLE_NOW' ? 'Disponible ahora' : event.hotEvent.status === 'SOLD_OUT' ? 'Agotado' : 'Próximamente';
     eventCard.append(heading, product, status);
