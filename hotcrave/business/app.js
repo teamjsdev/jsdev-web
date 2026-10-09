@@ -242,6 +242,20 @@ function useCurrentLocation(event) {
   );
 }
 
+const FRESH_PRODUCT_MARKER = "\u2063";
+
+function cleanFreshProductName(name) {
+  return String(name || "").replaceAll(FRESH_PRODUCT_MARKER, "");
+}
+
+function isFreshProductName(name) {
+  return String(name || "").includes(FRESH_PRODUCT_MARKER);
+}
+
+function encodeFreshProductName(name) {
+  return cleanFreshProductName(name) + FRESH_PRODUCT_MARKER;
+}
+
 const WEB_PRODUCT_CATALOG = {
   BAKERY: [
     { id: "predefined-pan", names: { en: "Bread", es: "Pan", "es-rAR": "Pan" } },
@@ -298,7 +312,7 @@ function localizedWebCatalogProductName(catalogProduct) {
 }
 
 function webProductName(product) {
-  return String(product?.name || "");
+  return cleanFreshProductName(product?.name);
 }
 
 const WEB_PRODUCT_CATEGORY_LABELS = {
@@ -307,6 +321,7 @@ const WEB_PRODUCT_CATEGORY_LABELS = {
   RESTAURANT: "Restaurante",
   CAFE: "Cafetería",
   ROTISSERIE: "Rotisería",
+  FRESCOS: "Frescos",
   OTHER: "Otros",
 };
 
@@ -314,6 +329,8 @@ const FREE_PREDEFINED_PRODUCT_LIMIT = 5;
 const PREMIUM_CUSTOM_PRODUCT_LIMIT = 100;
 
 function webProductCategory(product) {
+  if (product?.type === "CUSTOM" && isFreshProductName(product?.name)) return "FRESCOS";
+
   if (product?.type === "PREDEFINED") {
     for (const [category, catalogProducts] of Object.entries(WEB_PRODUCT_CATALOG)) {
       if (catalogProducts.some((catalogProduct) => catalogProduct.id === product.productId)) {
@@ -332,7 +349,7 @@ function productsView(message = "", error = false) {
   const premium = isBusinessPremium();
   const customCount = products.filter((product) => product.type === "CUSTOM").length;
   const predefinedCount = products.filter((product) => product.type === "PREDEFINED").length;
-  const categories = Object.keys(WEB_PRODUCT_CATALOG);
+  const categories = [...Object.keys(WEB_PRODUCT_CATALOG), ...(premium ? ["FRESCOS"] : [])];
   const activeCategory = categories.includes(window.__catalogCategory) ? window.__catalogCategory : categories[0];
 
   const categoryProducts = products.filter((product) =>
@@ -340,7 +357,7 @@ function productsView(message = "", error = false) {
   );
 
   // Categories are only an index/filter. They never create separate quotas.
-  const available = WEB_PRODUCT_CATALOG[activeCategory].filter((catalogProduct) =>
+  const available = (WEB_PRODUCT_CATALOG[activeCategory] || []).filter((catalogProduct) =>
     !products.some((product) =>
       product.type === "PREDEFINED" &&
       product.productId === catalogProduct.id
@@ -356,7 +373,9 @@ function productsView(message = "", error = false) {
   ).join("");
 
   const freePredefinedFull = !premium && predefinedCount >= FREE_PREDEFINED_PRODUCT_LIMIT;
-  const addPredefined = available.length
+  const addPredefined = activeCategory === "FRESCOS"
+    ? '<p class="muted small">Frescos no tiene productos predefinidos. Agregá productos personalizados para esta categoría.</p>'
+    : available.length
     ? '<div class="catalog-add-list">' +
       available.map((catalogProduct) =>
         '<button type="button" class="secondary catalog-add-product" data-product-id="' +
@@ -451,6 +470,11 @@ function productsView(message = "", error = false) {
   );
 
   document.querySelector("#product-form")?.addEventListener("submit", createProduct);
+  const categorySelect = document.querySelector("#product-form select[name=category]");
+  const productNameInput = document.querySelector("#product-form input[name=name]");
+  const syncProductNameLimit = () => { if (productNameInput && categorySelect) productNameInput.maxLength = categorySelect.value === "FRESCOS" ? 119 : 120; };
+  categorySelect?.addEventListener("change", syncProductNameLimit);
+  syncProductNameLimit();
 
   document.querySelectorAll(".delete-product").forEach((button) =>
     button.addEventListener("click", () =>
@@ -539,10 +563,12 @@ async function createProduct(event) {
   const button = form.querySelector("button[type=submit]");
   button.disabled = true;
   button.textContent = "Agregando…";
+  const isFresh = form.category.value === "FRESCOS";
+  const cleanName = form.name.value.trim();
   try {
     await api(businessPath("/products"), {
       method: "POST",
-      body: JSON.stringify({ name: form.name.value.trim(), type: "CUSTOM", status: "ACTIVE", category: form.category.value }),
+      body: JSON.stringify({ name: isFresh ? encodeFreshProductName(cleanName) : cleanName, type: "CUSTOM", status: "ACTIVE", category: isFresh ? "OTHER" : form.category.value }),
     });
     await loadProducts();
     productsView("El producto fue agregado al catálogo.");
@@ -697,7 +723,7 @@ const BUSINESS_I18N = {
   'Cargando…':'Loading…','PRIORIDAD':'PRIORITY','Publicá rápido cuando tengas comida recién hecha.':'Publish quickly when your food is freshly made.',
   'Disponible ahora':'Available now','Listo en 15 minutos':'Ready in 15 minutes','Listo en 30 minutos':'Ready in 30 minutes','Agotado':'Sold out','Expirado':'Expired',
   'Publicar Hot Event':'Publish Hot Event','Tus Hot Events':'Your Hot Events','HISTORIAL':'HISTORY','ACTIVOS':'ACTIVE',
-  'Información del negocio':'Business information','Panadería':'Bakery','Pizzería':'Pizzeria','Restaurante':'Restaurant','Cafetería':'Café','Rotisería':'Rotisserie','Otros':'Other','Las categorías sirven para encontrar productos. El límite de productos es global.':'Categories are only used to find products. Product limits are global.','productos predefinidos':'predefined products','productos personalizados':'custom products','Alcanzaste los 5 productos predefinidos del plan gratuito. El límite es global y no depende de la categoría.':'You reached the 5 predefined-product limit on the free plan. The limit is global and does not depend on category.','Estos datos son los que identifican y presentan a tu negocio en Calentitos.':'These details identify and present your business on HotCrave.',
+  'Información del negocio':'Business information','Panadería':'Bakery','Pizzería':'Pizzeria','Restaurante':'Restaurant','Cafetería':'Café','Rotisería':'Rotisserie','Frescos':'Fresh foods','Otros':'Other','Las categorías sirven para encontrar productos. El límite de productos es global.':'Categories are only used to find products. Product limits are global.','productos predefinidos':'predefined products','productos personalizados':'custom products','Alcanzaste los 5 productos predefinidos del plan gratuito. El límite es global y no depende de la categoría.':'You reached the 5 predefined-product limit on the free plan. The limit is global and does not depend on category.','Estos datos son los que identifican y presentan a tu negocio en Calentitos.':'These details identify and present your business on HotCrave.',
   'Nombre del negocio':'Business name','Ubicación':'Location','Guardar cambios':'Save changes','Catálogo':'Catalog','Administrá los productos que podés usar para publicar Hot Events.':'Manage the products you can use to publish Hot Events.',
   'NUEVO PRODUCTO':'NEW PRODUCT','Agregar producto personalizado':'Add custom product','Agregar producto':'Add product','Productos activos':'Active products',
   'Código QR del negocio':'Business QR code','Este enlace es permanente y lleva a la experiencia pública de tu negocio.':'This permanent link opens your public business page.',
