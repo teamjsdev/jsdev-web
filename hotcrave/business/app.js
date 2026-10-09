@@ -567,7 +567,7 @@ async function createProduct(event) {
   const cleanName = form.name.value.trim();
   window.__catalogCategory = form.category.value;
   try {
-    await api(businessPath("/products"), {
+    await api("/business/me/products", {
       method: "POST",
       body: JSON.stringify({ name: isFresh ? encodeFreshProductName(cleanName) : cleanName, type: "CUSTOM", status: "ACTIVE", category: isFresh ? "OTHER" : form.category.value }),
     });
