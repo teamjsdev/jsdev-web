@@ -589,12 +589,386 @@ footer a:hover {
   <article class="card">
     <h1>HotCrave – Get notified when freshly made food is ready near you</h1>
 
-    <img
-      src="https://play-lh.googleusercontent.com/I0NTZ53D9Rf-qVr4mAoeMl9Otm5gzHQ6qHDPg4BHmgoHCYnivvQBWY0-Muvaov60Niba6dKDCvb4a_EEfO5jboo=w240-h480-rw"
-      alt="HotCrave app for discovering fresh food near you"
-      class="app-image"
-      loading="lazy"
-    >
+<p class="access-subtitle">
+    Seen a HotCrave QR code at a local business?
+    <strong>
+        Scan it using your phone's camera.
+    </strong>
+</p>
+
+
+<section class="section access-card">
+
+    <!-- IMAGEN -->
+    <div class="access-image">
+        <img
+            src="../../assets/img/scan-qr-en.png"
+            alt="Person scanning a business QR code"
+        >
+    </div>
+
+    <div class="access-card-content">
+
+        <div class="access-icon">
+            <i class="fa-solid fa-qrcode"></i>
+        </div>
+
+        <h3>
+            Scan the business QR code
+        </h3>
+
+        <p>
+           The code automatically identifies the business,
+            and HotCrave takes you straight to its page.
+        </p>
+
+        <div class="camera-note">
+            <i class="fa-solid fa-camera"></i>
+            <span>
+                Using Android? You can also find nearby businesses
+                under <strong>Following → Add a business</strong>,
+                with businesses located within 20 km of you.
+            </span>
+        </div>
+
+        <div class="platforms">
+            <span class="platform">
+                <i class="fa-brands fa-android"></i>
+                Android
+            </span>
+
+            <span class="platform">
+                <i class="fa-brands fa-apple"></i>
+                iPhone
+            </span>
+
+            <span class="platform">
+                <i class="fa-solid fa-globe"></i>
+                Web
+            </span>
+        </div>
+
+    </div>
+
+</section>
+
+  
+
+    <!-- ACCESS -->
+<section class="section access-section" id="acceso">
+
+    <div class="access-intro" id="negocios">
+
+        <span class="section-kicker">
+            Get started
+        </span>
+
+        <h2>
+            Get started with HotCrave
+        </h2>
+
+    </div>
+
+    <!-- ANDROID -->
+    <div class="business-access">
+
+        <div class="business-copy">
+
+            <h3>
+                <i class="fa-brands fa-android"></i>
+                Using Android?
+            </h3>
+
+            <p>
+                Discover freshly made food, follow your favorite local businesses,
+                and get notified when something fresh is available nearby.
+            </p>
+
+        </div>
+
+        <a
+            class="business-button"
+            href="https://play.google.com/store/apps/details?id=com.jsdev.hotcrave.food"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Download for Android
+            <i class="fa-solid fa-arrow-down"></i>
+        </a>
+
+    </div>
+
+
+    <!-- IPHONE -->
+    <div class="business-access">
+
+        <div class="business-copy">
+
+            <h3>
+                <i class="fa-brands fa-apple"></i>
+                Using iPhone?
+            </h3>
+
+            <p>
+                Add the HotCrave web app to your Home Screen
+                and receive notifications when your favorite businesses post updates.
+            </p>
+
+        </div>
+
+        <button
+            type="button"
+            class="business-button button-secondary"
+            onclick="document.getElementById('dialogo-iphone').showModal()"
+        >
+            Learn more
+            <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+    </div>
+
+
+    <!-- IPHONE MODAL -->
+    <dialog id="dialogo-iphone" class="modern-dialog">
+
+        <div class="modern-dialog-content">
+
+            <button
+                type="button"
+                class="modern-dialog-close"
+                onclick="document.getElementById('dialogo-iphone').close()"
+                aria-label="Cerrar"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+
+            <div class="modern-dialog-icon">
+                <i class="fa-brands fa-apple"></i>
+            </div>
+
+
+            <span class="modern-dialog-label">
+                HOTCRAVE ON IPHONE
+            </span>
+
+
+            <h3>
+                Get notifications on your iPhone
+            </h3>
+
+
+            <p class="modern-dialog-description">
+                HotCrave works as a web app on iPhone.
+                To receive notifications, add it to your Home Screen.
+            </p>
+
+
+            <div class="modern-step">
+
+                <span class="modern-step-number">
+                    1
+                </span>
+
+                <div>
+                    <strong>Open HotCrave</strong>
+
+                    <p>
+                        Scan the business QR code or open the link
+                        provided by your favorite local business.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="modern-step">
+
+                <span class="modern-step-number">
+                    2
+                </span>
+
+                <div>
+                    <strong>Add it to your Home Screen</strong>
+
+                    <p>
+                        In Safari, tap <strong>Share</strong>,
+                        select <strong>Add to Home Screen</strong>,
+                        and confirm.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="modern-step">
+
+                <span class="modern-step-number">
+                    3
+                </span>
+
+                <div>
+                    <strong>Enable notifications</strong>
+
+                    <p>
+                        Open the web app using its new Home Screen icon
+                        and allow notifications when prompted.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="modern-dialog-note">
+
+                <i class="fa-solid fa-bell"></i>
+
+                <span>
+                    You'll then receive notifications when your favorite
+                    businesses post freshly made food.
+                </span>
+
+            </div>
+
+        </div>
+
+    </dialog>
+
+
+     <!-- WEB -->
+    <div class="business-access">
+
+        <div class="business-copy">
+
+            <h3>
+                <i class="fa-solid fa-desktop"></i>
+                Prefer using the web?
+            </h3>
+
+            <p>
+                Enable browser notifications to get updates
+                when your favorite businesses post.
+            </p>
+
+        </div>
+
+        <button
+            type="button"
+            class="business-button button-secondary"
+            onclick="document.getElementById('dialogo-web').showModal()"
+        >
+            Learn more
+            <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+    </div>
+
+
+    <!-- WEB MODAL -->
+    <dialog id="dialogo-web" class="modern-dialog">
+
+        <div class="modern-dialog-content">
+
+            <button
+                type="button"
+                class="modern-dialog-close"
+                onclick="document.getElementById('dialogo-web').close()"
+                aria-label="Close"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+
+            <div class="modern-dialog-icon">
+                <i class="fa-solid fa-bell"></i>
+            </div>
+
+
+            <span class="modern-dialog-label">
+                HOTCRAVE WEB
+            </span>
+
+
+            <h3>
+                Get notifications right in your browser
+            </h3>
+
+
+            <p class="modern-dialog-description">
+                No app installation required.
+                Open your business's link and enable notifications.
+            </p>
+
+
+            <div class="modern-step">
+
+                <span class="modern-step-number">
+                    1
+                </span>
+
+                <div>
+                    <strong>Open the link</strong>
+
+                    <p>
+                        Ask your favorite local business for its HotCrave link.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="modern-step">
+
+                <span class="modern-step-number">
+                    2
+                </span>
+
+                <div>
+                    <strong>Allow notifications</strong>
+
+                    <p>
+                        When your browser asks whether you'd like to receive
+                        notifications, select <strong>Allow</strong>.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="modern-step">
+
+                <span class="modern-step-number">
+                    3
+                </span>
+
+                <div>
+                    <strong>You're all set!</strong>
+
+                    <p>
+                        You'll receive a notification when the business
+                        posts freshly made food.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="modern-dialog-note">
+
+                <i class="fa-solid fa-bolt"></i>
+
+                <span>
+                    You can use HotCrave on your phone,
+                    tablet, or computer.
+                </span>
+
+            </div>
+
+        </div>
+
+    </dialog>
+
+</section>
 
         <h2>
   What is HotCrave?
