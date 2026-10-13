@@ -39,120 +39,533 @@
   </script>
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, sans-serif;
-    }
+:root {
+  --primary: #1e3c72;
+  --primary-light: #2a5298;
+  --accent: #f97316;
+  --text: #111827;
+  --text-secondary: #4b5563;
+  --muted: #6b7280;
+  --bg: #f4f6f8;
+  --card: #ffffff;
+  --border: #e8ecf2;
+  --shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
 
-    body {
-      background-color: #f4f6f8;
-      color: #333;
-      line-height: 1.6;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
 
-    /* TOPBAR */
-    .topbar {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 14px;
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: white;
-    }
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
 
-    .logo {
-      width: 42px;
-      height: 42px;
-    }
+/* TOPBAR */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: white;
+}
 
-    .brand-title {
-      font-size: 1.2rem;
-      font-weight: 700;
-    }
+.logo {
+  width: 42px;
+  height: 42px;
+}
 
-    /* MAIN NAV */
-    .main-nav {
-      background: white;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      padding: 12px;
-      flex-wrap: wrap;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-      position: sticky;
-      top: 0;
-      z-index: 400;
-    }
+.brand-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
 
-    .main-nav a {
-      text-decoration: none;
-      color: #2a5298;
-      font-weight: 600;
-    }
+/* MAIN NAV */
+.main-nav {
+  background: white;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 12px;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 400;
+}
 
-    main {
-      max-width: 1000px;
-      margin: 60px auto;
-      padding: 0 20px;
-    }
+.main-nav a {
+  text-decoration: none;
+  color: var(--primary-light);
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
 
-    .card {
-      background-color: white;
-      padding: 28px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-    }
+.main-nav a:hover {
+  color: var(--accent);
+}
 
-    h1 {
-      color: #1e3c72;
-      font-size: clamp(1.6rem, 3vw, 2rem);
-      text-align: center;
-      margin-bottom: 15px;
-    }
+main {
+  max-width: 1000px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
 
-    h2, h3 {
-      color: #1e3c72;
-      margin-top: 25px;
-    }
+.card {
+  background-color: var(--card);
+  padding: 28px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
 
-    ul {
-      padding-left: 20px;
-      margin-top: 10px;
-    }
+h1 {
+  color: var(--primary);
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  text-align: center;
+  margin-bottom: 15px;
+}
 
-    .app-image {
-      max-width: 260px;
-      display: block;
-      margin: 20px auto;
-      border-radius: 20px;
-    }
+h2, h3 {
+  color: var(--primary);
+  margin-top: 25px;
+}
 
-    .button {
-      display: inline-block;
-      margin-top: 25px;
-      padding: 14px 22px;
-      background-color: #1e3c72;
-      color: white;
-      text-decoration: none;
-      border-radius: 10px;
-      font-weight: 600;
-    }
+ul {
+  padding-left: 20px;
+  margin-top: 10px;
+}
 
-    footer {
-      background-color: #1e3c72;
-      color: white;
-      text-align: center;
-      padding: 25px 15px;
-      margin-top: 60px;
-    }
+.app-image {
+  max-width: 260px;
+  display: block;
+  margin: 20px auto;
+  border-radius: 20px;
+}
 
-    footer a {
-      color: #a9c9ff;
-      text-decoration: none;
-    }
+.button, .business-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 25px;
+  padding: 14px 22px;
+  background-color: var(--primary);
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
 
+.button:hover, .business-button:hover {
+  background-color: #17315d;
+  transform: translateY(-2px);
+}
+
+footer {
+  background-color: var(--primary);
+  color: white;
+  text-align: center;
+  padding: 25px 15px;
+  margin-top: 60px;
+}
+
+footer a {
+  color: #a9c9ff;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+    ACCESS SECTION
+========================= */
+
+.access-section {
+  padding-top: 40px;
+}
+
+.access-intro {
+  max-width: 720px;
+  margin: 0 auto 30px;
+  text-align: center;
+}
+
+.section-kicker {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.access-intro h2 {
+  color: var(--text);
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+  margin-bottom: 10px;
+}
+
+.business-access {
+  position: relative;
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: linear-gradient(135deg, #edf3ff, #f7f9ff);
+  border: 1px solid #dfe8f7;
+  border-radius: 18px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.business-access:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.business-copy {
+  text-align: left;
+}
+
+.business-access h3 {
+  color: var(--primary);
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.business-access p {
+  color: var(--text-secondary);
+  font-size: 0.93rem;
+  line-height: 1.5;
+}
+
+.business-button {
+  margin-top: 0;
+  font-size: 0.9rem;
+  padding: 12px 18px;
+  box-shadow: 0 4px 12px rgba(30, 60, 114, 0.15);
+  flex-shrink: 0;
+}
+
+.access-subtitle {
+  text-align: center;
+  margin: 40px 0 20px;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.access-card {
+  position: relative;
+  max-width: 700px;
+  margin: 0 auto;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: 0.25s ease;
+}
+
+.access-card::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(
+                90deg,
+                var(--primary) 0%,
+                var(--primary-light) 50%,
+                var(--accent) 100%
+            );
+        }
+
+.access-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.access-image {
+  width: 100%;
+  overflow: hidden;
+}
+
+.access-image img {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.access-card-content {
+  padding: 30px;
+  text-align: center;
+}
+
+.access-icon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #edf3ff, #f6f8ff);
+  color: var(--primary);
+  font-size: 2rem;
+  box-shadow: inset 0 0 0 1px rgba(30, 60, 114, 0.06), 0 8px 20px rgba(30, 60, 114, 0.08);
+}
+
+.camera-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  max-width: 560px;
+  margin: 20px auto 0;
+  padding: 14px 17px;
+  border-radius: 12px;
+  background: #f7f9fc;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  border: 1px solid #e8ecf2;
+  text-align: left;
+}
+
+.camera-note i {
+  color: var(--primary);
+  font-size: 1.1rem;
+}
+
+.platforms {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.platform {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #f2f4f7;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* HIGHLIGHT BOXES */
+.highlight {
+  background: linear-gradient(135deg, #fff9f5, #fff3eb);
+  border-left: 4px solid var(--accent);
+  padding: 18px 20px;
+  border-radius: 0 12px 12px 0;
+  margin: 25px 0;
+  color: var(--text);
+}
+
+/* =========================
+    MODERN DIALOG
+========================= */
+
+.modern-dialog {
+  width: min(92vw, 520px);
+  max-height: 88vh;
+  padding: 0;
+  border: none;
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.22);
+  overflow: hidden;
+}
+
+.modern-dialog::backdrop {
+  background: rgba(15, 23, 42, 0.58);
+  backdrop-filter: blur(5px);
+}
+
+.modern-dialog-content {
+  position: relative;
+  max-height: 88vh;
+  overflow-y: auto;
+  padding: 30px;
+}
+
+.modern-dialog-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modern-dialog-content::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 10px;
+}
+
+.modern-dialog-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: #f3f4f6;
+  color: #374151;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s ease;
+  z-index: 2;
+}
+
+.modern-dialog-close:hover {
+  background: #e5e7eb;
+  transform: scale(1.05);
+}
+
+.modern-dialog-icon {
+  width: 54px;
+  height: 54px;
+  margin-bottom: 16px;
+  border-radius: 16px;
+  background: #fff3e0;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 23px;
+}
+
+.modern-dialog-label {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+}
+
+.modern-dialog h3 {
+  margin: 0 45px 10px 0;
+  font-size: 1.45rem;
+  line-height: 1.25;
+  color: var(--text);
+}
+
+.modern-dialog-description {
+  margin: 0 0 20px;
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.5;
+}
+
+.modern-step {
+  display: flex;
+  gap: 13px;
+  padding: 13px 0;
+  border-top: 1px solid #f0f0f0;
+}
+
+.modern-step-number {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--text);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.modern-step strong {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--text);
+  font-size: 0.94rem;
+}
+
+.modern-step p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+
+.modern-dialog-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 18px;
+  padding: 13px 14px;
+  border-radius: 13px;
+  background: #f9fafb;
+  color: #4b5563;
+  font-size: 0.83rem;
+  line-height: 1.45;
+}
+
+.modern-dialog-note i {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--accent);
+}
+
+/* RESPONSIVE MÓVIL */
+@media (max-width: 600px) {
+  .business-access {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .business-button {
+    width: 100%;
+  }
+
+  .modern-dialog {
+    width: calc(100vw - 20px);
+    max-height: 90vh;
+    border-radius: 20px;
+  }
+
+  .modern-dialog-content {
+    max-height: 90vh;
+    padding: 24px 20px;
+  }
+
+  .modern-dialog h3 {
+    font-size: 1.3rem;
+  }
+}
   </style>
 </head>
 
@@ -174,12 +587,386 @@
   <article class="card">
     <h1>Calentitos – Enterate cuando sale comida recién hecha cerca tuyo</h1>
 
-    <img
-      src="https://play-lh.googleusercontent.com/I0NTZ53D9Rf-qVr4mAoeMl9Otm5gzHQ6qHDPg4BHmgoHCYnivvQBWY0-Muvaov60Niba6dKDCvb4a_EEfO5jboo=w240-h480-rw"
-      alt="Aplicación Calentitos para descubrir comida recién hecha cerca tuyo"
-      class="app-image"
-      loading="lazy"
-    >
+<p class="access-subtitle">
+    ¿Viste un QR de Calentitos en un negocio?
+    <strong>
+        Usá la cámara de tu teléfono para escanearlo.
+    </strong>
+</p>
+
+
+<section class="section access-card">
+
+    <!-- IMAGEN -->
+    <div class="access-image">
+        <img
+            src="../assets/img/scan-qr-es.png"
+            alt="Persona escaneando el código QR de un negocio"
+        >
+    </div>
+
+    <div class="access-card-content">
+
+        <div class="access-icon">
+            <i class="fa-solid fa-qrcode"></i>
+        </div>
+
+        <h3>
+            Escaneá el QR del negocio
+        </h3>
+
+        <p>
+            El código identifica automáticamente el negocio
+            y Calentitos te lleva al lugar correcto.
+        </p>
+
+        <div class="camera-note">
+            <i class="fa-solid fa-camera"></i>
+            <span>
+                ¿Usás Android? También podés encontrar negocios cercanos
+                desde <strong>Siguiendo → Agregar un negocio</strong>,
+                con negocios de hasta 20 km a la redonda.
+            </span>
+        </div>
+
+        <div class="platforms">
+            <span class="platform">
+                <i class="fa-brands fa-android"></i>
+                Android
+            </span>
+
+            <span class="platform">
+                <i class="fa-brands fa-apple"></i>
+                iPhone
+            </span>
+
+            <span class="platform">
+                <i class="fa-solid fa-globe"></i>
+                Web
+            </span>
+        </div>
+
+    </div>
+
+</section>
+
+  
+
+    <!-- ACCESS -->
+<section class="section access-section" id="acceso">
+
+    <div class="access-intro" id="negocios">
+
+        <span class="section-kicker">
+            Empezá ahora
+        </span>
+
+        <h2>
+            Entrá a Calentitos
+        </h2>
+
+    </div>
+
+    <!-- ANDROID -->
+    <div class="business-access">
+
+        <div class="business-copy">
+
+            <h3>
+                <i class="fa-brands fa-android"></i>
+                ¿Usás Android?
+            </h3>
+
+            <p>
+                Descubrí comida recién hecha, seguí tus lugares favoritos
+                y enterate cuando haya algo calentito cerca tuyo.
+            </p>
+
+        </div>
+
+        <a
+            class="business-button"
+            href="https://play.google.com/store/apps/details?id=com.jsdev.hotcrave.food"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Descargar para Android
+            <i class="fa-solid fa-arrow-down"></i>
+        </a>
+
+    </div>
+
+
+    <!-- IPHONE -->
+    <div class="business-access">
+
+        <div class="business-copy">
+
+            <h3>
+                <i class="fa-brands fa-apple"></i>
+                ¿Usás iPhone?
+            </h3>
+
+            <p>
+                Instalá la web app de Calentitos en tu pantalla de inicio
+                y recibí notificaciones cuando tus comercios publiquen.
+            </p>
+
+        </div>
+
+        <button
+            type="button"
+            class="business-button button-secondary"
+            onclick="document.getElementById('dialogo-iphone').showModal()"
+        >
+            Saber más
+            <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+    </div>
+
+
+    <!-- IPHONE MODAL -->
+    <dialog id="dialogo-iphone" class="modern-dialog">
+
+        <div class="modern-dialog-content">
+
+            <button
+                type="button"
+                class="modern-dialog-close"
+                onclick="document.getElementById('dialogo-iphone').close()"
+                aria-label="Cerrar"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+
+            <div class="modern-dialog-icon">
+                <i class="fa-brands fa-apple"></i>
+            </div>
+
+
+            <span class="modern-dialog-label">
+                CALENTITOS EN IPHONE
+            </span>
+
+
+            <h3>
+                Recibí avisos en tu iPhone
+            </h3>
+
+
+            <p class="modern-dialog-description">
+                Calentitos funciona como una web app en iPhone.
+                Para recibir notificaciones, agregala a tu pantalla de inicio.
+            </p>
+
+
+            <div class="modern-step">
+
+                <span class="modern-step-number">
+                    1
+                </span>
+
+                <div>
+                    <strong>Abrí Calentitos</strong>
+
+                    <p>
+                        Escaneá el QR del comercio o abrí el enlace
+                        que te proporcione tu comercio favorito.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="modern-step">
+
+                <span class="modern-step-number">
+                    2
+                </span>
+
+                <div>
+                    <strong>Agregalo a tu pantalla de inicio</strong>
+
+                    <p>
+                        En Safari, tocá <strong>Compartir</strong>,
+                        elegí <strong>Agregar a pantalla de inicio</strong>
+                        y confirmá.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="modern-step">
+
+                <span class="modern-step-number">
+                    3
+                </span>
+
+                <div>
+                    <strong>Activá las notificaciones</strong>
+
+                    <p>
+                        Abrí la web app desde el nuevo ícono
+                        y permití las notificaciones cuando se soliciten.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="modern-dialog-note">
+
+                <i class="fa-solid fa-bell"></i>
+
+                <span>
+                    Después recibirás avisos cuando tus comercios favoritos
+                    publiquen comida recién hecha.
+                </span>
+
+            </div>
+
+        </div>
+
+    </dialog>
+
+
+    <!-- WEB -->
+    <div class="business-access">
+
+        <div class="business-copy">
+
+            <h3>
+                <i class="fa-solid fa-desktop"></i>
+                ¿Preferís usar la Web?
+            </h3>
+
+            <p>
+                Activá las notificaciones en tu navegador y recibí avisos
+                cuando tus comercios favoritos publiquen.
+            </p>
+
+        </div>
+
+        <button
+            type="button"
+            class="business-button button-secondary"
+            onclick="document.getElementById('dialogo-web').showModal()"
+        >
+            Saber más
+            <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+    </div>
+
+
+    <!-- WEB MODAL -->
+    <dialog id="dialogo-web" class="modern-dialog">
+
+        <div class="modern-dialog-content">
+
+            <button
+                type="button"
+                class="modern-dialog-close"
+                onclick="document.getElementById('dialogo-web').close()"
+                aria-label="Cerrar"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+
+            <div class="modern-dialog-icon">
+                <i class="fa-solid fa-bell"></i>
+            </div>
+
+
+            <span class="modern-dialog-label">
+                CALENTITOS WEB
+            </span>
+
+
+            <h3>
+                Recibí avisos directamente en tu navegador
+            </h3>
+
+
+            <p class="modern-dialog-description">
+                No necesitás instalar una aplicación.
+                Abrí el enlace de tu comercio y activá las notificaciones.
+            </p>
+
+
+            <div class="modern-step">
+
+                <span class="modern-step-number">
+                    1
+                </span>
+
+                <div>
+                    <strong>Abrí el enlace</strong>
+
+                    <p>
+                        Pedile a tu comercio favorito su enlace.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="modern-step">
+
+                <span class="modern-step-number">
+                    2
+                </span>
+
+                <div>
+                    <strong>Permití las notificaciones</strong>
+
+                    <p>
+                        Cuando tu navegador te pregunte si querés
+                        recibir avisos, seleccioná <strong>Permitir</strong>.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="modern-step">
+
+                <span class="modern-step-number">
+                    3
+                </span>
+
+                <div>
+                    <strong>Listo</strong>
+
+                    <p>
+                        Recibirás un aviso cuando el comercio publique
+                        comida recién hecha.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="modern-dialog-note">
+
+                <i class="fa-solid fa-bolt"></i>
+
+                <span>
+                    Podés usar Calentitos desde tu celular,
+                    tablet o computadora.
+                </span>
+
+            </div>
+
+        </div>
+
+    </dialog>
+
+</section>
 
         <h2>
       ¿Qué es Calentitos?
