@@ -4,49 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>HotCrave – More Sales Opportunities for Your Business</title>
+    <title>HotCrave | Freshly Made Food and Local Business</title>
+    <meta name="description" content="Discover freshly made food near you or bring your bakery, café, or local business to HotCrave. Share updates and connect with nearby customers.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#1e3c72">
 
-    <meta
-        name="description"
-        content="HotCrave connects businesses with their customers right when their food is freshly made."
-    >
+    <link rel="canonical" href="https://jsdevmobile.com/en/pages/hotcrave.html">
 
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
+    <link rel="icon" href="https://play-lh.googleusercontent.com/I0NTZ53D9Rf-qVr4mAoeMl9Otm5gzHQ6qHDPg4BHmgoHCYnivvQBWY0-Muvaov60Niba6dKDCvb4a_EEfO5jboo=w96-h96-rw">
 
-  <link rel="canonical" href="https://jsdevmobile.com/en/pages/hotcrave.html">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8FVHCZT452"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-8FVHCZT452');
-  </script>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8FVHCZT452"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-8FVHCZT452');
+    </script>
 
     <style>
         :root {
             --primary: #1e3c72;
             --primary-light: #2a5298;
             --accent: #ff8a3d;
-            --accent-light: #fff2e8;
-
+            --accent-hover: #e8792e;
             --text: #172033;
             --text-secondary: #475467;
-            --muted: #596579;
-
             --background: #f6f8fc;
-            --card: #ffffff;
             --border: #e1e6ef;
-
-            --shadow: 0 14px 40px rgba(30, 60, 114, 0.09);
-            --shadow-hover: 0 20px 50px rgba(30, 60, 114, 0.15);
+            --shadow: 0 14px 40px rgba(30, 60, 114, 0.12);
+            --radius: 18px;
         }
 
-        * {
+        *,
+        *::before,
+        *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -54,30 +50,17 @@
 
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 85px;
         }
 
         body {
-            font-family:
-                Inter,
-                -apple-system,
-                BlinkMacSystemFont,
-                "Segoe UI",
-                Roboto,
-                Arial,
-                sans-serif;
-
+            min-width: 320px;
+            font-family: Inter, -apple-system, BlinkMacSystemFont,
+                "Segoe UI", Roboto, Arial, sans-serif;
             background: var(--background);
             color: var(--text);
-
-            /*
-             * Base un poco más grande para mejorar
-             * la lectura general.
-             */
             font-size: 16px;
-
             line-height: 1.7;
-
-            overflow-x: hidden;
         }
 
         a {
@@ -85,2673 +68,579 @@
             text-decoration: none;
         }
 
-        button {
-            font: inherit;
+        a:focus-visible {
+            outline: 3px solid #ffb17c;
+            outline-offset: 4px;
         }
 
-        /* =========================
-           HEADER
-        ========================= */
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            left: 16px;
+            z-index: 2000;
+            padding: 12px 16px;
+            background: white;
+            color: var(--primary);
+            border-radius: 8px;
+            font-weight: 700;
+        }
+
+        .skip-link:focus {
+            top: 12px;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* HEADER */
 
         .topbar {
-            position: fixed;
+            position: sticky;
             top: 0;
-            left: 0;
-            right: 0;
-
-            height: 68px;
-
+            z-index: 1000;
+            min-height: 72px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-
-            padding: 0 28px;
-
-            background: rgba(255, 255, 255, 0.96);
-
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-
-            border-bottom: 1px solid rgba(225, 230, 239, 0.9);
-
-            z-index: 1000;
+            gap: 20px;
+            padding: 10px clamp(16px, 4vw, 48px);
+            background: rgba(255, 255, 255, 0.97);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 4px 20px rgba(23, 32, 51, 0.04);
+            backdrop-filter: blur(12px);
         }
 
         .brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-
-            font-size: 1.3rem;
-            font-weight: 900;
-
-            letter-spacing: -0.03em;
-
-            color: var(--primary);
-        }
-
-.brand-icon {
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 6px 14px rgba(30, 60, 114, 0.22);
-}
-
-.brand-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-}
-
-        .menu-button {
-            width: 43px;
-            height: 43px;
-
-            border: 0;
-            border-radius: 11px;
-
-            background: #f0f3f8;
-            color: var(--primary);
-
-            cursor: pointer;
-
-            font-size: 1.05rem;
-
-            transition: 0.2s ease;
-        }
-
-        .menu-button:hover {
-            background: #e5ebf5;
-            transform: translateY(-1px);
-        }
-
-        /* =========================
-           SIDE MENU
-        ========================= */
-
-        .side-menu {
-            position: fixed;
-
-            top: 68px;
-            right: -300px;
-
-            width: 290px;
-            height: calc(100vh - 68px);
-
-            background: rgba(255, 255, 255, 0.99);
-
-            backdrop-filter: blur(15px);
-
-            box-shadow:
-                -10px 0 35px rgba(0, 0, 0, 0.1);
-
-            z-index: 999;
-
-            padding: 22px;
-
-            transition: right 0.28s ease;
-        }
-
-        .side-menu.open {
-            right: 0;
-        }
-
-        .side-menu a {
-            display: flex;
-            align-items: center;
-
-            padding: 16px 8px;
-
-            color: #344054;
-
-            font-size: 0.98rem;
-            font-weight: 700;
-
-            border-bottom: 1px solid #edf0f5;
-
-            transition: 0.2s ease;
-        }
-
-        .side-menu a:hover {
-            color: var(--primary);
-            padding-left: 13px;
-        }
-
-        /* =========================
-           NAV
-        ========================= */
-
-        .main-nav {
-            position: fixed;
-
-            top: 68px;
-            left: 0;
-            right: 0;
-
-            height: 48px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            gap: 34px;
-
-            background: rgba(255, 255, 255, 0.94);
-
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-
-            border-bottom: 1px solid rgba(225, 230, 239, 0.8);
-
-            z-index: 900;
-        }
-
-        .main-nav a {
-            color: #596579;
-
-            font-size: 0.9rem;
-            font-weight: 750;
-
-            transition: 0.2s ease;
-        }
-
-        .main-nav a:hover {
-            color: var(--primary);
-        }
-
-        /* =========================
-           HERO
-        ========================= */
-
-        .hero {
-            position: relative;
-
-            margin-top: 116px;
-
-            min-height: 560px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            overflow: hidden;
-
-            padding: 90px 20px 100px;
-
-            color: white;
-
-            text-align: center;
-
-            background:
-                radial-gradient(
-                    circle at 15% 20%,
-                    rgba(255, 255, 255, 0.12),
-                    transparent 30%
-                ),
-
-                radial-gradient(
-                    circle at 85% 75%,
-                    rgba(255, 138, 61, 0.16),
-                    transparent 28%
-                ),
-
-                linear-gradient(
-                    135deg,
-                    #172f5c 0%,
-                    #1e3c72 45%,
-                    #2a5298 100%
-                );
-        }
-
-        .hero::before,
-        .hero::after {
-            content: "";
-
-            position: absolute;
-
-            border-radius: 50%;
-
-            pointer-events: none;
-        }
-
-        .hero::before {
-            width: 420px;
-            height: 420px;
-
-            top: -220px;
-            right: -120px;
-
-            border: 1px solid rgba(255, 255, 255, 0.08);
-
-            box-shadow:
-                0 0 0 45px rgba(255, 255, 255, 0.025),
-                0 0 0 90px rgba(255, 255, 255, 0.02);
-        }
-
-        .hero::after {
-            width: 300px;
-            height: 300px;
-
-            bottom: -190px;
-            left: -110px;
-
-            border: 1px solid rgba(255, 255, 255, 0.07);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-
-            max-width: 900px;
-        }
-
-        .eyebrow {
             display: inline-flex;
             align-items: center;
-
-            gap: 8px;
-
-            padding: 8px 16px;
-
-            margin-bottom: 23px;
-
-            border-radius: 999px;
-
-            background: rgba(255, 255, 255, 0.1);
-
-            border: 1px solid rgba(255, 255, 255, 0.17);
-
-            box-shadow:
-                0 8px 25px rgba(0, 0, 0, 0.08);
-
-            font-size: 0.9rem;
-            font-weight: 800;
-        }
-
-        .hero h1 {
-            max-width: 850px;
-
-            margin: 0 auto 23px;
-
-            font-size: clamp(2.6rem, 6vw, 4.7rem);
-
-            line-height: 1.04;
-
-            letter-spacing: -0.045em;
-        }
-
-        .hero h1 span {
-            color: #ffb17c;
-        }
-
-        .hero p {
-            max-width: 750px;
-
-            margin: 0 auto;
-
-            font-size: clamp(1.05rem, 2vw, 1.23rem);
-
-            line-height: 1.75;
-
-            color: rgba(255, 255, 255, 0.91);
-        }
-
-        .hero-pills {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-
-            gap: 10px;
-
-            margin-top: 32px;
-        }
-
-        .hero-pill {
-            display: inline-flex;
-            align-items: center;
-
-            gap: 7px;
-
-            padding: 9px 14px;
-
-            border-radius: 999px;
-
-            background: rgba(255, 255, 255, 0.09);
-
-            border: 1px solid rgba(255, 255, 255, 0.13);
-
-            color: rgba(255, 255, 255, 0.93);
-
-            font-size: 0.86rem;
-            font-weight: 750;
-        }
-
-        /* Pill destacada en el Hero */
-.hero-pill.featured {
-    background: rgba(255, 138, 61, 0.22);
-    border-color: #ff8a3d;
-    color: #ffd2b3;
-    box-shadow: 0 4px 15px rgba(255, 138, 61, 0.25);
-}
-
-        /* =========================
-           SECTIONS
-        ========================= */
-
-        .section {
-            position: relative;
-
-            max-width: 1120px;
-
-            margin: auto;
-
-            padding: 95px 22px;
-        }
-
-        .section-header {
-            max-width: 780px;
-
-            margin: 0 auto 50px;
-
-            text-align: center;
-        }
-
-        .section-kicker {
-            display: inline-block;
-
-            margin-bottom: 10px;
-
-            color: var(--primary-light);
-
-            font-size: 0.8rem;
-
-            font-weight: 900;
-
-            text-transform: uppercase;
-
-            letter-spacing: 0.12em;
-        }
-
-        .section-header h2 {
-            color: var(--text);
-
-            font-size: clamp(2rem, 4vw, 2.65rem);
-
-            line-height: 1.15;
-
-            letter-spacing: -0.035em;
-
-            margin-bottom: 14px;
-        }
-
-        .section-header p {
-            color: var(--muted);
-
-            font-size: 1.06rem;
-
-            line-height: 1.75;
-        }
-
-        /* =========================
-           ACCESS
-        ========================= */
-
-        .access-section {
-            padding-top: 88px;
-        }
-
-        .access-intro {
-            max-width: 720px;
-
-            margin: 0 auto 40px;
-
-            text-align: center;
-        }
-
-        .access-intro h2 {
-            color: var(--text);
-
-            font-size: clamp(2.05rem, 4vw, 2.6rem);
-
-            line-height: 1.15;
-
-            letter-spacing: -0.035em;
-
-            margin-bottom: 13px;
-        }
-
-        .access-intro p {
-            color: var(--muted);
-
-            font-size: 1.06rem;
-
-            line-height: 1.75;
-        }
-
-        .access-intro strong {
-            color: var(--primary);
-        }
-
-        .access-card {
-            position: relative;
-
-            max-width: 700px;
-
-            margin: auto;
-
-            padding: 45px 35px 38px;
-
-            text-align: center;
-
-            background: var(--card);
-
-            border: 1px solid var(--border);
-
-            border-radius: 24px;
-
-            box-shadow: var(--shadow);
-
-            overflow: hidden;
-
-            transition: 0.25s ease;
-        }
-
-        .access-card:hover {
-            transform: translateY(-4px);
-
-            box-shadow: var(--shadow-hover);
-        }
-
-        .access-card::before {
-            content: "";
-
-            position: absolute;
-
-            left: 0;
-            top: 0;
-
-            width: 100%;
-            height: 5px;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    var(--primary),
-                    var(--primary-light),
-                    var(--accent)
-                );
-        }
-
-        .access-icon {
-            width: 92px;
-            height: 92px;
-
-            margin: 0 auto 23px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            border-radius: 25px;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #edf3ff,
-                    #f6f8ff
-                );
-
-            color: var(--primary);
-
-            font-size: 2.65rem;
-
-            box-shadow:
-                inset 0 0 0 1px rgba(30, 60, 114, 0.06),
-                0 10px 25px rgba(30, 60, 114, 0.08);
-        }
-
-        .access-card h3 {
-            color: var(--text);
-
-            font-size: 1.75rem;
-
-            line-height: 1.25;
-
-            letter-spacing: -0.025em;
-
-            margin-bottom: 11px;
-        }
-
-        .access-card > p {
-            max-width: 580px;
-
-            margin: auto;
-
-            color: var(--text-secondary);
-
-            font-size: 1.02rem;
-
-            line-height: 1.75;
-        }
-
-        .camera-note {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            gap: 9px;
-
-            max-width: 560px;
-
-            margin: 25px auto 0;
-
-            padding: 14px 17px;
-
-            border-radius: 12px;
-
-            background: #f7f9fc;
-
-            color: var(--text-secondary);
-
-            font-size: 0.94rem;
-
-            line-height: 1.5;
-
-            border: 1px solid #e8ecf2;
-        }
-
-        .camera-note i {
-            color: var(--primary);
-        }
-
-        .platforms {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-
-            gap: 9px;
-
-            margin-top: 24px;
-        }
-
-        .platform {
-            display: inline-flex;
-            align-items: center;
-
-            gap: 7px;
-
-            padding: 8px 13px;
-
-            border-radius: 999px;
-
-            background: #f2f4f7;
-
-            color: var(--text-secondary);
-
-            font-size: 0.86rem;
-
-            font-weight: 750;
-        }
-
-        .business-access {
-            position: relative;
-
-            max-width: 700px;
-
-            margin: 25px auto 0;
-
-            padding: 28px 30px;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            gap: 25px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #edf3ff,
-                    #f7f9ff
-                );
-
-            border: 1px solid #dfe8f7;
-
-            border-radius: 18px;
-        }
-
-        .business-copy {
-            text-align: left;
-        }
-
-        .business-access h3 {
-            color: var(--primary);
-
-            font-size: 1.08rem;
-
-            margin-bottom: 4px;
-        }
-
-        .business-access p {
-            color: var(--text-secondary);
-
-            font-size: 0.93rem;
-
-            line-height: 1.6;
-        }
-
-        .business-button {
+            gap: 11px;
             flex-shrink: 0;
-
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-
-            padding: 12px 18px;
-
-            border-radius: 10px;
-
-            background: var(--primary);
-
-            color: white;
-
-            font-size: 0.9rem;
-
-            font-weight: 800;
-
-            box-shadow:
-                0 7px 16px rgba(30, 60, 114, 0.18);
-
-            transition: 0.2s ease;
-            gap: 8px;
-        }
-
-        .business-button:hover {
-            background: #17315d;
-
-            transform: translateY(-2px);
-        }
-
-.access-subtitle {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.access-image {
-    width: 100%;
-    overflow: hidden;
-    border-radius: 18px 18px 0 0;
-}
-
-.access-image img {
-    display: block;
-    width: 100%;
-    height: 240px;
-    object-fit: cover;
-}
-
-.access-card-content {
-    padding: 30px;
-    text-align: center;
-}
-
-/* =========================
-   MODERN DIALOG
-========================= */
-
-.modern-dialog {
-    width: min(92vw, 520px);
-    max-height: 88vh;
-
-    padding: 0;
-    border: none;
-    border-radius: 24px;
-
-    background: #ffffff;
-
-    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.22);
-
-    overflow: hidden;
-}
-
-.modern-dialog::backdrop {
-    background: rgba(15, 23, 42, 0.58);
-    backdrop-filter: blur(5px);
-}
-
-
-/* Contenido con scroll */
-
-.modern-dialog-content {
-    position: relative;
-
-    max-height: 88vh;
-    overflow-y: auto;
-
-    padding: 30px;
-}
-
-
-/* Scrollbar */
-
-.modern-dialog-content::-webkit-scrollbar {
-    width: 6px;
-}
-
-.modern-dialog-content::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.modern-dialog-content::-webkit-scrollbar-thumb {
-    background: #d1d5db;
-    border-radius: 10px;
-}
-
-
-/* Botón cerrar */
-
-.modern-dialog-close {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-
-    width: 36px;
-    height: 36px;
-
-    border: none;
-    border-radius: 50%;
-
-    background: #f3f4f6;
-    color: #374151;
-
-    font-size: 16px;
-
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    transition: 0.2s ease;
-
-    z-index: 2;
-}
-
-.modern-dialog-close:hover {
-    background: #e5e7eb;
-    transform: scale(1.05);
-}
-
-
-/* Icono */
-
-.modern-dialog-icon {
-    width: 54px;
-    height: 54px;
-
-    margin-bottom: 16px;
-
-    border-radius: 16px;
-
-    background: #fff3e0;
-    color: #f97316;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 23px;
-}
-
-
-/* Etiqueta */
-
-.modern-dialog-label {
-    display: block;
-
-    margin-bottom: 7px;
-
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-
-    color: #f97316;
-}
-
-
-/* Título */
-
-.modern-dialog h3 {
-    margin: 0 45px 10px 0;
-
-    font-size: 1.45rem;
-    line-height: 1.25;
-
-    color: #111827;
-}
-
-
-/* Descripción */
-
-.modern-dialog-description {
-    margin: 0 0 20px;
-
-    color: #6b7280;
-
-    font-size: 0.94rem;
-    line-height: 1.5;
-}
-
-
-/* Pasos */
-
-.modern-step {
-    display: flex;
-    gap: 13px;
-
-    padding: 13px 0;
-
-    border-top: 1px solid #f0f0f0;
-}
-
-
-/* Número */
-
-.modern-step-number {
-    flex-shrink: 0;
-
-    width: 30px;
-    height: 30px;
-
-    border-radius: 50%;
-
-    background: #111827;
-    color: white;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 0.8rem;
-    font-weight: 700;
-}
-
-
-/* Texto */
-
-.modern-step strong {
-    display: block;
-
-    margin-bottom: 3px;
-
-    color: #111827;
-
-    font-size: 0.94rem;
-}
-
-.modern-step p {
-    margin: 0;
-
-    color: #6b7280;
-
-    font-size: 0.86rem;
-    line-height: 1.45;
-}
-
-
-/* Aviso final */
-
-.modern-dialog-note {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-
-    margin-top: 18px;
-    padding: 13px 14px;
-
-    border-radius: 13px;
-
-    background: #f9fafb;
-
-    color: #4b5563;
-
-    font-size: 0.83rem;
-    line-height: 1.45;
-}
-
-.modern-dialog-note i {
-    flex-shrink: 0;
-
-    margin-top: 2px;
-
-    color: #f97316;
-}
-
-
-/* Móvil */
-
-@media (max-width: 600px) {
-
-    .modern-dialog {
-        width: calc(100vw - 20px);
-        max-height: 90vh;
-
-        border-radius: 20px;
-    }
-
-    .modern-dialog-content {
-        max-height: 90vh;
-        padding: 24px 20px;
-    }
-
-    .modern-dialog h3 {
-        font-size: 1.3rem;
-    }
-
-}
-
-        /* =========================
-           BENEFITS
-        ========================= */
-
-        .benefits {
-            display: grid;
-
-            grid-template-columns: repeat(3, 1fr);
-
-            gap: 22px;
-        }
-
-        .benefit-card {
-            position: relative;
-
-            padding: 34px 27px;
-
-            background: white;
-
-            border: 1px solid var(--border);
-
-            border-radius: 19px;
-
-            text-align: center;
-
-            box-shadow:
-                0 8px 25px rgba(0, 0, 0, 0.045);
-
-            transition: 0.25s ease;
-        }
-
-        .benefit-card:hover {
-            transform: translateY(-5px);
-
-            box-shadow: var(--shadow);
-        }
-
-        .benefit-icon {
-            width: 62px;
-            height: 62px;
-
-            margin: 0 auto 20px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            border-radius: 17px;
-
-            background: #eef4ff;
-
             color: var(--primary);
-
-            font-size: 1.45rem;
-        }
-
-        .benefit-card h3 {
-            color: var(--text);
-
-            font-size: 1.15rem;
-
-            margin-bottom: 10px;
-        }
-
-        .benefit-card p {
-            color: var(--text-secondary);
-
-            font-size: 1rem;
-
-            line-height: 1.7;
-        }
-
-
-.benefit-card.featured .benefit-icon {
-    background: #fff2e8;
-    color: #ff8a3d;
-}
-
-.benefit-card .highlight-accent {
-    color: #e65c00;
-    font-weight: 750;
-}
-
-        /* =========================
-           HOW IT WORKS
-        ========================= */
-
-        #como-funciona {
-            max-width: none;
-
-            background: white;
-        }
-
-        .steps-wrapper {
-            max-width: 1120px;
-
-            margin: auto;
-        }
-
-        .steps {
-            display: grid;
-
-            grid-template-columns: repeat(3, 1fr);
-
-            gap: 24px;
-        }
-
-        .step {
-            position: relative;
-
-            padding: 34px 27px;
-
-            text-align: center;
-
-            border: 1px solid var(--border);
-
-            border-radius: 19px;
-
-            background: #fbfcfe;
-        }
-
-        .step:not(:last-child)::after {
-            content: "→";
-
-            position: absolute;
-
-            right: -23px;
-            top: 43px;
-
-            color: #98a5b8;
-
-            font-size: 1.4rem;
-
-            font-weight: 800;
-
-            z-index: 2;
-        }
-
-        .step-number {
-            width: 46px;
-            height: 46px;
-
-            margin: 0 auto 19px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            border-radius: 50%;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    var(--primary),
-                    var(--primary-light)
-                );
-
-            color: white;
-
-            font-size: 0.98rem;
-
+            font-size: 1.25rem;
             font-weight: 900;
-
-            box-shadow:
-                0 8px 18px rgba(30, 60, 114, 0.2);
-        }
-
-        .step h3 {
-            color: var(--text);
-
-            font-size: 1.15rem;
-
-            margin-bottom: 9px;
-        }
-
-        .step p {
-            color: var(--text-secondary);
-
-            font-size: 1rem;
-
-            line-height: 1.7;
-        }
-
-        /* =========================
-           PRODUCTS
-        ========================= */
-
-        .products-box {
-            position: relative;
-
-            padding: 55px 40px;
-
-            text-align: center;
-
-            background:
-                radial-gradient(
-                    circle at 90% 15%,
-                    rgba(42, 82, 152, 0.08),
-                    transparent 25%
-                ),
-                white;
-
-            border: 1px solid var(--border);
-
-            border-radius: 24px;
-
-            box-shadow: var(--shadow);
-
-            overflow: hidden;
-        }
-
-        .product-number {
-            font-size: clamp(4.2rem, 9vw, 6.5rem);
-
-            font-weight: 950;
-
-            line-height: 0.9;
-
-            letter-spacing: -0.07em;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    var(--primary),
-                    var(--primary-light)
-                );
-
-            -webkit-background-clip: text;
-            background-clip: text;
-
-            color: transparent;
-
-            margin-bottom: 14px;
-        }
-
-        .products-box h3 {
-            color: var(--text);
-
-            font-size: 1.7rem;
-
-            line-height: 1.25;
-
-            letter-spacing: -0.025em;
-
-            margin-bottom: 11px;
-        }
-
-        .products-box > p {
-            max-width: 730px;
-
-            margin: auto;
-
-            color: var(--text-secondary);
-
-            font-size: 1.02rem;
-
-            line-height: 1.75;
-        }
-
-        .product-highlight {
-            display: inline-flex;
-            align-items: center;
-
-            gap: 8px;
-
-            margin-top: 28px;
-
-            padding: 12px 18px;
-
-            border-radius: 10px;
-
-            background: var(--accent-light);
-
-            color: #a94e14;
-
-            font-size: 0.92rem;
-
-            line-height: 1.45;
-
-            font-weight: 800;
-        }
-
-        .product-highlight::before {
-            content: "✦";
-        }
-
-        /* =========================
-           PLANS
-        ========================= */
-
-        .plans {
-            display: grid;
-
-            grid-template-columns: repeat(2, 1fr);
-
-            gap: 24px;
-
-            max-width: 900px;
-
-            margin: auto;
-        }
-
-        .plan {
-            position: relative;
-
-            padding: 35px 32px;
-
-            background: white;
-
-            border: 1px solid var(--border);
-
-            border-radius: 21px;
-
-            box-shadow:
-                0 8px 25px rgba(0, 0, 0, 0.045);
-        }
-
-        .plan.premium {
-            border: 2px solid var(--primary);
-
-            box-shadow:
-                0 14px 35px rgba(30, 60, 114, 0.12);
-        }
-
-        .premium-badge {
-            position: absolute;
-
-            top: 18px;
-            right: 18px;
-
-            padding: 5px 10px;
-
-            border-radius: 999px;
-
-            background: #edf3ff;
-
-            color: var(--primary);
-
-            font-size: 0.72rem;
-
-            font-weight: 900;
-
-            text-transform: uppercase;
-        }
-
-        .plan-label {
-            color: #7c8798;
-
-            font-size: 0.77rem;
-
-            font-weight: 900;
-
-            letter-spacing: 0.11em;
-
-            text-transform: uppercase;
-
-            margin-bottom: 5px;
-        }
-
-        .plan h3 {
-            color: var(--text);
-
-            font-size: 1.8rem;
-
-            letter-spacing: -0.03em;
-
-            margin-bottom: 20px;
-        }
-
-        .plan ul {
-            list-style: none;
-        }
-
-        .plan li {
-            display: flex;
-
-            align-items: flex-start;
-
-            gap: 10px;
-
-            margin: 14px 0;
-
-            color: var(--text-secondary);
-
-            font-size: 1rem;
-
-            line-height: 1.6;
-        }
-
-        .plan li i {
-            flex-shrink: 0;
-
-            margin-top: 5px;
-
-            color: var(--primary);
-
-            font-size: 0.8rem;
-        }
-
-        .plan-note {
-            max-width: 760px;
-
-            margin: 27px auto 0;
-
-            text-align: center;
-
-            color: #697586;
-
-            font-size: 0.84rem;
-
-            line-height: 1.6;
-        }
-
-        /* =========================
-           CTA
-        ========================= */
-
-        .cta {
-            position: relative;
-
-            overflow: hidden;
-
-            padding: 95px 22px;
-
-            text-align: center;
-
-            color: white;
-
-            background:
-                radial-gradient(
-                    circle at 20% 30%,
-                    rgba(255, 255, 255, 0.08),
-                    transparent 25%
-                ),
-
-                radial-gradient(
-                    circle at 80% 80%,
-                    rgba(255, 138, 61, 0.13),
-                    transparent 27%
-                ),
-
-                linear-gradient(
-                    135deg,
-                    #172f5c,
-                    #1e3c72,
-                    #2a5298
-                );
-        }
-
-        .cta h2 {
-            max-width: 700px;
-
-            margin: auto auto 14px;
-
-            font-size: clamp(2.1rem, 5vw, 3rem);
-
-            line-height: 1.1;
-
             letter-spacing: -0.04em;
         }
 
-        .cta p {
-            max-width: 720px;
-
-            margin: 0 auto 30px;
-
-            color: rgba(255, 255, 255, 0.87);
-
-            font-size: 1.06rem;
-
-            line-height: 1.75;
-        }
-
-        .cta-button {
-            display: inline-flex;
-
+        .brand-icon {
+            width: 44px;
+            height: 44px;
+            display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0 4px 12px rgba(30, 60, 114, 0.14);
+        }
 
+        .brand-icon img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: clamp(12px, 2.5vw, 28px);
+            font-size: 0.92rem;
+            font-weight: 750;
+        }
+
+        .nav-links a {
+            padding: 8px 0;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-hover);
+        }
+
+        /* INTRODUCTION */
+
+        .page-intro {
+            padding: 28px 20px 0;
+            text-align: center;
+        }
+
+        .page-intro p {
+            max-width: 720px;
+            margin: 0 auto;
+            color: var(--text-secondary);
+            font-size: 0.98rem;
+        }
+
+        /* SPLIT HERO */
+
+        .split-hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: 20px;
+            width: 100%;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 28px clamp(16px, 3vw, 40px) 40px;
+        }
+
+        .split-side {
+            position: relative;
+            isolation: isolate;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 0;
+            min-height: 520px;
+            padding: clamp(28px, 4vw, 56px) clamp(22px, 3vw, 44px);
+            overflow: hidden;
+            border-radius: var(--radius);
+            color: white;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .split-side::before {
+            position: absolute;
+            z-index: -1;
+            inset: 0;
+            content: "";
+            pointer-events: none;
+        }
+
+        .split-side.clients {
+            background: linear-gradient(
+                135deg,
+                #172f5c 0%,
+                #1e3c72 55%,
+                #2a5298 100%
+            );
+        }
+
+        .split-side.clients::before {
+            background:
+                radial-gradient(
+                    circle at 15% 15%,
+                    rgba(255, 138, 61, 0.24),
+                    transparent 42%
+                ),
+                radial-gradient(
+                    circle at 90% 90%,
+                    rgba(255, 255, 255, 0.08),
+                    transparent 38%
+                );
+        }
+
+        .split-side.business {
+            background: linear-gradient(
+                135deg,
+                #192433 0%,
+                #273548 55%,
+                #34475e 100%
+            );
+        }
+
+        .split-side.business::before {
+            background:
+                radial-gradient(
+                    circle at 85% 15%,
+                    rgba(255, 138, 61, 0.19),
+                    transparent 42%
+                ),
+                radial-gradient(
+                    circle at 10% 90%,
+                    rgba(42, 82, 152, 0.3),
+                    transparent 40%
+                );
+        }
+
+        .split-content {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .split-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             gap: 8px;
-
-            padding: 14px 24px;
-
-            border-radius: 11px;
-
-            background: white;
-
-            color: var(--primary);
-
-            font-size: 0.96rem;
-
-            font-weight: 850;
-
-            box-shadow:
-                0 10px 25px rgba(0, 0, 0, 0.15);
-
-            transition: 0.2s ease;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-
-            box-shadow:
-                0 14px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        /* =========================
-           CONTACT
-        ========================= */
-
-        .contact {
-            padding: 65px 22px;
-
-            text-align: center;
-
-            background: white;
-        }
-
-        .contact h2 {
-            color: var(--text);
-
-            margin-bottom: 7px;
-
-            font-size: 1.65rem;
-
-            letter-spacing: -0.025em;
-        }
-
-        .contact p {
-            color: var(--muted);
-
-            font-size: 1rem;
-        }
-
-        .contact a {
-            color: var(--primary);
-
+            margin-bottom: 24px;
+            padding: 8px 15px;
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.11);
+            font-size: 0.8rem;
             font-weight: 800;
+            letter-spacing: 0.055em;
+            text-transform: uppercase;
         }
 
-        /* =========================
-           FOOTER
-        ========================= */
+        .split-badge.business-badge {
+            border-color: rgba(255, 177, 124, 0.55);
+            background: rgba(255, 138, 61, 0.16);
+            color: #ffd2b3;
+        }
 
-        footer {
-            padding: 26px 20px;
+        .split-side h2 {
+            margin-bottom: 20px;
+            font-size: clamp(2rem, 3.4vw, 3.2rem);
+            line-height: 1.12;
+            letter-spacing: -0.045em;
+            overflow-wrap: break-word;
+        }
 
+        .split-side h2 span {
+            color: #ffb17c;
+        }
+
+        .split-side p {
+            margin: 0 auto 30px;
+            max-width: 440px;
+            color: rgba(255, 255, 255, 0.91);
+            font-size: 1.04rem;
+            line-height: 1.8;
+        }
+
+        /* BUTTONS */
+
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: stretch;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .split-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 50px;
+            padding: 13px 19px;
+            border: 1px solid transparent;
+            border-radius: 12px;
+            font-size: 0.94rem;
+            font-weight: 800;
+            line-height: 1.4;
             text-align: center;
-
-            background: #111d33;
-
-            color: rgba(255, 255, 255, 0.68);
-
-            font-size: 0.86rem;
+            overflow-wrap: anywhere;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.13);
+            transition:
+                transform 0.2s ease,
+                background-color 0.2s ease,
+                border-color 0.2s ease,
+                box-shadow 0.2s ease;
         }
 
-        /* =========================
-           RESPONSIVE
-        ========================= */
+        .split-btn i {
+            flex-shrink: 0;
+            font-size: 1.05rem;
+        }
+
+        .split-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .clients .split-btn.primary {
+            background: var(--accent);
+            color: #172033;
+        }
+
+        .clients .split-btn.primary:hover {
+            background: #ffa365;
+            box-shadow: 0 12px 26px rgba(255, 138, 61, 0.3);
+        }
+
+        .clients .split-btn.secondary {
+            border-color: rgba(255, 255, 255, 0.32);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .clients .split-btn.secondary:hover {
+            border-color: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.19);
+        }
+
+        .business .split-btn.primary {
+            background: white;
+            color: var(--primary);
+        }
+
+        .business .split-btn.primary:hover {
+            background: #f0f4f8;
+            box-shadow: 0 12px 26px rgba(255, 255, 255, 0.13);
+        }
+
+        .business .split-btn.secondary {
+            border-color: rgba(255, 255, 255, 0.32);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .business .split-btn.secondary:hover {
+            border-color: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.19);
+        }
+
+        /* FOOTER */
+
+        .page-footer {
+            padding: 0 20px 28px;
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            text-align: center;
+        }
+
+        .page-footer a {
+            color: var(--primary);
+            font-weight: 700;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .page-footer a:hover {
+            color: var(--accent-hover);
+        }
+
+        /* RESPONSIVE */
+
+        @media (min-width: 1200px) {
+            .split-side {
+                min-height: 580px;
+            }
+        }
 
         @media (max-width: 850px) {
-
-            .main-nav {
-                display: none;
+            .split-hero {
+                grid-template-columns: minmax(0, 1fr);
+                max-width: 700px;
+                gap: 18px;
+                padding-top: 22px;
             }
 
-            .hero {
-                margin-top: 68px;
-            }
-
-            .benefits,
-            .steps {
-                grid-template-columns: 1fr;
-            }
-
-            .step:not(:last-child)::after {
-                content: "↓";
-
-                right: auto;
-
-                top: auto;
-                bottom: -25px;
-
-                left: 50%;
-
-                transform: translateX(-50%);
-            }
-
-            .plans {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 650px) {
-
-            .topbar {
-                padding: 0 18px;
-            }
-
-            .section {
-                padding: 75px 18px;
-            }
-
-            .hero {
+            .split-side {
                 min-height: auto;
-
-                padding: 78px 20px 82px;
+                padding: 48px 28px;
             }
 
-            .hero h1 {
-                font-size: 2.55rem;
+            .split-side h2 {
+                font-size: clamp(2rem, 6vw, 2.7rem);
             }
 
-            .hero p {
-                font-size: 1.05rem;
+            .split-side p {
+                max-width: 520px;
             }
-
-            .hero-pill {
-                font-size: 0.83rem;
-            }
-
-            .access-card {
-                padding: 42px 20px 30px;
-
-                border-radius: 20px;
-            }
-
-            .access-card > p {
-                font-size: 1rem;
-            }
-
-            .business-access {
-                flex-direction: column;
-
-                align-items: stretch;
-
-                padding: 24px 20px;
-
-                text-align: center;
-            }
-
-            .business-copy {
-                text-align: center;
-            }
-
-            .business-access p {
-                font-size: 0.96rem;
-            }
-
-            .business-button {
-                width: 100%;
-
-                padding: 13px 18px;
-
-                font-size: 0.95rem;
-            }
-
-            .benefit-card p,
-            .step p {
-                font-size: 1rem;
-            }
-
-            .products-box {
-                padding: 45px 22px;
-            }
-
-            .products-box > p {
-                font-size: 1rem;
-            }
-
-            .product-highlight {
-                line-height: 1.5;
-            }
-
-            .plan li {
-                font-size: 1rem;
-            }
-            .nav-business {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    padding: 8px 14px;
-    border-radius: 9px;
-    background: #eef4ff;
-    color: #1e3c72 !important;
-    font-weight: 700;
-}
-
-.nav-business:hover {
-    background: #e2ecff;
-}
         }
 
-        @media (max-width: 420px) {
+        @media (max-width: 520px) {
+            .topbar {
+                min-height: 64px;
+                gap: 10px;
+                padding: 8px 14px;
+            }
 
             .brand {
-                font-size: 1.15rem;
+                gap: 8px;
+                font-size: 1.08rem;
             }
 
             .brand-icon {
-                width: 32px;
-                height: 32px;
+                width: 38px;
+                height: 38px;
             }
 
-            .hero h1 {
-                font-size: 2.25rem;
+            .nav-links {
+                gap: 12px;
+                font-size: 0.78rem;
             }
 
-            .hero p {
-                font-size: 1rem;
+            .page-intro {
+                padding: 22px 18px 0;
             }
 
-            .camera-note {
-                align-items: flex-start;
-
-                text-align: left;
+            .page-intro p {
+                font-size: 0.91rem;
             }
 
-            .section-header p,
-            .access-intro p {
-                font-size: 1rem;
+            .split-hero {
+                padding: 18px 12px 28px;
+                gap: 14px;
+            }
+
+            .split-side {
+                padding: 38px 20px;
+                border-radius: 15px;
+            }
+
+            .split-badge {
+                margin-bottom: 19px;
+                font-size: 0.74rem;
+            }
+
+            .split-side h2 {
+                font-size: clamp(1.85rem, 8vw, 2.35rem);
+            }
+
+            .split-side p {
+                font-size: 0.96rem;
+                line-height: 1.7;
+            }
+
+            .btn-group {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .split-btn {
+                width: 100%;
+                min-height: 48px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
             }
         }
     </style>
-
 </head>
 
 <body>
+    <a class="skip-link" href="#contenido">Skip to main content</a>
 
-<header class="topbar">
-
-    <a href="#" class="brand">
-
-<div class="brand-icon">
-            <img src="https://play-lh.googleusercontent.com/I0NTZ53D9Rf-qVr4mAoeMl9Otm5gzHQ6qHDPg4BHmgoHCYnivvQBWY0-Muvaov60Niba6dKDCvb4a_EEfO5jboo=w240-h480-rw" alt="HotCrave">
-</div>
-
-        HotCrave
-
-    </a>
-
-    <button
-        class="menu-button"
-        id="menuButton"
-        aria-label="Open menu"
-        aria-expanded="false"
-    >
-        <i class="fa-solid fa-bars"></i>
-    </button>
-
-</header>
-
-<aside class="side-menu" id="sideMenu">
-
-    <a href="#acceso">Access HotCrave</a>
-    <a href="#ventas">Benefits</a>
-    <a href="#como-funciona">How It Works</a>
-    <a href="#productos">Products</a>
-    <a href="#planes">Plans</a>
-    <a href="#contacto">Contact</a>
-
-</aside>
-
-<nav class="main-nav">
-
-    <a href="#acceso">Access HotCrave</a>
-    <a href="#ventas">Benefits</a>
-    <a href="#como-funciona">How It Works</a>
-    <a href="#productos">Products</a>
-    <a href="#planes">Plans</a>
-    <a class="nav-business" href="#negocios">
-      <i class="fa-solid fa-store"></i>
-      Business Access
-      <i
-                class="fa-solid fa-arrow-right"
-                style="margin-left: 8px;"
-            ></i>
-    </a>
-
-</nav>
-
-<!-- HERO -->
-
-<section class="hero">
-
-    <div class="hero-content">
-
-        <div class="eyebrow">
-
-            <i class="fa-solid fa-fire"></i>
-
-            HotCrave for Businesses
-
-        </div>
-
-        <h1>
-            Your food is ready.<br>
-
-            <span>Let your customers know.</span>
-        </h1>
-
-        <p>
-            HotCrave connects businesses with their customers 
-            right when their food is freshly made, hot, and ready to enjoy.
-        </p>
-
-        <div class="hero-pills">
-
-            <span class="hero-pill">
-                <i class="fa-solid fa-bolt"></i>
-                Publish in one tap
+    <!-- HEADER -->
+    <header class="topbar">
+        <a href="https://jsdevmobile.com/" class="brand" aria-label="JSDev homepage">
+            <span class="brand-icon">
+                <img
+                    src="https://play-lh.googleusercontent.com/I0NTZ53D9Rf-qVr4mAoeMl9Otm5gzHQ6qHDPg4BHmgoHCYnivvQBWY0-Muvaov60Niba6dKDCvb4a_EEfO5jboo=w240-h480-rw"
+                    alt=""
+                    width="44"
+                    height="44"
+                >
             </span>
-
-            <span class="hero-pill featured">
-                <i class="fa-solid fa-bell"></i>
-                Notify your customers
-            </span>
-
-            <span class="hero-pill">
-                <i class="fa-solid fa-chart-line"></i>
-                More sales opportunities
-            </span>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- ACCESS -->
-<section class="section access-section" id="acceso">
-
-    <div class="access-intro" id="negocios">
-
-        <span class="section-kicker">
-            Get Started
-        </span>
-
-        <h2>
-            Get Started with HotCrave
-        </h2>
-
-    </div>
-
-
-    <!-- NEGOCIO -->
-    <div class="business-access">
-
-        <div class="business-copy">
-
-            <h3>
-                <i class="fa-solid fa-store"></i>
-                Do you own a business?
-            </h3>
-
-            <p>
-                Access your business dashboard and publish 
-                updates when your products are freshly made.
-            </p>
-
-        </div>
-
-        <a
-            class="business-button"
-            href="https://jsdevmobile.com/hotcrave/business/"
-        >
-            Access Business Dashboard
-            <i class="fa-solid fa-arrow-right"></i>
+            <span>HotCrave</span>
         </a>
 
-    </div>
+        <nav class="nav-links" aria-label="Main navigation">
+            <a href="#clientes">For customers</a>
+            <a href="#negocios">For business</a>
+        </nav>
+    </header>
 
-
-    <!-- ANDROID -->
-    <div class="business-access">
-
-        <div class="business-copy">
-
-            <h3>
-                <i class="fa-brands fa-android"></i>
-                Using Android?
-            </h3>
-
+    <main id="contenido">
+        <section class="page-intro" aria-label="Introduction">
+            <h1 class="sr-only">HotCrave: discover freshly made food or bring your business on board</h1>
             <p>
-                Discover freshly made food, follow your favorite local
-                 businesses, and get notified when something fresh is ready near you.
+                Choose how you want to use HotCrave: discover what's being prepared nearby
+                or connect your business with customers in your area.
             </p>
+        </section>
 
-        </div>
+        <!-- MAIN SELECTOR -->
+        <section class="split-hero" aria-label="Choose how to use HotCrave">
 
-        <a
-            class="business-button"
-            href="https://play.google.com/store/apps/details?id=com.jsdev.hotcrave.food"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            Download for Android
-            <i class="fa-solid fa-arrow-down"></i>
-        </a>
+            <!-- CUSTOMERS -->
+            <article class="split-side clients" id="clientes">
+                <div class="split-content">
+                    <div class="split-badge">
+                        <i class="fa-solid fa-cookie-bite" aria-hidden="true"></i>
+                        Customers and locals
+                    </div>
 
-    </div>
-
-
-    <!-- IPHONE -->
-    <div class="business-access">
-
-        <div class="business-copy">
-
-            <h3>
-                <i class="fa-brands fa-apple"></i>
-                Using an iPhone?
-            </h3>
-
-            <p>
-                Use the HotCrave web app on your iPhone 
-                and get notifications when your favorite businesses post an update.
-            </p>
-
-        </div>
-
-        <button
-            type="button"
-            class="business-button button-secondary"
-            onclick="document.getElementById('dialogo-iphone').showModal()"
-        >
-            Learn More
-            <i class="fa-solid fa-arrow-right"></i>
-        </button>
-
-    </div>
-
-
-    <!-- IPHONE MODAL -->
-    <dialog id="dialogo-iphone" class="modern-dialog">
-
-        <div class="modern-dialog-content">
-
-            <button
-                type="button"
-                class="modern-dialog-close"
-                onclick="document.getElementById('dialogo-iphone').close()"
-                aria-label="Close"
-            >
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-
-
-            <div class="modern-dialog-icon">
-                <i class="fa-brands fa-apple"></i>
-            </div>
-
-
-            <span class="modern-dialog-label">
-                HOTCRAVE ON IPHONE
-            </span>
-
-
-            <h3>
-                Get notifications on your iPhone
-            </h3>
-
-
-            <p class="modern-dialog-description">
-                HotCrave works as a web app on iPhone. To receive notifications, add it to your Home Screen.
-            </p>
-
-
-            <div class="modern-step">
-
-                <span class="modern-step-number">
-                    1
-                </span>
-
-                <div>
-                    <strong>Open HotCrave</strong>
+                    <h2>I'm looking for <span>freshly made food</span></h2>
 
                     <p>
-                        Scan your favorite business's QR code or open the link they provide.
+                        Find out when freshly made food is available near you,
+                        follow your favorite local business, and get notifications
+                        when they post updates.
                     </p>
+
+                    <div class="btn-group">
+                        <a
+                            href="https://jsdevmobile.com/en/pages/hotcrave-android-app.html"
+                            class="split-btn primary"
+                        >
+                            <i class="fa-solid fa-compass" aria-hidden="true"></i>
+                            Explore the Android app
+                        </a>
+
+                        <a
+                            href="https://play.google.com/store/apps/details?id=com.jsdev.hotcrave.food"
+                            class="split-btn secondary"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <i class="fa-brands fa-google-play" aria-hidden="true"></i>
+                            Download for Android
+                        </a>
+                    </div>
                 </div>
+            </article>
 
-            </div>
+            <!-- BUSINESS -->
+            <article class="split-side business" id="negocios">
+                <div class="split-content">
+                    <div class="split-badge business-badge">
+                        <i class="fa-solid fa-store" aria-hidden="true"></i>
+                        Bakeries, cafés, and local business
+                    </div>
 
-
-            <div class="modern-step">
-
-                <span class="modern-step-number">
-                    2
-                </span>
-
-                <div>
-                    <strong>Add it to your Home Screen</strong>
+                    <h2>I run a <span>business</span></h2>
 
                     <p>
-                        In Safari, tap <strong>Share</strong>,
-
-                        select <strong>Add to Home Screen</strong>
-
-                        and confirm.
+                        Let your customers know when your products are freshly made
+                        or about to come out of the oven. Connect with people nearby
+                        who want to discover what you make.
                     </p>
+
+                    <div class="btn-group">
+                        <a
+                            href="https://jsdevmobile.com/hotcrave/business/"
+                            class="split-btn primary"
+                        >
+                            <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>
+                            Open the business dashboard
+                        </a>
+
+                        <a
+                            href="https://jsdevmobile.com/en/pages/hotcrave-business.html"
+                            class="split-btn secondary"
+                        >
+                            <i class="fa-solid fa-store" aria-hidden="true"></i>
+                            List my business
+                        </a>
+                    </div>
                 </div>
+            </article>
 
-            </div>
+        </section>
+    </main>
 
-
-            <div class="modern-step">
-
-                <span class="modern-step-number">
-                    3
-                </span>
-
-                <div>
-                    <strong>Turn on notifications</strong>
-
-                    <p>
-                        Open the web app from the new icon and allow notifications when prompted.
-                    </p>
-                </div>
-
-            </div>
-
-
-            <div class="modern-dialog-note">
-
-                <i class="fa-solid fa-bell"></i>
-
-                <span>
-                    You'll then receive notifications when your favorite businesses post freshly made food.
-                </span>
-
-            </div>
-
-        </div>
-
-    </dialog>
-
-
-    <!-- WEB -->
-    <div class="business-access">
-
-        <div class="business-copy">
-
-            <h3>
-                <i class="fa-solid fa-desktop"></i>
-                Prefer using the Web?
-            </h3>
-
-            <p>
-                Enable notifications in your browser 
-                and get alerts when your favorite businesses post an update.
-            </p>
-
-        </div>
-
-        <button
-            type="button"
-            class="business-button button-secondary"
-            onclick="document.getElementById('dialogo-web').showModal()"
-        >
-            Learn More
-            <i class="fa-solid fa-arrow-right"></i>
-        </button>
-
-    </div>
-
-
-    <!-- WEB MODAL -->
-    <dialog id="dialogo-web" class="modern-dialog">
-
-        <div class="modern-dialog-content">
-
-            <button
-                type="button"
-                class="modern-dialog-close"
-                onclick="document.getElementById('dialogo-web').close()"
-                aria-label="Close"
-            >
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-
-
-            <div class="modern-dialog-icon">
-                <i class="fa-solid fa-bell"></i>
-            </div>
-
-
-            <span class="modern-dialog-label">
-                HOTCRAVE WEB
-            </span>
-
-
-            <h3>
-                Get notifications directly in your browser
-            </h3>
-
-
-            <p class="modern-dialog-description">
-                No app installation is required. Open your business's link and enable notifications.
-            </p>
-
-
-            <div class="modern-step">
-
-                <span class="modern-step-number">
-                    1
-                </span>
-
-                <div>
-                    <strong>Open the link</strong>
-
-                    <p>
-                        Ask your favorite business for its link.
-                    </p>
-                </div>
-
-            </div>
-
-
-            <div class="modern-step">
-
-                <span class="modern-step-number">
-                    2
-                </span>
-
-                <div>
-                    <strong>Allow notifications</strong>
-
-                    <p>
-                        When your browser asks whether 
-                        you want to receive notifications, select <strong>Allow</strong>.
-                    </p>
-                </div>
-
-            </div>
-
-
-            <div class="modern-step">
-
-                <span class="modern-step-number">
-                    3
-                </span>
-
-                <div>
-                    <strong>You're all set</strong>
-
-                    <p>
-                        You'll receive a notification when the business posts freshly made food.
-                    </p>
-                </div>
-
-            </div>
-
-
-            <div class="modern-dialog-note">
-
-                <i class="fa-solid fa-bolt"></i>
-
-                <span>
-                    You can use HotCrave on your phone, tablet, or computer.
-                </span>
-
-            </div>
-
-        </div>
-
-    </dialog>
-
-</section>
-
-
-<p class="access-subtitle">
-    See a HotCrave QR code at a business?
-    <strong>
-        Use your phone's camera to scan it.
-    </strong>
-</p>
-
-
-<section class="section access-card">
-
-    <!-- IMAGEN -->
-    <div class="access-image">
-        <img
-            src="../../assets/img/scan-qr-en.png"
-            alt="Person scanning a business QR code"
-        >
-    </div>
-
-    <div class="access-card-content">
-
-        <div class="access-icon">
-            <i class="fa-solid fa-qrcode"></i>
-        </div>
-
-        <h3>
-            Scan the business QR code
-        </h3>
-
+    <footer class="page-footer">
         <p>
-            The code automatically identifies the business
-             and takes you to the right place in HotCrave.
+            A tool by
+            <a href="https://jsdevmobile.com/">JSDev</a>
+            to discover freshly made food and connect local business with customers.
         </p>
-
-        <div class="camera-note">
-            <i class="fa-solid fa-camera"></i>
-            <span>
-                Using Android? You can also find nearby businesses
-
-                 from <strong>Following → Add a Business</strong>,
-
-                 with businesses within 20 km of your location.
-            </span>
-        </div>
-
-        <div class="platforms">
-            <span class="platform">
-                <i class="fa-brands fa-android"></i>
-                Android
-            </span>
-
-            <span class="platform">
-                <i class="fa-brands fa-apple"></i>
-                iPhone
-            </span>
-
-            <span class="platform">
-                <i class="fa-solid fa-globe"></i>
-                Web
-            </span>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- BENEFITS -->
-
-<section class="section" id="ventas">
-
-    <div class="section-header">
-
-        <span class="section-kicker">
-            For Your Business
-        </span>
-
-        <h2>
-            Turn Every Fresh Batch Into a Sales Opportunity
-        </h2>
-
-        <p>
-            When your products are freshly made, your customers can find out right away.
-        </p>
-
-    </div>
-
-    <div class="benefits">
-
-        <div class="benefit-card">
-
-            <div class="benefit-icon">
-                <i class="fa-solid fa-bolt"></i>
-            </div>
-
-            <h3>
-                Publish in one tap
-            </h3>
-
-            <p>
-                Quickly let customers know when a batch 
-                of products is freshly made and ready to sell.
-            </p>
-
-        </div>
-
-        <div class="benefit-card featured">
-
-    <div class="benefit-icon">
-        <i class="fa-solid fa-bell"></i>
-    </div>
-
-    <h3>
-        Your Customers Know
-    </h3>
-
-    <p>
-        People who follow your business can receive&#x20;
-
-        <span class="highlight-accent">instant notifications</span> when you publish a Hot Event.
-    </p>
-
-</div>
-
-        <div class="benefit-card">
-
-            <div class="benefit-icon">
-                <i class="fa-solid fa-chart-line"></i>
-            </div>
-
-            <h3>
-                More sales opportunities
-            </h3>
-
-            <p>
-                Reach your customers at exactly 
-                the moment your products are ready.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- HOW IT WORKS -->
-
-<section class="section" id="como-funciona">
-
-    <div class="steps-wrapper">
-
-        <div class="section-header">
-
-            <span class="section-kicker">
-                Simple and Straightforward
-            </span>
-
-            <h2>
-                How Does It Work?
-            </h2>
-
-            <p>
-                A simple process that turns a freshly made 
-                batch into a new sales opportunity.
-            </p>
-
-        </div>
-
-        <div class="steps">
-
-            <div class="step">
-
-                <div class="step-number">
-                    1
-                </div>
-
-                <h3>
-                    You Prepare
-                </h3>
-
-                <p>
-                    Prepare your products as you normally do: 
-                    baked goods, pizza, coffee, empanadas, prepared meals, and more.
-                </p>
-
-            </div>
-
-            <div class="step">
-
-                <div class="step-number">
-                    2
-                </div>
-
-                <h3>
-                    You Publish
-                </h3>
-
-                <p>
-                    When they're ready, publish a Hot Event from HotCrave with one tap.
-                </p>
-
-            </div>
-
-            <div class="step">
-
-                <div class="step-number">
-                    3
-                </div>
-
-                <h3>
-                    Your Customers Know
-                </h3>
-
-                <p>
-                    Customers who follow your business can get 
-                    the notification and stop by while the food is freshly made.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- PRODUCTS -->
-
-<section class="section" id="productos">
-
-    <div class="section-header">
-
-        <span class="section-kicker">
-            Get Started Quickly
-        </span>
-
-        <h2>
-            Products for Different Types of Businesses
-        </h2>
-
-        <p>
-            Choose from predefined products or add custom products for your business.
-        </p>
-
-    </div>
-
-    <div class="products-box">
-
-        <div class="product-number">
-            30
-        </div>
-
-        <h3>
-            Predefined Products
-        </h3>
-
-        <p>
-            Explore 30 predefined products organized into 6 categories
-            for different types of businesses, including bakeries, cafés,
-            pizzerias, restaurants, and other food businesses.
-        </p>
-
-        <div class="product-highlight">
-            The Free plan lets you select up to 5 predefined products.
-            With Premium, you keep those 5 products, add up to 100 custom
-            products, and unlock an additional category for cold food.
-        </div>
-
-    </div>
-
-</section>
-
-<!-- PLANS -->
-
-<section class="section" id="planes">
-
-    <div class="section-header">
-
-        <span class="section-kicker">
-            Plans
-        </span>
-
-        <h2>
-            Choose the Right Plan for Your Business
-        </h2>
-
-        <p>
-            Start with the essentials and unlock more options for your business with Premium.
-        </p>
-
-    </div>
-
-    <div class="plans">
-
-        <div class="plan">
-
-            <div class="plan-label">
-                Get Started
-            </div>
-
-            <h3>
-                Free
-            </h3>
-
-            <ul>
-
-                <li>
-                    <i class="fa-solid fa-check"></i>
-                    <span>
-                        Choose up to 5 products from a catalog of 30 predefined options
-                    </span>
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-check"></i>
-                    <span>
-                        Publish Hot Events for freshly prepared hot food
-                    </span>
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-check"></i>
-                    <span>
-                        Hot Events lasting up to 30 minutes once the food is ready
-                    </span>
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-check"></i>
-                    <span>
-                        Let customers follow your business
-                    </span>
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-check"></i>
-                    <span>
-                        Notifications for new Hot Events
-                    </span>
-                </li>
-
-            </ul>
-
-        </div>
-
-        <div class="plan premium">
-
-            <span class="premium-badge">
-                Premium
-            </span>
-
-            <div class="plan-label">
-                More Possibilities
-            </div>
-
-            <h3>
-                Premium
-            </h3>
-
-            <ul>
-
-                <li>
-                    <i class="fa-solid fa-check"></i>
-                    <span>
-                        Keep your 5 predefined products and add up to 100 custom products
-                    </span>
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-check"></i>
-                    <span>
-                        An additional category for cold food, such as sandwiches and other ready-to-eat meals
-                    </span>
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-check"></i>
-                    <span>
-                        Up to 10 active Hot Events at a time
-                    </span>
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-check"></i>
-                    <span>
-                        Hot Events lasting up to 1 hour once the food is ready
-                    </span>
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-check"></i>
-                    <span>
-                        Notifications tailored to hot and cold food
-                    </span>
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-check"></i>
-                    <span>
-                        More flexibility for your business
-                    </span>
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-check"></i>
-                    <span>
-                        No ads in the business dashboard
-                    </span>
-                </li>
-
-            </ul>
-
-        </div>
-
-    </div>
-
-    <p class="plan-note">
-        Premium subscriptions are managed through the Android app via Google Play.
-    </p>
-
-    <p class="plan-note">
-        Both plans let you notify customers 15 or 30 minutes before the food is ready.
-        The Hot Event's expiration time starts when the food is ready for sale.
-    </p>
-
-</section>
-
-<!-- CTA -->
-
-<section class="cta">
-
-    <h2>
-        Is Your Food Ready?
-    </h2>
-
-    <p>
-        Let your customers know right away. HotCrave helps turn every freshly made batch into a new sales opportunity.
-    </p>
-
-    <a
-        class="cta-button"
-        href="#acceso"
-    >
-        Discover HotCrave
-        <i class="fa-solid fa-arrow-down"></i>
-    </a>
-
-</section>
-
-<!-- CONTACT -->
-
-<section class="contact" id="contacto">
-
-    <span class="section-kicker">
-        Contact
-    </span>
-
-    <h2>
-        Have a question?
-    </h2>
-
-    <p>
-        We’re here to help.
-    </p>
-
-    <p style="margin-top: 8px;">
-        <a href="mailto:teamjsdev@gmail.com">
-            teamjsdev@gmail.com
-        </a>
-    </p>
-
-</section>
-
-<footer>
-  <p>© <span id="year"></span> JSDev · HotCrave</p>
-  <p>
-    <a href="privacy.html">Privacy Policy</a>
-  </p>
-</footer>
-
-<script>
-document.getElementById("year").textContent = new Date().getFullYear();
-</script>
-
-<script>
-
-    const menuButton =
-        document.getElementById("menuButton");
-
-    const sideMenu =
-        document.getElementById("sideMenu");
-
-    menuButton.addEventListener("click", () => {
-
-        const isOpen =
-            sideMenu.classList.toggle("open");
-
-        menuButton.setAttribute(
-            "aria-expanded",
-            isOpen ? "true" : "false"
-        );
-
-        menuButton.innerHTML = isOpen
-            ? '<i class="fa-solid fa-xmark"></i>'
-            : '<i class="fa-solid fa-bars"></i>';
-    });
-
-    sideMenu
-        .querySelectorAll("a")
-        .forEach((link) => {
-
-            link.addEventListener("click", () => {
-
-                sideMenu.classList.remove("open");
-
-                menuButton.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-                menuButton.innerHTML =
-                    '<i class="fa-solid fa-bars"></i>';
-            });
-
-        });
-
-</script>
-
+    </footer>
 </body>
 </html>
