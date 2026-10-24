@@ -140,6 +140,13 @@
       border: 0;
     }
 
+    .video-container.vertical {
+  max-width: 350px; /* Ancho ideal para simular un celular */
+  height: 600px;     /* Altura justa para que no se corte el Reel */
+  padding-bottom: 0; /* Anula el truco del 16:9 */
+  margin: 25px auto; /* Centra el video en la pantalla */
+}
+
     .button {
       display: inline-block;
       margin-top: 25px;
@@ -191,13 +198,16 @@
       class="app-image"
     >
 
-    <div class="video-container">
-      <iframe
-        src="https://www.youtube.com/embed/JwRHb79M4so"
-        title="Video demostración de Notaker"
-        allowfullscreen>
-      </iframe>
-    </div>
+<div class="video-container vertical">
+  <iframe
+    src="https://www.instagram.com/reel/DXSnjePD3Ex/embed"
+    title="Video demostración de Notaker"
+    allowtransparency="true"
+    allow="encrypted-media"
+    frameborder="0"
+    scrolling="no">
+  </iframe>
+</div>
 
     <p>
       Notaker es una aplicación Android diseñada para crear notas,
@@ -234,9 +244,6 @@
     <a href="politica.html">Política de Privacidad</a>
   </p>
 </footer>
-
-<script>    document.getElementById("year").textContent = new Date().getFullYear();
-</script>
 
 <script>    document.getElementById("year").textContent = new Date().getFullYear();
 </script>
